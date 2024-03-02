@@ -14,6 +14,8 @@ Item {
 
     Logo {
         anchors.bottom: textLabel.top
+        width: 270
+        height: 143
     }
 
     Text {
@@ -38,10 +40,8 @@ Item {
             id: rect
 
             anchors.fill: column
-            color: "lightGray"
-            radius: 20
-            border.color: "black"
-            border.width: 2
+            color: "#D0BCFF"
+            radius: 12
         }
 
         Column {
@@ -80,54 +80,59 @@ Item {
             PasswordField {
                 onTextChanged: passwordValue = text
             }
-        }
-    }
 
-    Button {
-        id: button
-        text: "Send"
-        anchors.horizontalCenter: loginFrame.horizontalCenter
-        anchors.top: loginFrame.bottom
-        anchors.topMargin: 10
-        onClicked: {
-            if (user.doLogin(emailValue, passwordValue)) {
-                console.log("logged")
-                goToMainScreen()
-            }
-        }
-
-        background: Rectangle {
-            color: "green"
-            radius: 10
-        }
-        leftInset: -6
-        rightInset: leftInset
-
-        topInset: -2
-        bottomInset: topInset
-    }
-
-    Column {
-        anchors.top: button.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-
-        Text {
-            id: notRegistered
-
-            text: "Not yet registered?"
-            horizontalAlignment: Text.AlignHCenter
-        }
-        Text {
-            text: "Registration"
-            color: "blue"
-            font.bold: true
-            horizontalAlignment: Text.AlignHCenter
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    goToRegistrationScreen()
+            Button {
+                id: button
+                contentItem: Text {
+                    text: "Send"
+                    color: "white"
                 }
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                    top: loginFrame.bottom
+                    topMargin: 20
+                }
+                onClicked: {
+                    if (user.doLogin(emailValue, passwordValue)) {
+                        console.log("logged")
+                        goToMainScreen()
+                    }
+                }
+
+                background: Rectangle {
+                    color: "#6750A4"
+                    radius: 100
+                }
+                leftInset: -6
+                rightInset: leftInset
+
+                topInset: -2
+                bottomInset: topInset
             }
         }
     }
+
+    // Column {
+    //     anchors.top: button.bottom
+    //     anchors.horizontalCenter: parent.horizontalCenter
+
+    //     Text {
+    //         id: notRegistered
+
+    //         text: "Not yet registered?"
+    //         horizontalAlignment: Text.AlignHCenter
+    //     }
+    //     Text {
+    //         text: "Registration"
+    //         color: "blue"
+    //         font.bold: true
+    //         horizontalAlignment: Text.AlignHCenter
+    //         MouseArea {
+    //             anchors.fill: parent
+    //             onClicked: {
+    //                 goToRegistrationScreen()
+    //             }
+    //         }
+    //     }
+    // }
 }

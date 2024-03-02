@@ -12,7 +12,6 @@ Item {
 
     // signal changeShowPasswordFirstField
     // signal changeShowPasswordSecondField
-
     // Login {
     //     id: loginObject
     // }

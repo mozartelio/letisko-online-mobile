@@ -7,16 +7,17 @@
 
 User::User(QObject *parent)
     : QObject{parent}
-{}
+{
+    manager = new QNetworkAccessManager();
+}
 
 
 bool User::doLogin(const QString& email, const QString& password){
+    QNetworkRequest request;
     qDebug() << "email: " << email;
     qDebug() << "password:" << password;
-    QTimer timer;
-    QNetworkAccessManager *manager = new QNetworkAccessManager();
 
-    QNetworkRequest request;
+
     timer.start(30000);
     timer.setSingleShot(true);
 

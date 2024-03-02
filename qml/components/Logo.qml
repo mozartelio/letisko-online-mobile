@@ -5,5 +5,5 @@ Image {
     height: 0.5 * width
     anchors.horizontalCenter: parent.horizontalCenter
     anchors.bottomMargin: 20
-    source: "../../assets/LetiskoLogo.png"
+    source: "../../assets/LetiskoLogo.svg"
 }

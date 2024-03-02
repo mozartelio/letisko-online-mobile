@@ -4,15 +4,24 @@ project(OnlineLetiskoMobileApp VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
-find_package(Qt6 6.5 REQUIRED COMPONENTS Network)
+find_package(Qt6 6 REQUIRED COMPONENTS Quick Network)
+# find_package(Qt6 6 REQUIRED COMPONENTS Quick Network LinguistTools)
 #target_link_libraries(mytarget PRIVATE Qt6::Network)
+# qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} /translations/slovak.ts)
+# configure_file(${QM_FILES} ${CMAKE_SOURCE_DIR}/translations/ COPYONLY)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(appOnlineLetiskoMobileApp
     main.cpp
+    # ${QM_FILES}
 )
+
+
+# add_library(
+#     SHARED
+#     ${QM_FILES}
+# )
 
 qt_add_qml_module(appOnlineLetiskoMobileApp
     URI OnlineLetiskoMobileApp
@@ -22,17 +31,29 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         qml/screens/LoginScreen.qml
         qml/screens/RegistrationScreen.qml
         qml/screens/MainScreen.qml
+        qml/screens/FillProfileDetails.qml
         qml/components/PasswordField.qml
         qml/components/Logo.qml
+        qml/components/MainScreenModule.qml
+        qml/components/DrawerItem.qml
     RESOURCES
         assets/icons/visibility_on.svg
         assets/icons/visibility_off.svg
-        assets/LetiskoLogo.png
+        assets/LetiskoLogo.svg
+        assets/icons/home.svg
+        assets/icons/aircrafts.svg
+        assets/icons/flight_scheduler.svg
+        assets/icons/flights.svg
+        assets/icons/users.svg
+        assets/icons/airport.svg
+        assets/icons/documentation.svg
+        assets/icons/duties.svg
+        assets/icons/licences.svg
+        assets/icons/settings.svg
     SOURCES
-        login.h
-        login.cpp
-        user.h
-        user.cpp
+        login.h login.cpp
+        user.h user.cpp
+        # hotreload.h hotreload.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

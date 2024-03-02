@@ -7,7 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt6 6 REQUIRED COMPONENTS Quick Network)
 # find_package(Qt6 6 REQUIRED COMPONENTS Quick Network LinguistTools)
 #target_link_libraries(mytarget PRIVATE Qt6::Network)
-# qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} /translations/slovak.ts)
+# qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR}/translations/ ${CMAKE_SOURCE_DIR}/translations/slovak.ts)
+# qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} slovak.ts)
 # configure_file(${QM_FILES} ${CMAKE_SOURCE_DIR}/translations/ COPYONLY)
 
 qt_standard_project_setup(REQUIRES 6.5)
@@ -19,7 +20,7 @@ qt_add_executable(appOnlineLetiskoMobileApp
 
 
 # add_library(
-#     SHARED
+#     # SHARED
 #     ${QM_FILES}
 # )
 
@@ -36,6 +37,9 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         qml/components/Logo.qml
         qml/components/MainScreenModule.qml
         qml/components/DrawerItem.qml
+
+        qml/components/typography/headline/HeadlineMedium.qml
+        qml/components/typography/label/LabelLargeProminent.qml
     RESOURCES
         assets/icons/visibility_on.svg
         assets/icons/visibility_off.svg

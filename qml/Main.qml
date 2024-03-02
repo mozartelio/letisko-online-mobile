@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import com.user 1.0
 import "./screens"
 import "./components"
+import "./components/typography/headline"
 
 ApplicationWindow {
     property bool drawerAvailable: true
@@ -40,36 +41,85 @@ ApplicationWindow {
         }
 
         ColumnLayout {
+            anchors {
+                margins: 12
+                top: parent.top
+                left: parent.left
+                right: parent.right
+            }
+            layoutDirection: Qt.LeftToRight
             spacing: 0
+
+            Rectangle {
+                id: airportName
+                Layout.preferredHeight: 56
+                Layout.minimumHeight: Layout.preferredHeight
+                Layout.maximumHeight: Layout.preferredHeight
+                Layout.fillWidth: true
+                Layout.topMargin: 8
+                Layout.bottomMargin: Layout.topMargin
+                Layout.rightMargin: Layout.topMargin
+                Layout.leftMargin: 16
+                color: drawer.background.color
+                Layout.alignment: Qt.AlignTop | Qt.AlignLeft | Qt.AnchorLeft | Qt.AnchorTop
+                HeadlineMedium {
+                    text: qsTr("Kosice airport")
+                    verticalAlignment: Text.AlignVCenter
+                    anchors {
+                        fill: parent
+                    }
+                }
+            }
             DrawerItem {
                 iconSource: "../../assets/icons/home.svg"
-                itemName: "Home"
-                drawerWidth: drawer.width
+                itemName: qsTr("Home")
             }
 
             DrawerItem {
                 iconSource: "../../assets/icons/aircrafts.svg"
-                itemName: "Aircrafts"
-                drawerWidth: drawer.width
+                itemName: qsTr("Aircrafts")
+            }
+
+            DrawerItem {
+                iconSource: "../../assets/icons/flight_scheduler.svg"
+                itemName: qsTr("Flight scheduler")
+            }
+
+            DrawerItem {
+                iconSource: "../../assets/icons/flights.svg"
+                itemName: qsTr("Flights")
+            }
+
+            DrawerItem {
+                iconSource: "../../assets/icons/users.svg"
+                itemName: qsTr("Users")
+            }
+
+            DrawerItem {
+                iconSource: "../../assets/icons/airport.svg"
+                itemName: qsTr("Airport")
+            }
+
+            DrawerItem {
+                iconSource: "../../assets/icons/documentation.svg"
+                itemName: qsTr("Documentation")
+            }
+
+            DrawerItem {
+                iconSource: "../../assets/icons/duties.svg"
+                itemName: qsTr("Duties")
+            }
+
+            DrawerItem {
+                iconSource: "../../assets/icons/licences.svg"
+                itemName: qsTr("Licences")
+            }
+
+            DrawerItem {
+                iconSource: "../../assets/icons/settings.svg"
+                itemName: qsTr("Settings")
             }
         }
-
-        // RowLayout {
-        //     anchors{
-        //         top: parent.top
-        //     }
-        //     spacing: 6
-        //     Rectangle {
-        //         color: 'azure'
-        //         Layout.preferredWidth: 100
-        //         Layout.preferredHeight: 150
-        //     }
-        //     Rectangle {
-        //         color: "plum"
-        //         Layout.fillWidth: true
-        //         Layout.fillHeight: true
-        //     }
-        // }
     }
 
     Component {

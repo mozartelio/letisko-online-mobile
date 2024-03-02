@@ -1,26 +1,34 @@
 import QtQuick
 import QtQuick.Layouts
+import "./typography/label"
 
 Rectangle {
     id: drawerItem
     property string iconSource
     property string itemName
 
-    property int drawerWidth
+    // property int drawerWidth
     signal press
 
     color: "#00FFFFFF"
     radius: 100
-    Layout.alignment: Qt.AlignLeft
-    Layout.minimumHeight: 56
+    Layout.preferredHeight: 56
+    Layout.minimumHeight: Layout.preferredHeight
+    Layout.maximumHeight: Layout.preferredHeight
     Layout.fillWidth: true
-    Layout.leftMargin: 12
-    Layout.rightMargin: drawerItem.Layout.leftMargin
-    Layout.topMargin: 0
-    Layout.bottomMargin: drawerItem.Layout.topMargin
+    Layout.fillHeight: false
 
-    Layout.minimumWidth: (drawerWidth - 2 * drawerItem.Layout.leftMargin)
+    // Layout.alignment: Qt.AlignLeft
+    Layout.alignment: Qt.AlignTop | Qt.AlignLeft | Qt.AnchorLeft | Qt.AnchorTop
 
+    // Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft | Qt.AnchorLeft | Qt.AnchorTop
+    Layout.margins: 0
+    // Layout.leftMargin: 12
+    // Layout.rightMargin: drawerItem.Layout.leftMargin
+    // Layout.topMargin: 0
+    // Layout.bottomMargin: drawerItem.Layout.topMargin
+
+    // Layout.minimumWidth: (drawerWidth - 2 * drawerItem.Layout.leftMargin)
     MouseArea {
         anchors.fill: parent
         onPressed: {
@@ -53,11 +61,9 @@ Rectangle {
             source: iconSource
         }
 
-        Text {
+        LabelLargeProminent {
             id: text
             text: qsTr(itemName)
-            font.bold: true
-            font.family: "Roboto"
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft | Qt.AnchorLeft
         }

@@ -1,4 +1,4 @@
-import QtQuick 2.15
+import QtQuick
 
 Text {
     font.family: "Roboto"
@@ -6,4 +6,5 @@ Text {
     font.pixelSize: 28
     font.letterSpacing: 0
     lineHeight: 36
+    elide: Text.ElideRight
 }

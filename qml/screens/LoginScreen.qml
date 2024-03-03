@@ -47,7 +47,7 @@ Item {
         Column {
             id: column
 
-            spacing: 5
+            spacing: 15
             leftPadding: 20
             topPadding: 20
             rightPadding: 20
@@ -69,15 +69,16 @@ Item {
                     radius: 5
                 }
             }
-            Item {
-                height: 15
-                width: 1
-            }
 
+            // Item {
+            //     height: 15
+            //     width: 1
+            // }
             Text {
                 text: "Heslo"
             }
             PasswordField {
+                id: passswordInput
                 onTextChanged: passwordValue = text
             }
 
@@ -89,8 +90,6 @@ Item {
                 }
                 anchors {
                     horizontalCenter: parent.horizontalCenter
-                    top: loginFrame.bottom
-                    topMargin: 20
                 }
                 onClicked: {
                     if (user.doLogin(emailValue, passwordValue)) {

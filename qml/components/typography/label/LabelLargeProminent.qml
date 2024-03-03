@@ -7,4 +7,5 @@ Text {
     font.letterSpacing: 0.1
     lineHeightMode: Text.FixedHeight
     lineHeight: 20
+    elide: Text.ElideRight
 }

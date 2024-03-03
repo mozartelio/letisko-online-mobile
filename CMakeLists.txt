@@ -41,9 +41,10 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         qml/components/typography/headline/HeadlineMedium.qml
         qml/components/typography/label/LabelLargeProminent.qml
     RESOURCES
+        assets/LetiskoLogo.svg
+
         assets/icons/visibility_on.svg
         assets/icons/visibility_off.svg
-        assets/LetiskoLogo.svg
         assets/icons/home.svg
         assets/icons/aircrafts.svg
         assets/icons/flight_scheduler.svg
@@ -54,6 +55,9 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         assets/icons/duties.svg
         assets/icons/licences.svg
         assets/icons/settings.svg
+        assets/icons/menu-24px.svg
+
+        assets/fonts/Roboto-Regular.ttf
     SOURCES
         login.h login.cpp
         user.h user.cpp

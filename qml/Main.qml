@@ -1,5 +1,6 @@
 import QtQuick
-import QtQuick.Controls 2.15
+import QtQuick.Controls
+import QtQuick.Controls.Material
 import QtQuick.Layouts
 import com.user 1.0
 import "./screens"
@@ -7,6 +8,10 @@ import "./components"
 import "./components/typography/headline"
 
 ApplicationWindow {
+
+    Material.theme: Material.Light
+    Material.accent: Material.Purple
+
     property bool drawerAvailable: true
     id: window
 
@@ -15,6 +20,22 @@ ApplicationWindow {
     visible: true
     title: qsTr("Online letisko")
     color: "white"
+
+    header: ToolBar {
+        height: 64
+        ToolButton {
+            id: menuButton
+            anchors.left: parent.left
+            anchors.verticalCenter: parent.verticalCenter
+            icon.source: "../assets/icons/menu-24px.svg"
+            onClicked: drawer.open()
+        }
+        HeadlineMedium {
+            anchors.centerIn: parent
+            verticalAlignment: Text.AlignVCenter
+            text: qsTr("App")
+        }
+    }
 
     StackView {
         initialItem: loginPage
@@ -32,7 +53,8 @@ ApplicationWindow {
 
     Drawer {
         id: drawer
-        width: 0.33 * window.width
+        width: Math.min(window.width,
+                        window.height) / 3 * 2 //0.33 * window.width
         height: window.height
         visible: drawerAvailable
         background: Rectangle {
@@ -119,6 +141,8 @@ ApplicationWindow {
                 iconSource: "../../assets/icons/settings.svg"
                 itemName: qsTr("Settings")
             }
+            //TODO:
+            // ScrollIndicator.vertical: ScrollIndicator {}
         }
     }
 

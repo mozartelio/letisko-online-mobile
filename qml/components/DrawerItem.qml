@@ -7,28 +7,13 @@ Rectangle {
     property string iconSource
     property string itemName
 
-    // property int drawerWidth
     signal press
 
     color: "#00FFFFFF"
     radius: 100
-    Layout.preferredHeight: 56
-    Layout.minimumHeight: Layout.preferredHeight
-    Layout.maximumHeight: Layout.preferredHeight
-    Layout.fillWidth: true
-    Layout.fillHeight: false
+    height: 56
+    width: parent.width
 
-    // Layout.alignment: Qt.AlignLeft
-    Layout.alignment: Qt.AlignTop | Qt.AlignLeft | Qt.AnchorLeft | Qt.AnchorTop
-
-    // Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft | Qt.AnchorLeft | Qt.AnchorTop
-    Layout.margins: 0
-    // Layout.leftMargin: 12
-    // Layout.rightMargin: drawerItem.Layout.leftMargin
-    // Layout.topMargin: 0
-    // Layout.bottomMargin: drawerItem.Layout.topMargin
-
-    // Layout.minimumWidth: (drawerWidth - 2 * drawerItem.Layout.leftMargin)
     MouseArea {
         anchors.fill: parent
         onPressed: {
@@ -41,10 +26,10 @@ Rectangle {
         }
     }
 
-    RowLayout {
+    Row {
         id: drawerItemRow
-        layoutDirection: Qt.LeftToRight
         spacing: 12
+        width: parent.width
         anchors {
             leftMargin: 16
             rightMargin: 24
@@ -55,17 +40,15 @@ Rectangle {
 
         Image {
             id: icon
-            Layout.preferredWidth: 24
-            Layout.preferredHeight: 24
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft | Qt.AnchorLeft
+            width: 24
+            height: 24
             source: iconSource
         }
 
         LabelLargeProminent {
             id: text
+            width: drawerItemRow.width - icon.width - drawerItemRow.spacing
             text: qsTr(itemName)
-            Layout.fillWidth: true
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft | Qt.AnchorLeft
         }
     }
 }

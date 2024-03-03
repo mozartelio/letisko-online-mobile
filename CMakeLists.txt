@@ -37,9 +37,14 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         qml/components/Logo.qml
         qml/components/MainScreenModule.qml
         qml/components/DrawerItem.qml
+        qml/components/ToolBarNameButton.qml
 
+        # font styles
         qml/components/typography/headline/HeadlineMedium.qml
         qml/components/typography/label/LabelLargeProminent.qml
+        qml/components/typography/title/TitleLarge.qml
+
+        qml/MainWindow.qml
     RESOURCES
         assets/LetiskoLogo.svg
 
@@ -56,11 +61,15 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         assets/icons/licences.svg
         assets/icons/settings.svg
         assets/icons/menu-24px.svg
+        assets/icons/3d_avatar_21.svg
 
         assets/fonts/Roboto-Regular.ttf
     SOURCES
         login.h login.cpp
         user.h user.cpp
+        core/FileWatcher.h core/FileWatcher.cpp
+        core/ComponentCreatorEngine.h core/ComponentCreatorEngine.cpp
+
         # hotreload.h hotreload.cpp
 )
 

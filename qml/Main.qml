@@ -12,7 +12,7 @@ ApplicationWindow {
     Material.theme: Material.Light
     Material.accent: Material.Purple
 
-    property bool drawerAvailable: true
+    // property bool drawerAvailable: false
     id: window
 
     width: 1194
@@ -21,151 +21,65 @@ ApplicationWindow {
     title: qsTr("Online letisko")
     color: "white"
 
-    header: ToolBar {
-        height: 64
-        ToolButton {
-            id: menuButton
-            anchors.left: parent.left
-            anchors.verticalCenter: parent.verticalCenter
-            icon.source: "../assets/icons/menu-24px.svg"
-            onClicked: drawer.open()
-        }
-        HeadlineMedium {
-            anchors.centerIn: parent
-            verticalAlignment: Text.AlignVCenter
-            text: qsTr("App")
-        }
-    }
 
-    StackView {
-        initialItem: loginPage
-        width: parent.width
-        height: parent.height
-        id: stackView
+    /**
+     * from here and until the corresponding ending comment code for hot reload was taken from
+     * https://github.com/MarkoStanojevic12/ComponentLibrary/tree/Lesson_01_LiveLoader/component_library/Buttons
+    */
+    Loader {
+        id: mainLoader
         anchors.fill: parent
-        onCurrentItemChanged: console.log("Current Item:",
-                                          stackView.currentItem)
-    }
 
-    User {
-        id: userId
-    }
+        source: "./MainWindow.qml"
 
-    Drawer {
-        id: drawer
-        width: Math.min(window.width,
-                        window.height) / 3 * 2 //0.33 * window.width
-        height: window.height
-        visible: drawerAvailable
-        background: Rectangle {
-            color: "#F7F2FA"
-            radius: 16
-        }
-
-        ColumnLayout {
-            anchors {
-                margins: 12
-                top: parent.top
-                left: parent.left
-                right: parent.right
-            }
-            layoutDirection: Qt.LeftToRight
-            spacing: 0
-
-            Rectangle {
-                id: airportName
-                Layout.preferredHeight: 56
-                Layout.minimumHeight: Layout.preferredHeight
-                Layout.maximumHeight: Layout.preferredHeight
-                Layout.fillWidth: true
-                Layout.topMargin: 8
-                Layout.bottomMargin: Layout.topMargin
-                Layout.rightMargin: Layout.topMargin
-                Layout.leftMargin: 16
-                color: drawer.background.color
-                Layout.alignment: Qt.AlignTop | Qt.AlignLeft | Qt.AnchorLeft | Qt.AnchorTop
-                HeadlineMedium {
-                    text: qsTr("Kosice airport")
-                    verticalAlignment: Text.AlignVCenter
-                    anchors {
-                        fill: parent
-                    }
-                }
-            }
-            DrawerItem {
-                iconSource: "../../assets/icons/home.svg"
-                itemName: qsTr("Home")
-            }
-
-            DrawerItem {
-                iconSource: "../../assets/icons/aircrafts.svg"
-                itemName: qsTr("Aircrafts")
-            }
-
-            DrawerItem {
-                iconSource: "../../assets/icons/flight_scheduler.svg"
-                itemName: qsTr("Flight scheduler")
-            }
-
-            DrawerItem {
-                iconSource: "../../assets/icons/flights.svg"
-                itemName: qsTr("Flights")
-            }
-
-            DrawerItem {
-                iconSource: "../../assets/icons/users.svg"
-                itemName: qsTr("Users")
-            }
-
-            DrawerItem {
-                iconSource: "../../assets/icons/airport.svg"
-                itemName: qsTr("Airport")
-            }
-
-            DrawerItem {
-                iconSource: "../../assets/icons/documentation.svg"
-                itemName: qsTr("Documentation")
-            }
-
-            DrawerItem {
-                iconSource: "../../assets/icons/duties.svg"
-                itemName: qsTr("Duties")
-            }
-
-            DrawerItem {
-                iconSource: "../../assets/icons/licences.svg"
-                itemName: qsTr("Licences")
-            }
-
-            DrawerItem {
-                iconSource: "../../assets/icons/settings.svg"
-                itemName: qsTr("Settings")
-            }
-            //TODO:
-            // ScrollIndicator.vertical: ScrollIndicator {}
+        function reload() {
+            mainLoader.source = ""
+            QmlEngine.clearCache()
+            mainLoader.source = "./MainWindow.qml"
         }
     }
 
-    Component {
-        id: loginPage
-        LoginScreen {
-            user: userId
-            onGoToRegistrationScreen: stackView.replace(registrationPage)
-            onGoToMainScreen: stackView.replace(mainPage)
-        }
-    }
+    Connections {
+        target: QmlEngine
 
-    Component {
-        id: registrationPage
-        RegistrationScreen {
-            onGoToLoginScreen: stackView.push(loginPage)
-            onGoToMainScreen: stackView.replace(mainPage)
+        function onReloadUI() {
+            console.log("Reloading UI")
+            mainLoader.reload()
         }
     }
+    /*end of source code for hot reload*/
 
-    Component {
-        id: mainPage
-        MainScreen {//            onGoToLoginPage: stackView.push(loginPage)
-        }
-    }
+    // header: ToolBar {
+    //     height: 64
+    //     RowLayout {
+    //         anchors {
+    //             fill: parent
+    //             right: parent.right
+    //             left: parent.left
+    //         }
+    //         spacing: 0
+    //         ToolButton {
+    //             id: menuButton
+    //             Layout.alignment: Qt.AlignVCenter | Qt.AnchorLeft
+    //             // anchors.left: parent.left
+    //             // anchors.verticalCenter: parent.verticalCenter
+    //             icon.source: "../assets/icons/menu-24px.svg"
+    //             // onClicked: drawer.open()
+    //         }
+    //         HeadlineMedium {
+    //             // anchors.centerIn: parent
+    //             Layout.alignment: Qt.AlignHCenter //| Qt.AnchorCenter
+    //             text: qsTr("App")
+    //             color: "white"
+    //         }
+
+    //         // ToolBarNameButton {
+    //         //     Layout.alignment: Qt.AlignVCenter | Qt.AnchorRight
+    //         //     // anchors {
+    //         //     // verticalCenter: parent.verticalCenter
+    //         //     // right: parent.right
+    //         //     // }
+    //         // }
+    //     }
+    // }
 }

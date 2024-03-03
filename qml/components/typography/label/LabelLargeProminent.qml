@@ -8,4 +8,5 @@ Text {
     lineHeightMode: Text.FixedHeight
     lineHeight: 20
     elide: Text.ElideRight
+    verticalAlignment: Text.AlignVCenter
 }

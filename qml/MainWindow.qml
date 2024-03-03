@@ -6,6 +6,7 @@ import com.user 1.0
 import "./screens"
 import "./components"
 import "./components/typography/headline"
+import "./components/typography/title"
 
 Item {
     property bool drawerAvailable: false
@@ -30,25 +31,104 @@ Item {
                 ToolButton {
                     id: menuButton
                     Layout.alignment: Qt.AlignVCenter | Qt.AnchorLeft
-                    // anchors.left: parent.left
-                    // anchors.verticalCenter: parent.verticalCenter
                     icon.source: "../assets/icons/menu-24px.svg"
                     onClicked: drawer.open()
                 }
-                HeadlineMedium {
-                    // anchors.centerIn: parent
-                    Layout.alignment: Qt.AlignHCenter //| Qt.AnchorCenter
-                    text: qsTr("App")
-                    color: "white"
+                Label {
+                    // Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter | Qt.AnchorCenter
+                    horizontalAlignment: Qt.AlignHCenter
+                    verticalAlignment: Qt.AlignVCenter
+                    Layout.fillWidth: true
+                    HeadlineMedium {
+                        anchors.verticalCenter: parent.verticalCenter
+                        // anchors.centerIn: parent
+                        text: qsTr("App")
+                        color: "white"
+                    }
                 }
 
-                ToolBarNameButton {
-                    Layout.alignment: Qt.AlignVCenter | Qt.AnchorRight
-                    // anchors {
-                    // verticalCenter: parent.verticalCenter
-                    // right: parent.right
-                    // }
+                ToolButton {
+                    id: control
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight | Qt.AnchorRight
+                    display: AbstractButton.TextBesideIcon
+                    contentItem: Text {
+                        id: userNameSurname
+                        text: "Name Surname"
+                        font.family: "Roboto"
+                        color: "white"
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
+                        wrapMode: Text.WordWrap
+                    }
+                    background: Rectangle {
+
+                        implicitWidth: 175 + 40 + 15
+                        implicitHeight: 48
+                        color: "transparent"
+                        Image {
+                            id: userPhoto
+                            source: "../assets/icons/3d_avatar_21.png"
+                            width: 40
+                            height: 40
+                            verticalAlignment: Image.AlignVCenter
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+                    }
+                    onClicked: console.log("here is a profile...")
                 }
+
+                // ToolButton {
+                //     id: control
+                //     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight | Qt.AnchorRight
+                //     contentItem: Text {
+                //         text: "control.text"
+                //         // font: control.font
+                //         opacity: enabled ? 1.0 : 0.3
+                //         color: control.down ? "#17a81a" : "#21be2b"
+                //         horizontalAlignment: Text.AlignHCenter
+                //         verticalAlignment: Text.AlignVCenter
+                //         elide: Text.ElideRight
+                //     }
+
+                //     background: Rectangle {
+                //         implicitWidth: 218
+                //         implicitHeight: 48
+                //         color: "salmon"
+
+                //         Row {
+                //             id: toolBarNameButtonRow
+                //             width: 218
+                //             height: 48
+                //             spacing: 3
+                //             anchors {
+                //                 verticalCenter: parent.verticalCenter
+                //             }
+
+                //             Image {
+                //                 id: avatar
+                //                 source: "../assets/icons/airport.svg"
+                //                 width: 40
+                //                 height: 40
+                //                 fillMode: Image.PreserveAspectFit
+                //             }
+                //             TitleLarge {
+                //                 width: toolBarNameButtonRow.width - avatar.width
+                //                        - toolBarNameButtonRow.spacing
+                //                 text: "Name Surname"
+                //             }
+                //         }
+                //         // Qt.darker(
+                //         //        "#33333333", control.enabled
+                //         //        && (control.checked
+                //         //            || control.highlighted) ? 1.5 : 1.0)
+                //         // opacity: enabled ? 1 : 0.3
+                //         // visible: control.down || (control.enabled
+                //         //                           && (control.checked
+                //         //                               || control.highlighted))
+                //     }
+                //     onClicked: console.log("here is a profile...")
+                // }
             }
         }
         StackView {

@@ -14,8 +14,7 @@
 // #include <QTranslator>
 #include "login.h"
 #include "user.h"
-#include "core/ComponentCreatorEngine.h"
-// #include "hotreload.h"
+#include "hotreload/ComponentCreatorEngine.h"
 
 
 int main(int argc, char *argv[])

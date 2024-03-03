@@ -11,6 +11,7 @@ ApplicationWindow {
 
     Material.theme: Material.Light
     Material.accent: Material.Purple
+    font.family: "Roboto"
 
     // property bool drawerAvailable: false
     id: window
@@ -48,38 +49,4 @@ ApplicationWindow {
         }
     }
     /*end of source code for hot reload*/
-
-    // header: ToolBar {
-    //     height: 64
-    //     RowLayout {
-    //         anchors {
-    //             fill: parent
-    //             right: parent.right
-    //             left: parent.left
-    //         }
-    //         spacing: 0
-    //         ToolButton {
-    //             id: menuButton
-    //             Layout.alignment: Qt.AlignVCenter | Qt.AnchorLeft
-    //             // anchors.left: parent.left
-    //             // anchors.verticalCenter: parent.verticalCenter
-    //             icon.source: "../assets/icons/menu-24px.svg"
-    //             // onClicked: drawer.open()
-    //         }
-    //         HeadlineMedium {
-    //             // anchors.centerIn: parent
-    //             Layout.alignment: Qt.AlignHCenter //| Qt.AnchorCenter
-    //             text: qsTr("App")
-    //             color: "white"
-    //         }
-
-    //         // ToolBarNameButton {
-    //         //     Layout.alignment: Qt.AlignVCenter | Qt.AnchorRight
-    //         //     // anchors {
-    //         //     // verticalCenter: parent.verticalCenter
-    //         //     // right: parent.right
-    //         //     // }
-    //         // }
-    //     }
-    // }
 }

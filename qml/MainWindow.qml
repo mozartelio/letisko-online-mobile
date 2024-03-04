@@ -30,7 +30,7 @@ Item {
                 spacing: 0
                 ToolButton {
                     id: menuButton
-                    Layout.alignment: Qt.AlignVCenter | Qt.AnchorLeft
+                    Layout.alignment: Qt.AlignVCenter
                     icon.source: "../assets/icons/menu-24px.svg"
                     onClicked: drawer.open()
                 }
@@ -49,86 +49,36 @@ Item {
 
                 ToolButton {
                     id: control
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight | Qt.AnchorRight
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
                     display: AbstractButton.TextBesideIcon
-                    contentItem: Text {
-                        id: userNameSurname
-                        text: "Name Surname"
-                        font.family: "Roboto"
-                        color: "white"
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                        elide: Text.ElideRight
-                        wrapMode: Text.WordWrap
-                    }
-                    background: Rectangle {
+                    implicitWidth: userPhoto.implicitWidth + userNameSurname.implicitWidth
+                    // implicitHeight: userPhoto.implicitHeigh + userNameSurname.implicitHeigh
+                    contentItem: Row {
+                        id: row
+                        anchors.right: parent.right
+                        spacing: 15
 
-                        implicitWidth: 175 + 40 + 15
-                        implicitHeight: 48
-                        color: "transparent"
                         Image {
                             id: userPhoto
-                            source: "../assets/icons/3d_avatar_21.png"
-                            width: 40
-                            height: 40
-                            verticalAlignment: Image.AlignVCenter
                             anchors.verticalCenter: parent.verticalCenter
+                            source: "../assets/icons/3d_avatar_21.png"
+                            width: 45
+                            height: 45
+                            verticalAlignment: Image.AlignVCenter
+                        }
+
+                        TitleLarge {
+                            id: userNameSurname
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: contentWidth
+                            text: "Name Surname"
+                            color: "white"
+                            horizontalAlignment: Text.AlignHCenter
+                            wrapMode: Text.WordWrap
                         }
                     }
                     onClicked: console.log("here is a profile...")
                 }
-
-                // ToolButton {
-                //     id: control
-                //     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight | Qt.AnchorRight
-                //     contentItem: Text {
-                //         text: "control.text"
-                //         // font: control.font
-                //         opacity: enabled ? 1.0 : 0.3
-                //         color: control.down ? "#17a81a" : "#21be2b"
-                //         horizontalAlignment: Text.AlignHCenter
-                //         verticalAlignment: Text.AlignVCenter
-                //         elide: Text.ElideRight
-                //     }
-
-                //     background: Rectangle {
-                //         implicitWidth: 218
-                //         implicitHeight: 48
-                //         color: "salmon"
-
-                //         Row {
-                //             id: toolBarNameButtonRow
-                //             width: 218
-                //             height: 48
-                //             spacing: 3
-                //             anchors {
-                //                 verticalCenter: parent.verticalCenter
-                //             }
-
-                //             Image {
-                //                 id: avatar
-                //                 source: "../assets/icons/airport.svg"
-                //                 width: 40
-                //                 height: 40
-                //                 fillMode: Image.PreserveAspectFit
-                //             }
-                //             TitleLarge {
-                //                 width: toolBarNameButtonRow.width - avatar.width
-                //                        - toolBarNameButtonRow.spacing
-                //                 text: "Name Surname"
-                //             }
-                //         }
-                //         // Qt.darker(
-                //         //        "#33333333", control.enabled
-                //         //        && (control.checked
-                //         //            || control.highlighted) ? 1.5 : 1.0)
-                //         // opacity: enabled ? 1 : 0.3
-                //         // visible: control.down || (control.enabled
-                //         //                           && (control.checked
-                //         //                               || control.highlighted))
-                //     }
-                //     onClicked: console.log("here is a profile...")
-                // }
             }
         }
         StackView {

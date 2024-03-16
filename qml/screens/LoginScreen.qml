@@ -3,114 +3,115 @@ import QtQuick.Controls
 import QtQuick.Controls.Basic
 // import com.login 1.0
 import com.user 1.0
-import "../components/"
+import "../components/colors/sys"
+import "../components"
 
-Item {
+Page {
     property string emailValue: ""
     property User user
     property string passwordValue
     signal goToRegistrationScreen
     signal goToMainScreen
-
-    Logo {
-        anchors.bottom: textLabel.top
-        width: 270
-        height: 143
-    }
-
-    Text {
-        id: textLabel
-        text: "LOGIN"
-        anchors.left: loginFrame.left
-        anchors.bottom: loginFrame.top
-        anchors.bottomMargin: 10
-        font.bold: true
-        font.pixelSize: 20
+    background: Rectangle {
         color: "white"
     }
+    contentItem: Item {
 
-    Item {
-        id: loginFrame
-
-        anchors.centerIn: parent
-        width: rect.width
-        height: rect.height
-
-        Rectangle {
-            id: rect
-
-            anchors.fill: column
-            color: "#D0BCFF"
-            radius: 12
+        Logo {
+            anchors.bottom: textLabel.top
+            width: 270
+            height: 143
         }
 
-        Column {
-            id: column
+        Text {
+            id: textLabel
+            text: qsTr("LOGIN")
+            anchors.left: loginFrame.left
+            anchors.bottom: loginFrame.top
+            anchors.bottomMargin: 10
+            font.bold: true
+            font.pixelSize: 20
+            color: "black"
+        }
 
-            spacing: 15
-            leftPadding: 20
-            topPadding: 20
-            rightPadding: 20
-            bottomPadding: 20
-            Text {
-                text: "Email"
+        Item {
+            id: loginFrame
+
+            anchors.centerIn: parent
+            width: rect.width
+            height: rect.height
+
+            Rectangle {
+                id: rect
+                anchors.fill: column
+                color: ColorsLight.inverse_primary
+                radius: 12
             }
-            TextField {
-                id: email
 
-                width: 200
-                height: 30
-                color: "black"
-                maximumLength: 255
-                onTextChanged: emailValue = text
+            Column {
+                id: column
 
-                background: Rectangle {
-                    color: "white"
-                    radius: 5
+                spacing: 15
+                leftPadding: 20
+                topPadding: 20
+                rightPadding: 20
+                bottomPadding: 20
+                Text {
+                    text: qsTr("Email")
                 }
-            }
+                TextField {
+                    id: email
 
-            // Item {
-            //     height: 15
-            //     width: 1
-            // }
-            Text {
-                text: "Heslo"
-            }
-            PasswordField {
-                id: passswordInput
-                onTextChanged: passwordValue = text
-            }
+                    width: 200
+                    height: 30
+                    color: "black"
+                    maximumLength: 255
+                    onTextChanged: emailValue = text
 
-            Button {
-                id: button
-                contentItem: Text {
-                    text: "Send"
-                    color: "white"
-                }
-                anchors {
-                    horizontalCenter: parent.horizontalCenter
-                }
-                onClicked: {
-                    if (user.doLogin(emailValue, passwordValue)) {
-                        console.log("logged")
-                        goToMainScreen()
+                    background: Rectangle {
+                        color: "white"
+                        radius: 5
                     }
                 }
 
-                background: Rectangle {
-                    color: "#6750A4"
-                    radius: 100
+                Text {
+                    text: "Heslo"
                 }
-                leftInset: -6
-                rightInset: leftInset
+                PasswordField {
+                    id: passswordInput
+                    onTextChanged: passwordValue = text
+                }
 
-                topInset: -2
-                bottomInset: topInset
+                Button {
+                    id: button
+                    contentItem: Text {
+                        text: qsTr("Send")
+                        color: "white"
+                    }
+                    anchors {
+                        horizontalCenter: parent.horizontalCenter
+                    }
+                    onClicked: {
+                        if (user.doLogin(emailValue, passwordValue)) {
+                            console.log("logged")
+                            goToMainScreen()
+                        }
+                    }
+
+                    background: Rectangle {
+                        color: "#6750A4"
+                        radius: 100
+                    }
+                    leftInset: -6
+                    rightInset: leftInset
+
+                    topInset: -2
+                    bottomInset: topInset
+                }
             }
         }
     }
-
+    // TODO:
     // Column {
     //     anchors.top: button.bottom
     //     anchors.horizontalCenter: parent.horizontalCenter

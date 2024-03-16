@@ -5,8 +5,8 @@ import QtQuick.Layouts
 import com.user 1.0
 import "./screens"
 import "./components"
-import "./components/typography/headline"
-import "./components/typography/title"
+import "./components/typography/headline/text"
+import "./components/typography/title/text"
 
 Item {
     property bool drawerAvailable: false
@@ -39,7 +39,7 @@ Item {
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
                     Layout.fillWidth: true
-                    HeadlineMedium {
+                    HeadlineMediumText {
                         anchors.verticalCenter: parent.verticalCenter
                         // anchors.centerIn: parent
                         text: qsTr("App")
@@ -67,22 +67,25 @@ Item {
                             verticalAlignment: Image.AlignVCenter
                         }
 
-                        TitleLarge {
+                        TitleLargeText {
                             id: userNameSurname
                             anchors.verticalCenter: parent.verticalCenter
                             width: contentWidth
                             text: "Name Surname"
-                            color: "white"
+                            color: "black"
                             horizontalAlignment: Text.AlignHCenter
                             wrapMode: Text.WordWrap
                         }
                     }
-                    onClicked: console.log("here is a profile...")
+                    onClicked: {
+                        console.log("here is a profile...")
+                    }
                 }
             }
         }
+
         StackView {
-            initialItem: loginPage
+            initialItem: flightsPage
             width: parent.width
             height: parent.height
             id: stackView
@@ -102,7 +105,7 @@ Item {
         height: window.height
         visible: drawerAvailable
         background: Rectangle {
-            color: "#F7F2FA"
+            color: "#F7F2FA" //ColorsLight.surface_container_low
             radius: 16
         }
 
@@ -120,7 +123,7 @@ Item {
                 height: 56
                 width: parent.width
                 color: drawer.background.color
-                HeadlineMedium {
+                HeadlineMediumText {
                     id: airportName
                     text: qsTr("Kosice airport")
                     anchors {
@@ -207,5 +210,10 @@ Item {
         id: mainPage
         MainScreen {//            onGoToLoginPage: stackView.push(loginPage)
         }
+    }
+
+    Component {
+        id: flightsPage
+        Flights {}
     }
 }

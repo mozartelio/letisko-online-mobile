@@ -20,8 +20,6 @@ ApplicationWindow {
     height: 834
     visible: true
     title: qsTr("Online letisko")
-    color: "white"
-
 
     /**
      * from here and until the corresponding ending comment code for hot reload was taken from

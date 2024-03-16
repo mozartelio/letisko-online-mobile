@@ -1,6 +1,7 @@
 import QtQuick
+import QtQuick.Controls
 
-Item {
+Page {
     Rectangle {
         color: "white"
         anchors.fill: parent

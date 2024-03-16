@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
-import "./typography/label"
+import "./typography/label/text"
 
 Rectangle {
     id: drawerItem
@@ -9,7 +9,7 @@ Rectangle {
 
     signal press
 
-    color: "#00FFFFFF"
+    color: "transparent"
     radius: 100
     height: 56
     width: parent.width
@@ -17,11 +17,11 @@ Rectangle {
     MouseArea {
         anchors.fill: parent
         onPressed: {
-            parent.color = '#E8DEF8'
+            parent.color = "#D0BCFF"
             console.log("pressed")
         }
         onReleased: {
-            parent.color = '#00FFFFFF'
+            parent.color = 'transparent'
             console.log("released")
         }
     }
@@ -45,7 +45,7 @@ Rectangle {
             source: iconSource
         }
 
-        LabelLargeProminent {
+        LabelLargeProminentText {
             id: text
             width: drawerItemRow.width - icon.width - drawerItemRow.spacing
             text: qsTr(itemName)

@@ -8,17 +8,26 @@ Rectangle {
     property int status
 
     color: "#FEF7FF"
-    height: 150
-    width: parent.width * 0.68
+    height: (grid.columns === 1) ? 185 : (grid.columns === 2) ? 165 : 130
+    width: parent.width
 
     MouseArea {
+        id: mouseArea
         anchors.fill: root
         onPressed: {
             console.log("pressed")
-            root.color = "#D0BCFF"
         }
-        onReleased: root.color = "#FEF7FF"
     }
+    states: [
+        State {
+            name: "pressed"
+            PropertyChanges {
+                target: root
+                color: "#D0BCFF"
+            }
+            when: mouseArea.pressed
+        }
+    ]
 
     RowLayout {
         anchors {
@@ -33,6 +42,8 @@ Rectangle {
         spacing: 16
 
         ColumnLayout {
+
+            Layout.preferredWidth: contentWidth
             RowLayout {
                 spacing: 7
 
@@ -54,13 +65,36 @@ Rectangle {
                 }
             }
             GridLayout {
+                id: grid
                 Layout.fillWidth: true
-
                 // Layout.fillHeight: true
                 flow: GridLayout.LeftToRight
                 columnSpacing: 39
                 rowSpacing: 20
                 columns: 2
+                states: [
+                    State {
+                        when: window.width <= 600
+                        PropertyChanges {
+                            target: grid
+                            columns: 1
+                        }
+                    },
+                    State {
+                        when: window.width > 600 && window.width <= 1150
+                        PropertyChanges {
+                            target: grid
+                            columns: 2
+                        }
+                    },
+                    State {
+                        when: window.width > 1150
+                        PropertyChanges {
+                            target: grid
+                            columns: 3
+                        }
+                    }
+                ]
 
                 Item {
                     Layout.preferredWidth: 362

@@ -4,17 +4,17 @@
 <context>
     <name>FlightStatus</name>
     <message>
-        <location filename="../../qml/components/FlightStatus.qml" line="45"/>
+        <location filename="../../qml/components/FlightStatus.qml" line="47"/>
         <source>Confirmed</source>
         <translation>Potvrdené</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStatus.qml" line="45"/>
+        <location filename="../../qml/components/FlightStatus.qml" line="47"/>
         <source>Denied</source>
         <translation>Odmietnuté</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStatus.qml" line="45"/>
+        <location filename="../../qml/components/FlightStatus.qml" line="47"/>
         <source>Pending</source>
         <translation>Čaká sa na rozhodnutie</translation>
     </message>
@@ -22,32 +22,32 @@
 <context>
     <name>FlightStrip</name>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="70"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="79"/>
         <source>Aircraft type: </source>
         <translation>Typ lietadla: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="82"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="91"/>
         <source>ICAO wake tubulence category: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="94"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="103"/>
         <source>Aircraft class: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="106"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="115"/>
         <source>Aircraft category: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="118"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="127"/>
         <source>Flight rules: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="132"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="141"/>
         <source>Description: </source>
         <translation>Popis: </translation>
     </message>
@@ -55,9 +55,39 @@
 <context>
     <name>Flights</name>
     <message>
-        <location filename="../../qml/screens/Flights.qml" line="40"/>
+        <location filename="../../qml/screens/Flights.qml" line="61"/>
         <source>Ongoing flights</source>
         <translation>Prebiehajúce lety</translation>
+    </message>
+    <message>
+        <location filename="../../qml/screens/Flights.qml" line="80"/>
+        <source>Departure time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qml/screens/Flights.qml" line="94"/>
+        <source>Arrival time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qml/screens/Flights.qml" line="108"/>
+        <source>Action 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qml/screens/Flights.qml" line="111"/>
+        <source>Action 2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qml/screens/Flights.qml" line="127"/>
+        <source>Action 3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qml/screens/Flights.qml" line="130"/>
+        <source>Action 4</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

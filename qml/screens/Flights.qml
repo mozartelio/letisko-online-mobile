@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Layouts
 import QtQuick.Controls
 import "../components/divider/"
 import "../components/"
@@ -12,39 +13,45 @@ Page {
     // FlightStatus {
     //     status: FlightStatus.Status.Pending
     // }
-    contentItem: Column {
+    contentItem: ColumnLayout {
+        id: column
         width: root.width
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.margins: 20
-        anchors.fill: parent
-        spacing: 40
-
-        // Item {
-        //     SearchBar {
-        //         width: root.width
-        //         anchors {
-        //             horizontalCenter: parent.horizontalCenter
-        //         }
-        //     }
-        // }
-        Item {
-            HorizontalDividerSubhead {
-                width: root.width
-                textContent: qsTr("Ongoing flights")
-            }
+        height: root.height
+        spacing: 10
+        anchors {
+            left: root.left
+            right: root.right
+            top: root.top
+            bottom: root.bottom
+            margins: 40
         }
 
-        Item {
-            Column {
-                width: root.width
-                FlightStrip {
-                    callsign: "AWS152ALPHA"
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
-                FlightStrip {
-                    callsign: "AWS152ALPHA"
-                    anchors.horizontalCenter: parent.horizontalCenter
-                }
+        SearchBar {
+            Layout.alignment: Qt.AlignCenter | Qt.AlignTop
+            Layout.preferredHeight: 56
+            Layout.preferredWidth: column.width
+        }
+
+        HorizontalDividerSubhead {
+            Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+            Layout.preferredHeight: 26
+            Layout.preferredWidth: column.width
+
+            textContent: qsTr("Ongoing flights")
+        }
+
+        Column {
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+            Layout.preferredHeight: 356
+            Layout.preferredWidth: column.width
+
+            FlightStrip {
+                callsign: "AWS152ALPHA"
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+            FlightStrip {
+                callsign: "AWS152ALPHA"
+                anchors.horizontalCenter: parent.horizontalCenter
             }
         }
     }

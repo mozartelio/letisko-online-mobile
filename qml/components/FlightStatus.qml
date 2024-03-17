@@ -11,7 +11,7 @@ Rectangle {
     }
     property int status
     id: root
-    width: 132
+    width: 140
     height: 32
     color: status === FlightStatus.Status.Confirmed ? "#625B71" : status === FlightStatus.Status.Denied ? "#8C1D18" : "#6750A4"
     radius: 8
@@ -20,17 +20,19 @@ Rectangle {
         color: "#79747E"
     }
 
-    MouseArea {
-        anchors.fill: parent
-        onPressed: console.log(
-                       "current status:" + status + " denied value:" + FlightStatus.Status.Pending)
-    }
+    // DEBUG
+    // MouseArea {
+    //     anchors.fill: parent
+    //     onPressed: console.log(
+    //                    "current status:" + status + " denied value:" + FlightStatus.Status.Pending)
+    // }
     RowLayout {
         spacing: 8
-
+        width: parent.width
         anchors {
             fill: root
             horizontalCenter: parent.horizontalCenter
+            verticalCenter: parent.verticalCenter
             leftMargin: 16
             rightMargin: 16
             topMargin: 6
@@ -40,6 +42,8 @@ Rectangle {
         LabelLarge {
             color: "white"
             Layout.preferredWidth: contentWidth
+            Layout.preferredHeight: 20
+            Layout.alignment: Qt.AlignBaseline
             text: status === FlightStatus.Status.Confirmed ? qsTr("Confirmed") : status === FlightStatus.Status.Denied ? qsTr("Denied") : qsTr("Pending")
         }
 
@@ -57,6 +61,7 @@ Rectangle {
         //     anchors.verticalCenter: parent.verticalCenter
         // }
         Image {
+
             // Nested Image for pending state
             width: 24
             height: 24
@@ -64,16 +69,17 @@ Rectangle {
             visible: status === FlightStatus.Status.Pending
             verticalAlignment: Image.AlignVCenter
         }
-
         Image {
+            // Layout.alignment: /*Qt.AlignHCenter |*/ Qt.AlignVCenter //Qt.AlignBaseline
             // Nested Image for confirmed state
-            width: 24
-            height: 24
+            Layout.preferredWidth: 24
+            Layout.preferredHeight: 24
             source: "../../assets/icons/check_small-24px.svg"
             visible: status === FlightStatus.Status.Confirmed
             verticalAlignment: Image.AlignVCenter
         }
         Image {
+            // Layout.alignment: Qt.AlignBaseline
             // Nested Image for denied state
             width: 24
             height: 24

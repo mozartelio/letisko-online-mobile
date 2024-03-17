@@ -4,17 +4,17 @@
 <context>
     <name>FlightStatus</name>
     <message>
-        <location filename="../../qml/components/FlightStatus.qml" line="43"/>
+        <location filename="../../qml/components/FlightStatus.qml" line="45"/>
         <source>Confirmed</source>
         <translation>Potvrdené</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStatus.qml" line="43"/>
+        <location filename="../../qml/components/FlightStatus.qml" line="45"/>
         <source>Denied</source>
         <translation>Odmietnuté</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStatus.qml" line="43"/>
+        <location filename="../../qml/components/FlightStatus.qml" line="45"/>
         <source>Pending</source>
         <translation>Čaká sa na rozhodnutie</translation>
     </message>
@@ -23,12 +23,28 @@
     <name>FlightStrip</name>
     <message>
         <location filename="../../qml/components/FlightStrip.qml" line="70"/>
-        <location filename="../../qml/components/FlightStrip.qml" line="82"/>
-        <location filename="../../qml/components/FlightStrip.qml" line="94"/>
-        <location filename="../../qml/components/FlightStrip.qml" line="106"/>
-        <location filename="../../qml/components/FlightStrip.qml" line="118"/>
         <source>Aircraft type: </source>
         <translation>Typ lietadla: </translation>
+    </message>
+    <message>
+        <location filename="../../qml/components/FlightStrip.qml" line="82"/>
+        <source>ICAO wake tubulence category: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qml/components/FlightStrip.qml" line="94"/>
+        <source>Aircraft class: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qml/components/FlightStrip.qml" line="106"/>
+        <source>Aircraft category: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qml/components/FlightStrip.qml" line="118"/>
+        <source>Flight rules: </source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qml/components/FlightStrip.qml" line="132"/>
@@ -39,7 +55,7 @@
 <context>
     <name>Flights</name>
     <message>
-        <location filename="../../qml/screens/Flights.qml" line="33"/>
+        <location filename="../../qml/screens/Flights.qml" line="40"/>
         <source>Ongoing flights</source>
         <translation>Prebiehajúce lety</translation>
     </message>
@@ -136,7 +152,7 @@
 <context>
     <name>SearchBar</name>
     <message>
-        <location filename="../../qml/components/SearchBar.qml" line="38"/>
+        <location filename="../../qml/components/SearchBar.qml" line="13"/>
         <source>Type something....</source>
         <translation type="unfinished">Type somethings....</translation>
     </message>

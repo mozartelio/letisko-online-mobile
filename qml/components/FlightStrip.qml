@@ -79,7 +79,7 @@ Rectangle {
                     Layout.preferredWidth: 362
                     Row {
                         BodyMediumText {
-                            text: qsTr("Aircraft type: ")
+                            text: qsTr("ICAO wake tubulence category: ")
                             font.bold: true
                         }
                         BodyMediumText {
@@ -91,7 +91,7 @@ Rectangle {
                     Layout.preferredWidth: 362
                     Row {
                         BodyMediumText {
-                            text: qsTr("Aircraft type: ")
+                            text: qsTr("Aircraft class: ")
                             font.bold: true
                         }
                         BodyMediumText {
@@ -103,7 +103,7 @@ Rectangle {
                     Layout.preferredWidth: 362
                     Row {
                         BodyMediumText {
-                            text: qsTr("Aircraft type: ")
+                            text: qsTr("Aircraft category: ")
                             font.bold: true
                         }
                         BodyMediumText {
@@ -115,7 +115,7 @@ Rectangle {
                     Layout.preferredWidth: 362
                     Row {
                         BodyMediumText {
-                            text: qsTr("Aircraft type: ")
+                            text: qsTr("Flight rules: ")
                             font.bold: true
                         }
                         BodyMediumText {

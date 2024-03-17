@@ -4,27 +4,20 @@ project(OnlineLetiskoMobileApp VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(QML_IMPORT_PATH "/qml/components/colors/"  CACHE STRING "" FORCE)
+set(CMAKE_PREFIX_PATH "C:/Other_programs/Qt/6.6.0/mingw_64/lib/cmake" ${CMAKE_PREFIX_PATH})
 
-find_package(Qt6 5 REQUIRED COMPONENTS Quick Network)
-# find_package(Qt6 6 REQUIRED COMPONENTS Quick Network LinguistTools)
-#target_link_libraries(mytarget PRIVATE Qt6::Network)
-# qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR}/translations/ ${CMAKE_SOURCE_DIR}/translations/slovak.ts)
-# qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} slovak.ts)
-# configure_file(${QM_FILES} ${CMAKE_SOURCE_DIR}/translations/ COPYONLY)
+find_package(Qt6 REQUIRED COMPONENTS Quick Network LinguistTools)
 
-qt_standard_project_setup(REQUIRES 6.5)
+qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ./assets/translations/slovak.ts)
+#do not work due to recursion
+# configure_file(${QM_FILES} ${CMAKE_SOURCE_DIR} COPYONLY)
+qt_standard_project_setup(REQUIRES 6.6)
 
 qt_add_executable(appOnlineLetiskoMobileApp
     main.cpp
-    # ${QM_FILES}
+    ${QM_FILES}
 )
 
-
-# add_library(
-#     # SHARED
-#     ${QM_FILES}
-# )
 
 qt_add_qml_module(appOnlineLetiskoMobileApp
     URI OnlineLetiskoMobileApp
@@ -84,12 +77,17 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         assets/icons/3d_avatar_21.png
 
         assets/fonts/Roboto-Regular.ttf
+
+        # slovak.qm
+        assets/translations/slovak.ts
     SOURCES
         login.h login.cpp
         user.h user.cpp
         hotreload/FileWatcher.h hotreload/FileWatcher.cpp
         hotreload/ComponentCreatorEngine.h hotreload/ComponentCreatorEngine.cpp
 )
+
+
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
@@ -113,3 +111,7 @@ install(TARGETS appOnlineLetiskoMobileApp
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+
+#does it WORK?
+# qt_add_lupdate(appOnlineLetiskoMobileApp TS_FILES ./assets/translations/slovak.ts)
+# add_dependencies(appOnlineLetiskoMobileApp update_translations) # equivalent of all {target}_lupdate

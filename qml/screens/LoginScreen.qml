@@ -3,7 +3,6 @@ import QtQuick.Controls
 import QtQuick.Controls.Basic
 // import com.login 1.0
 import com.user 1.0
-import "../components/colors/sys"
 import "../components"
 
 Page {

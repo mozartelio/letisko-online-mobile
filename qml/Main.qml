@@ -2,10 +2,11 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import com.user 1.0
+// import com.user 1.0
 import "./screens"
 import "./components"
 import "./components/typography/headline"
+import "."
 
 ApplicationWindow {
 
@@ -16,10 +17,14 @@ ApplicationWindow {
     // property bool drawerAvailable: false
     id: window
 
-    width: 1194
-    height: 834
+    width: 1366
+    height: 634
     visible: true
     title: qsTr("Online letisko")
+
+    // to test on a tablet without hotreload
+    // MainWindow {}
+
 
     /**
      * from here and until the corresponding ending comment code for hot reload was taken from

@@ -4,40 +4,48 @@ import "../components/divider/"
 import "../components/"
 
 Page {
-
-    Column {
-        width: parent.width
-        anchors.horizontalCenter: parent.horizontalCenter
-        FlightStrip {
-            callsign: "AWS152ALPHA"
-            anchors.horizontalCenter: parent.horizontalCenter
-        }
-        FlightStrip {
-            callsign: "AWS152ALPHA"
-            anchors.horizontalCenter: parent.horizontalCenter
-        }
+    id: root
+    background: Rectangle {
+        color: "white" //"salmon"
     }
 
     // FlightStatus {
     //     status: FlightStatus.Status.Pending
     // }
+    contentItem: Column {
+        width: root.width
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.margins: 20
+        anchors.fill: parent
+        spacing: 40
 
-    // SearchBar {
-    //     anchors {
-    //         horizontalCenter: parent.horizontalCenter
-    //     }
-    // }
-    background: Rectangle {
-        color: "white" //"salmon"
+        // Item {
+        //     SearchBar {
+        //         width: root.width
+        //         anchors {
+        //             horizontalCenter: parent.horizontalCenter
+        //         }
+        //     }
+        // }
+        Item {
+            HorizontalDividerSubhead {
+                width: root.width
+                textContent: qsTr("Ongoing flights")
+            }
+        }
+
+        Item {
+            Column {
+                width: root.width
+                FlightStrip {
+                    callsign: "AWS152ALPHA"
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+                FlightStrip {
+                    callsign: "AWS152ALPHA"
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
+            }
+        }
     }
-    // contentItem: Item {
-    //     id: root
-    //     anchors.fill: parent
-    //     anchors.margins: 20
-
-    //     HorizontalDividerSubhead {
-    //         width: parent.width
-    //         textContent: qsTr("Ongoing flights")
-    //     }
-    // }
 }

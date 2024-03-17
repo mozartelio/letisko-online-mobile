@@ -64,6 +64,7 @@ Rectangle {
 
                 Item {
                     Layout.preferredWidth: 362
+                    // Layout
                     Row {
                         BodyMediumText {
                             text: qsTr("Aircraft type: ")

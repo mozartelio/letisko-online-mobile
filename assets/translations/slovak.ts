@@ -22,32 +22,32 @@
 <context>
     <name>FlightStrip</name>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="79"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="104"/>
         <source>Aircraft type: </source>
         <translation>Typ lietadla: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="91"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="116"/>
         <source>ICAO wake tubulence category: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="103"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="128"/>
         <source>Aircraft class: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="115"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="140"/>
         <source>Aircraft category: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="127"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="152"/>
         <source>Flight rules: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="141"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="166"/>
         <source>Description: </source>
         <translation>Popis: </translation>
     </message>
@@ -55,38 +55,30 @@
 <context>
     <name>Flights</name>
     <message>
-        <location filename="../../qml/screens/Flights.qml" line="61"/>
+        <location filename="../../qml/screens/Flights.qml" line="62"/>
         <source>Ongoing flights</source>
         <translation>Prebiehajúce lety</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/Flights.qml" line="80"/>
+        <location filename="../../qml/screens/Flights.qml" line="82"/>
         <source>Departure time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/screens/Flights.qml" line="94"/>
+        <location filename="../../qml/screens/Flights.qml" line="97"/>
         <source>Arrival time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/screens/Flights.qml" line="108"/>
-        <source>Action 1</source>
+        <location filename="../../qml/screens/Flights.qml" line="126"/>
+        <location filename="../../qml/screens/Flights.qml" line="167"/>
+        <source>Сlosest to farthest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/screens/Flights.qml" line="111"/>
-        <source>Action 2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../qml/screens/Flights.qml" line="127"/>
-        <source>Action 3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../qml/screens/Flights.qml" line="130"/>
-        <source>Action 4</source>
+        <location filename="../../qml/screens/Flights.qml" line="144"/>
+        <location filename="../../qml/screens/Flights.qml" line="176"/>
+        <source>Farthest to closest</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -36,6 +36,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         qml/components/SearchBar.qml
         qml/components/FlightStrip.qml
         qml/components/FlightStatus.qml
+        qml/components/FilterButton.qml
 
         # text font styles
         #Headline
@@ -44,6 +45,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         qml/components/typography/label/text/LabelLargeProminentText.qml
         qml/components/typography/label/text/LabelLarge.qml
         #Title
+        qml/components/typography/title/text/TitleSmallText.qml
         qml/components/typography/title/text/TitleLargeText.qml
         #Body
         qml/components/typography/body/text/BodyLargeText.qml

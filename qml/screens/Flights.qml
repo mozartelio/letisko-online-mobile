@@ -70,6 +70,7 @@ Page {
                     Layout.preferredHeight: 77
 
                     Rectangle {
+                        id: departure
                         width: mainToolBarBox.Layout.preferredWidth / 2
                         height: 24
                         color: "#7A7289"
@@ -84,6 +85,7 @@ Page {
                         }
                     }
                     Rectangle {
+                        id: arrival
                         width: mainToolBarBox.Layout.preferredWidth / 2
                         height: 24
                         color: "#EADDFF"
@@ -108,40 +110,56 @@ Page {
                             right: parent.right
                         }
 
-                        ToolButton {
-                            text: qsTr("Action 1")
-                            Layout.alignment: Qt.AlignCenter
-                            Layout.preferredWidth: mainToolBarBox.Layout.preferredWidth / 4
+                        ButtonGroup {
+                            id: filterButtonGroup
                         }
-                        ToolButton {
-                            text: qsTr("Action 2")
+
+                        FilterButton {
+                            id: closestToFarthestDeparture
+                            contentText: qsTr("Сlosest to farthest")
+                            ButtonGroup.group: filterButtonGroup
+                            Layout.alignment: Qt.AlignBottom
                             Layout.preferredWidth: mainToolBarBox.Layout.preferredWidth / 4
+                            Layout.preferredHeight: mainToolBarBox.Layout.preferredHeight
+                                                    - departure.height
+                        }
+                        FilterButton {
+                            id: farthestToClosestDeparture
+                            contentText: qsTr("Farthest to closest")
+                            ButtonGroup.group: filterButtonGroup
+                            Layout.alignment: Qt.AlignBottom
+                            Layout.preferredWidth: mainToolBarBox.Layout.preferredWidth / 4
+                            Layout.preferredHeight: mainToolBarBox.Layout.preferredHeight
+                                                    - departure.height
                         }
 
                         ToolSeparator {
-                            // padding: vertical ? 10 : 2
-                            topPadding: vertical ? 2 : 10
-                            bottomPadding: vertical ? 2 : 10
-
+                            padding: -1
+                            Layout.alignment: Qt.AlignBottom
                             contentItem: Rectangle {
                                 implicitWidth: 1
                                 implicitHeight: 45
                                 color: "#c3c3c3"
                             }
                         }
-
-                        ToolButton {
-                            text: qsTr("Action 3")
+                        FilterButton {
+                            id: closestToFarthestArrival
+                            contentText: qsTr("Сlosest to farthest")
+                            ButtonGroup.group: filterButtonGroup
+                            Layout.alignment: Qt.AlignBottom
                             Layout.preferredWidth: mainToolBarBox.Layout.preferredWidth / 4
+                            Layout.preferredHeight: mainToolBarBox.Layout.preferredHeight
+                                                    - departure.height
                         }
-                        ToolButton {
-                            text: qsTr("Action 4")
+                        FilterButton {
+                            id: farthestToClosestArrival
+                            contentText: qsTr("Farthest to closest")
+                            ButtonGroup.group: filterButtonGroup
+                            Layout.alignment: Qt.AlignBottom
                             Layout.preferredWidth: mainToolBarBox.Layout.preferredWidth / 4
+                            Layout.preferredHeight: mainToolBarBox.Layout.preferredHeight
+                                                    - departure.height
                         }
-
-                        // Item {
-                        //     Layout.fillWidth: true
-                        // }
                     }
                 }
             }

@@ -1,12 +1,13 @@
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls.Material
 import "./typography/body/input"
 
 BodyLargeInput {
     id: root
+
     width: parent.width
     height: parent.height
-    verticalAlignment: TextInput.AlignVCenter
     clip: true
     leftPadding: 16 + icon.width
     rightPadding: 16

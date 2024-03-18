@@ -24,13 +24,16 @@ int main(int argc, char *argv[])
 
     // QQuickStyle::setStyle("Material");
     QGuiApplication app(argc, argv);
+
+    // DOES NOT WORK
+    // qmlRegisterSingletonType(QUrl("qml/styles/Colors.qml"), "Colors", 1, 0, "Colors");
+
     QTranslator translator;
     translator.load("slovak.qm");
     app.installTranslator(&translator);
 
     // qmlRegisterType<Login>("com.login", 1, 0, "Login");
     qmlRegisterType<User>("com.user", 1, 0, "User");
-
 
     ComponentCreatorEngine engine;
 

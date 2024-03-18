@@ -17,7 +17,8 @@ qt_add_executable(appOnlineLetiskoMobileApp
     main.cpp
     ${QM_FILES}
 )
-
+# DOES NOT WORK
+#set_source_files_properties(qml/styles/Colors.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
 
 qt_add_qml_module(appOnlineLetiskoMobileApp
     URI OnlineLetiskoMobileApp
@@ -36,14 +37,14 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         qml/components/SearchBar.qml
         qml/components/FlightStrip.qml
         qml/components/FlightStatus.qml
-        qml/components/FilterButton.qml
+        qml/components/SortingButton.qml
 
         # text font styles
         #Headline
         qml/components/typography/headline/text/HeadlineMediumText.qml
         #Label
         qml/components/typography/label/text/LabelLargeProminentText.qml
-        qml/components/typography/label/text/LabelLarge.qml
+        qml/components/typography/label/text/LabelLargeText.qml
         #Title
         qml/components/typography/title/text/TitleSmallText.qml
         qml/components/typography/title/text/TitleLargeText.qml
@@ -62,6 +63,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         qml/components/divider/HorizontalDividerSubhead.qml
         qml/components/ListItem.qml
         qml/MainWindow.qml
+#        qml/styles/Colors.qml
 
     RESOURCES
         assets/LetiskoLogo.svg
@@ -90,6 +92,8 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
 
         # slovak.qm
         assets/translations/slovak.ts
+
+
     SOURCES
         login.h login.cpp
         user.h user.cpp

@@ -44,33 +44,60 @@ Rectangle {
         ColumnLayout {
 
             Layout.preferredWidth: contentWidth
-            RowLayout {
-                spacing: 7
 
-                Text {
-                    Layout.preferredWidth: contentWidth
-                    font.family: "Roboto"
-                    font.weight: 700
-                    font.pixelSize: 16
-                    font.letterSpacing: 0.5
-                    lineHeightMode: Text.FixedHeight
-                    lineHeight: 24
-                    elide: Text.ElideRight
-                    verticalAlignment: Text.AlignVCenter
-                    text: callsign
+            RowLayout {
+                spacing: 30
+                RowLayout {
+                    spacing: 7
+
+                    Text {
+                        Layout.preferredWidth: contentWidth
+                        font.family: "Roboto"
+                        font.weight: 700
+                        font.pixelSize: 16
+                        font.letterSpacing: 0.5
+                        lineHeightMode: Text.FixedHeight
+                        lineHeight: 24
+                        elide: Text.ElideRight
+                        verticalAlignment: Text.AlignVCenter
+                        text: callsign
+                    }
+
+                    FlightStatus {
+                        status: status
+                    }
                 }
 
-                FlightStatus {
-                    status: status
+                RowLayout {
+                    spacing: 150
+
+                    Row {
+                        BodyLargeText {
+                            text: qsTr("Departure: ")
+                            font.bold: true
+                        }
+                        BodyLargeText {
+                            text: "info"
+                        }
+                    }
+
+                    Row {
+                        BodyLargeText {
+                            text: qsTr("Arrival: ")
+                            font.bold: true
+                        }
+                        BodyLargeText {
+                            text: "info"
+                        }
+                    }
                 }
             }
             GridLayout {
                 id: grid
                 Layout.fillWidth: true
-                // Layout.fillHeight: true
                 flow: GridLayout.LeftToRight
                 columnSpacing: 39
-                rowSpacing: 20
+                rowSpacing: 0
                 columns: 2
                 states: [
                     State {
@@ -96,79 +123,70 @@ Rectangle {
                     }
                 ]
 
-                Item {
-                    Layout.preferredWidth: 362
-                    // Layout
-                    Row {
-                        BodyMediumText {
-                            text: qsTr("Aircraft type: ")
-                            font.bold: true
-                        }
-                        BodyMediumText {
-                            text: "info"
-                        }
-                    }
-                }
-                Item {
-                    Layout.preferredWidth: 362
-                    Row {
-                        BodyMediumText {
-                            text: qsTr("ICAO wake tubulence category: ")
-                            font.bold: true
-                        }
-                        BodyMediumText {
-                            text: "info"
-                        }
-                    }
-                }
-                Item {
-                    Layout.preferredWidth: 362
-                    Row {
-                        BodyMediumText {
-                            text: qsTr("Aircraft class: ")
-                            font.bold: true
-                        }
-                        BodyMediumText {
-                            text: "info"
-                        }
-                    }
-                }
-                Item {
-                    Layout.preferredWidth: 362
-                    Row {
-                        BodyMediumText {
-                            text: qsTr("Aircraft category: ")
-                            font.bold: true
-                        }
-                        BodyMediumText {
-                            text: "info"
-                        }
-                    }
-                }
-                Item {
-                    Layout.preferredWidth: 362
-                    Row {
-                        BodyMediumText {
-                            text: qsTr("Flight rules: ")
-                            font.bold: true
-                        }
-                        BodyMediumText {
-                            text: "info"
-                        }
-                    }
-                }
-            }
-            Item {
-                Layout.topMargin: 20
-                Layout.preferredWidth: 362
                 Row {
+                    Layout.preferredWidth: 362
                     BodyMediumText {
-                        text: qsTr("Description: ")
+                        text: qsTr("Aircraft type: ")
                         font.bold: true
                     }
                     BodyMediumText {
                         text: "info"
                     }
+                }
+
+                Row {
+                    Layout.preferredWidth: 362
+                    BodyMediumText {
+                        text: qsTr("ICAO wake tubulence category: ")
+                        font.bold: true
+                    }
+                    BodyMediumText {
+                        text: "info"
+                    }
+                }
+
+                Row {
+                    Layout.preferredWidth: 362
+                    BodyMediumText {
+                        text: qsTr("Aircraft class: ")
+                        font.bold: true
+                    }
+                    BodyMediumText {
+                        text: "info"
+                    }
+                }
+
+                Row {
+                    Layout.preferredWidth: 362
+                    BodyMediumText {
+                        text: qsTr("Aircraft category: ")
+                        font.bold: true
+                    }
+                    BodyMediumText {
+                        text: "info"
+                    }
+                }
+
+                Row {
+                    Layout.preferredWidth: 362
+                    BodyMediumText {
+                        text: qsTr("Flight rules: ")
+                        font.bold: true
+                    }
+                    BodyMediumText {
+                        text: "info"
+                    }
+                }
+            }
+
+            Row {
+                Layout.preferredWidth: 362
+                BodyMediumText {
+                    text: qsTr("Description: ")
+                    font.bold: true
+                }
+                BodyMediumText {
+                    text: "info"
                 }
             }
         }

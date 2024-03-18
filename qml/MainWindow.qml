@@ -72,7 +72,7 @@ Item {
                             anchors.verticalCenter: parent.verticalCenter
                             width: contentWidth
                             text: "Name Surname"
-                            color: "black"
+                            color: "white"
                             horizontalAlignment: Text.AlignHCenter
                             wrapMode: Text.WordWrap
                         }

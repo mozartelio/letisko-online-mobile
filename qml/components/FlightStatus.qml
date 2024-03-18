@@ -39,7 +39,7 @@ Rectangle {
             bottomMargin: 6
         }
 
-        LabelLarge {
+        LabelLargeText {
             color: "white"
             Layout.preferredWidth: contentWidth
             Layout.preferredHeight: 20

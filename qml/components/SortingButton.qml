@@ -1,11 +1,12 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Controls.Material
 import QtQuick.Layouts
 import "../components/typography/title/text"
 
 Button {
     property string contentText: ""
-
+    Material.theme: Material.Light
     id: root
     display: AbstractButton.TextOnly
     checkable: true

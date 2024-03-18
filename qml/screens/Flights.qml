@@ -1,20 +1,20 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import QtQuick.Controls.Material
 import "../components/divider/"
 import "../components/"
+import "../components/typography/label/text"
 import "../components/typography/title/text"
 import "../components/typography/body/text"
 
 Page {
     id: root
+    Material.theme: Material.Light
     background: Rectangle {
-        color: "white" //"salmon"
+        color: "white"
     }
 
-    // FlightStatus {
-    //     status: FlightStatus.Status.Pending
-    // }
     contentItem: ColumnLayout {
         id: column
         width: root.width
@@ -45,11 +45,6 @@ Page {
                 Layout.preferredHeight: 2
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                 Layout.preferredWidth: parent.width
-                // anchors {
-                //     top: parent.top
-                //     left: parent.left
-                //     right: parent.right
-                // }
             }
             RowLayout {
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
@@ -66,7 +61,7 @@ Page {
                     id: mainToolBarBox
                     Layout.alignment: Qt.AlignVCenter
                     color: "#FEF7FF"
-                    Layout.preferredWidth: 466
+                    Layout.preferredWidth: 467
                     Layout.preferredHeight: 77
 
                     Rectangle {
@@ -111,54 +106,98 @@ Page {
                         }
 
                         ButtonGroup {
-                            id: filterButtonGroup
+                            id: sortingButtonsGroup
                         }
 
-                        FilterButton {
+                        SortingButton {
                             id: closestToFarthestDeparture
                             contentText: qsTr("Сlosest to farthest")
-                            ButtonGroup.group: filterButtonGroup
+                            ButtonGroup.group: sortingButtonsGroup
                             Layout.alignment: Qt.AlignBottom
                             Layout.preferredWidth: mainToolBarBox.Layout.preferredWidth / 4
                             Layout.preferredHeight: mainToolBarBox.Layout.preferredHeight
                                                     - departure.height
                         }
-                        FilterButton {
+                        SortingButton {
                             id: farthestToClosestDeparture
                             contentText: qsTr("Farthest to closest")
-                            ButtonGroup.group: filterButtonGroup
+                            ButtonGroup.group: sortingButtonsGroup
                             Layout.alignment: Qt.AlignBottom
                             Layout.preferredWidth: mainToolBarBox.Layout.preferredWidth / 4
                             Layout.preferredHeight: mainToolBarBox.Layout.preferredHeight
                                                     - departure.height
                         }
 
-                        ToolSeparator {
-                            padding: -1
-                            Layout.alignment: Qt.AlignBottom
-                            contentItem: Rectangle {
-                                implicitWidth: 1
-                                implicitHeight: 45
-                                color: "#c3c3c3"
-                            }
-                        }
-                        FilterButton {
+                        SortingButton {
                             id: closestToFarthestArrival
                             contentText: qsTr("Сlosest to farthest")
-                            ButtonGroup.group: filterButtonGroup
+                            ButtonGroup.group: sortingButtonsGroup
                             Layout.alignment: Qt.AlignBottom
                             Layout.preferredWidth: mainToolBarBox.Layout.preferredWidth / 4
                             Layout.preferredHeight: mainToolBarBox.Layout.preferredHeight
                                                     - departure.height
                         }
-                        FilterButton {
+                        SortingButton {
                             id: farthestToClosestArrival
                             contentText: qsTr("Farthest to closest")
-                            ButtonGroup.group: filterButtonGroup
+                            ButtonGroup.group: sortingButtonsGroup
                             Layout.alignment: Qt.AlignBottom
                             Layout.preferredWidth: mainToolBarBox.Layout.preferredWidth / 4
                             Layout.preferredHeight: mainToolBarBox.Layout.preferredHeight
                                                     - departure.height
+                        }
+                    }
+                }
+
+                Button {
+                    id: filterButton
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.preferredWidth: 114
+                    Layout.preferredHeight: 40
+
+                    background: Rectangle {
+                        id: back
+                        anchors {
+                            fill: parent
+                            centerIn: filterButton
+                        }
+                        height: filterButton.Layout.preferredHeight
+                        width: filterButton.Layout.preferredWidth
+                        color: "#F7F2FA"
+                        radius: 100
+                    }
+
+                    states: [
+                        State {
+                            name: "pressed"
+                            PropertyChanges {
+                                target: back
+                                color: "#D0BCFF"
+                            }
+                            when: filterButton.pressed
+                        }
+                    ]
+                    contentItem: RowLayout {
+                        spacing: 8
+                        anchors {
+                            fill: filterButton
+                            centerIn: filterButton
+                            leftMargin: 24
+                            rightMargin: 24
+                            topMargin: 10
+                            bottomMargin: 10
+                        }
+                        LabelLargeText {
+                            text: "Filters"
+                            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+                            verticalAlignment: Image.AlignVCenter
+                        }
+                        Image {
+                            width: 22
+                            height: 24
+                            source: "../../assets/icons/settings.svg"
+                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                            verticalAlignment: Image.AlignVCenter
                         }
                     }
                 }

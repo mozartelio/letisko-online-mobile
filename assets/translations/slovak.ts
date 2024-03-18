@@ -55,29 +55,29 @@
 <context>
     <name>Flights</name>
     <message>
-        <location filename="../../qml/screens/Flights.qml" line="62"/>
+        <location filename="../../qml/screens/Flights.qml" line="65"/>
         <source>Ongoing flights</source>
         <translation>Prebiehajúce lety</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/Flights.qml" line="82"/>
+        <location filename="../../qml/screens/Flights.qml" line="85"/>
         <source>Departure time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/screens/Flights.qml" line="97"/>
+        <location filename="../../qml/screens/Flights.qml" line="100"/>
         <source>Arrival time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/screens/Flights.qml" line="126"/>
-        <location filename="../../qml/screens/Flights.qml" line="167"/>
+        <location filename="../../qml/screens/Flights.qml" line="122"/>
+        <location filename="../../qml/screens/Flights.qml" line="141"/>
         <source>Сlosest to farthest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/screens/Flights.qml" line="144"/>
-        <location filename="../../qml/screens/Flights.qml" line="176"/>
+        <location filename="../../qml/screens/Flights.qml" line="131"/>
+        <location filename="../../qml/screens/Flights.qml" line="150"/>
         <source>Farthest to closest</source>
         <translation type="unfinished"></translation>
     </message>
@@ -103,7 +103,7 @@
 <context>
     <name>Main</name>
     <message>
-        <location filename="../../qml/Main.qml" line="23"/>
+        <location filename="../../qml/Main.qml" line="26"/>
         <source>Online letisko</source>
         <translation>Online letisko</translation>
     </message>
@@ -174,7 +174,7 @@
 <context>
     <name>SearchBar</name>
     <message>
-        <location filename="../../qml/components/SearchBar.qml" line="13"/>
+        <location filename="../../qml/components/SearchBar.qml" line="14"/>
         <source>Type something....</source>
         <translation type="unfinished">Type somethings....</translation>
     </message>

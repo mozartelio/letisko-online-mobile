@@ -8,6 +8,9 @@ import "./components"
 import "./components/typography/headline"
 import "."
 
+// DOES NOT WORK
+// import Colors 1.0
+//... Colors.redColor
 ApplicationWindow {
 
     Material.theme: Material.Light

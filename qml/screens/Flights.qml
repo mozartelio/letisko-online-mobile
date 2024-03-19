@@ -149,57 +149,15 @@ Page {
                     }
                 }
 
-                Button {
-                    id: filterButton
-                    Layout.alignment: Qt.AlignVCenter
-                    Layout.preferredWidth: 114
-                    Layout.preferredHeight: 40
+                MaterialButton {
+                    contentText: "Filters"
+                    backgroundColor: "#F7F2FA"
+                    imagePath: "../../assets/icons/settings.svg"
+                    onClicked: filterPopUp.open()
+                }
 
-                    background: Rectangle {
-                        id: back
-                        anchors {
-                            fill: parent
-                            centerIn: filterButton
-                        }
-                        height: filterButton.Layout.preferredHeight
-                        width: filterButton.Layout.preferredWidth
-                        color: "#F7F2FA"
-                        radius: 100
-                    }
-
-                    states: [
-                        State {
-                            name: "pressed"
-                            PropertyChanges {
-                                target: back
-                                color: "#D0BCFF"
-                            }
-                            when: filterButton.pressed
-                        }
-                    ]
-                    contentItem: RowLayout {
-                        spacing: 8
-                        anchors {
-                            fill: filterButton
-                            centerIn: filterButton
-                            leftMargin: 24
-                            rightMargin: 24
-                            topMargin: 10
-                            bottomMargin: 10
-                        }
-                        LabelLargeText {
-                            text: "Filters"
-                            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                            verticalAlignment: Image.AlignVCenter
-                        }
-                        Image {
-                            width: 22
-                            height: 24
-                            source: "../../assets/icons/settings.svg"
-                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                            verticalAlignment: Image.AlignVCenter
-                        }
-                    }
+                FlightFilterPopUp {
+                    id: filterPopUp
                 }
             }
         }

@@ -38,10 +38,13 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         qml/components/FlightStrip.qml
         qml/components/FlightStatus.qml
         qml/components/SortingButton.qml
+        qml/components/FlightFilterPopUp.qml
+        qml/components/MaterialButton.qml
 
         # text font styles
         #Headline
         qml/components/typography/headline/text/HeadlineMediumText.qml
+        qml/components/typography/headline/text/HeadlineSmallText.qml
         #Label
         qml/components/typography/label/text/LabelLargeProminentText.qml
         qml/components/typography/label/text/LabelLargeText.qml

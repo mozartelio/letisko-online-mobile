@@ -41,23 +41,22 @@ Button {
             source: imagePath
             verticalAlignment: Image.AlignVCenter
             visible: imagePath !== "" ? true : false
-
-            states: [
-                State {
-                    name: "pressed"
-                    PropertyChanges {
-                        target: buttonBackground
-                        color: "#6750A4"
-                        opacity: 0.12
-                    }
-                    PropertyChanges {
-                        target: buttonText
-                        color: "#6750A4"
-                    }
-
-                    when: button.pressed
-                }
-            ]
         }
     }
+    states: [
+        State {
+            name: "pressed"
+            PropertyChanges {
+                target: buttonBackground
+                color: "#6750A4"
+                opacity: 0.12
+            }
+            PropertyChanges {
+                target: buttonText
+                color: "#6750A4"
+            }
+
+            when: button.pressed
+        }
+    ]
 }

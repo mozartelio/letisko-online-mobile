@@ -96,7 +96,7 @@ Popup {
 
         ListView {
             id: listing
-            width: root.width //181
+            width: parent.width
             height: parent.height
             model: filtersModel
 
@@ -114,14 +114,18 @@ Popup {
 
             // property var headerCheckboxGroupId: sectionElementsGroup
             Rectangle {
-                id: sectionHeaderRect
-                width: root.width //181
-                color: "transparent" //"red"
-                height: 40
-
                 property bool isExpanded: false
                 property string currentExpandedSection: ListView.view.expandedSection
 
+                id: sectionHeaderRect
+                width: parent.width
+                color: "transparent"
+                height: 40
+
+                anchors {
+                    leftMargin: 16
+                    rightMargin: 16
+                }
                 onCurrentExpandedSectionChanged: {
                     if (currentExpandedSection === section)
                         isExpanded = true
@@ -137,9 +141,9 @@ Popup {
                     // else
                     //     color = "transparent"
                     for (var i = 0; i < filtersModel.count; i++) {
-                        var animal = filtersModel.get(i)
-                        if (section === animal.type)
-                            animal.aVisible = sectionHeaderRect.isExpanded
+                        var item = filtersModel.get(i)
+                        if (section === item.type)
+                            item.aVisible = sectionHeaderRect.isExpanded
                     }
                 }
 
@@ -150,7 +154,6 @@ Popup {
                 // }
                 ColumnLayout {
                     anchors {
-
                         fill: parent
                     }
                     spacing: 0
@@ -159,20 +162,18 @@ Popup {
                         id: sectionDivider
                         height: 3
                         width: parent.width
+                        Layout.fillWidth: true
                         color: "#CAC4D0"
                         Layout.alignment: Qt.AlignTop
-                        Layout.fillWidth: true
-                        // anchors {
-                        //     top: parent.top
-                        //     left: parent.left
-                        //     right: parent.right
-                        // }
                     }
 
                     RowLayout {
                         Layout.alignment: Qt.AlignVCenter
+                        Layout.preferredWidth: parent.width
                         Layout.fillWidth: true
+                        Layout.rightMargin: 7
 
+                        // Layout.leftMargin: 15
                         // CheckBox {
                         //     id: sectionBox
                         //     checkState: sectionElementsGroup.checkState
@@ -184,11 +185,11 @@ Popup {
                         }
                         Image {
                             id: sectionImage
-                            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
                             Layout.preferredWidth: 10
                             Layout.preferredHeight: 10
+                            Layout.alignment: Qt.AlignVCenter | Text.AlignRight
                             source: isExpanded ? "../../assets/icons/arrow_top.svg" : "../../assets/icons/arrow_bottom.svg"
-                            // verticalAlignment: Image.AlignVCenter
+                            verticalAlignment: Image.AlignVCenter
                             horizontalAlignment: Image.AlignRight
                         }
                     }
@@ -211,39 +212,54 @@ Popup {
                 id: menuItem
                 width: root.width
                 color: "transparent"
-                // color: ListView.isCurrentItem ? "lightblue" : "white"
                 visible: aVisible
-                clip: true
-                Layout.fillWidth: true
+
+                // TODO: turn on?
+                // clip: true
                 onVisibleChanged: {
                     if (visible)
-                        height = 55
+                        height = 45
                     else
                         height = 0
                 }
 
                 Behavior on height {
                     NumberAnimation {
-                        duration: 500
+                        // duration: 480 //300
+                        properties: "y"
                     }
                 }
-
-                RowLayout {
+                ColumnLayout {
                     anchors {
                         fill: parent
                     }
-                    Text {
-                        id: text
-                        text: name
-                        Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                        verticalAlignment: Text.AlignVCenter
-                        // horizontalAlignment: Text.AlignLeft
+                    spacing: 0
+                    RowLayout {
+                        Layout.preferredHeight: parent.height
+                        Layout.preferredWidth: parent.width
+                        Layout.fillWidth: true
+                        Layout.rightMargin: 23
+
+                        Text {
+                            id: text
+                            text: name
+                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignLeft
+                        }
+                        CheckBox {
+                            id: menuItemCheckBox
+                            checked: checked
+                            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+                            // ButtonGroup.group: headerCheckboxGroupId
+                        }
                     }
-                    CheckBox {
-                        id: menuItemCheckBox
-                        checked: checked
-                        Layout.alignment: Qt.AlignVCenter //| Qt.AlignRight
-                        // ButtonGroup.group: headerCheckboxGroupId
+                    Rectangle {
+                        Layout.preferredHeight: 1
+                        Layout.preferredWidth: parent.width
+                        Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignBottom
+                        color: "#CAC4D0"
                     }
                 }
 

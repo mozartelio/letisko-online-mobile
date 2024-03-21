@@ -22,47 +22,47 @@
 <context>
     <name>FlightStrip</name>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="80"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="79"/>
         <source>Departure: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="90"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="89"/>
         <source>Arrival: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="100"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="99"/>
         <source>Plane name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="156"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="149"/>
         <source>Aircraft type: </source>
         <translation>Typ lietadla: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="167"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="160"/>
         <source>ICAO wake tubulence category: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="178"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="171"/>
         <source>Aircraft class: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="189"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="182"/>
         <source>Aircraft category: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="200"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="193"/>
         <source>Flight rules: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="212"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="205"/>
         <source>Description: </source>
         <translation>Popis: </translation>
     </message>
@@ -183,7 +183,7 @@
     <message>
         <location filename="../../qml/MainWindow.qml" line="180"/>
         <source>Licences</source>
-        <translation>Alternatives</translation>
+        <translation>Licencie</translation>
     </message>
     <message>
         <location filename="../../qml/MainWindow.qml" line="185"/>

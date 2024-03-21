@@ -34,7 +34,7 @@ Rectangle {
         spacing: 8
 
         Rectangle {
-            color: "red"
+            color: "#FFD8E4" //"red"
             Layout.fillWidth: true
             Layout.preferredWidth: parent.width
             Layout.preferredHeight: 40
@@ -110,7 +110,6 @@ Rectangle {
         ColumnLayout {
             Layout.leftMargin: 16
             Layout.rightMargin: 24
-            Layout.topMargin: 12
             Layout.bottomMargin: 12
 
             GridLayout {

@@ -48,44 +48,46 @@ Rectangle {
         }
 
         // TODO: does not work!
+        Image {
+            id: icon
+            width: 24
+            height: 24
+            source: {
+                if (status === FlightStatus.Status.Confirmed)
+                    return "../../assets/icons/check_small-24px.svg"
+                else if (status === FlightStatus.Status.Denied)
+                    return "../../assets/icons/close-24px.svg"
+                else
+                    return "../../assets/icons/more-24px.svg"
+            }
+            anchors.verticalCenter: parent.verticalCenter
+        }
         // Image {
-        //     id: icon
+
+        //     // Nested Image for pending state
         //     width: 24
         //     height: 24
-        //     source: if (status === FlightStatus.Confirmed)
-        //                 return confirmedIconPath
-        //             else if (status === FlightStatus.Denied)
-        //                 return deniedIconPath
-        //             else
-        //                 return pendingIconPath
-        //     anchors.verticalCenter: parent.verticalCenter
+        //     source: "../../assets/icons/more-24px.svg"
+        //     visible: status === FlightStatus.Status.Pending
+        //     verticalAlignment: Image.AlignVCenter
         // }
-        Image {
-
-            // Nested Image for pending state
-            width: 24
-            height: 24
-            source: "../../assets/icons/more-24px.svg"
-            visible: status === FlightStatus.Status.Pending
-            verticalAlignment: Image.AlignVCenter
-        }
-        Image {
-            // Layout.alignment: /*Qt.AlignHCenter |*/ Qt.AlignVCenter //Qt.AlignBaseline
-            // Nested Image for confirmed state
-            Layout.preferredWidth: 24
-            Layout.preferredHeight: 24
-            source: "../../assets/icons/check_small-24px.svg"
-            visible: status === FlightStatus.Status.Confirmed
-            verticalAlignment: Image.AlignVCenter
-        }
-        Image {
-            // Layout.alignment: Qt.AlignBaseline
-            // Nested Image for denied state
-            width: 24
-            height: 24
-            source: "../../assets/icons/close-24px.svg"
-            visible: status === FlightStatus.Status.Denied
-            verticalAlignment: Image.AlignVCenter
-        }
+        // Image {
+        //     // Layout.alignment: /*Qt.AlignHCenter |*/ Qt.AlignVCenter //Qt.AlignBaseline
+        //     // Nested Image for confirmed state
+        //     Layout.preferredWidth: 24
+        //     Layout.preferredHeight: 24
+        //     source: "../../assets/icons/check_small-24px.svg"
+        //     visible: status === FlightStatus.Status.Confirmed
+        //     verticalAlignment: Image.AlignVCenter
+        // }
+        // Image {
+        //     // Layout.alignment: Qt.AlignBaseline
+        //     // Nested Image for denied state
+        //     width: 24
+        //     height: 24
+        //     source: "../../assets/icons/close-24px.svg"
+        //     visible: status === FlightStatus.Status.Denied
+        //     verticalAlignment: Image.AlignVCenter
+        // }
     }
 }

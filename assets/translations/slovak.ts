@@ -22,42 +22,47 @@
 <context>
     <name>FlightStrip</name>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="76"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="80"/>
         <source>Departure: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="86"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="90"/>
         <source>Arrival: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="129"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="100"/>
+        <source>Plane name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qml/components/FlightStrip.qml" line="156"/>
         <source>Aircraft type: </source>
         <translation>Typ lietadla: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="140"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="167"/>
         <source>ICAO wake tubulence category: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="151"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="178"/>
         <source>Aircraft class: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="162"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="189"/>
         <source>Aircraft category: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="173"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="200"/>
         <source>Flight rules: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="185"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="212"/>
         <source>Description: </source>
         <translation>Popis: </translation>
     </message>
@@ -65,30 +70,35 @@
 <context>
     <name>Flights</name>
     <message>
-        <location filename="../../qml/screens/Flights.qml" line="57"/>
+        <location filename="../../qml/screens/Flights.qml" line="63"/>
         <source>Ongoing flights</source>
         <translation>Prebiehajúce lety</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/Flights.qml" line="77"/>
+        <location filename="../../qml/screens/Flights.qml" line="83"/>
         <source>Departure time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/screens/Flights.qml" line="92"/>
+        <location filename="../../qml/screens/Flights.qml" line="98"/>
         <source>Arrival time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/screens/Flights.qml" line="114"/>
-        <location filename="../../qml/screens/Flights.qml" line="133"/>
+        <location filename="../../qml/screens/Flights.qml" line="120"/>
+        <location filename="../../qml/screens/Flights.qml" line="139"/>
         <source>Сlosest to farthest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/screens/Flights.qml" line="123"/>
-        <location filename="../../qml/screens/Flights.qml" line="142"/>
+        <location filename="../../qml/screens/Flights.qml" line="129"/>
+        <location filename="../../qml/screens/Flights.qml" line="148"/>
         <source>Farthest to closest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../qml/screens/Flights.qml" line="214"/>
+        <source>Past flights</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

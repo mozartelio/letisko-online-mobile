@@ -29,27 +29,30 @@ Rectangle {
         }
     ]
 
-    RowLayout {
-        anchors {
-            leftMargin: 16
-            rightMargin: 24
-            topMargin: 12
-            bottomMargin: 12
-            top: root.top
-            left: root.left
-            right: root.right
-        }
-        spacing: 16
+    ColumnLayout {
+        width: parent.width
+        spacing: 8
 
-        ColumnLayout {
-
-            Layout.preferredWidth: contentWidth
+        Rectangle {
+            color: "red"
+            Layout.fillWidth: true
+            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: 40
 
             RowLayout {
                 spacing: 30
+                width: parent.width
+                height: parent.height
+                anchors {
+                    leftMargin: 20
+                    fill: parent
+                }
+
                 RowLayout {
                     spacing: 7
+                    Layout.alignment: Qt.AlignVCenter
 
+                    //TODO: create TEXT as component
                     Text {
                         Layout.preferredWidth: contentWidth
                         font.family: "Roboto"
@@ -90,8 +93,26 @@ Rectangle {
                             text: "info"
                         }
                     }
+
+                    Row {
+                        BodyLargeText {
+                            text: qsTr("Plane name: ")
+                            font.bold: true
+                        }
+                        BodyLargeText {
+                            text: "info"
+                        }
+                    }
                 }
             }
+        }
+
+        ColumnLayout {
+            Layout.leftMargin: 16
+            Layout.rightMargin: 24
+            Layout.topMargin: 12
+            Layout.bottomMargin: 12
+
             GridLayout {
                 id: grid
                 Layout.fillWidth: true
@@ -190,13 +211,20 @@ Rectangle {
                 }
             }
         }
+    }
 
-        Image {
-            width: 40
-            height: 40
-            source: "../../assets/icons/arrow_right_40px.svg"
-            verticalAlignment: Image.AlignVCenter
+    Image {
+
+        anchors {
+            right: root.right
+            verticalCenter: root.verticalCenter
+            rightMargin: 50
         }
+
+        width: 40
+        height: 40
+        source: "../../assets/icons/arrow_right_40px.svg"
+        verticalAlignment: Image.AlignVCenter
     }
     Rectangle {
         height: 1

@@ -10,22 +10,28 @@ import "../components/typography/body/text"
 
 Page {
     id: root
+
+    property bool arePasstFlightsRequested: false
     Material.theme: Material.Light
     background: Rectangle {
         color: "white"
     }
+    anchors.fill: parent
 
     contentItem: ColumnLayout {
         id: column
         width: root.width
         height: root.height
-        spacing: 10
+        spacing: 8
         anchors {
             left: root.left
             right: root.right
             top: root.top
             bottom: root.bottom
-            margins: 40
+            leftMargin: 40
+            rightMargin: 40
+            topMargin: 18
+            bottomMargin: 38
         }
 
         SearchBar {
@@ -174,6 +180,48 @@ Page {
             FlightStrip {
                 callsign: "AWS152ALPHA"
                 anchors.horizontalCenter: parent.horizontalCenter
+            }
+        }
+
+        MouseArea {
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+            Layout.preferredHeight: 77
+            Layout.preferredWidth: parent.width
+
+            onPressed: arePasstFlightsRequested = !arePasstFlightsRequested
+            ColumnLayout {
+                id: pastFlightHead
+                anchors.fill: parent
+
+                spacing: 4
+
+                Rectangle {
+                    color: "#CAC4D0"
+                    Layout.preferredHeight: 2
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                    Layout.preferredWidth: parent.width
+                }
+                RowLayout {
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                    Layout.preferredWidth: parent.width
+                    Layout.rightMargin: 7
+                    // Layout.leftMargin: 7
+                    spacing: 25
+                    TitleLargeText {
+                        Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                        Layout.preferredHeight: contentHeight
+                        Layout.preferredWidth: contentWidth
+                        text: qsTr("Past flights")
+                    }
+
+                    Image {
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+                        width: 40
+                        height: 40
+                        source: arePasstFlightsRequested ? "../../assets/icons/arrow_drop_up_big.svg" : "../../assets/icons/arrow_drop_down_big.svg"
+                        verticalAlignment: Image.AlignVCenter
+                    }
+                }
             }
         }
     }

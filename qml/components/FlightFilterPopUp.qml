@@ -3,7 +3,9 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Controls.Material
 import "./typography/headline/text"
+import "./typography/body/text"
 import "./typography/label/text"
+import "./typography/title/text"
 
 Popup {
     id: root
@@ -178,7 +180,7 @@ Popup {
                         //     id: sectionBox
                         //     checkState: sectionElementsGroup.checkState
                         // }
-                        Text {
+                        TitleMediumText {
                             id: sectionHeaderText
                             text: section
                             Layout.alignment: Qt.AlignVCenter | Text.AlignLeft
@@ -188,7 +190,7 @@ Popup {
                             Layout.preferredWidth: 10
                             Layout.preferredHeight: 10
                             Layout.alignment: Qt.AlignVCenter | Text.AlignRight
-                            source: isExpanded ? "../../assets/icons/arrow_top.svg" : "../../assets/icons/arrow_bottom.svg"
+                            source: isExpanded ? "../../assets/icons/arrow_drop_up_medium.svg" : "../../assets/icons/arrow_drop_down_medium.svg"
                             verticalAlignment: Image.AlignVCenter
                             horizontalAlignment: Image.AlignRight
                         }
@@ -240,7 +242,7 @@ Popup {
                         Layout.fillWidth: true
                         Layout.rightMargin: 23
 
-                        Text {
+                        BodyLargeText {
                             id: text
                             text: name
                             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft

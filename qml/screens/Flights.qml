@@ -12,11 +12,11 @@ Page {
     id: root
 
     property bool arePasstFlightsRequested: false
+    anchors.fill: parent
     Material.theme: Material.Light
     background: Rectangle {
         color: "white"
     }
-    anchors.fill: parent
 
     contentItem: ColumnLayout {
         id: column
@@ -169,17 +169,26 @@ Page {
         }
 
         Column {
+            clip: true
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.preferredHeight: 356
             Layout.preferredWidth: parent.width
+            Layout.topMargin: 8
 
             FlightStrip {
                 callsign: "AWS152ALPHA"
                 anchors.horizontalCenter: parent.horizontalCenter
+                status: FlightStatus.Status.Denied
             }
             FlightStrip {
-                callsign: "AWS152ALPHA"
+                callsign: "Atlant32"
                 anchors.horizontalCenter: parent.horizontalCenter
+                status: FlightStatus.Status.Pending
+            }
+            FlightStrip {
+                callsign: "RMSTN1"
+                anchors.horizontalCenter: parent.horizontalCenter
+                status: FlightStatus.Status.Confirmed
             }
         }
 

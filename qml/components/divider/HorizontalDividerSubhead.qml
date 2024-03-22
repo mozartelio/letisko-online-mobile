@@ -3,7 +3,7 @@ import "../typography/title/text"
 
 Item {
     id: root
-    property string textContent: ""
+    required property string textContent
 
     Column {
         spacing: 4

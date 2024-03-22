@@ -4,17 +4,17 @@
 <context>
     <name>FlightStatus</name>
     <message>
-        <location filename="../../qml/components/FlightStatus.qml" line="47"/>
+        <location filename="../../qml/components/FlightStatus.qml" line="51"/>
         <source>Confirmed</source>
         <translation>Potvrdené</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStatus.qml" line="47"/>
+        <location filename="../../qml/components/FlightStatus.qml" line="51"/>
         <source>Denied</source>
         <translation>Odmietnuté</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStatus.qml" line="47"/>
+        <location filename="../../qml/components/FlightStatus.qml" line="51"/>
         <source>Pending</source>
         <translation>Čaká sa na rozhodnutie</translation>
     </message>
@@ -22,47 +22,47 @@
 <context>
     <name>FlightStrip</name>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="79"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="84"/>
         <source>Departure: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="89"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="94"/>
         <source>Arrival: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="99"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="104"/>
         <source>Plane name: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="149"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="154"/>
         <source>Aircraft type: </source>
         <translation>Typ lietadla: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="160"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="165"/>
         <source>ICAO wake tubulence category: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="171"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="176"/>
         <source>Aircraft class: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="182"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="187"/>
         <source>Aircraft category: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="193"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="198"/>
         <source>Flight rules: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="205"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="210"/>
         <source>Description: </source>
         <translation>Popis: </translation>
     </message>
@@ -97,7 +97,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../qml/screens/Flights.qml" line="214"/>
+        <location filename="../../qml/screens/Flights.qml" line="215"/>
         <source>Past flights</source>
         <translation type="unfinished"></translation>
     </message>
@@ -123,7 +123,7 @@
 <context>
     <name>Main</name>
     <message>
-        <location filename="../../qml/Main.qml" line="26"/>
+        <location filename="../../qml/Main.qml" line="25"/>
         <source>Online letisko</source>
         <translation>Online letisko</translation>
     </message>

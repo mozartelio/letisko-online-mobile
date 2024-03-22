@@ -5,25 +5,28 @@ import QtQuick.Layouts
 // import com.user 1.0
 import "./screens"
 import "./components"
-import "./components/typography/headline"
 import "."
+import "./styles"
 
 // DOES NOT WORK
 // import Colors 1.0
-//... Colors.redColor
-ApplicationWindow {
 
+// ... Colors.redColor
+ApplicationWindow {
+    id: window
     Material.theme: Material.Light
     Material.accent: Material.Purple
     font.family: "Roboto"
 
     // property bool drawerAvailable: false
-    id: window
-
     width: 1366
     height: 634
     visible: true
     title: qsTr("Online letisko")
+
+    // Rectangle {
+    //     color: Colors.redColor
+    // }
 
     // to test on a tablet without hotreload
     // MainWindow {}

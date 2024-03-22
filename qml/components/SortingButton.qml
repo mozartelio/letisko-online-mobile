@@ -5,11 +5,12 @@ import QtQuick.Layouts
 import "../components/typography/title/text"
 
 Button {
-    property string contentText: ""
-    Material.theme: Material.Light
     id: root
+    required property string contentText
+
     display: AbstractButton.TextOnly
     checkable: true
+    Material.theme: Material.Light
     contentItem: TitleSmallText {
         id: contentItem
         text: contentText
@@ -25,18 +26,20 @@ Button {
         }
         color: "transparent"
     }
-    states: [
-        State {
-            name: "ckecked"
-            PropertyChanges {
-                target: contentItem
-                color: "#6750A4"
+    StateGroup {
+        states: [
+            State {
+                name: "ckecked"
+                PropertyChanges {
+                    target: contentItem
+                    color: "#6750A4"
+                }
+                PropertyChanges {
+                    target: buttonBackground
+                    color: "#D0BCFF"
+                }
+                when: root.checked
             }
-            PropertyChanges {
-                target: buttonBackground
-                color: "#D0BCFF"
-            }
-            when: root.checked
-        }
-    ]
+        ]
+    }
 }

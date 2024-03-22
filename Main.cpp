@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
     // qmlRegisterType<Login>("com.login", 1, 0, "Login");
     qmlRegisterType<User>("com.user", 1, 0, "User");
 
+    //for using with hotreload
     ComponentCreatorEngine engine;
 
     engine.rootContext()->setContextProperty("QmlEngine", &engine);

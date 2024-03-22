@@ -4,12 +4,27 @@ import "./typography/body/text"
 
 Rectangle {
     id: root
-    property string callsign
-    property int status
+    required property string callsign
+    required property int status
+
+    property bool isExpanded: false
 
     color: "#FEF7FF"
     height: (grid.columns === 1) ? 185 : (grid.columns === 2) ? 165 : 130
     width: parent.width
+
+    StateGroup {
+        states: [
+            State {
+                name: "pressed"
+                PropertyChanges {
+                    target: root
+                    color: "#D0BCFF"
+                }
+                when: mouseArea.pressed
+            }
+        ]
+    }
 
     MouseArea {
         id: mouseArea
@@ -18,22 +33,14 @@ Rectangle {
             console.log("pressed")
         }
     }
-    states: [
-        State {
-            name: "pressed"
-            PropertyChanges {
-                target: root
-                color: "#D0BCFF"
-            }
-            when: mouseArea.pressed
-        }
-    ]
 
     ColumnLayout {
+        id: mainColumn
         width: parent.width
         spacing: 8
 
         Rectangle {
+            id: mainInfoRectangle
             color: "#FFD8E4" //"red"
             Layout.fillWidth: true
             Layout.preferredWidth: parent.width
@@ -67,7 +74,7 @@ Rectangle {
                     }
 
                     FlightStatus {
-                        status: status
+                        status: root.status
                     }
                 }
 
@@ -119,29 +126,31 @@ Rectangle {
                 columnSpacing: 39
                 rowSpacing: 0
                 columns: 2
-                states: [
-                    State {
-                        when: window.width <= 600
-                        PropertyChanges {
-                            target: grid
-                            columns: 1
+                StateGroup {
+                    states: [
+                        State {
+                            when: window.width <= 600
+                            PropertyChanges {
+                                target: grid
+                                columns: 1
+                            }
+                        },
+                        State {
+                            when: window.width > 600 && window.width <= 1150
+                            PropertyChanges {
+                                target: grid
+                                columns: 2
+                            }
+                        },
+                        State {
+                            when: window.width > 1150
+                            PropertyChanges {
+                                target: grid
+                                columns: 3
+                            }
                         }
-                    },
-                    State {
-                        when: window.width > 600 && window.width <= 1150
-                        PropertyChanges {
-                            target: grid
-                            columns: 2
-                        }
-                    },
-                    State {
-                        when: window.width > 1150
-                        PropertyChanges {
-                            target: grid
-                            columns: 3
-                        }
-                    }
-                ]
+                    ]
+                }
 
                 Row {
                     Layout.preferredWidth: 362

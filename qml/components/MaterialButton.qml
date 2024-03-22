@@ -7,8 +7,9 @@ import "./typography/label/text"
 
 Button {
     id: button
+    required property string contentText
+
     property color backgroundColor: "transparent"
-    property string contentText: ""
     property string contentTextColor: "#49454F"
     property string imagePath: ""
 
@@ -43,7 +44,7 @@ Button {
             visible: imagePath !== "" ? true : false
         }
     }
-    states: [
+    StateGroup {states: [
         State {
             name: "pressed"
             PropertyChanges {
@@ -58,5 +59,5 @@ Button {
 
             when: button.pressed
         }
-    ]
+    ]}
 }

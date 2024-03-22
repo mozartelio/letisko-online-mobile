@@ -9,13 +9,14 @@ import "./typography/title/text"
 
 Popup {
     id: root
-    Material.theme: Material.Light
+
     width: 300
     height: 400
     modal: true
     focus: true
     closePolicy: Popup.CloseOnPressOutside | Popup.CloseOnEscape
     anchors.centerIn: Overlay.overlay
+    Material.theme: Material.Light
 
     background: Rectangle {
         color: "#ECE6F0"

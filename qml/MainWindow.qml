@@ -10,6 +10,7 @@ import "./components/typography/title/text"
 
 Item {
     property bool drawerAvailable: false
+
     anchors.fill: parent
 
     // header: move this to Main.qml as a ApplicationWindow header if not using hot reload
@@ -42,7 +43,7 @@ Item {
                     HeadlineMediumText {
                         anchors.verticalCenter: parent.verticalCenter
                         // anchors.centerIn: parent
-                        text: qsTr("App")
+                        text: privates.drawerPageName
                         color: "white"
                     }
                 }
@@ -85,18 +86,18 @@ Item {
         }
 
         StackView {
-            initialItem: flightsPage
+            initialItem: documentationPage
             width: parent.width
             height: parent.height
             id: stackView
             // anchors.fill: parent  // activate this if not using hot reload
-            onCurrentItemChanged: console.log("Current Item:",
-                                              stackView.currentItem)
+            onCurrentItemChanged: {
+                console.log("Current Item:", stackView.currentItem)
+                // privates.drawerPageName = stackView.currentItem
+            }
+            Component.onCompleted: privates.drawerPageName = qsTr(
+                                       "Documentation")
         }
-    }
-
-    User {
-        id: userId
     }
 
     Drawer {
@@ -135,55 +136,78 @@ Item {
                     }
                 }
             }
-            DrawerItem {
-                iconSource: "../../assets/icons/home.svg"
-                itemName: qsTr("Home")
-            }
-
-            DrawerItem {
-                iconSource: "../../assets/icons/aircrafts.svg"
-                itemName: qsTr("Aircrafts")
-            }
-
-            DrawerItem {
-                iconSource: "../../assets/icons/flight_scheduler.svg"
-                itemName: qsTr("Flight scheduler")
-            }
-
-            DrawerItem {
-                iconSource: "../../assets/icons/flights.svg"
-                itemName: qsTr("Flights")
-            }
-
-            DrawerItem {
-                iconSource: "../../assets/icons/users.svg"
-                itemName: qsTr("Users")
-            }
 
             DrawerItem {
                 iconSource: "../../assets/icons/airport.svg"
                 itemName: qsTr("Airport")
+                onDrawerItemPressed: {
+                    privates.drawerPageName = itemName
+                    drawer.close()
+                }
             }
 
             DrawerItem {
                 iconSource: "../../assets/icons/documentation.svg"
                 itemName: qsTr("Documentation")
+                onDrawerItemPressed: {
+                    privates.drawerPageName = itemName
+                    stackView.replace(documentationPage)
+                    drawer.close()
+                }
             }
 
             DrawerItem {
-                iconSource: "../../assets/icons/duties.svg"
-                itemName: qsTr("Duties")
+                iconSource: "../../assets/icons/aircrafts.svg"
+                itemName: qsTr("Aircrafts")
+                onDrawerItemPressed: {
+                    privates.drawerPageName = itemName
+
+                    drawer.close()
+                }
             }
 
             DrawerItem {
-                iconSource: "../../assets/icons/licences.svg"
-                itemName: qsTr("Licences")
+                iconSource: "../../assets/icons/flights.svg"
+                itemName: qsTr("Flights")
+                onDrawerItemPressed: {
+                    privates.drawerPageName = itemName
+                    stackView.replace(flightsPage)
+                    drawer.close()
+                }
             }
 
             DrawerItem {
                 iconSource: "../../assets/icons/settings.svg"
                 itemName: qsTr("Settings")
+                onDrawerItemPressed: {
+                    privates.drawerPageName = itemName
+                    drawer.close()
+                }
             }
+
+            // DrawerItem {
+            //     iconSource: "../../assets/icons/home.svg"
+            //     itemName: qsTr("Home")
+            // }
+            // DrawerItem {
+            //     iconSource: "../../assets/icons/users.svg"
+            //     itemName: qsTr("Users")
+            // }
+            // DrawerItem {
+            //     iconSource: "../../assets/icons/flight_scheduler.svg"
+            //     itemName: qsTr("Flight scheduler")
+            // }
+
+            // DrawerItem {
+            //     iconSource: "../../assets/icons/duties.svg"
+            //     itemName: qsTr("Duties")
+            // }
+
+            // DrawerItem {
+            //     iconSource: "../../assets/icons/licences.svg"
+            //     itemName: qsTr("Licences")
+            // }
+
             //TODO:
             // ScrollIndicator.vertical: ScrollIndicator {}
         }
@@ -214,6 +238,21 @@ Item {
 
     Component {
         id: flightsPage
-        Flights {}
+        FlightsScreen {}
+    }
+
+    Component {
+        id: documentationPage
+        DocumentationScreen {}
+    }
+
+    User {
+        id: userId
+    }
+
+    QtObject {
+        id: privates
+
+        property string drawerPageName
     }
 }

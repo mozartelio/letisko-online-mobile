@@ -5,9 +5,8 @@ import "./typography/body/input"
 
 BodyLargeInput {
     id: root
-
-    width: parent.width
-    height: parent.height
+    implicitWidth: 720
+    implicitHeight: 56
     clip: true
     leftPadding: 16 + icon.width
     rightPadding: 16
@@ -19,6 +18,7 @@ BodyLargeInput {
         height: 56
         width: parent.width
         radius: 28
+        anchors.verticalCenter: parent.verticalCenter
 
         Image {
             id: icon

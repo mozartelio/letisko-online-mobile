@@ -7,8 +7,9 @@ Rectangle {
     required property string iconSource
     required property string itemName
 
-    signal press
+    signal drawerItemPressed
 
+    objectName: "DrawerItem"
     color: "transparent"
     radius: 100
     height: 56
@@ -18,6 +19,7 @@ Rectangle {
         anchors.fill: parent
         onPressed: {
             parent.color = "#D0BCFF"
+            drawerItemPressed()
             console.log("pressed")
         }
         onReleased: {

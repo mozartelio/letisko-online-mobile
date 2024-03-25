@@ -7,7 +7,7 @@ import "./typography/label/text"
 
 Button {
     id: button
-    required property string contentText
+    property string contentText
 
     property color backgroundColor: "transparent"
     property string contentTextColor: "#49454F"

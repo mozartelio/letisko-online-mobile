@@ -1,58 +1,73 @@
 import QtQuick
+import QtQuick.Controls
+import QtQuick.Controls.Material
 import QtQuick.Layouts
 import "./typography/body/text"
 
-Rectangle {
+Item {
     id: root
     required property string callsign
     required property int status
 
-    property bool isExpanded: false
+    property bool isExpanded: false //true
 
-    color: "#FEF7FF"
-    height: (grid.columns === 1) ? 185 : (grid.columns === 2) ? 165 : 130
     width: parent.width
+    implicitHeight: column.implicitHeight
+    Material.theme: Material.Light
 
     StateGroup {
         states: [
             State {
                 name: "pressed"
                 PropertyChanges {
-                    target: root
+                    target: flightDetails
                     color: "#D0BCFF"
                 }
                 when: mouseArea.pressed
             }
         ]
     }
-
-    MouseArea {
-        id: mouseArea
-        anchors.fill: root
-        onPressed: {
-            console.log("pressed")
-        }
-    }
-
     ColumnLayout {
-        id: mainColumn
+        id: column
         width: parent.width
-        spacing: 8
+        spacing: 0
 
         Rectangle {
-            id: mainInfoRectangle
+            id: backgroungRectangle
             color: "#FFD8E4" //"red"
             Layout.fillWidth: true
             Layout.preferredWidth: parent.width
-            Layout.preferredHeight: 40
+            Layout.preferredHeight: 50
 
             RowLayout {
-                spacing: 30
-                width: parent.width
+                width: parent.width //- 40
                 height: parent.height
+                spacing: 30
+
                 anchors {
+                    left: parent.left
+                    right: parent.right
+                    top: parent.top
+                    bottom: parent.bottom
+
                     leftMargin: 20
-                    fill: parent
+                    rightMargin: 30
+                }
+
+                Button {
+                    display: AbstractButton.IconOnly
+                    icon {
+                        width: 12
+                        height: 12
+                        source: "../../assets/icons/arrow_drop_down_medium.svg"
+                    }
+                    padding: 0
+                    Layout.margins: 0
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                    onClicked: {
+                        console.log("pressed")
+                        isExpanded = !isExpanded
+                    }
                 }
 
                 RowLayout {
@@ -111,95 +126,160 @@ Rectangle {
                         }
                     }
                 }
+
+                Button {
+
+                    display: AbstractButton.IconOnly
+                    icon {
+                        width: 24
+                        height: 24
+                        source: "../../assets/icons/edit_square_24px.svg"
+                    }
+                    Layout.margins: 0
+                    padding: 0
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+                }
             }
         }
 
-        ColumnLayout {
-            Layout.leftMargin: 16
-            Layout.rightMargin: 24
-            Layout.bottomMargin: 12
+        Rectangle {
+            id: flightDetails
+            color: "#FEF7FF"
+            visible: isExpanded
+            Layout.fillWidth: true
+            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: (grid.columns === 1) ? 135 : (grid.columns === 2) ? 115 : 80
 
-            GridLayout {
-                id: grid
-                Layout.fillWidth: true
-                flow: GridLayout.LeftToRight
-                columnSpacing: 39
-                rowSpacing: 0
-                columns: 2
-                StateGroup {
-                    states: [
-                        State {
-                            when: window.width <= 600
-                            PropertyChanges {
-                                target: grid
-                                columns: 1
+            MouseArea {
+                id: mouseArea
+                anchors.fill: flightDetails
+                onPressed: {
+                    console.log("pressed")
+                }
+            }
+            ColumnLayout {
+                width: parent.width
+                height: parent.Layout.preferredHeight
+                spacing: 0
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    top: parent.top
+                    bottom: parent.bottom
+                    leftMargin: 16
+                    rightMargin: 24
+                    topMargin: 12
+                    bottomMargin: 12
+                }
+
+                GridLayout {
+                    id: grid
+                    Layout.fillWidth: true
+                    flow: GridLayout.LeftToRight
+                    columnSpacing: 39
+                    rowSpacing: 0
+                    columns: 2
+                    StateGroup {
+                        states: [
+                            State {
+                                when: window.width <= 600
+                                PropertyChanges {
+                                    target: grid
+                                    columns: 1
+                                }
+                            },
+                            State {
+                                when: window.width > 600 && window.width <= 1150
+                                PropertyChanges {
+                                    target: grid
+                                    columns: 2
+                                }
+                            },
+                            State {
+                                when: window.width > 1150
+                                PropertyChanges {
+                                    target: grid
+                                    columns: 3
+                                }
                             }
-                        },
-                        State {
-                            when: window.width > 600 && window.width <= 1150
-                            PropertyChanges {
-                                target: grid
-                                columns: 2
-                            }
-                        },
-                        State {
-                            when: window.width > 1150
-                            PropertyChanges {
-                                target: grid
-                                columns: 3
-                            }
+                        ]
+                    }
+
+                    Row {
+                        Layout.preferredWidth: 362
+                        BodyMediumText {
+                            text: qsTr("Aircraft type: ")
+                            font.bold: true
                         }
-                    ]
+                        BodyMediumText {
+                            text: "info"
+                        }
+                    }
+
+                    Row {
+                        Layout.preferredWidth: 362
+                        BodyMediumText {
+                            text: qsTr("ICAO wake tubulence category: ")
+                            font.bold: true
+                        }
+                        BodyMediumText {
+                            text: "info"
+                        }
+                    }
+
+                    Row {
+                        Layout.preferredWidth: 362
+                        BodyMediumText {
+                            text: qsTr("Aircraft class: ")
+                            font.bold: true
+                        }
+                        BodyMediumText {
+                            text: "info"
+                        }
+                    }
+
+                    Row {
+                        Layout.preferredWidth: 362
+                        BodyMediumText {
+                            text: qsTr("Aircraft category: ")
+                            font.bold: true
+                        }
+                        BodyMediumText {
+                            text: "info"
+                        }
+                    }
+
+                    Row {
+                        Layout.preferredWidth: 362
+                        BodyMediumText {
+                            text: qsTr("Flight rules: ")
+                            font.bold: true
+                        }
+                        BodyMediumText {
+                            text: "info"
+                        }
+                    }
+
+                    Row {
+                        Layout.preferredWidth: 362
+                        BodyMediumText {
+                            text: qsTr("Height level: ")
+                            font.bold: true
+                        }
+                        BodyMediumText {
+                            text: "100"
+                        }
+                        BodyMediumText {
+                            text: " measurement units"
+                        }
+                    }
                 }
 
                 Row {
-                    Layout.preferredWidth: 362
+                    Layout.preferredWidth: parent.width
+                    Layout.preferredHeight: 32
                     BodyMediumText {
-                        text: qsTr("Aircraft type: ")
-                        font.bold: true
-                    }
-                    BodyMediumText {
-                        text: "info"
-                    }
-                }
-
-                Row {
-                    Layout.preferredWidth: 362
-                    BodyMediumText {
-                        text: qsTr("ICAO wake tubulence category: ")
-                        font.bold: true
-                    }
-                    BodyMediumText {
-                        text: "info"
-                    }
-                }
-
-                Row {
-                    Layout.preferredWidth: 362
-                    BodyMediumText {
-                        text: qsTr("Aircraft class: ")
-                        font.bold: true
-                    }
-                    BodyMediumText {
-                        text: "info"
-                    }
-                }
-
-                Row {
-                    Layout.preferredWidth: 362
-                    BodyMediumText {
-                        text: qsTr("Aircraft category: ")
-                        font.bold: true
-                    }
-                    BodyMediumText {
-                        text: "info"
-                    }
-                }
-
-                Row {
-                    Layout.preferredWidth: 362
-                    BodyMediumText {
-                        text: qsTr("Flight rules: ")
+                        text: qsTr("Description: ")
                         font.bold: true
                     }
                     BodyMediumText {
@@ -207,41 +287,19 @@ Rectangle {
                     }
                 }
             }
+            Image {
 
-            Row {
-                Layout.preferredWidth: 362
-                BodyMediumText {
-                    text: qsTr("Description: ")
-                    font.bold: true
+                anchors {
+                    right: flightDetails.right
+                    verticalCenter: flightDetails.verticalCenter
+                    rightMargin: 50
                 }
-                BodyMediumText {
-                    text: "info"
-                }
+
+                width: 40
+                height: 40
+                source: "../../assets/icons/arrow_right_40px.svg"
+                verticalAlignment: Image.AlignVCenter
             }
-        }
-    }
-
-    Image {
-
-        anchors {
-            right: root.right
-            verticalCenter: root.verticalCenter
-            rightMargin: 50
-        }
-
-        width: 40
-        height: 40
-        source: "../../assets/icons/arrow_right_40px.svg"
-        verticalAlignment: Image.AlignVCenter
-    }
-    Rectangle {
-        height: 1
-        width: root.width
-        color: "#CAC4D0"
-        anchors {
-            left: root.left
-            right: root.right
-            bottom: root.bottom
         }
     }
 }

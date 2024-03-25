@@ -8,7 +8,7 @@ set(CMAKE_PREFIX_PATH "C:/Other_programs/Qt/6.6.0/mingw_64/lib/cmake" ${CMAKE_PR
 
 find_package(Qt6 REQUIRED COMPONENTS Quick Network LinguistTools)
 
-qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ./assets/translations/slovak.ts)
+# qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ./assets/translations/slovak.ts)
 #do not work due to recursion
 # configure_file(${QM_FILES} ${CMAKE_SOURCE_DIR} COPYONLY)
 
@@ -19,18 +19,23 @@ qt_add_executable(appOnlineLetiskoMobileApp
     ${QM_FILES}
 )
 # DOES NOT WORK
-#set_source_files_properties(qml/styles/Colors.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
+set_source_files_properties(qml/styles/Colors.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
 
 qt_add_qml_module(appOnlineLetiskoMobileApp
     URI OnlineLetiskoMobileApp
     VERSION 1.0
     QML_FILES
         qml/Main.qml
+
+        #Screens
         qml/screens/LoginScreen.qml
         qml/screens/RegistrationScreen.qml
         qml/screens/MainScreen.qml
         qml/screens/FillProfileDetails.qml
-        qml/screens/Flights.qml
+        qml/screens/FlightsScreen.qml
+        qml/screens/DocumentationScreen.qml
+
+        #Components
         qml/components/PasswordField.qml
         qml/components/Logo.qml
         qml/components/DrawerItem.qml
@@ -40,7 +45,8 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         qml/components/SortingButton.qml
         qml/components/FlightFilterPopUp.qml
         qml/components/MaterialButton.qml
-
+        qml/components/SortingBar.qml
+        qml/components/DocumentationStrip.qml
 
         # text font styles
         #Headline
@@ -68,7 +74,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         qml/components/divider/HorizontalDividerSubhead.qml
         qml/components/ListItem.qml
         qml/MainWindow.qml
-#        qml/styles/Colors.qml
+       # qml/styles/Colors.qml
 
     RESOURCES
         assets/LetiskoLogo.svg
@@ -96,6 +102,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         assets/icons/arrow_drop_down_medium.svg
         assets/icons/arrow_drop_up_big.svg
         assets/icons/arrow_drop_down_big.svg
+        assets/icons/edit_square_24px.svg
         assets/fonts/Roboto-Regular.ttf
 
         # slovak.qm
@@ -107,7 +114,6 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         user.h user.cpp
         hotreload/FileWatcher.h hotreload/FileWatcher.cpp
         hotreload/ComponentCreatorEngine.h hotreload/ComponentCreatorEngine.cpp
-        QML_FILES
 )
 
 

@@ -13,9 +13,9 @@ Page {
     }
 
     contentItem: ColumnLayout {
+        width: parent.width
+        height: parent.height
         spacing: 17
-        width: root.width
-        height: root.height
         anchors {
             top: parent.top
             bottom: parent.bottom
@@ -41,12 +41,20 @@ Page {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
         }
 
-        ColumnLayout {
+        Column {
+            clip: true
             Layout.alignment: Qt.AlignLeft | Qt.AlignTop
             Layout.preferredWidth: parent.width
             Layout.fillWidth: true
-            // Layout.fillHeight: true
+            Layout.preferredHeight: parent.height
+            Layout.fillHeight: true
+            spacing: 0
             DocumentationStrip {
+                documentName: "test_doc.pdf"
+                createdByUser: "X"
+            }
+            DocumentationStrip {
+
                 documentName: "test_doc.pdf"
                 createdByUser: "X"
             }

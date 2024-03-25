@@ -39,10 +39,11 @@ Page {
 
         ColumnLayout {
             id: ongoingFlightHead
+            spacing: 4
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.preferredHeight: 77
             Layout.preferredWidth: parent.width
-            spacing: 4
+
             Rectangle {
                 color: "#CAC4D0"
                 Layout.preferredHeight: 2
@@ -50,14 +51,15 @@ Page {
                 Layout.preferredWidth: parent.width
             }
             RowLayout {
+                spacing: 25
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                 Layout.preferredWidth: parent.width
-                spacing: 25
+
                 TitleLargeText {
+                    text: qsTr("Ongoing flights")
                     Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                     Layout.preferredHeight: contentHeight
                     Layout.preferredWidth: contentWidth
-                    text: qsTr("Ongoing flights")
                 }
 
                 SortingBar {
@@ -84,7 +86,7 @@ Page {
             }
         }
 
-        ColumnLayout {
+        Column {
             clip: true
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.preferredHeight: parent.height //356

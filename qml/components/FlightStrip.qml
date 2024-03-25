@@ -55,13 +55,14 @@ Item {
                 }
 
                 Button {
+                    padding: 0
                     display: AbstractButton.IconOnly
                     icon {
                         width: 12
                         height: 12
+                        color: "transparent"
                         source: "../../assets/icons/arrow_drop_down_medium.svg"
                     }
-                    padding: 0
                     Layout.margins: 0
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                     onClicked: {
@@ -133,6 +134,7 @@ Item {
                     icon {
                         width: 24
                         height: 24
+                        color: "transparent"
                         source: "../../assets/icons/edit_square_24px.svg"
                     }
                     Layout.margins: 0
@@ -300,6 +302,16 @@ Item {
                 source: "../../assets/icons/arrow_right_40px.svg"
                 verticalAlignment: Image.AlignVCenter
             }
+        }
+    }
+    Rectangle {
+        height: 1
+        width: root.width
+        color: "#CAC4D0"
+        anchors {
+            left: root.left
+            right: root.right
+            bottom: root.bottom
         }
     }
 }

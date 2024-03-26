@@ -9,7 +9,7 @@ Rectangle {
     required property string documentName
     required property string createdByUser
 
-    color: "#FFD8E4"
+    color: "#F5EFF7"
     implicitWidth: parent.width
     implicitHeight: mainColumn.implicitHeight + mainColumn.anchors.topMargin
                     + mainColumn.anchors.bottomMargin //100
@@ -72,7 +72,6 @@ Rectangle {
                     font.bold: true
                     color: "#6750A4"
                     MouseArea {
-                        id: docAuthorMouseArea
                         anchors.fill: parent
                         onPressed: {
                             console.log("doc author pressed")

@@ -34,6 +34,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         qml/screens/FillProfileDetails.qml
         qml/screens/FlightsScreen.qml
         qml/screens/DocumentationScreen.qml
+        qml/screens/AircraftsScreen.qml
 
         #Components
         qml/components/PasswordField.qml
@@ -47,6 +48,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         qml/components/MaterialButton.qml
         qml/components/SortingBar.qml
         qml/components/DocumentationStrip.qml
+        qml/components/AircraftStrip.qml
 
         # text font styles
         #Headline
@@ -103,6 +105,8 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         assets/icons/arrow_drop_up_big.svg
         assets/icons/arrow_drop_down_big.svg
         assets/icons/edit_square_24px.svg
+        assets/icons/default_plane_plug.png
+
         assets/fonts/Roboto-Regular.ttf
 
         # slovak.qm

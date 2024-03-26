@@ -86,7 +86,7 @@ Item {
         }
 
         StackView {
-            initialItem: documentationPage
+            initialItem: flightsPage //aircraftsPage  //documentationPage
             width: parent.width
             height: parent.height
             id: stackView
@@ -161,7 +161,7 @@ Item {
                 itemName: qsTr("Aircrafts")
                 onDrawerItemPressed: {
                     privates.drawerPageName = itemName
-
+                    stackView.replace(aircraftsPage)
                     drawer.close()
                 }
             }
@@ -239,6 +239,11 @@ Item {
     Component {
         id: flightsPage
         FlightsScreen {}
+    }
+
+    Component {
+        id: aircraftsPage
+        AircraftsScreen {}
     }
 
     Component {

@@ -65,6 +65,7 @@ Item {
                     }
                     Layout.margins: 0
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+
                     onClicked: {
                         console.log("pressed")
                         isExpanded = !isExpanded
@@ -73,11 +74,11 @@ Item {
 
                 RowLayout {
                     spacing: 7
-                    Layout.alignment: Qt.AlignVCenter
+                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                    Layout.preferredWidth: (1 / 4) * backgroungRectangle.width
 
                     //TODO: create TEXT as component
                     Text {
-                        Layout.preferredWidth: contentWidth
                         font.family: "Roboto"
                         font.weight: 700
                         font.pixelSize: 16
@@ -87,16 +88,20 @@ Item {
                         elide: Text.ElideRight
                         verticalAlignment: Text.AlignVCenter
                         text: callsign
+                        Layout.preferredWidth: contentWidth
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                     }
 
                     FlightStatus {
                         status: root.status
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                     }
                 }
 
                 RowLayout {
                     spacing: 150
-
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                    Layout.fillWidth: true
                     Row {
                         BodyLargeText {
                             text: qsTr("Departure: ")
@@ -176,11 +181,13 @@ Item {
 
                 GridLayout {
                     id: grid
-                    Layout.fillWidth: true
                     flow: GridLayout.LeftToRight
                     columnSpacing: 39
                     rowSpacing: 0
                     columns: 2
+
+                    Layout.fillWidth: true
+
                     StateGroup {
                         states: [
                             State {

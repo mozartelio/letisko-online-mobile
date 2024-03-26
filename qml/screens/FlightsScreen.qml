@@ -79,47 +79,126 @@ Page {
                     imagePath: "../../assets/icons/settings.svg"
                     onClicked: filterPopUp.open()
                 }
-
-                FlightFilterPopUp {
-                    id: filterPopUp
-                }
             }
         }
 
-        Column {
+        ScrollView {
+            spacing: 0
             clip: true
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-            Layout.preferredHeight: parent.height //356
+            Layout.preferredHeight: 356 //parent.height
             Layout.preferredWidth: parent.width
             Layout.topMargin: 8
-            spacing: 0
 
-            FlightStrip {
-                callsign: "AWS152ALPHA"
-                // anchors.horizontalCenter: parent.horizontalCenter
-                status: FlightStatus.Status.Denied
-                Layout.fillWidth: true
-                // Layout.preferredHeight: contentItem.height//356
-                Layout.preferredWidth: parent.width
-                Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-            }
-            FlightStrip {
-                callsign: "Atlant32"
-                // anchors.horizontalCenter: parent.horizontalCenter
-                status: FlightStatus.Status.Pending
-                Layout.fillWidth: true
-                // Layout.preferredHeight: implicitContentHeight //356
-                Layout.preferredWidth: parent.width
-                Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-            }
-            FlightStrip {
-                callsign: "RMSTN1"
-                // anchors.horizontalCenter: parent.horizontalCenter
-                status: FlightStatus.Status.Confirmed
-                Layout.fillWidth: true
-                // Layout.preferredHeight: 50 //356
-                Layout.preferredWidth: parent.width
-                Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+            ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+            ScrollBar.vertical.policy: ScrollBar.AlwaysOn
+
+            ScrollBar.horizontal.interactive: false
+            ScrollBar.vertical.interactive: true
+
+            Column {
+                id: flightsColumn
+                width: parent.width
+                height: parent.height
+                FlightStrip {
+                    callsign: "AWS152ALPHA"
+                    // anchors.horizontalCenter: parent.horizontalCenter
+                    status: FlightStatus.Status.Denied
+                    Layout.fillWidth: true
+                    // Layout.preferredHeight: contentItem.height//356
+                    Layout.preferredWidth: parent.width
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                }
+                FlightStrip {
+                    callsign: "Atlant32"
+                    // anchors.horizontalCenter: parent.horizontalCenter
+                    status: FlightStatus.Status.Pending
+                    Layout.fillWidth: true
+                    // Layout.preferredHeight: implicitContentHeight //356
+                    Layout.preferredWidth: parent.width
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                }
+                FlightStrip {
+                    callsign: "RMSTN1"
+                    // anchors.horizontalCenter: parent.horizontalCenter
+                    status: FlightStatus.Status.Confirmed
+                    Layout.fillWidth: true
+                    // Layout.preferredHeight: 50 //356
+                    Layout.preferredWidth: parent.width
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                }
+                FlightStrip {
+                    callsign: "RMSTN1"
+                    // anchors.horizontalCenter: parent.horizontalCenter
+                    status: FlightStatus.Status.Confirmed
+                    Layout.fillWidth: true
+                    // Layout.preferredHeight: 50 //356
+                    Layout.preferredWidth: parent.width
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                }
+                FlightStrip {
+                    callsign: "RMSTN1"
+                    // anchors.horizontalCenter: parent.horizontalCenter
+                    status: FlightStatus.Status.Confirmed
+                    Layout.fillWidth: true
+                    // Layout.preferredHeight: 50 //356
+                    Layout.preferredWidth: parent.width
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                }
+                FlightStrip {
+                    callsign: "RMSTN1"
+                    // anchors.horizontalCenter: parent.horizontalCenter
+                    status: FlightStatus.Status.Confirmed
+                    Layout.fillWidth: true
+                    // Layout.preferredHeight: 50 //356
+                    Layout.preferredWidth: parent.width
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                }
+                FlightStrip {
+                    callsign: "RMSTN1"
+                    // anchors.horizontalCenter: parent.horizontalCenter
+                    status: FlightStatus.Status.Confirmed
+                    Layout.fillWidth: true
+                    // Layout.preferredHeight: 50 //356
+                    Layout.preferredWidth: parent.width
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                }
+                FlightStrip {
+                    callsign: "RMSTN1"
+                    // anchors.horizontalCenter: parent.horizontalCenter
+                    status: FlightStatus.Status.Confirmed
+                    Layout.fillWidth: true
+                    // Layout.preferredHeight: 50 //356
+                    Layout.preferredWidth: parent.width
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                }
+                FlightStrip {
+                    callsign: "RMSTN1"
+                    // anchors.horizontalCenter: parent.horizontalCenter
+                    status: FlightStatus.Status.Confirmed
+                    Layout.fillWidth: true
+                    // Layout.preferredHeight: 50 //356
+                    Layout.preferredWidth: parent.width
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                }
+                FlightStrip {
+                    callsign: "RMSTN1"
+                    // anchors.horizontalCenter: parent.horizontalCenter
+                    status: FlightStatus.Status.Confirmed
+                    Layout.fillWidth: true
+                    // Layout.preferredHeight: 50 //356
+                    Layout.preferredWidth: parent.width
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                }
+                FlightStrip {
+                    callsign: "RMSTN1"
+                    // anchors.horizontalCenter: parent.horizontalCenter
+                    status: FlightStatus.Status.Confirmed
+                    Layout.fillWidth: true
+                    // Layout.preferredHeight: 50 //356
+                    Layout.preferredWidth: parent.width
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                }
             }
         }
 
@@ -164,5 +243,9 @@ Page {
                 }
             }
         }
+    }
+
+    FlightFilterPopUp {
+        id: filterPopUp
     }
 }

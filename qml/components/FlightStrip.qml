@@ -155,7 +155,7 @@ Item {
             visible: isExpanded
             Layout.fillWidth: true
             Layout.preferredWidth: parent.width
-            Layout.preferredHeight: (grid.columns === 1) ? 135 : (grid.columns === 2) ? 115 : 80
+            Layout.preferredHeight: (grid.columns == 1) ? 135 : (grid.columns == 2) ? 115 : 80
 
             MouseArea {
                 id: mouseArea
@@ -297,17 +297,16 @@ Item {
                 }
             }
             Image {
+                width: 40
+                height: 40
+                source: "../../assets/icons/arrow_right_40px.svg"
+                verticalAlignment: Image.AlignVCenter
 
                 anchors {
                     right: flightDetails.right
                     verticalCenter: flightDetails.verticalCenter
                     rightMargin: 50
                 }
-
-                width: 40
-                height: 40
-                source: "../../assets/icons/arrow_right_40px.svg"
-                verticalAlignment: Image.AlignVCenter
             }
         }
     }

@@ -4,7 +4,7 @@ import "./typography/label/text"
 
 Rectangle {
     id: drawerItem
-    required property string iconSource
+    required property url iconSource
     required property string itemName
 
     signal drawerItemPressed

@@ -10,9 +10,13 @@ Rectangle {
     required property string createdByUser
 
     color: "#F5EFF7"
-    implicitWidth: parent.width
+    implicitWidth: mainColumn.implicitWidth + mainColumn.anchors.leftMargin
+                   + mainColumn.anchors.rightMargin //parent.width
     implicitHeight: mainColumn.implicitHeight + mainColumn.anchors.topMargin
                     + mainColumn.anchors.bottomMargin //100
+
+    width: parent.width
+
     Material.theme: Material.Light
 
     StateGroup {

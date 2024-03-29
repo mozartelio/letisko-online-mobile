@@ -7,7 +7,7 @@ Rectangle {
     id: root
 
     required property string serialNumber
-    property string imagePath: ""
+    property url imagePath: ""
 
     color: "#F5EFF7"
     implicitWidth: parent.width
@@ -55,7 +55,7 @@ Rectangle {
             id: aircraftImage
             source: imagePath
             verticalAlignment: Image.AlignVCenter
-            visible: imagePath !== "" ? true : false
+            visible: imagePath.toString() !== "" ? true : false
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.preferredWidth: 92
             Layout.preferredHeight: 92

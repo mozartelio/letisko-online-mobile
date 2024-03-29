@@ -20,11 +20,11 @@ Rectangle {
         color: "#79747E"
     }
     color: {
-        if (root.status === FlightStatus.Status.Confirmed)
+        if (root.status == FlightStatus.Status.Confirmed)
             return "#625B71"
-        else if (root.status === FlightStatus.Status.Denied)
+        else if (root.status == FlightStatus.Status.Denied)
             return "#8C1D18"
-        else if (root.status === FlightStatus.Status.Pending)
+        else if (root.status == FlightStatus.Status.Pending)
             return "#6750A4"
         else
             return ""
@@ -50,7 +50,7 @@ Rectangle {
             Layout.preferredWidth: contentWidth
             Layout.preferredHeight: 20
             Layout.alignment: Qt.AlignBaseline | Qt.AlignRight
-            text: status === FlightStatus.Status.Confirmed ? qsTr("Confirmed") : status === FlightStatus.Status.Denied ? qsTr("Denied") : qsTr("Pending")
+            text: status == FlightStatus.Status.Confirmed ? qsTr("Confirmed") : status == FlightStatus.Status.Denied ? qsTr("Denied") : qsTr("Pending")
         }
 
         Image {
@@ -59,11 +59,11 @@ Rectangle {
             height: 24
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             source: {
-                if (root.status === FlightStatus.Status.Confirmed)
+                if (root.status == FlightStatus.Status.Confirmed)
                     return "../../assets/icons/check_small-24px.svg"
-                else if (root.status === FlightStatus.Status.Denied)
+                else if (root.status == FlightStatus.Status.Denied)
                     return "../../assets/icons/close-24px.svg"
-                else if (root.status === FlightStatus.Status.Pending)
+                else if (root.status == FlightStatus.Status.Pending)
                     return "../../assets/icons/more-24px.svg"
                 else
                     return ""

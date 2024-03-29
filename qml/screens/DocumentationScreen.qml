@@ -42,9 +42,8 @@ Page {
         }
 
         ScrollView {
-
+            id: mainColumn
             clip: true
-            spacing: 0
             Layout.alignment: Qt.AlignLeft | Qt.AlignTop
             Layout.preferredWidth: parent.width
             Layout.fillWidth: true
@@ -56,8 +55,8 @@ Page {
 
             ScrollBar.horizontal.interactive: false
             ScrollBar.vertical.interactive: true
-
             Column {
+                id: innerColumn
                 width: parent.width
                 height: parent.height
                 DocumentationStrip {
@@ -65,12 +64,10 @@ Page {
                     createdByUser: "X"
                 }
                 DocumentationStrip {
-
                     documentName: "test_doc.pdf"
                     createdByUser: "X"
                 }
                 DocumentationStrip {
-
                     documentName: "test_doc.pdf"
                     createdByUser: "X"
                 }
@@ -141,5 +138,29 @@ Page {
                 }
             }
         }
+        // ListView {
+        //     id: listView
+        //     clip: true
+        //     // spacing: 0
+        //     Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+        //     Layout.preferredWidth: parent.width
+        //     Layout.fillWidth: true
+        //     Layout.preferredHeight: parent.height
+        //     Layout.fillHeight: true
+
+        //     delegate: DocumentationStrip {
+        //         width: listView.width
+
+        //         documentName: dName
+        //         createdByUser: createdBy
+        //     }
+
+        //     model: Filling {} ///documentModel
+        //     // highlight: Rectangle {
+        //     //     color: "red" //"lightsteelblue"
+        //     //     radius: 5
+        //     // }
+        //     focus: true
+        // }
     }
 }

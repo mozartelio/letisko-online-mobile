@@ -52,33 +52,34 @@ Item {
                     id: control
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
                     display: AbstractButton.TextBesideIcon
-                    implicitWidth: userPhoto.implicitWidth + userNameSurname.implicitWidth
-                    // implicitHeight: userPhoto.implicitHeigh + userNameSurname.implicitHeigh
-                    contentItem: Row {
+
+                    contentItem: RowLayout {
                         id: row
-                        anchors.right: parent.right
                         spacing: 15
 
-                        Image {
+                        RoundedImage {
                             id: userPhoto
-                            anchors.verticalCenter: parent.verticalCenter
-                            source: "../assets/icons/3d_avatar_21.png"
+                            imageSource: "../../assets/icons/3d_avatar_21.png"
+                            imageWidth: 45
+                            imageHeight: 45
                             width: 45
                             height: 45
-                            verticalAlignment: Image.AlignVCenter
+                            Layout.alignment: Qt.AlignVCenter
                         }
 
                         TitleLargeText {
                             id: userNameSurname
-                            anchors.verticalCenter: parent.verticalCenter
                             width: contentWidth
                             text: "Name Surname"
                             color: "white"
                             horizontalAlignment: Text.AlignHCenter
                             wrapMode: Text.WordWrap
+                            Layout.alignment: Qt.AlignVCenter
                         }
                     }
                     onClicked: {
+                        privates.drawerPageName = qsTr("Settings")
+                        stackView.replace(settingsScreen)
                         console.log("here is a profile...")
                     }
                 }
@@ -86,7 +87,7 @@ Item {
         }
 
         StackView {
-            initialItem: flightsPage //aircraftsPage  //documentationPage
+            initialItem: settingsScreen //flightsScreen //aircraftsScreen //documentationScreen
             width: parent.width
             height: parent.height
             id: stackView
@@ -151,7 +152,7 @@ Item {
                 itemName: qsTr("Documentation")
                 onDrawerItemPressed: {
                     privates.drawerPageName = itemName
-                    stackView.replace(documentationPage)
+                    stackView.replace(documentationScreen)
                     drawer.close()
                 }
             }
@@ -161,7 +162,7 @@ Item {
                 itemName: qsTr("Aircrafts")
                 onDrawerItemPressed: {
                     privates.drawerPageName = itemName
-                    stackView.replace(aircraftsPage)
+                    stackView.replace(aircraftsScreen)
                     drawer.close()
                 }
             }
@@ -171,7 +172,7 @@ Item {
                 itemName: qsTr("Flights")
                 onDrawerItemPressed: {
                     privates.drawerPageName = itemName
-                    stackView.replace(flightsPage)
+                    stackView.replace(flightsScreen)
                     drawer.close()
                 }
             }
@@ -181,6 +182,7 @@ Item {
                 itemName: qsTr("Settings")
                 onDrawerItemPressed: {
                     privates.drawerPageName = itemName
+                    stackView.replace(settingsScreen)
                     drawer.close()
                 }
             }
@@ -218,7 +220,7 @@ Item {
         LoginScreen {
             user: userId
             onGoToRegistrationScreen: stackView.replace(registrationPage)
-            onGoToMainScreen: stackView.replace(mainPage)
+            onGoToMainScreen: stackView.replace(mainScreen)
         }
     }
 
@@ -226,28 +228,33 @@ Item {
         id: registrationPage
         RegistrationScreen {
             onGoToLoginScreen: stackView.push(loginPage)
-            onGoToMainScreen: stackView.replace(mainPage)
+            onGoToMainScreen: stackView.replace(mainScreen)
         }
     }
 
     Component {
-        id: mainPage
+        id: mainScreen
         MainScreen {//            onGoToLoginPage: stackView.push(loginPage)
         }
     }
 
     Component {
-        id: flightsPage
+        id: flightsScreen
         FlightsScreen {}
     }
 
     Component {
-        id: aircraftsPage
+        id: aircraftsScreen
         AircraftsScreen {}
     }
 
     Component {
-        id: documentationPage
+        id: settingsScreen
+        SettingsScreen {}
+    }
+
+    Component {
+        id: documentationScreen
         DocumentationScreen {}
     }
 

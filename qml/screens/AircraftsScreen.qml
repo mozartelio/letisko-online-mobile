@@ -56,6 +56,7 @@ Page {
             ScrollBar.horizontal.interactive: false
             ScrollBar.vertical.interactive: true
 
+            // ScrollBar
             Column {
                 width: parent.width
                 height: parent.height

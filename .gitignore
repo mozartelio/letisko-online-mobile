@@ -72,3 +72,5 @@ CMakeLists.txt.user*
 *.dll
 *.exe
 
+appOnlineLetiskoMobileApp_qml_module_dir_map.qrc
+appOnlineLetiskoMobileApp.qmltypes

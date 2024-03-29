@@ -31,7 +31,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         qml/screens/LoginScreen.qml
         qml/screens/RegistrationScreen.qml
         qml/screens/MainScreen.qml
-        qml/screens/FillProfileDetails.qml
+        qml/screens/SettingsScreen.qml
         qml/screens/FlightsScreen.qml
         qml/screens/DocumentationScreen.qml
         qml/screens/AircraftsScreen.qml
@@ -49,6 +49,10 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         qml/components/SortingBar.qml
         qml/components/DocumentationStrip.qml
         qml/components/AircraftStrip.qml
+        qml/components/SettingStrip.qml
+        qml/components/RoundedImage.qml
+
+
 
         # text font styles
         #Headline
@@ -65,6 +69,8 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         qml/components/typography/body/text/BodyLargeText.qml
         qml/components/typography/body/text/BodyMediumText.qml
         qml/components/typography/body/text/BodySmallText.qml
+        #Display
+        qml/components/typography/display/text/DisplaySmallText.qml
 
         # text input font styles
         #Body
@@ -106,6 +112,8 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         assets/icons/arrow_drop_down_big.svg
         assets/icons/edit_square_24px.svg
         assets/icons/default_plane_plug.png
+        assets/icons/logout_24px.svg
+        assets/icons/chevron_24px.svg
 
         assets/fonts/Roboto-Regular.ttf
 

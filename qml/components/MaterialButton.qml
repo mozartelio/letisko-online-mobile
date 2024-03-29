@@ -36,28 +36,30 @@ Button {
 
         Image {
             id: buttonImage
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-            Layout.preferredWidth: 24
-            Layout.preferredHeight: 24
             source: imagePath
             verticalAlignment: Image.AlignVCenter
             visible: imagePath !== "" ? true : false
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+            Layout.preferredWidth: 24
+            Layout.preferredHeight: 24
         }
     }
-    StateGroup {states: [
-        State {
-            name: "pressed"
-            PropertyChanges {
-                target: buttonBackground
-                color: "#6750A4"
-                opacity: 0.12
-            }
-            PropertyChanges {
-                target: buttonText
-                color: "#6750A4"
-            }
+    StateGroup {
+        states: [
+            State {
+                name: "pressed"
+                PropertyChanges {
+                    target: buttonBackground
+                    color: "#6750A4"
+                    opacity: 0.12
+                }
+                PropertyChanges {
+                    target: buttonText
+                    color: "#6750A4"
+                }
 
-            when: button.pressed
-        }
-    ]}
+                when: button.pressed
+            }
+        ]
+    }
 }

@@ -6,7 +6,7 @@ import QtQuick.Layouts
 import "./screens"
 import "./components"
 import "."
-import "./styles"
+// import "./styles"
 
 // DOES NOT WORK
 // import Colors 1.0

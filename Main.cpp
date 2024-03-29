@@ -34,14 +34,11 @@ int main(int argc, char *argv[])
 
     // qmlRegisterType<Login>("com.login", 1, 0, "Login");
     qmlRegisterType<User>("com.user", 1, 0, "User");
+    const QUrl url(qgetenv("MAIN_QML"));
 
     //for using with hotreload
     ComponentCreatorEngine engine;
-
     engine.rootContext()->setContextProperty("QmlEngine", &engine);
-
-    const QUrl url(qgetenv("MAIN_QML"));
-
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
         &app, [url](QObject *obj, const QUrl &objUrl) {
             if (!obj && url == objUrl)
@@ -50,7 +47,7 @@ int main(int argc, char *argv[])
     engine.load(url);
 
 
-    //for testing without hotreload
+    // for testing without hotreload
     // QQmlApplicationEngine engine;
     // QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
     //     &app, []() { QCoreApplication::exit(-1); },

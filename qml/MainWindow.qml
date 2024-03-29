@@ -220,7 +220,6 @@ Item {
         LoginScreen {
             user: userId
             onGoToRegistrationScreen: stackView.replace(registrationPage)
-            onGoToMainScreen: stackView.replace(mainScreen)
         }
     }
 
@@ -228,13 +227,6 @@ Item {
         id: registrationPage
         RegistrationScreen {
             onGoToLoginScreen: stackView.push(loginPage)
-            onGoToMainScreen: stackView.replace(mainScreen)
-        }
-    }
-
-    Component {
-        id: mainScreen
-        MainScreen {//            onGoToLoginPage: stackView.push(loginPage)
         }
     }
 

@@ -30,7 +30,6 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         #Screens
         qml/screens/LoginScreen.qml
         qml/screens/RegistrationScreen.qml
-        qml/screens/MainScreen.qml
         qml/screens/SettingsScreen.qml
         qml/screens/FlightsScreen.qml
         qml/screens/DocumentationScreen.qml
@@ -80,7 +79,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         # qml/components/colors/sys/colors.js
 
         qml/components/divider/HorizontalDividerSubhead.qml
-        qml/components/ListItem.qml
+
         qml/MainWindow.qml
        # qml/styles/Colors.qml
 

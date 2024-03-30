@@ -14,7 +14,7 @@ Page {
     property bool arePasstFlightsRequested: false
     Material.theme: Material.Light
     background: Rectangle {
-        color: "white"
+        color: __style.onPrimaryColor
     }
 
     contentItem: ColumnLayout {
@@ -45,7 +45,7 @@ Page {
             Layout.preferredWidth: parent.width
 
             Rectangle {
-                color: "#CAC4D0"
+                color: __style.outlineVariant
                 Layout.preferredHeight: 2
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                 Layout.preferredWidth: parent.width
@@ -75,8 +75,8 @@ Page {
 
                 MaterialButton {
                     contentText: "Filters"
-                    backgroundColor: "#F7F2FA"
-                    imagePath: "../../assets/icons/settings.svg"
+                    backgroundColor: __style.surfaceContainerLowColor
+                    imagePath: __style.settinsIcon
                     onClicked: filterPopUp.open()
                 }
             }
@@ -215,7 +215,7 @@ Page {
                 spacing: 4
 
                 Rectangle {
-                    color: "#CAC4D0"
+                    color: __style.outlineVariant
                     Layout.preferredHeight: 2
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                     Layout.preferredWidth: parent.width
@@ -235,9 +235,9 @@ Page {
 
                     Image {
                         Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                        width: 40
-                        height: 40
-                        source: arePasstFlightsRequested ? "../../assets/icons/arrow_drop_up_big.svg" : "../../assets/icons/arrow_drop_down_big.svg"
+                        width: __style.icon40
+                        height: __style.icon40
+                        source: arePasstFlightsRequested ? __style.arrowDropUpBigIcon : __style.arrowDropDownBigIcon
                         verticalAlignment: Image.AlignVCenter
                     }
                 }

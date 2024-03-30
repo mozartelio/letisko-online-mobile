@@ -19,7 +19,7 @@ Rectangle {
     required property string rigthSectionLeftButtonText
     required property string rigthSectionRightButtonText
 
-    color: "#FEF7FF"
+    color: __style.surfaceColor
     Layout.preferredWidth: 467
     Layout.preferredHeight: 77
 
@@ -27,14 +27,14 @@ Rectangle {
         id: leftSection
         width: root.Layout.preferredWidth / 2
         height: 24
-        color: "#7A7289"
+        color: __style.secondary50Color
         anchors {
             top: root.top
             left: root.left
         }
         BodySmallText {
             text: qsTr(leftSectionHeader)
-            color: "white"
+            color: __style.onPrimaryColor
             anchors.centerIn: parent
         }
     }
@@ -42,14 +42,14 @@ Rectangle {
         id: rightSection
         width: root.Layout.preferredWidth / 2
         height: 24
-        color: "#EADDFF"
+        color: __style.primary90Color
         anchors {
             top: root.top
             right: root.right
         }
         BodySmallText {
             text: qsTr(rigthSectionHeader)
-            color: "#322F35"
+            color: __style.darkColor
             anchors.centerIn: parent
         }
     }

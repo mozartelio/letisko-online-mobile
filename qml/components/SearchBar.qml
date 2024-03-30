@@ -6,7 +6,7 @@ import "./typography/body/input"
 BodyLargeInput {
     id: root
     implicitWidth: 720
-    implicitHeight: 56
+    implicitHeight: __style.searchbarHeight
     clip: true
     leftPadding: 16 + icon.width
     rightPadding: 16
@@ -14,17 +14,17 @@ BodyLargeInput {
 
     background: Rectangle {
         id: background
-        color: "#ECE6F0"
-        height: 56
+        color: __style.surfaceContainerHighColor
+        height: parent.height
         width: parent.width
         radius: 28
         anchors.verticalCenter: parent.verticalCenter
 
         Image {
             id: icon
-            width: 24
-            height: 24
-            source: "../../assets/icons/search-24px.svg"
+            width: __style.icon24
+            height: __style.icon24
+            source: __style.searchIcon
             anchors {
                 verticalCenter: parent.verticalCenter
                 left: parent.left

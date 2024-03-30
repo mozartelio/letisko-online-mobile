@@ -2,16 +2,12 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-// import com.user 1.0
+import com.user 1.0
 import "./screens"
 import "./components"
 import "."
-// import "./styles"
 
-// DOES NOT WORK
-// import Colors 1.0
 
-// ... Colors.redColor
 ApplicationWindow {
     id: window
     Material.theme: Material.Light
@@ -23,10 +19,6 @@ ApplicationWindow {
     height: 634
     visible: true
     title: qsTr("Online letisko")
-
-    // Rectangle {
-    //     color: Colors.redColor
-    // }
 
     // to test on a tablet without hotreload
     // MainWindow {}

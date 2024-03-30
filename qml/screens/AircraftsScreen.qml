@@ -9,7 +9,7 @@ Page {
 
     Material.theme: Material.Light
     background: Rectangle {
-        color: "white"
+        color: __style.onPrimaryColor
     }
 
     contentItem: ColumnLayout {
@@ -35,8 +35,8 @@ Page {
             }
             MaterialButton {
                 contentText: "Filters"
-                backgroundColor: "#F7F2FA"
-                imagePath: "../../assets/icons/settings.svg"
+                backgroundColor: __style.surfaceContainerLowColor
+                imagePath: __style.settinsIcon
                 onClicked: filterPopUp.open()
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
             }

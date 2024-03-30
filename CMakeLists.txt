@@ -14,18 +14,19 @@ find_package(Qt6 REQUIRED COMPONENTS Quick Network LinguistTools)
 
 qt_standard_project_setup(REQUIRES 6.6)
 
+set(CMAKE_AUTORCC ON)
+
 qt_add_executable(appOnlineLetiskoMobileApp
     main.cpp
     ${QM_FILES}
 )
-# DOES NOT WORK
-set_source_files_properties(qml/styles/Colors.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
 
 qt_add_qml_module(appOnlineLetiskoMobileApp
     URI OnlineLetiskoMobileApp
     VERSION 1.0
     QML_FILES
         qml/Main.qml
+        qml/MainWindow.qml
 
         #Screens
         qml/screens/LoginScreen.qml
@@ -50,7 +51,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         qml/components/AircraftStrip.qml
         qml/components/SettingStrip.qml
         qml/components/RoundedImage.qml
-
+        qml/components/divider/HorizontalDividerSubhead.qml
 
 
         # text font styles
@@ -74,59 +75,21 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
         # text input font styles
         #Body
         qml/components/typography/body/input/BodyLargeInput.qml
-
-        # qml/components/colors/ColorsLight.qml
-        # qml/components/colors/sys/colors.js
-
-        qml/components/divider/HorizontalDividerSubhead.qml
-
-        qml/MainWindow.qml
-       # qml/styles/Colors.qml
-
     RESOURCES
-        assets/LetiskoLogo.svg
-
-        assets/icons/visibility_on.svg
-        assets/icons/visibility_off.svg
-        assets/icons/home.svg
-        assets/icons/aircrafts.svg
-        assets/icons/flight_scheduler.svg
-        assets/icons/flights.svg
-        assets/icons/users.svg
-        assets/icons/airport.svg
-        assets/icons/documentation.svg
-        assets/icons/duties.svg
-        assets/icons/licences.svg
-        assets/icons/settings.svg
-        assets/icons/menu-24px.svg
-        assets/icons/search-24px.svg
-        assets/icons/close-24px.svg
-        assets/icons/more-24px.svg
-        assets/icons/check_small-24px.svg
-        assets/icons/arrow_right_40px.svg
-        assets/icons/3d_avatar_21.png
-        assets/icons/arrow_drop_up_medium.svg
-        assets/icons/arrow_drop_down_medium.svg
-        assets/icons/arrow_drop_up_big.svg
-        assets/icons/arrow_drop_down_big.svg
-        assets/icons/edit_square_24px.svg
-        assets/icons/default_plane_plug.png
-        assets/icons/logout_24px.svg
-        assets/icons/chevron_24px.svg
+        assets/icons/icons.qrc
+        assets/images/images.qrc
 
         assets/fonts/Roboto-Regular.ttf
 
         # slovak.qm
         assets/translations/slovak.ts
-
-
     SOURCES
         login.h login.cpp
         user.h user.cpp
         hotreload/FileWatcher.h hotreload/FileWatcher.cpp
         hotreload/ComponentCreatorEngine.h hotreload/ComponentCreatorEngine.cpp
+        lostyle.h
 )
-
 
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

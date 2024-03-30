@@ -9,7 +9,7 @@ Page {
 
     Material.theme: Material.Light
     background: Rectangle {
-        color: "white"
+        color: __style.onPrimaryColor
     }
 
     contentItem: ColumnLayout {

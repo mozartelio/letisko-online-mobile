@@ -12,6 +12,7 @@
 #include <QQuickView>
 #include <QIcon>
 #include <QTranslator>
+#include "lostyle.h"
 #include "login.h"
 #include "user.h"
 #include "hotreload/ComponentCreatorEngine.h"
@@ -36,9 +37,17 @@ int main(int argc, char *argv[])
     qmlRegisterType<User>("com.user", 1, 0, "User");
     const QUrl url(qgetenv("MAIN_QML"));
 
-    //for using with hotreload
+    /**for using with hotreload**/
     ComponentCreatorEngine engine;
     engine.rootContext()->setContextProperty("QmlEngine", &engine);
+
+    /** for testing without hotreload**/
+    // QQmlApplicationEngine engine;
+
+    LOStyle *style = new LOStyle( &engine );
+    engine.rootContext()->setContextProperty( "__style", style );
+
+    /**for using with hotreload**/
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
         &app, [url](QObject *obj, const QUrl &objUrl) {
             if (!obj && url == objUrl)
@@ -46,9 +55,7 @@ int main(int argc, char *argv[])
         }, Qt::QueuedConnection);
     engine.load(url);
 
-
-    // for testing without hotreload
-    // QQmlApplicationEngine engine;
+    /** for testing without hotreload**/
     // QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
     //     &app, []() { QCoreApplication::exit(-1); },
     //     Qt::QueuedConnection);

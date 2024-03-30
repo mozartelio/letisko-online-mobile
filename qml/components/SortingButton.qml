@@ -14,7 +14,7 @@ Button {
     contentItem: TitleSmallText {
         id: contentItem
         text: contentText
-        color: "#49454F"
+        color: __style.onSurfaceVariantColor
         wrapMode: Text.WordWrap
         maximumLineCount: 2
         horizontalAlignment: Text.AlignHCenter
@@ -24,7 +24,7 @@ Button {
         anchors {
             fill: parent
         }
-        color: "transparent"
+        color: __style.transparentColor
     }
     StateGroup {
         states: [
@@ -32,11 +32,11 @@ Button {
                 name: "ckecked"
                 PropertyChanges {
                     target: contentItem
-                    color: "#6750A4"
+                    color: __style.primaryColor
                 }
                 PropertyChanges {
                     target: buttonBackground
-                    color: "#D0BCFF"
+                    color: __style.pressAccentColor
                 }
                 when: root.checked
             }

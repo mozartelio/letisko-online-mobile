@@ -18,7 +18,7 @@ Item {
         anchors.fill: parent
         ToolBar {
             id: toolBar
-            height: 64
+            height: __style.toolbarHeight
             position: ToolBar.Header
             width: parent.width
 
@@ -32,7 +32,7 @@ Item {
                 ToolButton {
                     id: menuButton
                     Layout.alignment: Qt.AlignVCenter
-                    icon.source: "../assets/icons/menu-24px.svg"
+                    icon.source: __style.menuIcon
                     onClicked: drawer.open()
                 }
                 Label {
@@ -44,7 +44,7 @@ Item {
                         anchors.verticalCenter: parent.verticalCenter
                         // anchors.centerIn: parent
                         text: privates.drawerPageName
-                        color: "white"
+                        color: __style.onPrimaryColor
                     }
                 }
 
@@ -71,7 +71,7 @@ Item {
                             id: userNameSurname
                             width: contentWidth
                             text: "Name Surname"
-                            color: "white"
+                            color: __style.onPrimaryColor
                             horizontalAlignment: Text.AlignHCenter
                             wrapMode: Text.WordWrap
                             Layout.alignment: Qt.AlignVCenter
@@ -107,7 +107,7 @@ Item {
         height: window.height
         visible: drawerAvailable
         background: Rectangle {
-            color: "#F7F2FA" //ColorsLight.surface_container_low
+            color: __style.surfaceContainerLowColor //ColorsLight.surface_container_low
             radius: 16
         }
 
@@ -139,7 +139,7 @@ Item {
             }
 
             DrawerItem {
-                iconSource: "../../assets/icons/airport.svg"
+                iconSource: __style.airportIcon
                 itemName: qsTr("Airport")
                 onDrawerItemPressed: {
                     privates.drawerPageName = itemName
@@ -148,7 +148,7 @@ Item {
             }
 
             DrawerItem {
-                iconSource: "../../assets/icons/documentation.svg"
+                iconSource: __style.documentationIcon
                 itemName: qsTr("Documentation")
                 onDrawerItemPressed: {
                     privates.drawerPageName = itemName
@@ -158,7 +158,7 @@ Item {
             }
 
             DrawerItem {
-                iconSource: "../../assets/icons/aircrafts.svg"
+                iconSource: __style.planeIcon
                 itemName: qsTr("Aircrafts")
                 onDrawerItemPressed: {
                     privates.drawerPageName = itemName
@@ -168,7 +168,7 @@ Item {
             }
 
             DrawerItem {
-                iconSource: "../../assets/icons/flights.svg"
+                iconSource: __style.flightsIcon
                 itemName: qsTr("Flights")
                 onDrawerItemPressed: {
                     privates.drawerPageName = itemName
@@ -178,7 +178,7 @@ Item {
             }
 
             DrawerItem {
-                iconSource: "../../assets/icons/settings.svg"
+                iconSource: __style.settinsIcon
                 itemName: qsTr("Settings")
                 onDrawerItemPressed: {
                     privates.drawerPageName = itemName

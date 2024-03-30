@@ -25,7 +25,7 @@ Rectangle {
                 name: "pressed"
                 PropertyChanges {
                     target: root
-                    color: "#D0BCFF"
+                    color: __style.pressAccentColor
                 }
                 when: mouseArea.pressed
             }
@@ -74,7 +74,7 @@ Rectangle {
                 BodyMediumText {
                     text: "info"
                     font.bold: true
-                    color: "#6750A4"
+                    color: __style.primaryColor
                     MouseArea {
                         anchors.fill: parent
                         onPressed: {
@@ -118,7 +118,7 @@ Rectangle {
     Rectangle {
         height: 1
         width: root.width
-        color: "#CAC4D0"
+        color: __style.outlineVariant
         anchors {
             left: root.left
             right: root.right

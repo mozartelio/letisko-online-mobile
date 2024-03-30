@@ -9,24 +9,24 @@ TextField {
 
     width: 200 //- imageWidth
     height: 30
-    color: "black"
+    color: __style.blackColor
     maximumLength: 255
     verticalAlignment: TextInput.AlignVCenter
     // onTextChanged: passswordValue = text
     echoMode: showPassword ? TextField.Normal : TextField.Password
 
     background: Rectangle {
-        color: "white"
+        color: __style.onPrimaryColor
         radius: 5
     }
 
     Image {
-        source: showPassword ? "../../assets/icons/visibility_on.svg" : "../../assets/icons/visibility_off.svg"
+        source: showPassword ? __style.passwordShownIcon : __style.passwordHiddenIcon
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
         //        sourceSize: Qt.size(100, 100)
-        width: 24
-        height: 24
+        width: __style.icon24
+        height: __style.icon24
 
         MouseArea {
             anchors.fill: parent

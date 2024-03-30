@@ -43,7 +43,7 @@ Item {
             width: sourceItem.width
             height: sourceItem.height
             radius: roundingRadius
-            color: "black"
+            color: __style.blackColor
         }
     }
 }

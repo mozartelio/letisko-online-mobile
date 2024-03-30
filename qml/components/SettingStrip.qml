@@ -20,7 +20,7 @@ Rectangle {
     property string settingTextContent: ""
     property bool chevronEnabled: true
 
-    color: "transparent" //"#F5EFF7"
+    color: __style.transparentColor
     clip: false
     implicitWidth: mainColumn.implicitWidth + mainColumn.anchors.leftMargin
                    + mainColumn.anchors.rightMargin //parent.width
@@ -35,7 +35,7 @@ Rectangle {
                 name: "pressed"
                 PropertyChanges {
                     target: root
-                    color: "#D0BCFF"
+                    color: __style.pressAccentColor
                 }
                 when: mouseArea.pressed
             }
@@ -74,11 +74,6 @@ Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            // anchors {
-            // rightMargin: 30
-            // fill: parent
-            // verticalCenter: parent.
-            // }
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.rightMargin: 30
 
@@ -107,14 +102,14 @@ Rectangle {
 
             RoundedImage {
                 id: image
-                imageWidth: 40
-                imageHeight: 40
+                imageWidth: __style.icon40
+                imageHeight: __style.icon40
                 imageSource: settingImageContent
                 visible: settingType == SettingStrip.SettingType.Image
 
                 Layout.bottomMargin: 6
-                Layout.preferredHeight: 40
-                Layout.preferredWidth: 40
+                Layout.preferredHeight: __style.icon40
+                Layout.preferredWidth: __style.icon40
                 Layout.topMargin: 6
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 Layout.fillHeight: true
@@ -131,9 +126,9 @@ Rectangle {
             }
             // }
             Image {
-                width: 40
-                height: 40
-                source: "../../assets/icons/chevron_24px.svg"
+                width: __style.icon40
+                height: __style.icon40
+                source: __style.rightChevronIcon
                 verticalAlignment: Image.AlignVCenter
                 visible: chevronEnabled
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
@@ -141,7 +136,7 @@ Rectangle {
         }
 
         Rectangle {
-            color: "#49454F"
+            color: __style.onSurfaceVariantColor
             Layout.preferredWidth: parent.width
             Layout.preferredHeight: 1
             Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter

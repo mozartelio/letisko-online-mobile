@@ -10,15 +10,15 @@ Rectangle {
     signal drawerItemPressed
 
     objectName: "DrawerItem"
-    color: "transparent"
+    color: __style.transparentColor
     radius: 100
-    height: 56
+    height: __style.drawerItemHeight
     width: parent.width
 
     MouseArea {
         anchors.fill: parent
         onPressed: {
-            parent.color = "#D0BCFF"
+            parent.color = __style.pressAccentColor
             drawerItemPressed()
             console.log("pressed")
         }

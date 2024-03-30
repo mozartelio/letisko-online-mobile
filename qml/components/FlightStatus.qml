@@ -21,11 +21,11 @@ Rectangle {
     }
     color: {
         if (root.status == FlightStatus.Status.Confirmed)
-            return "#625B71"
+            return __style.secondaryColor
         else if (root.status == FlightStatus.Status.Denied)
-            return "#8C1D18"
+            return __style.errorContainerColor
         else if (root.status == FlightStatus.Status.Pending)
-            return "#6750A4"
+            return __style.primaryColor
         else
             return ""
     }
@@ -46,7 +46,7 @@ Rectangle {
 
         LabelLargeText {
             id: textLabel
-            color: "white"
+            color: __style.onPrimaryColor
             Layout.preferredWidth: contentWidth
             Layout.preferredHeight: 20
             Layout.alignment: Qt.AlignBaseline | Qt.AlignRight
@@ -55,16 +55,16 @@ Rectangle {
 
         Image {
             id: icon
-            width: 24
-            height: 24
+            width: __style.icon24
+            height: __style.icon24
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             source: {
                 if (root.status == FlightStatus.Status.Confirmed)
-                    return "../../assets/icons/check_small-24px.svg"
+                    return __style.checkSmallIcon
                 else if (root.status == FlightStatus.Status.Denied)
-                    return "../../assets/icons/close-24px.svg"
+                    return __style.closeIcon
                 else if (root.status == FlightStatus.Status.Pending)
-                    return "../../assets/icons/more-24px.svg"
+                    return __style.moreIcon
                 else
                     return ""
             }

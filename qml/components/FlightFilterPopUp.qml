@@ -19,12 +19,12 @@ Popup {
     Material.theme: Material.Light
 
     background: Rectangle {
-        color: "#ECE6F0"
+        color: __style.surfaceContainerHighColor
         radius: 28
     }
 
     Overlay.modal: Rectangle {
-        color: "#aacfdbe7"
+        color: __style.popupSemiTransparentColor
     }
 
     HeadlineSmallText {
@@ -122,7 +122,7 @@ Popup {
 
                 id: sectionHeaderRect
                 width: parent.width
-                color: "transparent"
+                color: __style.transparentColor
                 height: 40
 
                 anchors {
@@ -138,11 +138,10 @@ Popup {
 
                 onIsExpandedChanged: {
                     if (isExpanded) {
-                        // color = "blue"
                         ListView.view.expandedSection = section
                     }
                     // else
-                    //     color = "transparent"
+                    //     color = __style.transparentColor
                     for (var i = 0; i < filtersModel.count; i++) {
                         var item = filtersModel.get(i)
                         if (section === item.type)
@@ -166,7 +165,7 @@ Popup {
                         height: 3
                         width: parent.width
                         Layout.fillWidth: true
-                        color: "#CAC4D0"
+                        color: __style.outlineVariant
                         Layout.alignment: Qt.AlignTop
                     }
 
@@ -214,7 +213,7 @@ Popup {
             Rectangle {
                 id: menuItem
                 width: root.width
-                color: "transparent"
+                color: __style.transparentColor
                 visible: aVisible
 
                 // TODO: turn on?
@@ -262,7 +261,7 @@ Popup {
                         Layout.preferredWidth: parent.width
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignBottom
-                        color: "#CAC4D0"
+                        color: __style.outlineVariant
                     }
                 }
 
@@ -288,14 +287,14 @@ Popup {
 
         MaterialButton {
             Layout.alignment: Qt.AlignRight
-            contentText: "Confirm"
+            contentText: qsTr("Confirm")
             // TODO:
             onClicked: root.close()
         }
 
         MaterialButton {
             Layout.alignment: Qt.AlignRight
-            contentText: "Cancel"
+            contentText: qsTr("Cancel")
             onClicked: root.close()
         }
     }

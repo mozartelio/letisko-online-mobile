@@ -21,7 +21,7 @@ Item {
                 name: "pressed"
                 PropertyChanges {
                     target: flightDetails
-                    color: "#D0BCFF"
+                    color: __style.pressAccentColor
                 }
                 when: mouseArea.pressed
             }
@@ -34,7 +34,7 @@ Item {
 
         Rectangle {
             id: backgroungRectangle
-            color: "#FFD8E4" //"red"
+            color: __style.accentedStripColor
             Layout.fillWidth: true
             Layout.preferredWidth: parent.width
             Layout.preferredHeight: 50
@@ -60,8 +60,8 @@ Item {
                     icon {
                         width: 12
                         height: 12
-                        color: "transparent"
-                        source: "../../assets/icons/arrow_drop_down_medium.svg"
+                        color: __style.transparentColor
+                        source: __style.arrowDropDownMediumIcon
                     }
                     Layout.margins: 0
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
@@ -137,10 +137,10 @@ Item {
 
                     display: AbstractButton.IconOnly
                     icon {
-                        width: 24
-                        height: 24
-                        color: "transparent"
-                        source: "../../assets/icons/edit_square_24px.svg"
+                        width: __style.icon24
+                        height: __style.icon24
+                        color: __style.transparentColor
+                        source: __style.editIcon
                     }
                     Layout.margins: 0
                     padding: 0
@@ -151,7 +151,7 @@ Item {
 
         Rectangle {
             id: flightDetails
-            color: "#FEF7FF"
+            color: __style.basicStripColor
             visible: isExpanded
             Layout.fillWidth: true
             Layout.preferredWidth: parent.width
@@ -297,9 +297,9 @@ Item {
                 }
             }
             Image {
-                width: 40
-                height: 40
-                source: "../../assets/icons/arrow_right_40px.svg"
+                width: __style.icon40
+                height: __style.icon40
+                source: __style.arrowRightIcon
                 verticalAlignment: Image.AlignVCenter
 
                 anchors {
@@ -313,7 +313,7 @@ Item {
     Rectangle {
         height: 1
         width: root.width
-        color: "#CAC4D0"
+        color: __style.outlineVariant
         anchors {
             left: root.left
             right: root.right

@@ -27,7 +27,7 @@ Item {
         anchors.bottomMargin: 10
         font.bold: true
         font.pixelSize: 20
-        color: "white"
+        color: __style.onPrimaryColor
     }
 
     Item {
@@ -43,7 +43,7 @@ Item {
             anchors.fill: column
             color: "lightGray"
             radius: 20
-            border.color: "black"
+            border.color: __style.blackColor
             border.width: 2
         }
 
@@ -63,12 +63,12 @@ Item {
 
                 width: 200
                 height: 30
-                color: "black"
+                color: __style.blackColor
                 maximumLength: 255
                 onTextChanged: emailValue = text
 
                 background: Rectangle {
-                    color: "white"
+                    color: __style.onPrimaryColor
                     radius: 5
                 }
             }

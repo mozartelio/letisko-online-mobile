@@ -8,7 +8,7 @@ Item {
     Column {
         spacing: 4
         Rectangle {
-            color: "#CAC4D0"
+            color: __style.outlineVariant
             height: 2
             width: root.width
         }

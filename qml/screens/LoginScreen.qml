@@ -12,7 +12,7 @@ Page {
     signal goToRegistrationScreen
     signal goToMainScreen
     background: Rectangle {
-        color: "white"
+        color: __style.onPrimaryColor
     }
     contentItem: Item {
 
@@ -30,7 +30,7 @@ Page {
             anchors.bottomMargin: 10
             font.bold: true
             font.pixelSize: 20
-            color: "black"
+            color: __style.blackColor
         }
 
         Item {
@@ -63,12 +63,12 @@ Page {
 
                     width: 200
                     height: 30
-                    color: "black"
+                    color: __style.blackColor
                     maximumLength: 255
                     onTextChanged: emailValue = text
 
                     background: Rectangle {
-                        color: "white"
+                        color: __style.onPrimaryColor
                         radius: 5
                     }
                 }
@@ -85,7 +85,7 @@ Page {
                     id: button
                     contentItem: Text {
                         text: qsTr("Send")
-                        color: "white"
+                        color: __style.onPrimaryColor
                     }
                     anchors {
                         horizontalCenter: parent.horizontalCenter
@@ -98,7 +98,7 @@ Page {
                     }
 
                     background: Rectangle {
-                        color: "#6750A4"
+                        color: __style.primaryColor
                         radius: 100
                     }
                     leftInset: -6

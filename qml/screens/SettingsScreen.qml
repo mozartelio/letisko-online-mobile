@@ -10,7 +10,7 @@ Page {
 
     Material.theme: Material.Light
     background: Rectangle {
-        color: "white"
+        color: __style.onPrimaryColor
     }
 
     Rectangle {
@@ -18,7 +18,7 @@ Page {
         //TODO: responsivity
         width: parent.width / 3
         height: parent.height - anchors.topMargin - anchors.bottomMargin
-        color: "#F7F2FA"
+        color: __style.surfaceContainerLowColor
         radius: 12
         clip: true
         anchors {
@@ -44,7 +44,6 @@ Page {
                 policy: ScrollBar.AlwaysOff
                 interactive: true
                 orientation: Qt.Vertical
-                // z: 2
             }
 
             ColumnLayout {
@@ -55,9 +54,9 @@ Page {
 
                 MaterialButton {
                     contentText: qsTr("Log out")
-                    imagePath: "./../../assets/icons/logout_24px.svg"
-                    backgroundColor: "#6750A4"
-                    contentTextColor: "#FFFFFF"
+                    imagePath: __style.logoutIcon
+                    backgroundColor: __style.primaryColor
+                    contentTextColor: __style.onPrimaryColor
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                     Layout.topMargin: 15
                     onClicked: console.log(

@@ -9,8 +9,8 @@ Button {
     id: button
     property string contentText
 
-    property color backgroundColor: "transparent"
-    property string contentTextColor: "#49454F"
+    property color backgroundColor: __style.transparentColor
+    property string contentTextColor: __style.primaryColor
     property string imagePath: ""
 
     Material.theme: Material.Light
@@ -40,8 +40,8 @@ Button {
             verticalAlignment: Image.AlignVCenter
             visible: imagePath !== "" ? true : false
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-            Layout.preferredWidth: 24
-            Layout.preferredHeight: 24
+            Layout.preferredWidth: __style.icon24
+            Layout.preferredHeight: __style.icon24
         }
     }
     StateGroup {
@@ -50,12 +50,12 @@ Button {
                 name: "pressed"
                 PropertyChanges {
                     target: buttonBackground
-                    color: "#6750A4"
+                    color: __style.primaryColor
                     opacity: 0.12
                 }
                 PropertyChanges {
                     target: buttonText
-                    color: "#6750A4"
+                    color: __style.primaryColor
                 }
 
                 when: button.pressed

@@ -1,0 +1,31 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>aircrafts.svg</file>
+        <file>airport.svg</file>
+        <file>arrow_drop_down_big.svg</file>
+        <file>arrow_drop_down_medium.svg</file>
+        <file>arrow_drop_up_big.svg</file>
+        <file>arrow_drop_up_medium.svg</file>
+        <file>arrow_right_40px.svg</file>
+        <file>check_small-24px.svg</file>
+        <file>chevron_24px.svg</file>
+        <file>close-24px.svg</file>
+        <file>default_plane_plug.png</file>
+        <file>documentation.svg</file>
+        <file>duties.svg</file>
+        <file>edit_square_24px.svg</file>
+        <file>flight_scheduler.svg</file>
+        <file>flights.svg</file>
+        <file>home.svg</file>
+        <file>icons.qrc</file>
+        <file>licences.svg</file>
+        <file>logout_24px.svg</file>
+        <file>menu-24px.svg</file>
+        <file>more-24px.svg</file>
+        <file>search-24px.svg</file>
+        <file>settings.svg</file>
+        <file>users.svg</file>
+        <file>visibility_off.svg</file>
+        <file>visibility_on.svg</file>
+    </qresource>
+</RCC>

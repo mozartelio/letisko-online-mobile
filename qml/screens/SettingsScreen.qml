@@ -72,65 +72,65 @@ Page {
                     Layout.alignment: Qt.AlignLeft | Qt.AlignTop
                 }
 
-                Column {
-                    Layout.preferredWidth: parent.width
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                    spacing: 0
-                    Rectangle {
-                        color: "#49454F"
-                        width: parent.width
-                        height: 1
-                    }
-                    SettingStrip {
-                        settingType: SettingStrip.SettingType.Text
-                        settingName: qsTr("Name Surname")
-                        settingTextContent: "John Controxo"
-                        width: parent.width
-                    }
-                    SettingStrip {
-                        settingType: SettingStrip.SettingType.Text
-                        settingName: qsTr("Email")
-                        settingTextContent: "controlman@controlman.com"
-                        width: parent.width
-                    }
-                    SettingStrip {
-                        settingType: SettingStrip.SettingType.Text
-                        settingName: qsTr("Phone number")
-                        settingTextContent: "053434328324"
-                        width: parent.width
-                    }
-                    SettingStrip {
-                        settingType: SettingStrip.SettingType.Empty
-                        settingName: qsTr("Adress")
-                        width: parent.width
-                    }
-                    SettingStrip {
-                        settingType: SettingStrip.SettingType.Image
-                        settingName: qsTr("Photo")
-                        settingImageContent: "../../assets/icons/default_plane_plug.png"
-                        width: parent.width
-                    }
-                    SettingStrip {
-                        settingType: SettingStrip.SettingType.Text
-                        settingName: qsTr("Qualification type")
-                        settingTextContent: "Night control man"
-                        chevronEnabled: false
-                        width: parent.width
-                    }
-                    SettingStrip {
-                        settingType: SettingStrip.SettingType.Text
-                        settingName: qsTr("Qualification start date")
-                        settingTextContent: "01.02.2023"
-                        chevronEnabled: false
-                        width: parent.width
-                    }
-                    SettingStrip {
-                        settingType: SettingStrip.SettingType.Text
-                        settingName: qsTr("Qualification end date")
-                        settingTextContent: "01.02.2025"
-                        width: parent.width
-                    }
-                }
+                // Column {
+                //     Layout.preferredWidth: parent.width
+                //     Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                //     spacing: 0
+                //     Rectangle {
+                //         color: "#49454F"
+                //         width: parent.width
+                //         height: 1
+                //     }
+                //     SettingStrip {
+                //         settingType: SettingStrip.SettingType.Text
+                //         settingName: qsTr("Name Surname")
+                //         settingTextContent: "John Controxo"
+                //         width: parent.width
+                //     }
+                //     SettingStrip {
+                //         settingType: SettingStrip.SettingType.Text
+                //         settingName: qsTr("Email")
+                //         settingTextContent: "controlman@controlman.com"
+                //         width: parent.width
+                //     }
+                //     SettingStrip {
+                //         settingType: SettingStrip.SettingType.Text
+                //         settingName: qsTr("Phone number")
+                //         settingTextContent: "053434328324"
+                //         width: parent.width
+                //     }
+                //     SettingStrip {
+                //         settingType: SettingStrip.SettingType.Empty
+                //         settingName: qsTr("Adress")
+                //         width: parent.width
+                //     }
+                //     SettingStrip {
+                //         settingType: SettingStrip.SettingType.Image
+                //         settingName: qsTr("Photo")
+                //         settingImageContent: "../../assets/icons/default_plane_plug.png"
+                //         width: parent.width
+                //     }
+                //     SettingStrip {
+                //         settingType: SettingStrip.SettingType.Text
+                //         settingName: qsTr("Qualification type")
+                //         settingTextContent: "Night control man"
+                //         chevronEnabled: false
+                //         width: parent.width
+                //     }
+                //     SettingStrip {
+                //         settingType: SettingStrip.SettingType.Text
+                //         settingName: qsTr("Qualification start date")
+                //         settingTextContent: "01.02.2023"
+                //         chevronEnabled: false
+                //         width: parent.width
+                //     }
+                //     SettingStrip {
+                //         settingType: SettingStrip.SettingType.Text
+                //         settingName: qsTr("Qualification end date")
+                //         settingTextContent: "01.02.2025"
+                //         width: parent.width
+                //     }
+                // }
                 DisplaySmallText {
                     text: qsTr("Application")
                     Layout.topMargin: 10
@@ -181,8 +181,11 @@ Page {
                             background: Item {}
                             indicator: Item {}
                             contentItem: Item {}
-                            model: [qsTr("English"), qsTr("Slovak")]
-                            // onActivated:
+                            model: UserAppSettings.languageList
+                            textRole: "name"
+                            onActivated: {
+                                console.log("Selected language: " + model[currentIndex].value)
+                            }
                         }
                     }
                 }

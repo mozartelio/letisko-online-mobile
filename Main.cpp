@@ -41,13 +41,13 @@ int main(int argc, char *argv[])
     translator.load("slovak.qm");
     app.installTranslator(&translator);
 
-
+    //Is needed for Settings
     app.setOrganizationName("Letisko online");
     app.setOrganizationDomain("letisko.online");
      app.setApplicationName("Letisko online");
 
     // qmlRegisterType<Login>("com.login", 1, 0, "Login");
-    qmlRegisterType<User>("com.user", 1, 0, "User");
+    qmlRegisterType<User>("User", 1, 0, "User");
     const QUrl url(qgetenv("MAIN_QML"));
     InstallDefaultFont();
 

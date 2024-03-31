@@ -1,11 +1,10 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import com.user 1.0
 import "./screens"
 import "./components"
 import "."
-import UserAppSettings 1.0
+import UserAppSettings
 
 ApplicationWindow {
     id: window
@@ -42,7 +41,7 @@ ApplicationWindow {
         target: QmlEngine
 
         function onReloadUI() {
-            console.log("Reloading UI")
+            console.log("Reloading UI...")
             mainLoader.reload()
         }
     }

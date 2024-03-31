@@ -2,18 +2,16 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Basic
 
-//TODO: odstranit bug ze hesl osa pise za obrazkom oka
 TextField {
-    property string passswordValue: ""
     property bool showPassword: false
 
-    width: 200 //- imageWidth
-    height: 30
     color: __style.blackColor
-    maximumLength: 255
+    maximumLength: __style.maximumEmailInputLength
     verticalAlignment: TextInput.AlignVCenter
-    // onTextChanged: passswordValue = text
     echoMode: showPassword ? TextField.Normal : TextField.Password
+
+    // to do not let text be inputed under the icon image
+    rightPadding: icon.width + icon.anchors.rightMargin + icon.anchors.leftMargin
 
     background: Rectangle {
         color: __style.onPrimaryColor
@@ -21,12 +19,16 @@ TextField {
     }
 
     Image {
-        source: showPassword ? __style.passwordShownIcon : __style.passwordHiddenIcon
-        anchors.right: parent.right
-        anchors.verticalCenter: parent.verticalCenter
-        //        sourceSize: Qt.size(100, 100)
+        id: icon
         width: __style.icon24
         height: __style.icon24
+        source: showPassword ? __style.passwordShownIcon : __style.passwordHiddenIcon
+        anchors {
+            right: parent.right
+            verticalCenter: parent.verticalCenter
+            rightMargin: 10
+            leftMargin: 10
+        }
 
         MouseArea {
             anchors.fill: parent

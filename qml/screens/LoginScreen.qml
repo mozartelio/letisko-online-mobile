@@ -1,8 +1,8 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 import QtQuick.Controls.Basic
-// import com.login 1.0
-import com.user 1.0
+import User
 import "../components"
 
 Page {
@@ -14,38 +14,44 @@ Page {
     background: Rectangle {
         color: __style.onPrimaryColor
     }
-    contentItem: Item {
+    contentItem: ColumnLayout {
+        spacing: 15
+        height: parent.height - __style.toolbarHeight
+        width: parent.width
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+            fill: parent
+        }
 
         Logo {
-            anchors.bottom: textLabel.top
-            width: 270
-            height: 143
+            Layout.preferredWidth: 270
+            Layout.preferredHeight: 150
+            Layout.topMargin: 40
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
         }
 
         Text {
             id: textLabel
             text: qsTr("LOGIN")
-            anchors.left: loginFrame.left
-            anchors.bottom: loginFrame.top
-            anchors.bottomMargin: 10
             font.bold: true
             font.pixelSize: 20
             color: __style.blackColor
+            Layout.preferredWidth: parent.width
+            Layout.fillWidth: true
+            Layout.preferredHeight: textLabel.implicitHeight
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+            horizontalAlignment: Text.AlignHCenter
         }
 
-        Item {
-            id: loginFrame
-
-            anchors.centerIn: parent
-            width: rect.width
-            height: rect.height
-
-            Rectangle {
-                id: rect
-                anchors.fill: column
-                color: ColorsLight.inverse_primary
-                radius: 12
-            }
+        Rectangle {
+            color: __style.pressAccentColor
+            radius: 12
+            Layout.preferredWidth: column.implicitWidth
+            Layout.preferredHeight: column.implicitHeight
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
 
             Column {
                 id: column
@@ -58,26 +64,18 @@ Page {
                 Text {
                     text: qsTr("Email")
                 }
-                TextField {
+                EmailTextField {
                     id: email
-
-                    width: 200
-                    height: 30
-                    color: __style.blackColor
-                    maximumLength: 255
+                    width: 240
                     onTextChanged: emailValue = text
-
-                    background: Rectangle {
-                        color: __style.onPrimaryColor
-                        radius: 5
-                    }
                 }
 
                 Text {
-                    text: "Heslo"
+                    text: qsTr("Password")
                 }
                 PasswordField {
                     id: passswordInput
+                    width: 240
                     onTextChanged: passwordValue = text
                 }
 
@@ -109,29 +107,37 @@ Page {
                 }
             }
         }
+
+        Column {
+            Layout.preferredWidth: parent.width
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.preferredHeight: notRegistered.implicitHeight + registration.implicitHeight + 60
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+            Text {
+                id: notRegistered
+                text: qsTr("Not yet registered?")
+                horizontalAlignment: Text.AlignHCenter
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                }
+            }
+            Text {
+                id: registration
+                text: qsTr("Registration")
+                color: __style.primaryColor
+                font.bold: true
+                horizontalAlignment: Text.AlignHCenter
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        goToRegistrationScreen()
+                    }
+                }
+            }
+        }
     }
-    // TODO:
-    // Column {
-    //     anchors.top: button.bottom
-    //     anchors.horizontalCenter: parent.horizontalCenter
-
-    //     Text {
-    //         id: notRegistered
-
-    //         text: "Not yet registered?"
-    //         horizontalAlignment: Text.AlignHCenter
-    //     }
-    //     Text {
-    //         text: "Registration"
-    //         color: "blue"
-    //         font.bold: true
-    //         horizontalAlignment: Text.AlignHCenter
-    //         MouseArea {
-    //             anchors.fill: parent
-    //             onClicked: {
-    //                 goToRegistrationScreen()
-    //             }
-    //         }
-    //     }
-    // }
 }

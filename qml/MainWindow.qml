@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import com.user 1.0
+import User
 import "./screens"
 import "./components"
 import "./components/typography/headline/text"
@@ -86,13 +86,13 @@ Item {
         }
 
         StackView {
-            initialItem: settingsScreen //flightsScreen //aircraftsScreen //documentationScreen
+            initialItem: loginPage //settingsScreen //flightsScreen //aircraftsScreen //documentationScreen
             width: parent.width
             height: parent.height
             id: stackView
             // anchors.fill: parent  // activate this if not using hot reload
             onCurrentItemChanged: {
-                console.log("Current Item:", stackView.currentItem);
+                console.log("Current Item:", stackView.currentItem)
                 // privates.drawerPageName = stackView.currentItem
             }
             Component.onCompleted: privates.drawerPageName = qsTr(

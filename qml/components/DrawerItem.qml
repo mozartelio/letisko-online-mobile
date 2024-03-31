@@ -23,7 +23,7 @@ Rectangle {
             console.log("pressed")
         }
         onReleased: {
-            parent.color = 'transparent'
+            parent.color = __style.transparentColor
             console.log("released")
         }
     }
@@ -42,8 +42,8 @@ Rectangle {
 
         Image {
             id: icon
-            width: 24
-            height: 24
+            width: __style.icon24
+            height: __style.icon24
             source: iconSource
         }
 

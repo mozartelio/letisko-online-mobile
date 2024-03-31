@@ -80,10 +80,11 @@ class LOStyle: public QObject
     Q_PROPERTY( double icon40 READ number40 CONSTANT )
 
 
-    // Static heights
+    // Static heights/lenghts
     Q_PROPERTY( double searchbarHeight READ searchbarHeight CONSTANT)
     Q_PROPERTY( double toolbarHeight READ toolbarHeight CONSTANT) /*NOTIFY*/
     Q_PROPERTY( double drawerItemHeight READ drawerItemHeight CONSTANT )
+    Q_PROPERTY( int maximumEmailInputLength READ maximumEmailInputLength CONSTANT )
 
     // Breakpoint to differentiate mobile landscape
     // Q_PROPERTY( double heightBreakpointXS READ number400 CONSTANT )
@@ -153,6 +154,7 @@ public:
     double drawerItemHeight(){return 56;}
     double searchbarHeight(){return 56;}
     double toolbarHeight(){return 64;}
+    int maximumEmailInputLength(){return 255;}
 };
 
 #endif // LOSTYLE_H

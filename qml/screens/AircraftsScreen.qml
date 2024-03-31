@@ -1,13 +1,11 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import QtQuick.Controls.Material
 import "../components"
 
 Page {
     id: root
 
-    Material.theme: Material.Light
     background: Rectangle {
         color: __style.onPrimaryColor
     }

@@ -1,14 +1,14 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import QtQuick.Controls.Material
+import UserAppSettings
 import "../components/typography/display/text"
+import "../components/typography/title/text"
 import "../components"
 
 Page {
     id: root
 
-    Material.theme: Material.Light
     background: Rectangle {
         color: __style.onPrimaryColor
     }
@@ -71,6 +71,7 @@ Page {
                     Layout.rightMargin: 10
                     Layout.alignment: Qt.AlignLeft | Qt.AlignTop
                 }
+
                 Column {
                     Layout.preferredWidth: parent.width
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
@@ -82,55 +83,54 @@ Page {
                     }
                     SettingStrip {
                         settingType: SettingStrip.SettingType.Text
-                        settingName: "Name Surname"
+                        settingName: qsTr("Name Surname")
                         settingTextContent: "John Controxo"
                         width: parent.width
                     }
                     SettingStrip {
                         settingType: SettingStrip.SettingType.Text
-                        settingName: "Email"
+                        settingName: qsTr("Email")
                         settingTextContent: "controlman@controlman.com"
                         width: parent.width
                     }
                     SettingStrip {
                         settingType: SettingStrip.SettingType.Text
-                        settingName: "Phone number"
+                        settingName: qsTr("Phone number")
                         settingTextContent: "053434328324"
                         width: parent.width
                     }
                     SettingStrip {
                         settingType: SettingStrip.SettingType.Empty
-                        settingName: "Adress"
+                        settingName: qsTr("Adress")
                         width: parent.width
                     }
                     SettingStrip {
                         settingType: SettingStrip.SettingType.Image
-                        settingName: "Photo"
+                        settingName: qsTr("Photo")
                         settingImageContent: "../../assets/icons/default_plane_plug.png"
                         width: parent.width
                     }
                     SettingStrip {
                         settingType: SettingStrip.SettingType.Text
-                        settingName: "Qualification type"
+                        settingName: qsTr("Qualification type")
                         settingTextContent: "Night control man"
                         chevronEnabled: false
                         width: parent.width
                     }
                     SettingStrip {
                         settingType: SettingStrip.SettingType.Text
-                        settingName: "Qualification start date"
+                        settingName: qsTr("Qualification start date")
                         settingTextContent: "01.02.2023"
                         chevronEnabled: false
                         width: parent.width
                     }
                     SettingStrip {
                         settingType: SettingStrip.SettingType.Text
-                        settingName: "Qualification end date"
+                        settingName: qsTr("Qualification end date")
                         settingTextContent: "01.02.2025"
                         width: parent.width
                     }
                 }
-
                 DisplaySmallText {
                     text: qsTr("Application")
                     Layout.topMargin: 10
@@ -151,21 +151,39 @@ Page {
                     }
                     SettingStrip {
                         settingType: SettingStrip.SettingType.Switch
-                        settingName: "Show expanded fligths"
+                        settingName: qsTr("Show expanded fligths")
                         width: parent.width
                         chevronEnabled: false
+                        swithchReference.checked: UserAppSettings.showExpandedFligths
+                        onValueChanged: {
+                            console.log("value changed")
+                            UserAppSettings.showExpandedFligths
+                                    = !UserAppSettings.showExpandedFligths
+                        }
                     }
                     SettingStrip {
                         settingType: SettingStrip.SettingType.Text
-                        settingName: "Theme"
+                        settingName: qsTr("Theme")
                         settingTextContent: "Light"
                         width: parent.width
                     }
                     SettingStrip {
+                        id: languageSetting
                         settingType: SettingStrip.SettingType.Text
-                        settingName: "Language"
-                        settingTextContent: "English"
+                        settingName: qsTr("Language")
+                        settingTextContent: comboBoxLanguges.currentText
                         width: parent.width
+                        ComboBox {
+                            id: comboBoxLanguges
+                            width: parent.width
+                            height: parent.height
+                            anchors.fill: parent
+                            background: Item {}
+                            indicator: Item {}
+                            contentItem: Item {}
+                            model: [qsTr("English"), qsTr("Slovak")]
+                            // onActivated:
+                        }
                     }
                 }
             }

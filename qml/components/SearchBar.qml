@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls.Material
 import "./typography/body/input"
 
 BodyLargeInput {

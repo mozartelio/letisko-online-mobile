@@ -1,24 +1,21 @@
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Controls.Material
 import QtQuick.Layouts
 import com.user 1.0
 import "./screens"
 import "./components"
 import "."
-
+import UserAppSettings 1.0
 
 ApplicationWindow {
     id: window
-    Material.theme: Material.Light
-    Material.accent: Material.Purple
     font.family: "Roboto"
 
     // property bool drawerAvailable: false
     width: 1366
     height: 634
     visible: true
-    title: qsTr("Online letisko")
+    title: qsTr("Letisko online")
 
     // to test on a tablet without hotreload
     // MainWindow {}

@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-import QtQuick.Controls.Material
 import "../components/divider/"
 import "../components/"
 import "../components/typography/label/text"
@@ -12,7 +11,6 @@ Page {
     id: root
 
     property bool arePasstFlightsRequested: false
-    Material.theme: Material.Light
     background: Rectangle {
         color: __style.onPrimaryColor
     }
@@ -103,7 +101,7 @@ Page {
                 FlightStrip {
                     callsign: "AWS152ALPHA"
                     // anchors.horizontalCenter: parent.horizontalCenter
-                    status: FlightStatus.Status.Denied
+                    flightStatus: FlightStatus.Status.Denied
                     Layout.fillWidth: true
                     // Layout.preferredHeight: contentItem.height//356
                     Layout.preferredWidth: parent.width
@@ -112,7 +110,7 @@ Page {
                 FlightStrip {
                     callsign: "Atlant32"
                     // anchors.horizontalCenter: parent.horizontalCenter
-                    status: FlightStatus.Status.Pending
+                    flightStatus: FlightStatus.Status.Pending
                     Layout.fillWidth: true
                     // Layout.preferredHeight: implicitContentHeight //356
                     Layout.preferredWidth: parent.width
@@ -121,7 +119,7 @@ Page {
                 FlightStrip {
                     callsign: "RMSTN1"
                     // anchors.horizontalCenter: parent.horizontalCenter
-                    status: FlightStatus.Status.Confirmed
+                    flightStatus: FlightStatus.Status.Confirmed
                     Layout.fillWidth: true
                     // Layout.preferredHeight: 50 //356
                     Layout.preferredWidth: parent.width
@@ -130,7 +128,7 @@ Page {
                 FlightStrip {
                     callsign: "RMSTN1"
                     // anchors.horizontalCenter: parent.horizontalCenter
-                    status: FlightStatus.Status.Confirmed
+                    flightStatus: FlightStatus.Status.Confirmed
                     Layout.fillWidth: true
                     // Layout.preferredHeight: 50 //356
                     Layout.preferredWidth: parent.width
@@ -139,7 +137,7 @@ Page {
                 FlightStrip {
                     callsign: "RMSTN1"
                     // anchors.horizontalCenter: parent.horizontalCenter
-                    status: FlightStatus.Status.Confirmed
+                    flightStatus: FlightStatus.Status.Confirmed
                     Layout.fillWidth: true
                     // Layout.preferredHeight: 50 //356
                     Layout.preferredWidth: parent.width
@@ -148,7 +146,7 @@ Page {
                 FlightStrip {
                     callsign: "RMSTN1"
                     // anchors.horizontalCenter: parent.horizontalCenter
-                    status: FlightStatus.Status.Confirmed
+                    flightStatus: FlightStatus.Status.Confirmed
                     Layout.fillWidth: true
                     // Layout.preferredHeight: 50 //356
                     Layout.preferredWidth: parent.width
@@ -157,7 +155,7 @@ Page {
                 FlightStrip {
                     callsign: "RMSTN1"
                     // anchors.horizontalCenter: parent.horizontalCenter
-                    status: FlightStatus.Status.Confirmed
+                    flightStatus: FlightStatus.Status.Confirmed
                     Layout.fillWidth: true
                     // Layout.preferredHeight: 50 //356
                     Layout.preferredWidth: parent.width
@@ -166,7 +164,7 @@ Page {
                 FlightStrip {
                     callsign: "RMSTN1"
                     // anchors.horizontalCenter: parent.horizontalCenter
-                    status: FlightStatus.Status.Confirmed
+                    flightStatus: FlightStatus.Status.Confirmed
                     Layout.fillWidth: true
                     // Layout.preferredHeight: 50 //356
                     Layout.preferredWidth: parent.width
@@ -175,7 +173,7 @@ Page {
                 FlightStrip {
                     callsign: "RMSTN1"
                     // anchors.horizontalCenter: parent.horizontalCenter
-                    status: FlightStatus.Status.Confirmed
+                    flightStatus: FlightStatus.Status.Confirmed
                     Layout.fillWidth: true
                     // Layout.preferredHeight: 50 //356
                     Layout.preferredWidth: parent.width
@@ -184,7 +182,7 @@ Page {
                 FlightStrip {
                     callsign: "RMSTN1"
                     // anchors.horizontalCenter: parent.horizontalCenter
-                    status: FlightStatus.Status.Confirmed
+                    flightStatus: FlightStatus.Status.Confirmed
                     Layout.fillWidth: true
                     // Layout.preferredHeight: 50 //356
                     Layout.preferredWidth: parent.width
@@ -193,7 +191,7 @@ Page {
                 FlightStrip {
                     callsign: "RMSTN1"
                     // anchors.horizontalCenter: parent.horizontalCenter
-                    status: FlightStatus.Status.Confirmed
+                    flightStatus: FlightStatus.Status.Confirmed
                     Layout.fillWidth: true
                     // Layout.preferredHeight: 50 //356
                     Layout.preferredWidth: parent.width

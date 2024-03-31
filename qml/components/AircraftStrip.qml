@@ -13,7 +13,6 @@ Rectangle {
     implicitWidth: parent.width
     implicitHeight: topRowWrapper.implicitHeight + topRowWrapper.anchors.topMargin
                     + topRowWrapper.anchors.bottomMargin //100
-    Material.theme: Material.Light
 
     StateGroup {
         states: [

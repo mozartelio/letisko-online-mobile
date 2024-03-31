@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-import QtQuick.Controls.Material
 import "../components/divider/"
 import "../components/"
 import "../components/typography/label/text"

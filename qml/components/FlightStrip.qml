@@ -1,20 +1,20 @@
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Controls.Material
 import QtQuick.Layouts
+import UserAppSettings
 import "./typography/body/text"
 
 Item {
     id: root
     required property string callsign
-    required property int status
+    required property int flightStatus
 
-    property bool isExpanded: false //true
+    property bool isExpanded: UserAppSettings.showExpandedFligths
 
     width: parent.width
     implicitHeight: column.implicitHeight
-    Material.theme: Material.Light
 
+    // Material.theme: Material.Light
     StateGroup {
         states: [
             State {
@@ -93,7 +93,7 @@ Item {
                     }
 
                     FlightStatus {
-                        status: root.status
+                        flightStatus: root.flightStatus
                         Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                     }
                 }
@@ -155,7 +155,7 @@ Item {
             visible: isExpanded
             Layout.fillWidth: true
             Layout.preferredWidth: parent.width
-            Layout.preferredHeight: (grid.columns == 1) ? 135 : (grid.columns == 2) ? 115 : 80
+            Layout.preferredHeight: (grid.columns === 1) ? 135 : (grid.columns === 2) ? 115 : 80
 
             MouseArea {
                 id: mouseArea

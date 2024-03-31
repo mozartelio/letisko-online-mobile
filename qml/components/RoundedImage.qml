@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Effects
-import QtQuick.Controls.Material
 import "./typography/title/text"
 
 Item {

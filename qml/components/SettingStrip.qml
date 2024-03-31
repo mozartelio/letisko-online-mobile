@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Effects
 import QtQuick.Controls.Material
+import UserAppSettings
 import "./typography/title/text"
 
 Rectangle {
@@ -19,6 +20,8 @@ Rectangle {
     property url settingImageContent: ""
     property string settingTextContent: ""
     property bool chevronEnabled: true
+    property alias swithchReference: switchElement
+    signal valueChanged
 
     color: __style.transparentColor
     clip: false
@@ -27,8 +30,7 @@ Rectangle {
     implicitHeight: mainColumn.implicitHeight + mainColumn.anchors.topMargin
                     + mainColumn.anchors.bottomMargin //100
 
-    Material.theme: Material.Light
-
+    //// Material.theme: Material.Light
     StateGroup {
         states: [
             State {
@@ -46,8 +48,13 @@ Rectangle {
         id: mouseArea
         anchors.fill: root
         onPressed: {
-            if (settingType == SettingStrip.SettingType.Switch) {
+            if (settingType === SettingStrip.SettingType.Switch) {
                 switchElement.checked = !switchElement.checked
+                // console.log("pressed, AppSettings.showExpandedFligths: "
+                //             + AppSettings.showExpandedFligths)
+                console.log("pressed, UserAppSettings.showExpandedFligths: "
+                            + UserAppSettings.showExpandedFligths)
+                valueChanged()
             }
             console.log("pressed")
         }
@@ -78,7 +85,7 @@ Rectangle {
             Layout.rightMargin: 30
 
             TitleMediumText {
-                text: qsTr(settingName)
+                text: settingName
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                 Layout.fillWidth: true
                 Layout.horizontalStretchFactor: 4
@@ -93,7 +100,7 @@ Rectangle {
             //     Layout.fillHeight: true
             TitleMediumText {
                 text: settingTextContent
-                visible: settingType == SettingStrip.SettingType.Text
+                visible: settingType === SettingStrip.SettingType.Text
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 Layout.horizontalStretchFactor: 1
                 Layout.fillWidth: true
@@ -105,7 +112,7 @@ Rectangle {
                 imageWidth: __style.icon40
                 imageHeight: __style.icon40
                 imageSource: settingImageContent
-                visible: settingType == SettingStrip.SettingType.Image
+                visible: settingType === SettingStrip.SettingType.Image
 
                 Layout.bottomMargin: 6
                 Layout.preferredHeight: __style.icon40
@@ -118,11 +125,12 @@ Rectangle {
 
             Switch {
                 id: switchElement
-                visible: settingType == SettingStrip.SettingType.Switch
+                visible: settingType === SettingStrip.SettingType.Switch
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 Layout.fillHeight: true
                 Layout.horizontalStretchFactor: 1
                 Layout.fillWidth: true
+                onToggled: valueChanged()
             }
             // }
             Image {

@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Controls.Material
 import QtQuick.Layouts
 import com.user 1.0
 import "./screens"
@@ -93,7 +92,7 @@ Item {
             id: stackView
             // anchors.fill: parent  // activate this if not using hot reload
             onCurrentItemChanged: {
-                console.log("Current Item:", stackView.currentItem)
+                console.log("Current Item:", stackView.currentItem);
                 // privates.drawerPageName = stackView.currentItem
             }
             Component.onCompleted: privates.drawerPageName = qsTr(

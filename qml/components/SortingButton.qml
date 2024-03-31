@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Controls.Material
+
 import QtQuick.Layouts
 import "../components/typography/title/text"
 
@@ -10,7 +10,6 @@ Button {
 
     display: AbstractButton.TextOnly
     checkable: true
-    Material.theme: Material.Light
     contentItem: TitleSmallText {
         id: contentItem
         text: contentText

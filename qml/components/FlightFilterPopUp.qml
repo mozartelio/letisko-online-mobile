@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import QtQuick.Controls.Material
 import "./typography/headline/text"
 import "./typography/body/text"
 import "./typography/label/text"
@@ -16,7 +15,6 @@ Popup {
     focus: true
     closePolicy: Popup.CloseOnPressOutside | Popup.CloseOnEscape
     anchors.centerIn: Overlay.overlay
-    Material.theme: Material.Light
 
     background: Rectangle {
         color: __style.surfaceContainerHighColor

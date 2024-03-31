@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-import QtQuick.Controls.Material
 
 import "./typography/label/text"
 
@@ -13,7 +12,6 @@ Button {
     property string contentTextColor: __style.primaryColor
     property string imagePath: ""
 
-    Material.theme: Material.Light
     background: Rectangle {
         id: buttonBackground
         color: backgroundColor

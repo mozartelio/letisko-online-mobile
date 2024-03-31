@@ -31,6 +31,7 @@ class LOStyle: public QObject
     Q_PROPERTY( QColor surfaceColor READ surfaceColor CONSTANT )
     Q_PROPERTY( QColor primary90Color READ primary90Color CONSTANT )
     Q_PROPERTY( QColor darkColor READ darkColor CONSTANT )
+    Q_PROPERTY( QColor outlineColor READ outlineColor CONSTANT )
     // Q_PROPERTY( QColor READ  CONSTANT )
 
     // Colors - secondary palette
@@ -112,6 +113,7 @@ public:
     QColor surfaceColor() {return QColor::fromString( "#FEF7FF" );}
     QColor primary90Color() {return QColor::fromString( "#EADDFF" );}
     QColor darkColor() {return QColor::fromString( "#322F35" );}
+    QColor outlineColor() {return QColor::fromString( "#79747E" );}
     // QColor () {return QColor::fromString( "#" );}
 
     // Colors - secondary palette

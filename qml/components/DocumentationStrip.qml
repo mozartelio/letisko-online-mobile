@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls.Material
 import "./typography/body/text"
 
 Rectangle {
@@ -17,7 +16,7 @@ Rectangle {
 
     width: parent.width
 
-    Material.theme: Material.Light
+   // Material.theme: Material.Light
 
     StateGroup {
         states: [

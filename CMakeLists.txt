@@ -21,12 +21,20 @@ qt_add_executable(appOnlineLetiskoMobileApp
     ${QM_FILES}
 )
 
+
+set_source_files_properties(qml/UserAppSettings.qml PROPERTIES
+    QT_QML_SINGLETON_TYPE TRUE
+)
+
+
 qt_add_qml_module(appOnlineLetiskoMobileApp
     URI OnlineLetiskoMobileApp
     VERSION 1.0
     QML_FILES
         qml/Main.qml
         qml/MainWindow.qml
+        # AppSettings.qml
+        qml/UserAppSettings.qml
 
         #Screens
         qml/screens/LoginScreen.qml
@@ -78,8 +86,8 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     RESOURCES
         assets/icons/icons.qrc
         assets/images/images.qrc
-
-        assets/fonts/Roboto-Regular.ttf
+        qml/configurations.qrc
+        assets/fonts/fonts.qrc
 
         # slovak.qm
         assets/translations/slovak.ts
@@ -106,6 +114,7 @@ set_target_properties(appOnlineLetiskoMobileApp PROPERTIES
 
 target_link_libraries(appOnlineLetiskoMobileApp
     PRIVATE Qt6::Quick
+    # PRIVATE UserAppSettingsPlugin
 )
 
 include(GNUInstallDirs)

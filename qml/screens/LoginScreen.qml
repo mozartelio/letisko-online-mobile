@@ -2,12 +2,11 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Controls.Basic
-import UserController
+import com.letiskoonline.UserController
 import "../components"
 import "../components/typography/title/text/"
 
 Page {
-    property UserController userController
     signal goToRegistrationScreen
     signal goToMainScreen
 
@@ -88,22 +87,17 @@ Page {
                     }
                     onClicked: {
                         if (!emailInput.validationRegex.test(emailInput.text)) {
-                            infoPopupTextContent.text = privates.loginErrorText + "\n" + qsTr(
-                                        "entered value is not a valid email!")
-                            infoPopup.open()
-                            return
+                            infoPopupTextContent.text = privates.loginErrorText + "\n" + qsTr("entered value is not a valid email!");
+                            infoPopup.open();
+                            return;
                         }
                         ;
-                        if (passswordInput.text.trim() === ""
-                                || passswordInput.text === undefined) {
-
-                            infoPopupTextContent.text = privates.loginErrorText + "\n" + qsTr(
-                                        "empty password!")
-                            infoPopup.open()
-                            return
+                        if (passswordInput.text.trim() === "" || passswordInput.text === undefined) {
+                            infoPopupTextContent.text = privates.loginErrorText + "\n" + qsTr("empty password!");
+                            infoPopup.open();
+                            return;
                         }
-                        userController.doLogin(emailInput.text,
-                                               passswordInput.text)
+                        UserController.doLogin(emailInput.text, passswordInput.text);
                     }
                 }
             }
@@ -135,7 +129,7 @@ Page {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        goToRegistrationScreen()
+                        goToRegistrationScreen();
                     }
                 }
             }
@@ -143,15 +137,15 @@ Page {
     }
 
     Connections {
-        target: userController
+        target: UserController
 
         function onLoginResult(result) {
             if (result === true) {
                 // console.log("logged in successfully")
-                goToMainScreen()
+                goToMainScreen();
             } else {
-                infoPopupTextContent.text = privates.loginErrorText + "\n" + result
-                infoPopup.open()
+                infoPopupTextContent.text = privates.loginErrorText + "\n" + result;
+                infoPopup.open();
             }
         }
     }

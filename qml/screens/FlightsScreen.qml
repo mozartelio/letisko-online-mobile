@@ -9,7 +9,9 @@ import "../components/typography/body/text"
 
 Page {
     id: root
+
     property bool arePasstFlightsRequested: false
+
     background: Rectangle {
         color: __style.onPrimaryColor
     }
@@ -32,6 +34,9 @@ Page {
 
         SearchBar {
             Layout.alignment: Qt.AlignCenter | Qt.AlignTop
+            onTextChanged: {
+                filterModel.setFilterString(text)
+            }
         }
 
         ColumnLayout {
@@ -68,6 +73,9 @@ Page {
                     rigthSectionHeader: "Arrival time"
                     rigthSectionLeftButtonText: "Сlosest to farthest"
                     rigthSectionRightButtonText: "Farthest to closest"
+                    onValueChanged: {
+                        filterModel.setSortOrder(checked)
+                    }
                 }
 
                 MaterialButton {
@@ -80,7 +88,8 @@ Page {
         }
 
         ScrollView {
-            spacing: 0
+            id: scrollView
+            spacing: 0 // Adjust the spacing value as per your requirement
             clip: true
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.preferredHeight: 356 //parent.height
@@ -93,108 +102,35 @@ Page {
             ScrollBar.horizontal.interactive: false
             ScrollBar.vertical.interactive: true
 
-            Column {
-                id: flightsColumn
+            ListView {
+                id: view
+                model: filterModel
                 width: parent.width
                 height: parent.height
-                FlightStrip {
-                    callsign: "AWS152ALPHA"
-                    // anchors.horizontalCenter: parent.horizontalCenter
-                    flightStatus: FlightStatus.Status.Denied
-                    Layout.fillWidth: true
-                    // Layout.preferredHeight: contentItem.height//356
-                    Layout.preferredWidth: parent.width
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                }
-                FlightStrip {
-                    callsign: "Atlant32"
-                    // anchors.horizontalCenter: parent.horizontalCenter
-                    flightStatus: FlightStatus.Status.Pending
-                    Layout.fillWidth: true
-                    // Layout.preferredHeight: implicitContentHeight //356
-                    Layout.preferredWidth: parent.width
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                }
-                FlightStrip {
-                    callsign: "RMSTN1"
-                    // anchors.horizontalCenter: parent.horizontalCenter
-                    flightStatus: FlightStatus.Status.Confirmed
-                    Layout.fillWidth: true
-                    // Layout.preferredHeight: 50 //356
-                    Layout.preferredWidth: parent.width
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                }
-                FlightStrip {
-                    callsign: "RMSTN1"
-                    // anchors.horizontalCenter: parent.horizontalCenter
-                    flightStatus: FlightStatus.Status.Confirmed
-                    Layout.fillWidth: true
-                    // Layout.preferredHeight: 50 //356
-                    Layout.preferredWidth: parent.width
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                }
-                FlightStrip {
-                    callsign: "RMSTN1"
-                    // anchors.horizontalCenter: parent.horizontalCenter
-                    flightStatus: FlightStatus.Status.Confirmed
-                    Layout.fillWidth: true
-                    // Layout.preferredHeight: 50 //356
-                    Layout.preferredWidth: parent.width
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                }
-                FlightStrip {
-                    callsign: "RMSTN1"
-                    // anchors.horizontalCenter: parent.horizontalCenter
-                    flightStatus: FlightStatus.Status.Confirmed
-                    Layout.fillWidth: true
-                    // Layout.preferredHeight: 50 //356
-                    Layout.preferredWidth: parent.width
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                }
-                FlightStrip {
-                    callsign: "RMSTN1"
-                    // anchors.horizontalCenter: parent.horizontalCenter
-                    flightStatus: FlightStatus.Status.Confirmed
-                    Layout.fillWidth: true
-                    // Layout.preferredHeight: 50 //356
-                    Layout.preferredWidth: parent.width
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                }
-                FlightStrip {
-                    callsign: "RMSTN1"
-                    // anchors.horizontalCenter: parent.horizontalCenter
-                    flightStatus: FlightStatus.Status.Confirmed
-                    Layout.fillWidth: true
-                    // Layout.preferredHeight: 50 //356
-                    Layout.preferredWidth: parent.width
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                }
-                FlightStrip {
-                    callsign: "RMSTN1"
-                    // anchors.horizontalCenter: parent.horizontalCenter
-                    flightStatus: FlightStatus.Status.Confirmed
-                    Layout.fillWidth: true
-                    // Layout.preferredHeight: 50 //356
-                    Layout.preferredWidth: parent.width
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                }
-                FlightStrip {
-                    callsign: "RMSTN1"
-                    // anchors.horizontalCenter: parent.horizontalCenter
-                    flightStatus: FlightStatus.Status.Confirmed
-                    Layout.fillWidth: true
-                    // Layout.preferredHeight: 50 //356
-                    Layout.preferredWidth: parent.width
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                }
-                FlightStrip {
-                    callsign: "RMSTN1"
-                    // anchors.horizontalCenter: parent.horizontalCenter
-                    flightStatus: FlightStatus.Status.Confirmed
-                    Layout.fillWidth: true
-                    // Layout.preferredHeight: 50 //356
-                    Layout.preferredWidth: parent.width
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                anchors.fill: parent
+                cacheBuffer: 100
+                spacing: 0
+
+                // must to use Item as proxy because of problem described here
+                // https://forum.qt.io/post/741302
+                delegate: Item {
+                    id: delegateItem
+                    width: view.width
+                    height: flightStrip.implicitHeight
+                    FlightStrip {
+                        id: flightStrip
+                        width: parent.width
+                        // height: 30
+                        callsign: callsignData
+                        planeName: planeNameData
+                        flightStatus: flightStatusData
+                        departureTime: departureTimeData //Qt.formatDateTime(departureTimeData, "hh:mm dd.MM.yyyy")
+                        arrivalTime: arrivalTimeData //Qt.formatDateTime(arrivalTimeData, "hh:mm dd.MM.yyyy")
+                        anchors {
+                            horizontalCenter: parent.horizontalCenter
+                            fill: parent
+                        }
+                    }
                 }
             }
         }

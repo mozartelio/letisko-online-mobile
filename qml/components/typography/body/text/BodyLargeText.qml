@@ -8,5 +8,6 @@ Text {
     lineHeightMode: Text.FixedHeight
     lineHeight: 24
     elide: Text.ElideNone
+    wrapMode: Text.WordWrap
     verticalAlignment: Text.AlignVCenter
 }

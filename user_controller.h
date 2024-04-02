@@ -20,7 +20,7 @@ public:
     Q_INVOKABLE void doLogin(const QString &email, const QString &password);
     Q_INVOKABLE bool doRegister(const QString &email, const QString &password);
 signals:
-    void loginResult(const QVariant& result);
+    void loginResult(const QVariant &result);
 };
 
 #endif // USERCONTROLLER_H

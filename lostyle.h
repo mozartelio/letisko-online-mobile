@@ -32,7 +32,7 @@ class LOStyle : public QObject
     Q_PROPERTY(QColor primary90Color READ primary90Color CONSTANT)
     Q_PROPERTY(QColor darkColor READ darkColor CONSTANT)
     Q_PROPERTY(QColor outlineColor READ outlineColor CONSTANT)
-    Q_PROPERTY( QColor secondaryContainerColor READ secondaryContainerColor CONSTANT )
+    Q_PROPERTY(QColor secondaryContainerColor READ secondaryContainerColor CONSTANT)
     // Q_PROPERTY( QColor READ  CONSTANT )
 
     // Colors - secondary palette
@@ -60,7 +60,7 @@ class LOStyle : public QObject
     Q_PROPERTY(QUrl logoutIcon READ logoutIcon CONSTANT)
     Q_PROPERTY(QUrl editIcon READ editIcon CONSTANT)
     Q_PROPERTY(QUrl arrowDropDownMediumIcon READ arrowDropDownMediumIcon CONSTANT)
-    // Q_PROPERTY( QUrl READ CONSTANT )
+    Q_PROPERTY( QUrl arrowDropUpMediumIcon READ arrowDropUpMediumIcon CONSTANT )
     // Q_PROPERTY( QUrl READ CONSTANT )
 
     // Q_PROPERTY( QUrl READ CONSTANT )
@@ -75,6 +75,7 @@ class LOStyle : public QObject
      * Pixel sizes used across the app
      */
     // Icon sizes
+    Q_PROPERTY(int icon12 READ number12 CONSTANT)
     Q_PROPERTY(int icon24 READ number24 CONSTANT)
     Q_PROPERTY(int icon40 READ number40 CONSTANT)
     Q_PROPERTY(int icon45 READ number45 CONSTANT)
@@ -114,7 +115,7 @@ public:
     QColor primary90Color() { return QColor::fromString("#EADDFF"); }
     QColor darkColor() { return QColor::fromString("#322F35"); }
     QColor outlineColor() { return QColor::fromString("#79747E"); }
-    QColor secondaryContainerColor() {return QColor::fromString( "#E8DEF8" );}
+    QColor secondaryContainerColor() { return QColor::fromString("#E8DEF8"); }
     // QColor () {return QColor::fromString( "#" );}
 
     // Colors - secondary palette
@@ -143,10 +144,12 @@ public:
     QUrl logoutIcon() { return QUrl("qrc:/icons/logout_24px.svg"); }
     QUrl editIcon() { return QUrl("qrc:/icons/edit_square_24px.svg"); }
     QUrl arrowDropDownMediumIcon() { return QUrl("qrc:/icons/arrow_drop_down_medium.svg"); }
+    QUrl arrowDropUpMediumIcon() { return QUrl("qrc:/icons/arrow_drop_up_medium.svg"); }
     // QUrl Icon() {return QUrl( "qrc:/icons/" );}
 
     // static QUrl Icon() {return QUrl( "qrc:/Icon.svg" );}
 
+    int number12() { return 12; }
     int number24() { return 24; }
     int number40() { return 40; }
     int number45() { return 45; }

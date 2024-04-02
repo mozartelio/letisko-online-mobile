@@ -7,14 +7,16 @@ import "./typography/body/text"
 Item {
     id: root
     required property string callsign
+    required property string planeName
     required property int flightStatus
+    required property date departureTime
+    required property date arrivalTime
 
     property bool isExpanded: UserAppSettings.showExpandedFligths
 
     width: parent.width
-    implicitHeight: column.implicitHeight
+    implicitHeight: column.implicitHeight + bottomOutline.implicitHeight
 
-    // Material.theme: Material.Light
     StateGroup {
         states: [
             State {
@@ -55,20 +57,24 @@ Item {
                 }
 
                 Button {
+                    id: button
                     padding: 0
-                    display: AbstractButton.IconOnly
-                    icon {
-                        width: 12
-                        height: 12
-                        color: __style.transparentColor
-                        source: __style.arrowDropDownMediumIcon
+                    //do not use icon for proper displaying
+                    indicator: Image {
+                        width: __style.icon12
+                        height: __style.icon12
+                        source: isExpanded ? __style.arrowDropUpMediumIcon : __style.arrowDropDownMediumIcon
+                        anchors {
+                            verticalCenter: parent.verticalCenter
+                            horizontalCenter: parent.horizontalCenter
+                        }
                     }
                     Layout.margins: 0
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
                     onClicked: {
-                        console.log("pressed")
-                        isExpanded = !isExpanded
+                        console.log("pressed");
+                        isExpanded = !isExpanded;
                     }
                 }
 
@@ -76,6 +82,7 @@ Item {
                     spacing: 7
                     Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                     Layout.preferredWidth: (1 / 4) * backgroungRectangle.width
+                    // Layout.maximumWidth: 200
 
                     //TODO: create TEXT as component
                     Text {
@@ -89,6 +96,7 @@ Item {
                         verticalAlignment: Text.AlignVCenter
                         text: callsign
                         Layout.preferredWidth: contentWidth
+                        Layout.maximumWidth: 190
                         Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                     }
 
@@ -99,16 +107,20 @@ Item {
                 }
 
                 RowLayout {
-                    spacing: 150
+                    spacing: 90
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                     Layout.fillWidth: true
                     Row {
+
                         BodyLargeText {
                             text: qsTr("Departure: ")
                             font.bold: true
                         }
                         BodyLargeText {
-                            text: "info"
+                            text: Qt.formatDateTime(departureTime, "hh:mm dd.MM.yyyy") //departureTime
+                            width: 50
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignHCenter
                         }
                     }
 
@@ -118,7 +130,10 @@ Item {
                             font.bold: true
                         }
                         BodyLargeText {
-                            text: "info"
+                            width: 50
+                            text: Qt.formatDateTime(arrivalTime, "hh:mm dd.MM.yyyy")
+                            verticalAlignment: Text.AlignVCenter
+                            horizontalAlignment: Text.AlignHCenter
                         }
                     }
 
@@ -128,22 +143,25 @@ Item {
                             font.bold: true
                         }
                         BodyLargeText {
-                            text: "info"
+                            text: planeName
                         }
                     }
                 }
 
                 Button {
 
-                    display: AbstractButton.IconOnly
-                    icon {
+                    padding: 0
+                    //do not use icon for proper displaying
+                    indicator: Image {
                         width: __style.icon24
                         height: __style.icon24
-                        color: __style.transparentColor
                         source: __style.editIcon
+                        anchors {
+                            verticalCenter: parent.verticalCenter
+                            horizontalCenter: parent.horizontalCenter
+                        }
                     }
                     Layout.margins: 0
-                    padding: 0
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
                 }
             }
@@ -161,7 +179,7 @@ Item {
                 id: mouseArea
                 anchors.fill: flightDetails
                 onPressed: {
-                    console.log("pressed")
+                    console.log("pressed");
                 }
             }
             ColumnLayout {
@@ -311,8 +329,10 @@ Item {
         }
     }
     Rectangle {
+        id: bottomOutline
         height: 1
         width: root.width
+        implicitHeight: 1
         color: __style.outlineVariant
         anchors {
             left: root.left

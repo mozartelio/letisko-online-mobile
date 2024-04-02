@@ -18,6 +18,8 @@ Rectangle {
     required property string rigthSectionLeftButtonText
     required property string rigthSectionRightButtonText
 
+    signal valueChanged(int value)
+
     color: __style.surfaceColor
     Layout.preferredWidth: 467
     Layout.preferredHeight: 77
@@ -65,6 +67,9 @@ Rectangle {
 
         ButtonGroup {
             id: sortingButtonsGroup
+            onClicked: {
+                valueChanged(index)
+            }
         }
 
         SortingButton {

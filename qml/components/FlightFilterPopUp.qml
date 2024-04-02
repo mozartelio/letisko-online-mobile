@@ -7,6 +7,7 @@ import "./typography/label/text"
 import "./typography/title/text"
 
 PopupParent {
+    // TODO:
     id: root
     clip: true
 
@@ -40,7 +41,6 @@ PopupParent {
         spacing: 0
 
         HeadlineSmallText {
-
             id: filtersHeader
             horizontalAlignment: Text.AlignLeft
             width: parent.width
@@ -54,11 +54,11 @@ PopupParent {
         }
 
         Item {
+            id: filtersSections
             Rectangle {
                 anchors.fill: parent
                 color: "red"
             }
-            id: filtersSections
             width: parent.width
             clip: true
             height: parent.height
@@ -135,10 +135,9 @@ PopupParent {
 
                 // property var headerCheckboxGroupId: sectionElementsGroup
                 Rectangle {
+                    id: sectionHeaderRect
                     property bool isExpanded: false
                     property string currentExpandedSection: ListView.view.expandedSection
-
-                    id: sectionHeaderRect
                     width: parent.width
                     color: __style.transparentColor
                     height: 40
@@ -149,21 +148,21 @@ PopupParent {
                     }
                     onCurrentExpandedSectionChanged: {
                         if (currentExpandedSection === section)
-                            isExpanded = true
+                            isExpanded = true;
                         else
-                            isExpanded = false
+                            isExpanded = false;
                     }
 
                     onIsExpandedChanged: {
                         if (isExpanded) {
-                            ListView.view.expandedSection = section
+                            ListView.view.expandedSection = section;
                         }
                         // else
                         //     color = __style.transparentColor
                         for (var i = 0; i < filtersModel.count; i++) {
-                            var item = filtersModel.get(i)
+                            var item = filtersModel.get(i);
                             if (section === item.type)
-                                item.aVisible = sectionHeaderRect.isExpanded
+                                item.aVisible = sectionHeaderRect.isExpanded;
                         }
                     }
 
@@ -218,7 +217,7 @@ PopupParent {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            sectionHeaderRect.isExpanded = !sectionHeaderRect.isExpanded
+                            sectionHeaderRect.isExpanded = !sectionHeaderRect.isExpanded;
                         }
                     }
                 }
@@ -238,9 +237,9 @@ PopupParent {
                     // clip: true
                     onVisibleChanged: {
                         if (visible)
-                            height = 45
+                            height = 45;
                         else
-                            height = 0
+                            height = 0;
                     }
 
                     Behavior on height {
@@ -286,7 +285,7 @@ PopupParent {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            menuItemCheckBox.checked = !menuItemCheckBox.checked
+                            menuItemCheckBox.checked = !menuItemCheckBox.checked;
                             // listing.currentIndex = index
                         }
                     }

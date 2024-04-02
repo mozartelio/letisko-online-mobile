@@ -101,6 +101,10 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     hotreload/FileWatcher.h hotreload/FileWatcher.cpp
     hotreload/ComponentCreatorEngine.h hotreload/ComponentCreatorEngine.cpp
     lostyle.h
+    flights_controller.h flights_controller.cpp
+    flights_filter_proxy_model.h flights_filter_proxy_model.cpp
+    flight_info.h flight_info.cpp
+    filtering_roles.h
 )
 
 

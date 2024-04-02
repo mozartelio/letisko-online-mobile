@@ -8,6 +8,7 @@ import "../components"
 
 Page {
     id: root
+    signal logout
 
     background: Rectangle {
         color: __style.onPrimaryColor
@@ -59,8 +60,9 @@ Page {
                     contentTextColor: __style.onPrimaryColor
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                     Layout.topMargin: 15
-                    onClicked: console.log(
-                                   parent.height - settingsBox.anchors.topMargin)
+                    onClicked: {
+                        logout();
+                    }
                 }
 
                 DisplaySmallText {
@@ -156,9 +158,8 @@ Page {
                         chevronEnabled: false
                         swithchReference.checked: UserAppSettings.showExpandedFligths
                         onValueChanged: {
-                            console.log("value changed")
-                            UserAppSettings.showExpandedFligths
-                                    = !UserAppSettings.showExpandedFligths
+                            console.log("value changed");
+                            UserAppSettings.showExpandedFligths = !UserAppSettings.showExpandedFligths;
                         }
                     }
                     SettingStrip {
@@ -178,13 +179,16 @@ Page {
                             width: parent.width
                             height: parent.height
                             anchors.fill: parent
-                            background: Item {}
-                            indicator: Item {}
-                            contentItem: Item {}
+                            background: Item {
+                            }
+                            indicator: Item {
+                            }
+                            contentItem: Item {
+                            }
                             model: UserAppSettings.languageList
                             textRole: "name"
                             onActivated: {
-                                console.log("Selected language: " + model[currentIndex].value)
+                                console.log("Selected language: " + model[currentIndex].value);
                             }
                         }
                     }

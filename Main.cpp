@@ -16,7 +16,7 @@
 #include <QtQml/qqmlextensionplugin.h>
 #include "lostyle.h"
 #include "login.h"
-#include "user.h"
+#include "user_controller.h"
 #include "hotreload/ComponentCreatorEngine.h"
 
 void InstallDefaultFont()
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
      app.setApplicationName("Letisko online");
 
     // qmlRegisterType<Login>("com.login", 1, 0, "Login");
-    qmlRegisterType<User>("User", 1, 0, "User");
+     qmlRegisterType<UserController>("UserController", 1, 0, "UserController");
     const QUrl url(qgetenv("MAIN_QML"));
     InstallDefaultFont();
 

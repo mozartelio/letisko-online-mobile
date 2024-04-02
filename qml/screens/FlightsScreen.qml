@@ -9,7 +9,6 @@ import "../components/typography/body/text"
 
 Page {
     id: root
-
     property bool arePasstFlightsRequested: false
     background: Rectangle {
         color: __style.onPrimaryColor

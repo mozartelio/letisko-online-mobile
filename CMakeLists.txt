@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(OnlineLetiskoMobileApp VERSION 0.1 LANGUAGES CXX)
 
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_PREFIX_PATH "C:/Other_programs/Qt/6.6.0/mingw_64/lib/cmake" ${CMAKE_PREFIX_PATH})
@@ -31,72 +32,75 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     URI OnlineLetiskoMobileApp
     VERSION 1.0
     QML_FILES
-        qml/Main.qml
-        qml/MainWindow.qml
-        # AppSettings.qml
-        qml/UserAppSettings.qml
 
-        #Screens
-        qml/screens/LoginScreen.qml
-        qml/screens/RegistrationScreen.qml
-        qml/screens/SettingsScreen.qml
-        qml/screens/FlightsScreen.qml
-        qml/screens/DocumentationScreen.qml
-        qml/screens/AircraftsScreen.qml
+    qml/Main.qml
+    qml/MainWindow.qml
+    qml/UserAppSettings.qml
 
-        #Components
-        qml/components/PasswordField.qml
-        qml/components/Logo.qml
-        qml/components/DrawerItem.qml
-        qml/components/SearchBar.qml
-        qml/components/FlightStrip.qml
-        qml/components/FlightStatus.qml
-        qml/components/SortingButton.qml
-        qml/components/FlightFilterPopUp.qml
-        qml/components/MaterialButton.qml
-        qml/components/SortingBar.qml
-        qml/components/DocumentationStrip.qml
-        qml/components/AircraftStrip.qml
-        qml/components/SettingStrip.qml
-        qml/components/RoundedImage.qml
-        qml/components/divider/HorizontalDividerSubhead.qml
+    #Screens
+    qml/screens/LoginScreen.qml
+    qml/screens/RegistrationScreen.qml
+    qml/screens/SettingsScreen.qml
+    qml/screens/FlightsScreen.qml
+    qml/screens/DocumentationScreen.qml
+    qml/screens/AircraftsScreen.qml
 
+    #Components
+    qml/components/PasswordField.qml
+    qml/components/EmailTextField.qml
+    qml/components/Logo.qml
+    qml/components/DrawerItem.qml
+    qml/components/SearchBar.qml
+    qml/components/FlightStrip.qml
+    qml/components/FlightStatus.qml
+    qml/components/SortingButton.qml
+    qml/components/FlightFilterPopUp.qml
+    qml/components/MaterialButton.qml
+    qml/components/SortingBar.qml
+    qml/components/DocumentationStrip.qml
+    qml/components/AircraftStrip.qml
+    qml/components/SettingStrip.qml
+    qml/components/RoundedImage.qml
+    qml/components/divider/HorizontalDividerSubhead.qml
+    qml/components/PopupParent.qml
 
-        # text font styles
-        #Headline
-        qml/components/typography/headline/text/HeadlineMediumText.qml
-        qml/components/typography/headline/text/HeadlineSmallText.qml
-        #Label
-        qml/components/typography/label/text/LabelLargeProminentText.qml
-        qml/components/typography/label/text/LabelLargeText.qml
-        #Title
-        qml/components/typography/title/text/TitleSmallText.qml
-        qml/components/typography/title/text/TitleLargeText.qml
-        qml/components/typography/title/text/TitleMediumText.qml
-        #Body
-        qml/components/typography/body/text/BodyLargeText.qml
-        qml/components/typography/body/text/BodyMediumText.qml
-        qml/components/typography/body/text/BodySmallText.qml
-        #Display
-        qml/components/typography/display/text/DisplaySmallText.qml
+    # text font styles
+    #Headline
+    qml/components/typography/headline/text/HeadlineMediumText.qml
+    qml/components/typography/headline/text/HeadlineSmallText.qml
+    #Label
+    qml/components/typography/label/text/LabelLargeProminentText.qml
+    qml/components/typography/label/text/LabelLargeText.qml
+    #Title
+    qml/components/typography/title/text/TitleSmallText.qml
+    qml/components/typography/title/text/TitleLargeText.qml
+    qml/components/typography/title/text/TitleMediumText.qml
+    #Body
+    qml/components/typography/body/text/BodyLargeText.qml
+    qml/components/typography/body/text/BodyMediumText.qml
+    qml/components/typography/body/text/BodySmallText.qml
+    #Display
+    qml/components/typography/display/text/DisplaySmallText.qml
 
-        # text input font styles
-        #Body
-        qml/components/typography/body/input/BodyLargeInput.qml
+    # text input font styles
+    #Body
+    qml/components/typography/body/input/BodyLargeInput.qml
+
     RESOURCES
-        assets/icons/icons.qrc
-        assets/images/images.qrc
-        qml/configurations.qrc
-        assets/fonts/fonts.qrc
+    assets/icons/icons.qrc
+    assets/images/images.qrc
+    qml/configurations.qrc
+    assets/fonts/fonts.qrc
 
-        # slovak.qm
-        assets/translations/slovak.ts
+    # slovak.qm
+    assets/translations/slovak.ts
+
     SOURCES
-        login.h login.cpp
-        user.h user.cpp
-        hotreload/FileWatcher.h hotreload/FileWatcher.cpp
-        hotreload/ComponentCreatorEngine.h hotreload/ComponentCreatorEngine.cpp
-        lostyle.h
+    login.h login.cpp
+    user_controller.h user_controller.cpp
+    hotreload/FileWatcher.h hotreload/FileWatcher.cpp
+    hotreload/ComponentCreatorEngine.h hotreload/ComponentCreatorEngine.cpp
+    lostyle.h
 )
 
 
@@ -104,7 +108,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
 set_target_properties(appOnlineLetiskoMobileApp PROPERTIES
-#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appOnlineLetiskoMobileApp
+    #    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appOnlineLetiskoMobileApp
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE

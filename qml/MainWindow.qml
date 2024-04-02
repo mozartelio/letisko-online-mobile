@@ -1,15 +1,13 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import User
+import UserController
 import "./screens"
 import "./components"
 import "./components/typography/headline/text"
 import "./components/typography/title/text"
 
 Item {
-    property bool drawerAvailable: false
-
     anchors.fill: parent
 
     // header: move this to Main.qml as a ApplicationWindow header if not using hot reload
@@ -20,7 +18,8 @@ Item {
             height: __style.toolbarHeight
             position: ToolBar.Header
             width: parent.width
-
+            visible: privates.isNavigationAvailable
+            enabled: privates.isNavigationAvailable
             RowLayout {
                 anchors {
                     fill: parent
@@ -59,10 +58,10 @@ Item {
                         RoundedImage {
                             id: userPhoto
                             imageSource: "../../assets/icons/3d_avatar_21.png"
-                            imageWidth: 45
-                            imageHeight: 45
-                            width: 45
-                            height: 45
+                            imageWidth: __style.icon45
+                            imageHeight: __style.icon45
+                            width: __style.icon45
+                            height: __style.icon45
                             Layout.alignment: Qt.AlignVCenter
                         }
 
@@ -86,17 +85,18 @@ Item {
         }
 
         StackView {
-            initialItem: loginPage //settingsScreen //flightsScreen //aircraftsScreen //documentationScreen
+            id: stackView
+            initialItem: loginScreen //flightsScreen // //aircraftsScreen // //settingsScreen // // // //documentationScreen
             width: parent.width
             height: parent.height
-            id: stackView
             // anchors.fill: parent  // activate this if not using hot reload
             onCurrentItemChanged: {
-                console.log("Current Item:", stackView.currentItem)
-                // privates.drawerPageName = stackView.currentItem
+                console.log("Current Item:", stackView.currentItem,
+                            "Stack depth:", stackView.depth)
             }
-            Component.onCompleted: privates.drawerPageName = qsTr(
-                                       "Documentation")
+            // do not use becouse the start is from the login or registrsation page, where topbar is disabled
+            // Component.onCompleted: privates.drawerPageName = qsTr(
+            //                            "Documentation")
         }
     }
 
@@ -104,9 +104,11 @@ Item {
         id: drawer
         width: Math.min(window.width, window.height) / 3 * 2
         height: window.height
-        visible: drawerAvailable
+        visible: false
+        enabled: privates.isNavigationAvailable
+        interactive: privates.isNavigationAvailable
         background: Rectangle {
-            color: __style.surfaceContainerLowColor //ColorsLight.surface_container_low
+            color: __style.surfaceContainerLowColor
             radius: 16
         }
 
@@ -140,6 +142,8 @@ Item {
             DrawerItem {
                 iconSource: __style.airportIcon
                 itemName: qsTr("Airport")
+                color: stackView.currentItem.objectName
+                       === "airportScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
                 onDrawerItemPressed: {
                     privates.drawerPageName = itemName
                     drawer.close()
@@ -147,8 +151,11 @@ Item {
             }
 
             DrawerItem {
+                id: item
                 iconSource: __style.documentationIcon
                 itemName: qsTr("Documentation")
+                color: stackView.currentItem.objectName
+                       === "documentationScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
                 onDrawerItemPressed: {
                     privates.drawerPageName = itemName
                     stackView.replace(documentationScreen)
@@ -159,6 +166,8 @@ Item {
             DrawerItem {
                 iconSource: __style.planeIcon
                 itemName: qsTr("Aircrafts")
+                color: stackView.currentItem.objectName
+                       === "aircraftsScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
                 onDrawerItemPressed: {
                     privates.drawerPageName = itemName
                     stackView.replace(aircraftsScreen)
@@ -169,6 +178,8 @@ Item {
             DrawerItem {
                 iconSource: __style.flightsIcon
                 itemName: qsTr("Flights")
+                color: stackView.currentItem.objectName
+                       === "flightsScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
                 onDrawerItemPressed: {
                     privates.drawerPageName = itemName
                     stackView.replace(flightsScreen)
@@ -179,6 +190,9 @@ Item {
             DrawerItem {
                 iconSource: __style.settinsIcon
                 itemName: qsTr("Settings")
+                color: stackView.currentItem.objectName
+                       === "settingsScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
+
                 onDrawerItemPressed: {
                     privates.drawerPageName = itemName
                     stackView.replace(settingsScreen)
@@ -215,41 +229,53 @@ Item {
     }
 
     Component {
-        id: loginPage
+        id: loginScreen
         LoginScreen {
-            user: userId
+            objectName: "loginScreenObject"
+            userController: userId
             onGoToRegistrationScreen: stackView.replace(registrationPage)
+            onGoToMainScreen: stackView.replace(flightsScreen)
         }
     }
 
     Component {
         id: registrationPage
-        RegistrationScreen {
-            onGoToLoginScreen: stackView.push(loginPage)
-        }
+        RegistrationScreen {}
     }
 
     Component {
         id: flightsScreen
-        FlightsScreen {}
+        FlightsScreen {
+            objectName: "flightsScreenObject"
+        }
     }
 
     Component {
         id: aircraftsScreen
-        AircraftsScreen {}
+        AircraftsScreen {
+            objectName: "aircraftsScreenObject"
+        }
     }
 
     Component {
         id: settingsScreen
-        SettingsScreen {}
+        SettingsScreen {
+            objectName: "settingsScreenObject"
+            onLogout: {
+                stackView.replace(loginScreen)
+                console.log("logged out successfully")
+            }
+        }
     }
 
     Component {
         id: documentationScreen
-        DocumentationScreen {}
+        DocumentationScreen {
+            objectName: "documentationScreenObject"
+        }
     }
 
-    User {
+    UserController {
         id: userId
     }
 
@@ -257,5 +283,7 @@ Item {
         id: privates
 
         property string drawerPageName
+        property bool isNavigationAvailable: stackView.currentItem.objectName
+                                             !== "loginScreenObject"
     }
 }

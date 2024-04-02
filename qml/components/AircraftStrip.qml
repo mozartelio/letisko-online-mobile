@@ -225,10 +225,6 @@ Rectangle {
         }
     }
 
-    Popup {
-        id: filterPopUp
-    }
-
     Rectangle {
         height: 1
         width: root.width

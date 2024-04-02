@@ -3,27 +3,38 @@ import QtQuick.Layouts
 import "./typography/label/text"
 
 Rectangle {
-    id: drawerItem
+    id: root
     required property url iconSource
     required property string itemName
 
     signal drawerItemPressed
 
-    objectName: "DrawerItem"
     color: __style.transparentColor
     radius: 100
     height: __style.drawerItemHeight
     width: parent.width
 
+    StateGroup {
+        states: [
+            State {
+                name: "pressed"
+                PropertyChanges {
+                    target: root
+                    color: __style.pressAccentColor
+                }
+                when: mouseArea.pressed
+            }
+        ]
+    }
+
     MouseArea {
+        id: mouseArea
         anchors.fill: parent
         onPressed: {
-            parent.color = __style.pressAccentColor
             drawerItemPressed()
             console.log("pressed")
         }
         onReleased: {
-            parent.color = __style.transparentColor
             console.log("released")
         }
     }

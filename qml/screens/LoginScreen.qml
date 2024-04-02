@@ -2,18 +2,19 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Controls.Basic
-import User
+import UserController
 import "../components"
+import "../components/typography/title/text/"
 
 Page {
-    property string emailValue: ""
-    property User user
-    property string passwordValue
+    property UserController userController
     signal goToRegistrationScreen
     signal goToMainScreen
+
     background: Rectangle {
         color: __style.onPrimaryColor
     }
+
     contentItem: ColumnLayout {
         spacing: 15
         height: parent.height - __style.toolbarHeight
@@ -65,9 +66,8 @@ Page {
                     text: qsTr("Email")
                 }
                 EmailTextField {
-                    id: email
+                    id: emailInput
                     width: 240
-                    onTextChanged: emailValue = text
                 }
 
                 Text {
@@ -76,34 +76,35 @@ Page {
                 PasswordField {
                     id: passswordInput
                     width: 240
-                    onTextChanged: passwordValue = text
                 }
 
-                Button {
+                MaterialButton {
                     id: button
-                    contentItem: Text {
-                        text: qsTr("Send")
-                        color: __style.onPrimaryColor
-                    }
+                    backgroundColor: __style.primaryColor
+                    contentText: qsTr("Send")
+                    contentTextColor: __style.onPrimaryColor
                     anchors {
                         horizontalCenter: parent.horizontalCenter
                     }
                     onClicked: {
-                        if (user.doLogin(emailValue, passwordValue)) {
-                            console.log("logged")
-                            goToMainScreen()
+                        if (!emailInput.validationRegex.test(emailInput.text)) {
+                            infoPopupTextContent.text = privates.loginErrorText + "\n" + qsTr(
+                                        "entered value is not a valid email!")
+                            infoPopup.open()
+                            return
                         }
-                    }
+                        ;
+                        if (passswordInput.text.trim() === ""
+                                || passswordInput.text === undefined) {
 
-                    background: Rectangle {
-                        color: __style.primaryColor
-                        radius: 100
+                            infoPopupTextContent.text = privates.loginErrorText + "\n" + qsTr(
+                                        "empty password!")
+                            infoPopup.open()
+                            return
+                        }
+                        userController.doLogin(emailInput.text,
+                                               passswordInput.text)
                     }
-                    leftInset: -6
-                    rightInset: leftInset
-
-                    topInset: -2
-                    bottomInset: topInset
                 }
             }
         }
@@ -139,5 +140,43 @@ Page {
                 }
             }
         }
+    }
+
+    Connections {
+        target: userController
+
+        function onLoginResult(result) {
+            if (result === true) {
+                // console.log("logged in successfully")
+                goToMainScreen()
+            } else {
+                infoPopupTextContent.text = privates.loginErrorText + "\n" + result
+                infoPopup.open()
+            }
+        }
+    }
+
+    PopupParent {
+        id: infoPopup
+        leftButon.visible: false
+        rightButton.contentText: qsTr("OK")
+        TitleMediumText {
+            id: infoPopupTextContent
+            color: __style.blackColor
+            width: parent.width
+            height: parent.height
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignHCenter
+
+            anchors {
+                centerIn: parent
+                margins: 20
+            }
+        }
+    }
+
+    QtObject {
+        id: privates
+        property string loginErrorText: qsTr("Login failed, the reason is:")
     }
 }

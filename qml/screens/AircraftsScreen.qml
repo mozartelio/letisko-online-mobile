@@ -99,7 +99,7 @@ Page {
         // }
     }
 
-    Popup {
+    PopupParent {
         id: filterPopUp
     }
 }

@@ -30,7 +30,6 @@ Rectangle {
     implicitHeight: mainColumn.implicitHeight + mainColumn.anchors.topMargin
                     + mainColumn.anchors.bottomMargin //100
 
-    //// Material.theme: Material.Light
     StateGroup {
         states: [
             State {

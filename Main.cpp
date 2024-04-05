@@ -43,17 +43,17 @@ int main(int argc, char *argv[])
     qmlRegisterSingletonInstance("com.letiskoonline.UserController", 1, 0, "UserController", userController);
 
     // Create and populate list model instance
-    FlightsController listModel;
-    listModel.addFlight("callsign0", "planeName0", 0, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-    listModel.addFlight("callsign1", "planeName1", 1, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-    listModel.addFlight("callswrewign2", "planeName2", 2, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-    listModel.addFlight("callsign3", "planeName3", 3, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-    listModel.addFlight("LPFEW", "hornet", 4, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-    listModel.addFlight("RTGFD4", "omega", 5, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-    listModel.addFlight("callsign6", "planeName6", 6, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-    listModel.addFlight("J34JKO", "alfa", 7, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-    listModel.addFlight("callsign8", "planeName8", 8, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-    listModel.addFlight("callsign9", "jango", 9, QDateTime::currentDateTime(), QDateTime::currentDateTime());
+    // FlightsController listModel;
+    // listModel.addFlight("callsign0", "planeName0", 0, QDateTime::currentDateTime(), QDateTime::currentDateTime());
+    // listModel.addFlight("callsign1", "planeName1", 1, QDateTime::currentDateTime(), QDateTime::currentDateTime());
+    // listModel.addFlight("callswrewign2", "planeName2", 2, QDateTime::currentDateTime(), QDateTime::currentDateTime());
+    // listModel.addFlight("callsign3", "planeName3", 3, QDateTime::currentDateTime(), QDateTime::currentDateTime());
+    // listModel.addFlight("LPFEW", "hornet", 4, QDateTime::currentDateTime(), QDateTime::currentDateTime());
+    // listModel.addFlight("RTGFD4", "omega", 5, QDateTime::currentDateTime(), QDateTime::currentDateTime());
+    // listModel.addFlight("callsign6", "planeName6", 6, QDateTime::currentDateTime(), QDateTime::currentDateTime());
+    // listModel.addFlight("J34JKO", "alfa", 7, QDateTime::currentDateTime(), QDateTime::currentDateTime());
+    // listModel.addFlight("callsign8", "planeName8", 8, QDateTime::currentDateTime(), QDateTime::currentDateTime());
+    // listModel.addFlight("callsign9", "jango", 9, QDateTime::currentDateTime(), QDateTime::currentDateTime());
 
     // Write out the least elements
 
@@ -68,14 +68,14 @@ int main(int argc, char *argv[])
     //     qDebug() << "Arrival Time: " << listModel.data(listModel.index(i, 0), Roles::ArrivalTimeRole);
     // }
     // Create filter model
-    FlightFilterProxyModel filterModel;
-    filterModel.setSourceModel(&listModel);
-    filterModel.setFilterRole(Roles::CallsignRole);
-    filterModel.setFilterRole(Roles::PlaneNameRole);
-    filterModel.setFilterRole(Roles::FlightStatusRole);
-    filterModel.setFilterRole(Roles::DepartureTimeRole);
-    filterModel.setFilterRole(Roles::ArrivalTimeRole);
-    filterModel.setSortRole(Roles::CallsignRole);
+    // FlightFilterProxyModel filterModel;
+    // filterModel.setSourceModel(&listModel);
+    // filterModel.setFilterRole(Roles::CallsignRole);
+    // filterModel.setFilterRole(Roles::PlaneNameRole);
+    // filterModel.setFilterRole(Roles::FlightStatusRole);
+    // filterModel.setFilterRole(Roles::DepartureTimeRole);
+    // filterModel.setFilterRole(Roles::ArrivalTimeRole);
+    // filterModel.setSortRole(Roles::CallsignRole);
 
     QTranslator translator;
     translator.load("slovak.qm");
@@ -99,13 +99,21 @@ int main(int argc, char *argv[])
     // QQmlApplicationEngine engine;
 
     LOStyle *style = new LOStyle(&engine);
-    engine.rootContext()->setContextProperty("__style", style);
-    engine.rootContext()->setContextProperty("filterModel", &filterModel);
+    QQmlContext *rootContext = engine.rootContext();
+    rootContext->setContextProperty("__style", style);
+
+
+    FlightsFilterProxyModel *filterModel = userController->getFlightsController()->getFilterProxyModel();
+
+    rootContext->setContextProperty("filterModel", filterModel);
+
+    // rootContext->setContextProperty("filterModel", &filterModel);
+
     /**for using with hotreload**/
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app, [url](QObject *obj, const QUrl &objUrl)
                      {
-            if (!obj && url == objUrl)
-                QCoreApplication::exit(-1); }, Qt::QueuedConnection);
+        if (!obj && url == objUrl)
+            QCoreApplication::exit(-1); }, Qt::QueuedConnection);
     engine.load(url);
 
     /** for testing without hotreload**/

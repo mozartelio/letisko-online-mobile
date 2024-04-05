@@ -20,6 +20,7 @@ set(CMAKE_AUTORCC ON)
 qt_add_executable(appOnlineLetiskoMobileApp
     main.cpp
     ${QM_FILES}
+        aircraft_categories_controller.h
 )
 
 
@@ -105,6 +106,8 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     flights_filter_proxy_model.h flights_filter_proxy_model.cpp
     flight_info.h flight_info.cpp
     filtering_roles.h
+    aircraft_categories_controller.h aircraft_categories_controller.cpp
+    request_constants.h request_constants.cpp
 )
 
 

@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import com.letiskoonline.UserController
 import "../components/divider/"
 import "../components/"
 import "../components/typography/label/text"
@@ -35,7 +36,7 @@ Page {
         SearchBar {
             Layout.alignment: Qt.AlignCenter | Qt.AlignTop
             onTextChanged: {
-                filterModel.setFilterString(text)
+                filterModel.setFilterString(text);
             }
         }
 
@@ -74,7 +75,7 @@ Page {
                     rigthSectionLeftButtonText: "Сlosest to farthest"
                     rigthSectionRightButtonText: "Farthest to closest"
                     onValueChanged: {
-                        filterModel.setSortOrder(checked)
+                        filterModel.setSortOrder(checked);
                     }
                 }
 
@@ -180,5 +181,20 @@ Page {
 
     FlightFilterPopUp {
         id: filterPopUp
+    }
+
+    Component.onCompleted: {
+        UserController.getFlightsController().loadFlightsOnTimer();
+        console.log("called:  UserController.getFlightsController().loadFlightsOnTimer(); ");
+    }
+
+    Component.onDestruction: {
+        var flightsController = UserController.getFlightsController();
+        if (flightsController !== null) {
+            flightsController.fligthScreenClosed();
+        } else {
+            console.log("FlightsController is not initialized yet.");
+        }
+        console.log("FlightsScreen was closed");
     }
 }

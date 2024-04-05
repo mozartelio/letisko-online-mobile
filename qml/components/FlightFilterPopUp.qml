@@ -6,28 +6,22 @@ import "./typography/body/text"
 import "./typography/label/text"
 import "./typography/title/text"
 
+
+/**
+states: pending, dennied....
+flight_rules:
+aircraft_category
+aircraft_class
+aircraft_type
+icao_w_turbulence_categories
+**/
 PopupParent {
-    // TODO:
     id: root
-    clip: true
+    width: 350
+    height: 500
 
-    // width: 300
-    // height: 400
-    // modal: true
-    // focus: true
-    // closePolicy: Popup.CloseOnPressOutside | Popup.CloseOnEscape
-    // anchors.centerIn: Overlay.overlay
-
-    // background: Rectangle {
-    //     color: __style.surfaceContainerHighColor
-    //     radius: 28
-    // }
-
-    // Overlay.modal: Rectangle {
-    //     color: __style.popupSemiTransparentDarkColor
-    // }
-    Column {
-        id: content
+    content: Column {
+        id: contentColumn
         width: parent.width
         height: parent.height
 
@@ -46,29 +40,30 @@ PopupParent {
             width: parent.width
             text: "Filters"
             padding: 24
-            // anchors {
-            //     top: parent.top
-            //     left: parent.left
-            //     right: parent.right
+        }
+
+        Item {// ListView {
+            //     id: fligtRulesFilters
+            //     width: parent.width
+            //     // height: parent.height
+            //     model: fligtRulesModel
+
+            //     // property string expandedSection: ""
+            //     delegate: listdelegate
+            //     // section.: "sssssss"
+            //     // section.property: "type"
+            //     // section.criteria: ViewSection.FullString
+            //     // section.delegate: sectionHeader
             // }
         }
 
         Item {
             id: filtersSections
-            Rectangle {
-                anchors.fill: parent
-                color: "red"
-            }
             width: parent.width
             clip: true
             height: parent.height
+            visible: false
 
-            // anchors {
-            //     left: parent.left
-            //     right: parent.right
-            //     top: filtersHeader.bottom
-            // bottom: parent.controlButtons.top
-            // }
             ListModel {
                 id: filtersModel
                 ListElement {
@@ -113,6 +108,84 @@ PopupParent {
                     checked: true
                     aVisible: false
                 }
+                ListElement {
+                    name: "type 4"
+                    type: "Airctaft type"
+                    checked: true
+                    aVisible: false
+                }
+                ListElement {
+                    name: "type 4"
+                    type: "Airctaft type"
+                    checked: true
+                    aVisible: false
+                }
+                ListElement {
+                    name: "type 4"
+                    type: "Airctaft type1"
+                    checked: true
+                    aVisible: false
+                }
+                ListElement {
+                    name: "type 4"
+                    type: "Airctaft type2"
+                    checked: true
+                    aVisible: false
+                }
+                ListElement {
+                    name: "type 4"
+                    type: "Airctaft type3"
+                    checked: true
+                    aVisible: false
+                }
+                ListElement {
+                    name: "type 4"
+                    type: "Airctaft type4"
+                    checked: true
+                    aVisible: false
+                }
+                ListElement {
+                    name: "type 4"
+                    type: "Airctaft type5"
+                    checked: true
+                    aVisible: false
+                }
+                ListElement {
+                    name: "type 4"
+                    type: "Airctaft type6"
+                    checked: true
+                    aVisible: false
+                }
+                ListElement {
+                    name: "type 4"
+                    type: "Airctaft type67"
+                    checked: true
+                    aVisible: false
+                }
+                ListElement {
+                    name: "type 4"
+                    type: "Airctaft type66"
+                    checked: true
+                    aVisible: false
+                }
+                ListElement {
+                    name: "type 4"
+                    type: "Airctaft tyQWEpe63"
+                    checked: true
+                    aVisible: false
+                }
+                ListElement {
+                    name: "type 4"
+                    type: "Airctaft stQWEype63"
+                    checked: true
+                    aVisible: false
+                }
+                ListElement {
+                    name: "type 4"
+                    type: "Airctaft styWQEWRpe63"
+                    checked: true
+                    aVisible: false
+                }
             }
 
             ListView {
@@ -148,21 +221,21 @@ PopupParent {
                     }
                     onCurrentExpandedSectionChanged: {
                         if (currentExpandedSection === section)
-                            isExpanded = true;
+                            isExpanded = true
                         else
-                            isExpanded = false;
+                            isExpanded = false
                     }
 
                     onIsExpandedChanged: {
                         if (isExpanded) {
-                            ListView.view.expandedSection = section;
+                            ListView.view.expandedSection = section
                         }
                         // else
                         //     color = __style.transparentColor
                         for (var i = 0; i < filtersModel.count; i++) {
-                            var item = filtersModel.get(i);
+                            var item = filtersModel.get(i)
                             if (section === item.type)
-                                item.aVisible = sectionHeaderRect.isExpanded;
+                                item.aVisible = sectionHeaderRect.isExpanded
                         }
                     }
 
@@ -207,7 +280,7 @@ PopupParent {
                                 Layout.preferredWidth: 10
                                 Layout.preferredHeight: 10
                                 Layout.alignment: Qt.AlignVCenter | Text.AlignRight
-                                source: isExpanded ? "../../assets/icons/arrow_drop_up_medium.svg" : "../../assets/icons/arrow_drop_down_medium.svg"
+                                source: isExpanded ? __style.arrowDropUpMediumIcon : __style.arrowDropDownMediumIcon
                                 verticalAlignment: Image.AlignVCenter
                                 horizontalAlignment: Image.AlignRight
                             }
@@ -217,7 +290,7 @@ PopupParent {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            sectionHeaderRect.isExpanded = !sectionHeaderRect.isExpanded;
+                            sectionHeaderRect.isExpanded = !sectionHeaderRect.isExpanded
                         }
                     }
                 }
@@ -237,9 +310,9 @@ PopupParent {
                     // clip: true
                     onVisibleChanged: {
                         if (visible)
-                            height = 45;
+                            height = 45
                         else
-                            height = 0;
+                            height = 0
                     }
 
                     Behavior on height {
@@ -285,7 +358,7 @@ PopupParent {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            menuItemCheckBox.checked = !menuItemCheckBox.checked;
+                            menuItemCheckBox.checked = !menuItemCheckBox.checked
                             // listing.currentIndex = index
                         }
                     }
@@ -293,27 +366,13 @@ PopupParent {
             }
         }
     }
+} // RowLayout {//     id: controlButtons//     width: parent.width//     anchors {//         bottom: parent.bottom//         right: parent.right//         left: parent.left//     }//     MaterialButton {//         Layout.alignment: Qt.AlignRight//         contentText: qsTr("Confirm")//         // TODO://         onClicked: root.close()
+//     }
 
-    // RowLayout {
-    //     id: controlButtons
-    //     width: parent.width
-    //     anchors {
-    //         bottom: parent.bottom
-    //         right: parent.right
-    //         left: parent.left
-    //     }
+//     MaterialButton {
+//         Layout.alignment: Qt.AlignRight
+//         contentText: qsTr("Cancel")
+//         onClicked: root.close()
+//     }
+// }
 
-    //     MaterialButton {
-    //         Layout.alignment: Qt.AlignRight
-    //         contentText: qsTr("Confirm")
-    //         // TODO:
-    //         onClicked: root.close()
-    //     }
-
-    //     MaterialButton {
-    //         Layout.alignment: Qt.AlignRight
-    //         contentText: qsTr("Cancel")
-    //         onClicked: root.close()
-    //     }
-    // }
-}

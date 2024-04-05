@@ -1,17 +1,33 @@
 #include <QDateTime>
+#include <QDebug>
 #include "flights_filter_proxy_model.h"
 
-FlightFilterProxyModel::FlightFilterProxyModel(QObject *parent)
+FlightsFilterProxyModel::FlightsFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
 {
-    setSortOrder(false);
+
+//     qDebug() << "1 hello from after 00:00";
+//     setSortOrder(false);
+// }
+
+// FlightsFilterProxyModel::FlightsFilterProxyModel()
+//     : QSortFilterProxyModel()
+// {
+
+    qDebug() << "2 hello from after 00:00";
+
+
+    // connect(sourceModel(), &QAbstractItemModel::dataChanged, this, &FlightsFilterProxyModel::dataChangedInSourceModel);
+    // setSortOrder(false);
 }
 
-FlightFilterProxyModel::~FlightFilterProxyModel()
+
+
+FlightsFilterProxyModel::~FlightsFilterProxyModel()
 {
 }
 
-bool FlightFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
+bool FlightsFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
     Q_UNUSED(sourceParent);
 
@@ -36,13 +52,13 @@ bool FlightFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &
     return callsignMatches || planeNameMatches || flightStatusMatches || departureTimeMatches || arrivalTimeMatches;
 }
 
-void FlightFilterProxyModel::setFilterString(QString string)
+void FlightsFilterProxyModel::setFilterString(QString string)
 {
     this->setFilterCaseSensitivity(Qt::CaseInsensitive);
     this->setFilterFixedString(string);
 }
 
-void FlightFilterProxyModel::setSortOrder(bool checked)
+void FlightsFilterProxyModel::setSortOrder(bool checked)
 {
     if (checked)
     {
@@ -53,3 +69,5 @@ void FlightFilterProxyModel::setSortOrder(bool checked)
         this->sort(0, Qt::AscendingOrder);
     }
 }
+
+

@@ -76,9 +76,9 @@ Item {
                         }
                     }
                     onClicked: {
-                        privates.drawerPageName = qsTr("Settings");
-                        stackView.replace(settingsScreen);
-                        console.log("here is a profile...");
+                        privates.drawerPageName = qsTr("Settings")
+                        stackView.replace(settingsScreen)
+                        console.log("here is a profile...")
                     }
                 }
             }
@@ -86,12 +86,13 @@ Item {
 
         StackView {
             id: stackView
-            initialItem: flightsScreen//loginScreen // // //aircraftsScreen // //settingsScreen // // // //documentationScreen
+            initialItem: loginScreen //flightsScreen// // // //aircraftsScreen // //settingsScreen // // // //documentationScreen
             width: parent.width
             height: parent.height
             // anchors.fill: parent  // activate this if not using hot reload
             onCurrentItemChanged: {
-                console.log("Current Item:", stackView.currentItem, "Stack depth:", stackView.depth);
+                console.log("Current Item:", stackView.currentItem,
+                            "Stack depth:", stackView.depth)
             }
             // do not use becouse the start is from the login or registrsation page, where topbar is disabled
             // Component.onCompleted: privates.drawerPageName = qsTr(
@@ -141,10 +142,11 @@ Item {
             DrawerItem {
                 iconSource: __style.airportIcon
                 itemName: qsTr("Airport")
-                color: stackView.currentItem.objectName === "airportScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
+                color: stackView.currentItem.objectName
+                       === "airportScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
                 onDrawerItemPressed: {
-                    privates.drawerPageName = itemName;
-                    drawer.close();
+                    privates.drawerPageName = itemName
+                    drawer.close()
                 }
             }
 
@@ -152,45 +154,49 @@ Item {
                 id: item
                 iconSource: __style.documentationIcon
                 itemName: qsTr("Documentation")
-                color: stackView.currentItem.objectName === "documentationScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
+                color: stackView.currentItem.objectName
+                       === "documentationScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
                 onDrawerItemPressed: {
-                    privates.drawerPageName = itemName;
-                    stackView.replace(documentationScreen);
-                    drawer.close();
+                    privates.drawerPageName = itemName
+                    stackView.replace(documentationScreen)
+                    drawer.close()
                 }
             }
 
             DrawerItem {
                 iconSource: __style.planeIcon
                 itemName: qsTr("Aircrafts")
-                color: stackView.currentItem.objectName === "aircraftsScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
+                color: stackView.currentItem.objectName
+                       === "aircraftsScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
                 onDrawerItemPressed: {
-                    privates.drawerPageName = itemName;
-                    stackView.replace(aircraftsScreen);
-                    drawer.close();
+                    privates.drawerPageName = itemName
+                    stackView.replace(aircraftsScreen)
+                    drawer.close()
                 }
             }
 
             DrawerItem {
                 iconSource: __style.flightsIcon
                 itemName: qsTr("Flights")
-                color: stackView.currentItem.objectName === "flightsScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
+                color: stackView.currentItem.objectName
+                       === "flightsScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
                 onDrawerItemPressed: {
-                    privates.drawerPageName = itemName;
-                    stackView.replace(flightsScreen);
-                    drawer.close();
+                    privates.drawerPageName = itemName
+                    stackView.replace(flightsScreen)
+                    drawer.close()
                 }
             }
 
             DrawerItem {
                 iconSource: __style.settinsIcon
                 itemName: qsTr("Settings")
-                color: stackView.currentItem.objectName === "settingsScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
+                color: stackView.currentItem.objectName
+                       === "settingsScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
 
                 onDrawerItemPressed: {
-                    privates.drawerPageName = itemName;
-                    stackView.replace(settingsScreen);
-                    drawer.close();
+                    privates.drawerPageName = itemName
+                    stackView.replace(settingsScreen)
+                    drawer.close()
                 }
             }
 
@@ -234,8 +240,7 @@ Item {
 
     Component {
         id: registrationPage
-        RegistrationScreen {
-        }
+        RegistrationScreen {}
     }
 
     Component {
@@ -257,8 +262,8 @@ Item {
         SettingsScreen {
             objectName: "settingsScreenObject"
             onLogout: {
-                stackView.replace(loginScreen);
-                console.log("logged out successfully");
+                stackView.replace(loginScreen)
+                console.log("logged out successfully")
             }
         }
     }
@@ -273,11 +278,11 @@ Item {
     // UserController {
     //     id: userId
     // }
-
     QtObject {
         id: privates
 
         property string drawerPageName
-        property bool isNavigationAvailable: stackView.currentItem.objectName !== "loginScreenObject"
+        property bool isNavigationAvailable: stackView.currentItem.objectName
+                                             !== "loginScreenObject"
     }
 }

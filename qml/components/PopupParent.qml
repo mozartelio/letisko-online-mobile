@@ -7,6 +7,7 @@ Popup {
 
     property alias leftButon: leftButon
     property alias rightButton: rightButton
+    default property alias content: contentColumn.children
 
     implicitWidth: 300
     implicitHeight: 300
@@ -24,10 +25,22 @@ Popup {
         color: __style.popupSemiTransparentDarkColor
     }
 
+    Item {
+        id: contentColumn
+        clip: true
+        anchors {
+            top: parent.top
+            bottom: controlButtons.top
+            left: parent.left
+            right: parent.right
+            margins: 20
+        }
+    }
+
     RowLayout {
         id: controlButtons
         width: parent.width
-        z: 2
+        // z: 2
         anchors {
             bottom: parent.bottom
             right: parent.right

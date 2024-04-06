@@ -19,7 +19,7 @@
 #include "login.h"
 #include "user_controller.h"
 #include "flights_controller.h"
-#include "flights_filter_proxy_model.h"
+
 
 void InstallDefaultFont()
 {
@@ -41,6 +41,10 @@ int main(int argc, char *argv[])
 
     UserController *userController = new UserController(&app);
     qmlRegisterSingletonInstance("com.letiskoonline.UserController", 1, 0, "UserController", userController);
+
+    FlightsController *flightsController = userController->getFlightsController();
+    qmlRegisterSingletonInstance("com.letiskoonline.FlightsController", 1, 0, "FlightsController", flightsController);
+
 
     // Create and populate list model instance
     // FlightsController listModel;
@@ -102,12 +106,9 @@ int main(int argc, char *argv[])
     QQmlContext *rootContext = engine.rootContext();
     rootContext->setContextProperty("__style", style);
 
+    FlightsFilterProxyModel *filterProxyModel = userController->getFlightsController()->getFlightsModel()->getFilterProxyModel();
+    rootContext->setContextProperty("filterProxyModel", filterProxyModel);
 
-    FlightsFilterProxyModel *filterModel = userController->getFlightsController()->getFilterProxyModel();
-
-    rootContext->setContextProperty("filterModel", filterModel);
-
-    // rootContext->setContextProperty("filterModel", &filterModel);
 
     /**for using with hotreload**/
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app, [url](QObject *obj, const QUrl &objUrl)

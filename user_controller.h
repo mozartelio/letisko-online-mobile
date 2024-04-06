@@ -24,8 +24,8 @@ public:
     ~UserController();
     Q_INVOKABLE void doLogin(const QString &email, const QString &password);
     Q_INVOKABLE bool doRegister(const QString &email, const QString &password);
+    
     Q_INVOKABLE FlightsController *getFlightsController() const;
-
     void setFlightsController(FlightsController *controller);
 
     // TODO: logout?
@@ -33,7 +33,7 @@ signals:
     void loginResult(const QVariant &result);
 
 public slots:
-    void handleLoginNetworkReply(QNetworkReply* reply);
+    void handleLoginNetworkReply(QNetworkReply *reply);
 };
 
 #endif // USERCONTROLLER_H

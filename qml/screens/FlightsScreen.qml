@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import com.letiskoonline.UserController
+import com.letiskoonline.FlightsController
 import "../components/divider/"
 import "../components/"
 import "../components/typography/label/text"
@@ -36,7 +37,7 @@ Page {
         SearchBar {
             Layout.alignment: Qt.AlignCenter | Qt.AlignTop
             onTextChanged: {
-                filterModel.setFilterString(text);
+                filterProxyModel.setFilterString(text)
             }
         }
 
@@ -75,7 +76,8 @@ Page {
                     rigthSectionLeftButtonText: "Сlosest to farthest"
                     rigthSectionRightButtonText: "Farthest to closest"
                     onValueChanged: {
-                        filterModel.setSortOrder(checked);
+                        //TODO:
+                        filterProxyModel.setSortOrder(checked)
                     }
                 }
 
@@ -105,11 +107,13 @@ Page {
 
             ListView {
                 id: view
-                model: filterModel
+                model: filterProxyModel
+                //does not worker
+                // UserController.getFlightsController().getFlightsModel().getFilterProxyModel()
                 width: parent.width
                 height: parent.height
                 anchors.fill: parent
-                cacheBuffer: 100
+                cacheBuffer: 3
                 spacing: 0
 
                 // must to use Item as proxy because of problem described here
@@ -125,8 +129,8 @@ Page {
                         callsign: callsignData
                         planeName: planeNameData
                         flightStatus: flightStatusData
-                        departureTime: departureTimeData //Qt.formatDateTime(departureTimeData, "hh:mm dd.MM.yyyy")
-                        arrivalTime: arrivalTimeData //Qt.formatDateTime(arrivalTimeData, "hh:mm dd.MM.yyyy")
+                        departureTime: departureTimeData
+                        arrivalTime: arrivalTimeData
                         anchors {
                             horizontalCenter: parent.horizontalCenter
                             fill: parent
@@ -184,17 +188,23 @@ Page {
     }
 
     Component.onCompleted: {
-        UserController.getFlightsController().loadFlightsOnTimer();
-        console.log("called:  UserController.getFlightsController().loadFlightsOnTimer(); ");
+
+        /*TODO: why does not work?
+        var flightsController = flightsController //userController.getFlightsController()*/
+        if (FlightsController !== null) {
+            FlightsController.loadFlightsOnTimer()
+            console.log("called:  loadFlightsOnTimer(); ")
+        } else {
+            console.log("FlightsController is not initialized yet.")
+        }
     }
 
     Component.onDestruction: {
-        var flightsController = UserController.getFlightsController();
-        if (flightsController !== null) {
-            flightsController.fligthScreenClosed();
+        if (FlightsController !== null) {
+            FlightsController.fligthScreenClosed()
         } else {
-            console.log("FlightsController is not initialized yet.");
+            console.log("FlightsController is not initialized yet.")
         }
-        console.log("FlightsScreen was closed");
+        console.log("FlightsScreen was closed")
     }
 }

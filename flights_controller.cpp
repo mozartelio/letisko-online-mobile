@@ -4,97 +4,33 @@
 #include <QJsonObject>
 #include <QDebug>
 #include "flights_controller.h"
-#include "flight_info.h"
 #include "request_constants.h"
 
 FlightsController::FlightsController(QNetworkAccessManager *networkManager)
 {
-    qDebug() << "FlightsController hello from after 00:00";
+    qDebug() << "hello from FlightsController";
     setNetworkManager(networkManager);
+    m_flightsModel = new FlightsModel();
     connect(&m_loadFligthsTimer, &QTimer::timeout, this, &FlightsController::loadFlights);
-    init();
-}
-
-void FlightsController::init()
-{
-    // m_filterProxyModel(this);
-    m_filterProxyModel.setSourceModel(this);
-    m_filterProxyModel.setFilterRole(CallsignRole);
-    m_filterProxyModel.setFilterRole(PlaneNameRole);
-    m_filterProxyModel.setFilterRole(FlightStatusRole);
-    m_filterProxyModel.setFilterRole(DepartureTimeRole);
-    m_filterProxyModel.setFilterRole(ArrivalTimeRole);
-    m_filterProxyModel.setSortRole(CallsignRole);
 }
 
 FlightsController::~FlightsController()
 {
+    qDebug() << "FlightsController destructor";
+    deleteFligthModel();
 }
 
-int FlightsController::rowCount(const QModelIndex &parent) const
+void FlightsController::deleteFligthModel()
 {
-    Q_UNUSED(parent);
-    return m_flightsList.count();
+    delete m_flightsModel;
+    m_flightsModel = nullptr;
 }
 
-QVariant FlightsController::data(const QModelIndex &index, int role) const
-{
-    if (index.isValid() && index.row() >= 0 && index.row() < rowCount())
-    {
-
-        FlightInfo *flightInfo = m_flightsList[index.row()];
-
-        //        switch((Role) role) {
-        switch (role)
-        {
-        case CallsignRole:
-            return flightInfo->callsign();
-        case PlaneNameRole:
-            return flightInfo->planeName();
-        case FlightStatusRole:
-            return flightInfo->flightStatus();
-        case DepartureTimeRole:
-            return flightInfo->departureTime();
-        case ArrivalTimeRole:
-            return flightInfo->arrivalTime();
-        }
-    }
-    return {};
-}
-
-void FlightsController::addFlight(const QString &callsign, const QString &planeName, int flightStatus, const QDateTime &departureTime, const QDateTime &arrivalTime)
-{
-    beginInsertRows(QModelIndex(), rowCount(), rowCount());
-
-    FlightInfo *newFlightInfo = new FlightInfo(this);
-    newFlightInfo->setCallsign(callsign);
-    newFlightInfo->setPlaneName(planeName);
-    newFlightInfo->setFlightStatus(flightStatus);
-    newFlightInfo->setDepartureTime(departureTime);
-    newFlightInfo->setArrivalTime(arrivalTime);
-
-    m_flightsList.append(newFlightInfo);
-    endInsertRows();
-}
-
-QHash<int, QByteArray> FlightsController::roleNames() const
-{
-    QHash<int, QByteArray> filterRoles;
-    filterRoles[CallsignRole] = "callsignData";
-    filterRoles[PlaneNameRole] = "planeNameData";
-    filterRoles[FlightStatusRole] = "flightStatusData";
-    filterRoles[DepartureTimeRole] = "departureTimeData";
-    filterRoles[ArrivalTimeRole] = "arrivalTimeData";
-
-    // TODO: more filters
-
-    return filterRoles;
-}
 
 void FlightsController::loadFlightsOnTimer()
 {
-    loadFlights();      // load flights first time
-    m_loadFligthsTimer.start(5000); // 5000 milliseconds = 5 seconds
+    loadFlights();                  // load flights first time
+    m_loadFligthsTimer.start(RequestConstants::FLIGHTS_RELOAD_TIMER_MILLISECONDS);
 }
 
 void FlightsController::loadFlights()
@@ -102,13 +38,14 @@ void FlightsController::loadFlights()
     // Check auth token presence and implement its usage
     if (m_userJwtAuthorizationToken.isEmpty())
     {
-        qDebug() << "No token set";
+        qDebug() << "No auth token set";
         return;
     }
+    qDebug() << "Loading flights...";
 
     QNetworkRequest request;
-    m_loadFligthsTimer.start(30000);
-    m_loadFligthsTimer.setSingleShot(true);
+    m_request_timer.start(RequestConstants::REQUEST_TIMEOUT_MILLISECONDS);
+    m_request_timer.setSingleShot(true);
     request.setUrl(QUrl(RequestConstants::SERVER_BASE_URL + RequestConstants::FLIGHTS_ENDPOINT));
     request.setRawHeader("Content-Type", RequestConstants::CONTENT_TYPE);
     request.setRawHeader("User-Agent", RequestConstants::USER_AGENT);
@@ -132,6 +69,7 @@ void FlightsController::handleFligthsLoadNetworkReply(QNetworkReply *reply)
         return;
     }
 
+    m_flightsModel->removeAllFlights(); //remove old flights
     QJsonArray jsonArray = jsonResponse.array();
     for (const QJsonValue &value : jsonArray)
     {
@@ -146,12 +84,15 @@ void FlightsController::handleFligthsLoadNetworkReply(QNetworkReply *reply)
         QJsonObject jsonObject = value.toObject();
 
         QString callsign = jsonObject.value("callsign").toString();
+        // TODO: Add REAL plane name to the model
         QString planeName = jsonObject.value("airport_id").toString();
+        // TODO: Add REAL APROVAL STATUS to the model
         int flightStatus = 1; // jsonObject.value("approval_status").toString();
         QDateTime departureTime = QDateTime::fromString(jsonObject.value("start_time").toString(), Qt::ISODate);
         QDateTime arrivalTime = QDateTime::fromString(jsonObject.value("end_time").toString(), Qt::ISODate);
 
-        addFlight(callsign, planeName, flightStatus, departureTime, arrivalTime);
+        qDebug() << "Adding flights to the model...";
+        m_flightsModel->addFlight(callsign, planeName, flightStatus, departureTime, arrivalTime);
     }
     reply->deleteLater();
 }
@@ -176,22 +117,17 @@ void FlightsController::setNetworkManager(QNetworkAccessManager *networkManager)
     m_networkManager = networkManager;
 }
 
-FlightsFilterProxyModel *FlightsController::getFilterProxyModel()
+FlightsModel *FlightsController::getFlightsModel() const
 {
-    return &m_filterProxyModel;
+    return m_flightsModel;
 }
 
-// FlightsFilterProxyModel &FlightsController::getFilterProxyModel() const
-// {
-//     return m_filterProxyModel;
-// }
-
-void FlightsController::setFilterProxyModel(const FlightsFilterProxyModel &filterProxyModel)
+void FlightsController::setFlightsModel(FlightsModel *model)
 {
-    // TODO:
-    // m_filterProxyModel = &filterProxyModel;
+    m_flightsModel = model;
 }
 
- void FlightsController::fligthScreenClosed(){
-        m_loadFligthsTimer.stop();
- }
+void FlightsController::fligthScreenClosed()
+{
+    m_loadFligthsTimer.stop();
+}

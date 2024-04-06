@@ -7,7 +7,6 @@
 #include "request_constants.h"
 #include "user_controller.h"
 
-
 UserController::UserController(QObject *parent)
     : QObject{parent}
 {
@@ -27,33 +26,33 @@ UserController::~UserController()
     m_networkManager = nullptr;
 }
 
-std::pair<bool, QString> extractJsonKeyValueFromRaw(const QByteArray &rawResponseData, const QString &jsonKeyName)
-{
-    QJsonDocument doc = QJsonDocument::fromJson(rawResponseData);
-    QString internalServerProblem = "Internal server problem";
-    if (doc.isNull())
-    {
-        qCritical() << "Failed to parse JSON document.";
-        return std::make_pair(false, internalServerProblem);
-    }
+// std::pair<bool, QString> extractJsonKeyValueFromRaw(const QByteArray &rawResponseData, const QString &jsonKeyName)
+// {
+//     QJsonDocument doc = QJsonDocument::fromJson(rawResponseData);
+//     QString internalServerProblem = "Internal server problem";
+//     if (doc.isNull())
+//     {
+//         qCritical() << "Failed to parse JSON document.";
+//         return std::make_pair(false, internalServerProblem);
+//     }
 
-    QJsonObject obj = doc.object();
+//     QJsonObject obj = doc.object();
 
-    if (!obj.contains(jsonKeyName))
-    {
-        qCritical() << QString("JSON object does not contain a \"%1\" key").arg(jsonKeyName);
-        return std::make_pair(false, internalServerProblem);
-    }
+//     if (!obj.contains(jsonKeyName))
+//     {
+//         qCritical() << QString("JSON object does not contain a \"%1\" key").arg(jsonKeyName);
+//         return std::make_pair(false, internalServerProblem);
+//     }
 
-    QJsonValue jsonKeyValue = obj[jsonKeyName];
+//     QJsonValue jsonKeyValue = obj[jsonKeyName];
 
-    if (!jsonKeyValue.isString())
-    {
-        qCritical() << QString("\"%1\" value is not a string ").arg(jsonKeyName);
-        return std::make_pair(false, internalServerProblem);
-    }
-    return std::make_pair(true, jsonKeyValue.toString());
-}
+//     if (!jsonKeyValue.isString())
+//     {
+//         qCritical() << QString("\"%1\" value is not a string ").arg(jsonKeyName);
+//         return std::make_pair(false, internalServerProblem);
+//     }
+//     return std::make_pair(true, jsonKeyValue.toString());
+// }
 
 /**
  * @brief Performs a login operation using the provided email and password.
@@ -71,7 +70,7 @@ void UserController::doLogin(const QString &email, const QString &password)
     qDebug() << "email: " << email;
     qDebug() << "password: " << password;
 
-    m_request_timer.start(30000);
+    m_request_timer.start(RequestConstants::REQUEST_TIMEOUT_MILLISECONDS);
     m_request_timer.setSingleShot(true);
 
     request.setUrl(QUrl(RequestConstants::SERVER_BASE_URL + RequestConstants::LOGIN_ENDPOINT));
@@ -88,34 +87,40 @@ void UserController::doLogin(const QString &email, const QString &password)
     // qDebug() << "request is: " << request.url().toString();
     // qDebug() << "data is: " << jsonData;
 
-    connect(reply, &QNetworkReply::finished, this, [this, reply]() { handleLoginNetworkReply(reply); });
+    connect(reply, &QNetworkReply::finished, this, [this, reply]()
+            { handleLoginNetworkReply(reply); });
 }
 
-void UserController::handleLoginNetworkReply(QNetworkReply* reply) {
+void UserController::handleLoginNetworkReply(QNetworkReply *reply)
+{
     QByteArray rawResponseData = reply->readAll();
-     QString internalServerProblemDescription = "Internal server problem";
+    QString internalServerProblemDescription = "Internal server problem";
 
     QJsonDocument jsonResponse = QJsonDocument::fromJson(rawResponseData);
-     if (jsonResponse.isNull())
-     {
-         qCritical() << "Failed to parse JSON document.";
-         emit loginResult(internalServerProblemDescription);
-     }
+    if (jsonResponse.isNull())
+    {
+        qCritical() << "Failed to parse JSON document.";
+        emit loginResult(internalServerProblemDescription);
+    }
     QJsonObject jsonObject = jsonResponse.object();
 
-
-    if(reply->error() == QNetworkReply::NoError){
-        if(jsonObject.contains("access_token")){
+    if (reply->error() == QNetworkReply::NoError)
+    {
+        if (jsonObject.contains("access_token"))
+        {
             emit loginResult(true);
             m_jwtAuthorizationToken = jsonObject["access_token"].toString();
             qDebug() << "auth token: " << m_jwtAuthorizationToken;
             setControllersParams();
-        } else{
+        }
+        else
+        {
             qCritical() << QString("JSON object does not contain a \"access_token\" key");
             emit loginResult(internalServerProblemDescription);
         }
     }
-    else{
+    else
+    {
         QString errorMessage = jsonObject.contains("message") ? jsonObject["message"].toString() : reply->errorString();
         emit loginResult(errorMessage);
     }
@@ -127,7 +132,10 @@ void UserController::setControllersParams()
     m_flightsController->setUserJwtAuthorizationToken(m_jwtAuthorizationToken);
 }
 
-Q_INVOKABLE FlightsController *UserController::getFlightsController() const { return m_flightsController; }
+Q_INVOKABLE FlightsController *UserController::getFlightsController() const
+{
+    return m_flightsController;
+}
 
 void UserController::setFlightsController(FlightsController *controller) { m_flightsController = controller; }
 

@@ -108,6 +108,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     filtering_roles.h
     aircraft_categories_controller.h aircraft_categories_controller.cpp
     request_constants.h request_constants.cpp
+    flights_model.h flights_model.cpp
 )
 
 

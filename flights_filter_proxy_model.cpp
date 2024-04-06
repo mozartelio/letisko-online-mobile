@@ -6,25 +6,23 @@ FlightsFilterProxyModel::FlightsFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
 {
 
-//     qDebug() << "1 hello from after 00:00";
-//     setSortOrder(false);
-// }
+    //     qDebug() << "1 hello from after 00:00";
+    //     setSortOrder(false);
+    // }
 
-// FlightsFilterProxyModel::FlightsFilterProxyModel()
-//     : QSortFilterProxyModel()
-// {
+    // FlightsFilterProxyModel::FlightsFilterProxyModel()
+    //     : QSortFilterProxyModel()
+    // {
 
-    qDebug() << "2 hello from after 00:00";
-
+    qDebug() << "hello from FlightsFilterProxyModel";
 
     // connect(sourceModel(), &QAbstractItemModel::dataChanged, this, &FlightsFilterProxyModel::dataChangedInSourceModel);
     // setSortOrder(false);
 }
 
-
-
 FlightsFilterProxyModel::~FlightsFilterProxyModel()
 {
+    qDebug() << "FlightsFilterProxyModel destructor";
 }
 
 bool FlightsFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
@@ -69,5 +67,3 @@ void FlightsFilterProxyModel::setSortOrder(bool checked)
         this->sort(0, Qt::AscendingOrder);
     }
 }
-
-

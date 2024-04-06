@@ -1,35 +1,27 @@
 #ifndef FLIGHTSCONTROLLER_H
 #define FLIGHTSCONTROLLER_H
 #include <QTimer>
-#include <QAbstractListModel>
+#include <QObject>
 #include <QNetworkAccessManager>
-#include "filtering_roles.h"
-#include "flights_filter_proxy_model.h"
+#include "flights_model.h"
 
-class FlightInfo;
 
-class FlightsController : public QAbstractListModel
+class FlightsController : public QObject
 {
     Q_OBJECT
 
 private:
-    QList<FlightInfo *> m_flightsList;
     QTimer m_loadFligthsTimer;
     QTimer m_request_timer;
-    void init();
     QNetworkAccessManager *m_networkManager;
     QString m_userJwtAuthorizationToken;
-    FlightsFilterProxyModel m_filterProxyModel;
+    FlightsModel *m_flightsModel;
 
 public:
     explicit FlightsController(QNetworkAccessManager *networkManager);
     ~FlightsController();
 
-    void addFlight(const QString &callsign, const QString &planeName, int flightStatus, const QDateTime &departureTime, const QDateTime &arrivalTime);
-
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    void deleteFligthModel();
 
     QNetworkAccessManager *getNetworkManager() const;
     void setNetworkManager(QNetworkAccessManager *networkManager);
@@ -37,9 +29,8 @@ public:
     QString getUserJwtAuthorizationToken() const;
     void setUserJwtAuthorizationToken(const QString &token);
 
-    // FlightsFilterProxyModel *getFilterProxyModel();
-    FlightsFilterProxyModel *getFilterProxyModel();
-    void setFilterProxyModel(const FlightsFilterProxyModel &filterProxyModel);
+    Q_INVOKABLE FlightsModel *getFlightsModel() const;
+    void setFlightsModel(FlightsModel *model);
 
     Q_INVOKABLE void loadFlights();
     Q_INVOKABLE void loadFlightsOnTimer();
@@ -47,9 +38,5 @@ public:
 
 public slots:
     void handleFligthsLoadNetworkReply(QNetworkReply *reply);
-
-
-protected:
-    QHash<int, QByteArray> roleNames() const override;
 };
 #endif // FLIGHTSCONTROLLER_H

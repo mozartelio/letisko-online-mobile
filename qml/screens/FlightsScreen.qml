@@ -36,8 +36,12 @@ Page {
 
         SearchBar {
             Layout.alignment: Qt.AlignCenter | Qt.AlignTop
-            onTextChanged: {
-                filterProxyModel.setFilterString(text)
+            onTextChanged:
+
+            // FlightsController.getFlightsModel().getFilterProxyModel(
+            //             ).setFilterString(
+            //             text) //filterModel.setFilterString(text)
+            {
             }
         }
 
@@ -75,9 +79,12 @@ Page {
                     rigthSectionHeader: "Arrival time"
                     rigthSectionLeftButtonText: "Сlosest to farthest"
                     rigthSectionRightButtonText: "Farthest to closest"
-                    onValueChanged: {
-                        //TODO:
-                        filterProxyModel.setSortOrder(checked)
+                    onValueChanged:
+
+                    // FlightsController.getFlightsModel().getFilterProxyModel(
+                    //             ).setSortOrder(
+                    //             checked) //filterModel.setSortOrder(checked)
+                    {
                     }
                 }
 
@@ -107,9 +114,9 @@ Page {
 
             ListView {
                 id: view
-                model: filterProxyModel
-                //does not worker
-                // UserController.getFlightsController().getFlightsModel().getFilterProxyModel()
+                model: FlightsController.getFlightsModel().getFilterProxyModel
+                //(FlightsController.getFlightsModel()).getFilterProxyModel()
+                //filterModel
                 width: parent.width
                 height: parent.height
                 anchors.fill: parent
@@ -129,8 +136,8 @@ Page {
                         callsign: callsignData
                         planeName: planeNameData
                         flightStatus: flightStatusData
-                        departureTime: departureTimeData
-                        arrivalTime: arrivalTimeData
+                        departureTime: departureTimeData //Qt.formatDateTime(departureTimeData, "hh:mm dd.MM.yyyy")
+                        arrivalTime: arrivalTimeData //Qt.formatDateTime(arrivalTimeData, "hh:mm dd.MM.yyyy")
                         anchors {
                             horizontalCenter: parent.horizontalCenter
                             fill: parent
@@ -188,23 +195,26 @@ Page {
     }
 
     Component.onCompleted: {
-
-        /*TODO: why does not work?
-        var flightsController = flightsController //userController.getFlightsController()*/
+        // var flightsController = flightsController //userController.getFlightsController()
         if (FlightsController !== null) {
-            FlightsController.loadFlightsOnTimer()
-            console.log("called:  loadFlightsOnTimer(); ")
+            FlightsController.loadFlightsOnTimer();
         } else {
-            console.log("FlightsController is not initialized yet.")
+            console.log("FlightsController is not initialized yet.");
         }
+
+        // UserController.getFlightsController().loadFlightsOnTimer()
+        console.log("called:  FlightsController.getFlightsController().loadFlightsOnTimer(); ");
+        // console.log("FlightsController.getFlightsModel().getFilterProxyModel()  //filterModel:");
+        // console.log(FlightsController.getFlightsModel().getFilterProxyModel()  //filterModel.toString());
     }
 
     Component.onDestruction: {
+        // var flightsController = flightsController //userController.getFlightsController()
         if (FlightsController !== null) {
-            FlightsController.fligthScreenClosed()
+            FlightsController.fligthScreenClosed();
         } else {
-            console.log("FlightsController is not initialized yet.")
+            console.log("FlightsController is not initialized yet.");
         }
-        console.log("FlightsScreen was closed")
+        console.log("FlightsScreen was closed");
     }
 }

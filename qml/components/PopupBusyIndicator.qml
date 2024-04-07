@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 
 Popup {
-    id: loadingPopup
+    id: root
     modal: true
     focus: true
     width: parent.width

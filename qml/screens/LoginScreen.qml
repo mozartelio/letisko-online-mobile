@@ -169,6 +169,10 @@ Page {
         }
     }
 
+    PopupBusyIndicator {
+        id: loadingPopup
+    }
+
     QtObject {
         id: privates
         property string loginErrorText: qsTr("Login failed, the reason is:")

@@ -37,7 +37,7 @@ Page {
         SearchBar {
             Layout.alignment: Qt.AlignCenter | Qt.AlignTop
             onTextChanged: {
-                filterProxyModel.setFilterString(text);
+                filterProxyModel.setFilterString(text)
             }
         }
 
@@ -77,7 +77,7 @@ Page {
                     rigthSectionRightButtonText: "Farthest to closest"
                     onValueChanged: {
                         //TODO:
-                        filterProxyModel.setSortOrder(checked);
+                        filterProxyModel.setSortOrder(checked)
                     }
                 }
 
@@ -90,10 +90,17 @@ Page {
             }
         }
 
+        BusyIndicator {
+            running: FlightsController.isLoadingFlights
+            visible: FlightsController.isLoadingFlights
+            Layout.alignment: Qt.AlignCenter
+        }
+
         ScrollView {
             id: scrollView
             spacing: 0 // Adjust the spacing value as per your requirement
             clip: true
+            visible: !FlightsController.isLoadingFlights
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.preferredHeight: 356 //parent.height
             Layout.preferredWidth: parent.width
@@ -189,22 +196,23 @@ Page {
 
     Component.onCompleted: {
 
+
         /*TODO: why does not work?
         var flightsController = flightsController //userController.getFlightsController()*/
         if (FlightsController !== null) {
-            FlightsController.loadFlightsOnTimer();
-            console.log("called:  loadFlightsOnTimer(); ");
+            FlightsController.loadFlightsOnTimer()
+            console.log("called:  loadFlightsOnTimer(); ")
         } else {
-            console.log("FlightsController is not initialized yet.");
+            console.log("FlightsController is not initialized yet.")
         }
     }
 
     Component.onDestruction: {
         if (FlightsController !== null) {
-            FlightsController.fligthScreenClosed();
+            FlightsController.fligthScreenClosed()
         } else {
-            console.log("FlightsController is not initialized yet.");
+            console.log("FlightsController is not initialized yet.")
         }
-        console.log("FlightsScreen was closed");
+        console.log("FlightsScreen was closed")
     }
 }

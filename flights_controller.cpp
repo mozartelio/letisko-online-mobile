@@ -1,7 +1,9 @@
 #include <QNetworkReply>
 #include <QJsonDocument>
+#include <QNetworkRequest>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QString>
 #include <QDebug>
 #include "flights_controller.h"
 #include "request_constants.h"
@@ -12,6 +14,16 @@ FlightsController::FlightsController(QNetworkAccessManager *networkManager)
     setNetworkManager(networkManager);
     m_flightsModel = new FlightsModel();
     connect(&m_loadFligthsTimer, &QTimer::timeout, this, &FlightsController::loadFlights);
+
+    // // TEST
+    // QNetworkRequest request(QUrl("http://127.0.0.1:5001/stream"));
+    // QNetworkReply *reply = networkManager->get(request);
+
+    // QObject::connect(reply, &QNetworkReply::readyRead, [reply]
+    //                  {
+    //     QByteArray eventData = reply->readAll();
+    //     QString eventString(eventData);
+    //     qDebug() << "Received event:" << eventString; });
 }
 
 FlightsController::~FlightsController()
@@ -26,10 +38,9 @@ void FlightsController::deleteFligthModel()
     m_flightsModel = nullptr;
 }
 
-
 void FlightsController::loadFlightsOnTimer()
 {
-    loadFlights();                  // load flights first time
+    loadFlights(); // load flights first time
     m_loadFligthsTimer.start(RequestConstants::FLIGHTS_RELOAD_TIMER_MILLISECONDS);
 }
 
@@ -39,6 +50,7 @@ void FlightsController::loadFlights()
     if (m_userJwtAuthorizationToken.isEmpty())
     {
         qDebug() << "No auth token set";
+        setIsLoadingFlights(true);
         return;
     }
     qDebug() << "Loading flights...";
@@ -64,12 +76,13 @@ void FlightsController::handleFligthsLoadNetworkReply(QNetworkReply *reply)
     QJsonDocument jsonResponse = QJsonDocument::fromJson(rawResponseData);
     if (!jsonResponse.isArray())
     {
-        // Handle invalid JSON format
+        // Handle invalid JSON format or server absence
         qCritical() << "Flights: Failed to parse retrieved data into JSON document.";
         return;
     }
 
-    m_flightsModel->removeAllFlights(); //remove old flights
+    setIsLoadingFlights(false);
+    m_flightsModel->removeAllFlights(); // remove old flights
     QJsonArray jsonArray = jsonResponse.array();
     for (const QJsonValue &value : jsonArray)
     {
@@ -130,4 +143,15 @@ void FlightsController::setFlightsModel(FlightsModel *model)
 void FlightsController::fligthScreenClosed()
 {
     m_loadFligthsTimer.stop();
+}
+
+bool FlightsController::isLoadingFlights() const { return m_isLoadingFlights; }
+
+void FlightsController::setIsLoadingFlights(bool isLoading)
+{
+    if (m_isLoadingFlights != isLoading)
+    {
+        m_isLoadingFlights = isLoading;
+        emit isLoadingFlightsChanged();
+    }
 }

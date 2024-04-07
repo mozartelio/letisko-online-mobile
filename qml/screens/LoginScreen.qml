@@ -100,6 +100,7 @@ Page {
                             infoPopup.open()
                             return
                         }
+                        loadingPopup.open()
                         UserController.doLogin(emailInput.text,
                                                passswordInput.text)
                     }

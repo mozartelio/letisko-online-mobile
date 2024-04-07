@@ -64,6 +64,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     qml/components/RoundedImage.qml
     qml/components/divider/HorizontalDividerSubhead.qml
     qml/components/PopupParent.qml
+    qml/components/PopupBusyIndicator.qml
 
     # text font styles
     #Headline

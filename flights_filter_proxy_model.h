@@ -10,7 +10,6 @@ class FlightsFilterProxyModel : public QSortFilterProxyModel
 public:
     FlightsFilterProxyModel(QObject *parent = 0);
 
-        // FlightsFilterProxyModel();
 
     ~FlightsFilterProxyModel();
 

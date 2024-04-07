@@ -15,6 +15,7 @@ class LOStyle : public QObject
 
     // Colors - primary palette
     Q_PROPERTY(QColor popupSemiTransparentDarkColor READ popupSemiTransparentDarkColor CONSTANT)
+    Q_PROPERTY(QColor popupSemiTransparentLightColor READ popupSemiTransparentLightColor CONSTANT)
     Q_PROPERTY(QColor transparentColor READ transparentColor CONSTANT)
     Q_PROPERTY(QColor surfaceContainerLowColor READ surfaceContainerLowColor CONSTANT)
     Q_PROPERTY(QColor primaryColor READ primaryColor CONSTANT)
@@ -99,6 +100,7 @@ public:
     // Colors
     QColor transparentColor() { return QColor::fromString("transparent"); }
     QColor popupSemiTransparentDarkColor() { return QColor::fromString("#AA000000"); }
+    QColor popupSemiTransparentLightColor() { return QColor::fromString("#AAFFFFFF"); }
     QColor surfaceContainerLowColor() { return QColor::fromString("#F7F2FA"); }
     QColor primaryColor() { return QColor::fromString("#6750A4"); }
     QColor onPrimaryColor() { return QColor::fromString("#FFFFFF"); }

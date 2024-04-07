@@ -7,5 +7,9 @@ const unsigned int RequestConstants::REQUEST_TIMEOUT_MILLISECONDS = 30000; // 30
 const unsigned int RequestConstants::FLIGHTS_RELOAD_TIMER_MILLISECONDS = 10000; // 5000 milliseconds = 5 seconds
 
 const QString RequestConstants::SERVER_BASE_URL = "http://127.0.0.1:5001/"; //"http://85.237.233.151:51/";
+const QString RequestConstants::UPDATE_SUBSCRIPTION_STREAM_ENDPOINT = "update_subscription_stream";
 const QString RequestConstants::LOGIN_ENDPOINT = "auth/login";
 const QString RequestConstants::FLIGHTS_ENDPOINT = "flight/flights";
+
+const QString RequestConstants::UPDATE_FLIGHTS_TYPE = "current_flights_update";
+const QString RequestConstants::UPDATE_AIRCRAFTS_TYPE = "aircrafts_update";

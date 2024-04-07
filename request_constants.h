@@ -14,11 +14,15 @@ public:
 
         // milliseconds
         static const unsigned int REQUEST_TIMEOUT_MILLISECONDS;
-        static const unsigned int  FLIGHTS_RELOAD_TIMER_MILLISECONDS;
+        static const unsigned int FLIGHTS_RELOAD_TIMER_MILLISECONDS;
 
         static const QString SERVER_BASE_URL;
+        static const QString UPDATE_SUBSCRIPTION_STREAM_ENDPOINT;
         static const QString LOGIN_ENDPOINT;
         static const QString FLIGHTS_ENDPOINT;
+
+        static const QString UPDATE_FLIGHTS_TYPE;
+        static const QString UPDATE_AIRCRAFTS_TYPE;
 
 private:
         RequestConstants(){};

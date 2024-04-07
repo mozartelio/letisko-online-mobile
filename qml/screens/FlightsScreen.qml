@@ -200,8 +200,8 @@ Page {
         /*TODO: why does not work?
         var flightsController = flightsController //userController.getFlightsController()*/
         if (FlightsController !== null) {
-            FlightsController.loadFlightsOnTimer()
-            console.log("called:  loadFlightsOnTimer(); ")
+            FlightsController.setIsActiveScreen(true)
+            console.log("called:  FlightsController.setIsActiveScreen(true); ")
         } else {
             console.log("FlightsController is not initialized yet.")
         }
@@ -209,7 +209,7 @@ Page {
 
     Component.onDestruction: {
         if (FlightsController !== null) {
-            FlightsController.fligthScreenClosed()
+            FlightsController.setIsActiveScreen(false)
         } else {
             console.log("FlightsController is not initialized yet.")
         }

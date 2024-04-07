@@ -5,25 +5,20 @@
 #include <QJsonObject>
 #include <QString>
 #include <QDebug>
+#include <QPair>
+
 #include "flights_controller.h"
 #include "request_constants.h"
+#include "server_sent_events_parser.h"
 
 FlightsController::FlightsController(QNetworkAccessManager *networkManager)
 {
     qDebug() << "hello from FlightsController";
     setNetworkManager(networkManager);
     m_flightsModel = new FlightsModel();
-    connect(&m_loadFligthsTimer, &QTimer::timeout, this, &FlightsController::loadFlights);
 
-    // // TEST
-    // QNetworkRequest request(QUrl("http://127.0.0.1:5001/stream"));
-    // QNetworkReply *reply = networkManager->get(request);
-
-    // QObject::connect(reply, &QNetworkReply::readyRead, [reply]
-    //                  {
-    //     QByteArray eventData = reply->readAll();
-    //     QString eventString(eventData);
-    //     qDebug() << "Received event:" << eventString; });
+    connect(this, &FlightsController::isActiveScreenChanged, this, &FlightsController::loadFlights);
+    subscribeToFlightsUpdates();
 }
 
 FlightsController::~FlightsController()
@@ -32,25 +27,41 @@ FlightsController::~FlightsController()
     deleteFligthModel();
 }
 
+void FlightsController::subscribeToFlightsUpdates()
+{
+    QNetworkRequest request;
+
+    request.setUrl(QUrl(RequestConstants::SERVER_BASE_URL + RequestConstants::UPDATE_SUBSCRIPTION_STREAM_ENDPOINT));
+    request.setRawHeader("Content-Type", RequestConstants::CONTENT_TYPE);
+    request.setRawHeader("User-Agent", RequestConstants::USER_AGENT);
+    QNetworkReply *reply = m_networkManager->get(request);
+
+    QObject::connect(reply, &QNetworkReply::readyRead, this, [this, reply]()
+                     { handleFligthsUpdateNetworkReply(reply); });
+}
+
 void FlightsController::deleteFligthModel()
 {
     delete m_flightsModel;
     m_flightsModel = nullptr;
 }
 
-void FlightsController::loadFlightsOnTimer()
-{
-    loadFlights(); // load flights first time
-    m_loadFligthsTimer.start(RequestConstants::FLIGHTS_RELOAD_TIMER_MILLISECONDS);
-}
 
 void FlightsController::loadFlights()
 {
+    // avoid loading flights if the screen is not active
+    if (!m_isActiveScreen)
+    {
+        qDebug() << "Not an active screen";
+        return;
+    }
+
     // Check auth token presence and implement its usage
     if (m_userJwtAuthorizationToken.isEmpty())
     {
         qDebug() << "No auth token set";
         setIsLoadingFlights(true);
+        QTimer::singleShot(5000, this, &FlightsController::loadFlights); // Retry after 5 seconds
         return;
     }
     qDebug() << "Loading flights...";
@@ -76,8 +87,9 @@ void FlightsController::handleFligthsLoadNetworkReply(QNetworkReply *reply)
     QJsonDocument jsonResponse = QJsonDocument::fromJson(rawResponseData);
     if (!jsonResponse.isArray())
     {
-        // Handle invalid JSON format or server absence
-        qCritical() << "Flights: Failed to parse retrieved data into JSON document.";
+        // Handle invalid JSON format or server absence (error also heppens when server is switched off)
+        qCritical() << "Flights: Failed to parse retrieved data into JSON document:";
+        qDebug() << "rawResponseData: " << rawResponseData;
         return;
     }
 
@@ -110,6 +122,23 @@ void FlightsController::handleFligthsLoadNetworkReply(QNetworkReply *reply)
     reply->deleteLater();
 }
 
+void FlightsController::handleFligthsUpdateNetworkReply(QNetworkReply *reply)
+{
+    qDebug() << "Subscribing to updates RECIEVED...processing...";
+    QByteArray eventData = reply->readAll();
+    QPair<QString, QString> parsedData = ServerSentEventsParser::parseSseResponse(eventData);
+
+    QString eventType = parsedData.first;
+
+    // try to parse the event data as JSON?!
+    qDebug() << "Received event - Type:" << eventType;
+
+    if (eventType == RequestConstants::UPDATE_FLIGHTS_TYPE)
+    {
+        loadFlights();
+    }
+};
+
 QString FlightsController::getUserJwtAuthorizationToken() const
 {
     return m_userJwtAuthorizationToken;
@@ -140,10 +169,6 @@ void FlightsController::setFlightsModel(FlightsModel *model)
     m_flightsModel = model;
 }
 
-void FlightsController::fligthScreenClosed()
-{
-    m_loadFligthsTimer.stop();
-}
 
 bool FlightsController::isLoadingFlights() const { return m_isLoadingFlights; }
 
@@ -153,5 +178,19 @@ void FlightsController::setIsLoadingFlights(bool isLoading)
     {
         m_isLoadingFlights = isLoading;
         emit isLoadingFlightsChanged();
+    }
+}
+
+bool FlightsController::isActiveScreen() const
+{
+    return m_isActiveScreen;
+}
+
+void FlightsController::setIsActiveScreen(bool isActive)
+{
+    if (m_isActiveScreen != isActive)
+    {
+        m_isActiveScreen = isActive;
+        emit isActiveScreenChanged();
     }
 }

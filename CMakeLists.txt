@@ -110,6 +110,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     aircraft_categories_controller.h aircraft_categories_controller.cpp
     request_constants.h request_constants.cpp
     flights_model.h flights_model.cpp
+    server_sent_events_parser.h server_sent_events_parser.cpp
 )
 
 

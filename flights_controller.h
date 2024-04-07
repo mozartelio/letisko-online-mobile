@@ -3,19 +3,24 @@
 #include <QTimer>
 #include <QObject>
 #include <QNetworkAccessManager>
+
 #include "flights_model.h"
 
 class FlightsController : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool isLoadingFlights READ isLoadingFlights WRITE setIsLoadingFlights NOTIFY isLoadingFlightsChanged)
+    Q_PROPERTY(bool isActiveScreen READ isActiveScreen WRITE setIsActiveScreen NOTIFY isActiveScreenChanged)
 private:
-    QTimer m_loadFligthsTimer;
     QTimer m_request_timer;
     QNetworkAccessManager *m_networkManager;
     QString m_userJwtAuthorizationToken;
     FlightsModel *m_flightsModel;
+
     bool m_isLoadingFlights = false;
+    bool m_isActiveScreen = false;
+
+    void subscribeToFlightsUpdates();
 
 public:
     explicit FlightsController(QNetworkAccessManager *networkManager);
@@ -33,16 +38,19 @@ public:
     void setFlightsModel(FlightsModel *model);
 
     Q_INVOKABLE void loadFlights();
-    Q_INVOKABLE void loadFlightsOnTimer();
-    Q_INVOKABLE void fligthScreenClosed();
 
     bool isLoadingFlights() const;
     void setIsLoadingFlights(bool isLoading);
 
+    bool isActiveScreen() const;
+    Q_INVOKABLE void setIsActiveScreen(bool isActive);
+
 public slots:
     void handleFligthsLoadNetworkReply(QNetworkReply *reply);
+    void handleFligthsUpdateNetworkReply(QNetworkReply *reply);
 
 signals:
     void isLoadingFlightsChanged();
+    void isActiveScreenChanged();
 };
 #endif // FLIGHTSCONTROLLER_H

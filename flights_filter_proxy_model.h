@@ -2,6 +2,7 @@
 #define FILTERPROXYMODEL_H
 #include <QObject>
 #include <QSortFilterProxyModel>
+
 #include "filtering_roles.h"
 
 class FlightsFilterProxyModel : public QSortFilterProxyModel

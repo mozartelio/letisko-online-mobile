@@ -6,7 +6,7 @@ FlightInfo::FlightInfo(QObject *parent)
 }
 
 
-QString FlightInfo::callsign() const
+QString FlightInfo::getCallsign() const
 {
     return m_callsign;
 }
@@ -19,7 +19,7 @@ void FlightInfo::setCallsign(const QString& callsign)
     }
 }
 
-QString FlightInfo::planeName() const
+QString FlightInfo::getPlaneName() const
 {
     return m_planeName;
 }
@@ -32,7 +32,7 @@ void FlightInfo::setPlaneName(const QString& planeName)
     }
 }
 
-int FlightInfo::flightStatus() const
+int FlightInfo::getFlightStatus() const
 {
     return m_flightStatus;
 }
@@ -45,7 +45,7 @@ void FlightInfo::setFlightStatus(int flightStatus)
     }
 }
 
-QDateTime FlightInfo::departureTime() const
+QDateTime FlightInfo::getDepartureTime() const
 {
     return m_departureTime;
 }
@@ -58,7 +58,7 @@ void FlightInfo::setDepartureTime(const QDateTime& departureTime)
     }
 }
 
-QDateTime FlightInfo::arrivalTime() const
+QDateTime FlightInfo::getArrivalTime() const
 {
     return m_arrivalTime;
 }

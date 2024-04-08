@@ -37,7 +37,7 @@ Page {
         SearchBar {
             Layout.alignment: Qt.AlignCenter | Qt.AlignTop
             onTextChanged: {
-                filterProxyModel.setFilterString(text)
+                flightsFilterProxyModel.setFilterString(text);
             }
         }
 
@@ -77,7 +77,7 @@ Page {
                     rigthSectionRightButtonText: "Farthest to closest"
                     onValueChanged: {
                         //TODO:
-                        filterProxyModel.setSortOrder(checked)
+                        flightsFilterProxyModel.setSortOrder(checked);
                     }
                 }
 
@@ -96,6 +96,7 @@ Page {
             Layout.alignment: Qt.AlignCenter
         }
 
+        //TODO: change to flickable and ScrollBar
         ScrollView {
             id: scrollView
             spacing: 0 // Adjust the spacing value as per your requirement
@@ -114,7 +115,7 @@ Page {
 
             ListView {
                 id: view
-                model: filterProxyModel
+                model: flightsFilterProxyModel
                 //does not worker
                 // UserController.getFlightsController().getFlightsModel().getFilterProxyModel()
                 width: parent.width
@@ -196,23 +197,22 @@ Page {
 
     Component.onCompleted: {
 
-
         /*TODO: why does not work?
         var flightsController = flightsController //userController.getFlightsController()*/
         if (FlightsController !== null) {
-            FlightsController.setIsActiveScreen(true)
-            console.log("called:  FlightsController.setIsActiveScreen(true); ")
+            FlightsController.setIsActiveScreen(true);
+            console.log("called:  FlightsController.setIsActiveScreen(true); ");
         } else {
-            console.log("FlightsController is not initialized yet.")
+            console.log("FlightsController is not initialized yet.");
         }
     }
 
     Component.onDestruction: {
         if (FlightsController !== null) {
-            FlightsController.setIsActiveScreen(false)
+            FlightsController.setIsActiveScreen(false);
         } else {
-            console.log("FlightsController is not initialized yet.")
+            console.log("FlightsController is not initialized yet.");
         }
-        console.log("FlightsScreen was closed")
+        console.log("FlightsScreen was closed");
     }
 }

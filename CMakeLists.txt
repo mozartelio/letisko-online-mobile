@@ -106,11 +106,16 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     flights_controller.h flights_controller.cpp
     flights_filter_proxy_model.h flights_filter_proxy_model.cpp
     flight_info.h flight_info.cpp
-    filtering_roles.h
+    flights_roles.h
     aircraft_categories_controller.h aircraft_categories_controller.cpp
     request_constants.h request_constants.cpp
     flights_model.h flights_model.cpp
     server_sent_events_parser.h server_sent_events_parser.cpp
+    aircrafts_controller.h aircrafts_controller.cpp
+    aircrafts_model.h aircrafts_model.cpp
+    aircraft_info.h aircraft_info.cpp
+    aircrafts_filter_proxy_model.h aircrafts_filter_proxy_model.cpp
+    aircrafts_roles.h
 )
 
 

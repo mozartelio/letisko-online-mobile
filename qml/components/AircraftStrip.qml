@@ -7,12 +7,23 @@ Rectangle {
     id: root
 
     required property string serialNumber
+    required property double totalTimeFlown
+    required property string timeUnitName
+    required property string registrationState
+    required property string aircraftType
+    required property string flightRules
+    required property string planeName
+    required property string icaoWakeTurbulenceCategory
+
+    property string ownerName
+    required property string aircraftCategory
+    required property string aircraftClass
+    required property date lastMaintainance
     property url imagePath: ""
 
     color: __style.basicStripColor
     implicitWidth: parent.width
-    implicitHeight: topRowWrapper.implicitHeight + topRowWrapper.anchors.topMargin
-                    + topRowWrapper.anchors.bottomMargin //100
+    implicitHeight: topRowWrapper.implicitHeight + topRowWrapper.anchors.topMargin + topRowWrapper.anchors.bottomMargin //100
 
     StateGroup {
         states: [
@@ -31,7 +42,7 @@ Rectangle {
         id: mouseArea
         anchors.fill: root
         onPressed: {
-            console.log("pressed")
+            console.log("pressed");
         }
     }
 
@@ -52,9 +63,9 @@ Rectangle {
 
         Image {
             id: aircraftImage
-            source: imagePath
+            source: root.imagePath
             verticalAlignment: Image.AlignVCenter
-            visible: imagePath.toString() !== "" ? true : false
+            visible: root.imagePath.toString() !== "" ? true : false
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.preferredWidth: 92
             Layout.preferredHeight: 92
@@ -70,7 +81,7 @@ Rectangle {
                     text: qsTr("Serial number: ")
                 }
                 BodyLargeText {
-                    text: serialNumber
+                    text: root.serialNumber
                     font.bold: true
                 }
             }
@@ -112,18 +123,20 @@ Rectangle {
                 }
 
                 Row {
+                    visible: root.ownerName !== null && root.ownerName !== ""
                     BodyMediumText {
                         text: qsTr("Owner: ")
                         font.bold: true
                     }
                     BodyMediumText {
-                        text: "info"
+                        text: root.ownerName
                         font.bold: true
                         color: __style.primaryColor
                         MouseArea {
+                            // TODO:
                             anchors.fill: parent
                             onPressed: {
-                                console.log("aircraft owner pressed")
+                                console.log("aircraft owner pressed");
                             }
                         }
                     }
@@ -135,23 +148,29 @@ Rectangle {
                         font.bold: true
                     }
                     BodyMediumText {
-                        text: "info"
+                        text: root.planeName
                     }
                 }
 
                 Row {
+                    visible: {
+                        // Check if lastMaintainance is a valid date
+                        var date = new Date(root.lastMaintainance);
+                        return !isNaN(date.getTime());
+                    }
                     BodyMediumText {
                         text: qsTr("Date of last maintainance: ")
                         font.bold: true
                     }
                     BodyMediumText {
-                        text: "info"
+                        text: Qt.formatDateTime(root.lastMaintainance, "hh:mm dd.MM.yyyy")
                         font.bold: true
-                        color: __style.primaryColor
+                        // TODO: show all the dates
+                        // color: __style.primaryColor
                         MouseArea {
                             anchors.fill: parent
                             onPressed: {
-                                console.log("Date of last maintainance pressed")
+                                console.log("Date of last maintainance pressed");
                             }
                         }
                     }
@@ -163,62 +182,71 @@ Rectangle {
                         font.bold: true
                     }
                     BodyMediumText {
-                        text: " info... hours"
+                        //TODO: translations
+                        text: Number(root.totalTimeFlown).toFixed(2) + " " + qsTr(root.timeUnitName)
                     }
                 }
 
                 Row {
-                    // Layout.preferredWidth: 362
                     BodyMediumText {
                         text: qsTr("Aircraft type: ")
                         font.bold: true
                     }
                     BodyMediumText {
-                        text: "info"
+                        text: root.aircraftType
                     }
                 }
 
                 Row {
-                    // Layout.preferredWidth: 362
+                    visible: root.aircraftClass !== null && root.aircraftClass !== ""
                     BodyMediumText {
                         text: qsTr("Aircraft class: ")
                         font.bold: true
                     }
                     BodyMediumText {
-                        text: "info"
+                        text: root.aircraftClass
                     }
                 }
 
                 Row {
-                    // Layout.preferredWidth: 362
+                    visible: root.aircraftCategory !== null && root.aircraftCategory !== ""
                     BodyMediumText {
                         text: qsTr("Aircraft category: ")
                         font.bold: true
                     }
                     BodyMediumText {
-                        text: "info"
+                        text: root.aircraftCategory
                     }
                 }
 
                 Row {
-                    // Layout.preferredWidth: 362
                     BodyMediumText {
                         text: qsTr("Flight rules: ")
                         font.bold: true
                     }
                     BodyMediumText {
-                        text: "info"
+                        //TODO: translations
+                        text: qsTr(flightRules)
                     }
                 }
 
                 Row {
-                    // Layout.preferredWidth: 362
                     BodyMediumText {
                         text: qsTr("ICAO wake tubulence category: ")
                         font.bold: true
                     }
                     BodyMediumText {
-                        text: "info"
+                        text: root.icaoWakeTurbulenceCategory
+                    }
+                }
+                Row {
+                    BodyMediumText {
+                        text: qsTr("State of registration: ")
+                        font.bold: true
+                    }
+                    BodyMediumText {
+                        //TODO: translations
+                        text: root.registrationState
                     }
                 }
             }

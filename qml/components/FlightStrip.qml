@@ -12,7 +12,7 @@ Item {
     required property date departureTime
     required property date arrivalTime
 
-    property bool isExpanded: UserAppSettings.showExpandedFligths
+    property bool isExpanded: UserAppSettings.showExpandedFlights
 
     width: parent.width
     implicitHeight: column.implicitHeight + bottomOutline.implicitHeight
@@ -117,7 +117,7 @@ Item {
                             font.bold: true
                         }
                         BodyLargeText {
-                            text: Qt.formatDateTime(departureTime, "hh:mm dd.MM.yyyy") //departureTime
+                            text: Qt.formatDateTime(departureTime, "hh:mm dd.MM.yyyy")
                             width: 50
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter

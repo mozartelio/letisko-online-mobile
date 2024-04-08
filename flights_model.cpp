@@ -1,7 +1,7 @@
 #include <QObject>
 #include <QDebug>
 #include "flights_model.h"
-#include "filtering_roles.h"
+#include "flights_roles.h"
 
 FlightsModel::FlightsModel()
 {
@@ -72,15 +72,15 @@ QVariant FlightsModel::data(const QModelIndex &index, int role) const
         switch (role)
         {
         case CallsignRole:
-            return flightInfo->callsign();
+            return flightInfo->getCallsign();
         case PlaneNameRole:
-            return flightInfo->planeName();
+            return flightInfo->getPlaneName();
         case FlightStatusRole:
-            return flightInfo->flightStatus();
+            return flightInfo->getFlightStatus();
         case DepartureTimeRole:
-            return flightInfo->departureTime();
+            return flightInfo->getDepartureTime();
         case ArrivalTimeRole:
-            return flightInfo->arrivalTime();
+            return flightInfo->getArrivalTime();
         }
     }
     return {};

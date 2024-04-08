@@ -1,6 +1,8 @@
 #include <QDateTime>
 #include <QDebug>
+
 #include "flights_filter_proxy_model.h"
+#include "flights_roles.h"
 
 FlightsFilterProxyModel::FlightsFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
@@ -33,11 +35,11 @@ bool FlightsFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex 
     QModelIndex sourceIndex = sourceModel()->index(sourceRow, 0);
 
     // get the data for each role and apply your filtering logic
-    QVariant callsignData = sourceModel()->data(sourceIndex, Roles::CallsignRole);
-    QVariant planeNameData = sourceModel()->data(sourceIndex, Roles::PlaneNameRole);
-    QVariant flightStatusData = sourceModel()->data(sourceIndex, Roles::FlightStatusRole);
-    QVariant departureTimeData = sourceModel()->data(sourceIndex, Roles::DepartureTimeRole);
-    QVariant arrivalTimeData = sourceModel()->data(sourceIndex, Roles::ArrivalTimeRole);
+    QVariant callsignData = sourceModel()->data(sourceIndex, FlightsRoles::CallsignRole);
+    QVariant planeNameData = sourceModel()->data(sourceIndex, FlightsRoles::PlaneNameRole);
+    QVariant flightStatusData = sourceModel()->data(sourceIndex, FlightsRoles::FlightStatusRole);
+    QVariant departureTimeData = sourceModel()->data(sourceIndex, FlightsRoles::DepartureTimeRole);
+    QVariant arrivalTimeData = sourceModel()->data(sourceIndex, FlightsRoles::ArrivalTimeRole);
 
     // applies filtering conditions here
     bool callsignMatches = callsignData.toString().contains(filterRegularExpression());
@@ -56,6 +58,7 @@ void FlightsFilterProxyModel::setFilterString(QString string)
     this->setFilterFixedString(string);
 }
 
+// TODO: Implement sorting
 void FlightsFilterProxyModel::setSortOrder(bool checked)
 {
     if (checked)

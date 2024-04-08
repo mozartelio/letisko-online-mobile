@@ -9,29 +9,29 @@ class FlightInfo : public QObject
     Q_OBJECT
         // QML_ELEMENT
 
-    Q_PROPERTY(QString callsign READ callsign WRITE setCallsign NOTIFY callsignChanged REQUIRED)
-    Q_PROPERTY(QString planeName READ planeName WRITE setPlaneName NOTIFY planeNameChanged REQUIRED)
-    Q_PROPERTY(int flightStatus READ flightStatus WRITE setFlightStatus NOTIFY flightStatusChanged REQUIRED)
-    Q_PROPERTY(QDateTime departureTime READ departureTime WRITE setDepartureTime NOTIFY departureTimeChanged REQUIRED)
-    Q_PROPERTY(QDateTime arrivalTime READ arrivalTime WRITE setArrivalTime NOTIFY arrivalTimeChanged REQUIRED)
+    Q_PROPERTY(QString callsign READ getCallsign WRITE setCallsign NOTIFY callsignChanged REQUIRED)
+    Q_PROPERTY(QString planeName READ getPlaneName WRITE setPlaneName NOTIFY planeNameChanged REQUIRED)
+    Q_PROPERTY(int flightStatus READ getFlightStatus WRITE setFlightStatus NOTIFY flightStatusChanged REQUIRED)
+    Q_PROPERTY(QDateTime departureTime READ getDepartureTime WRITE setDepartureTime NOTIFY departureTimeChanged REQUIRED)
+    Q_PROPERTY(QDateTime getArrivalTime READ getArrivalTime WRITE setArrivalTime NOTIFY arrivalTimeChanged REQUIRED)
 
 public:
     explicit FlightInfo(QObject *parent = nullptr);
     // ~FlightInfo();
 
-    QString callsign() const;
+    QString getCallsign() const;
     void setCallsign(const QString &callsign);
 
-    QString planeName() const;
+    QString getPlaneName() const;
     void setPlaneName(const QString &planeName);
 
-    int flightStatus() const;
+    int getFlightStatus() const;
     void setFlightStatus(int flightStatus);
 
-    QDateTime departureTime() const;
+    QDateTime getDepartureTime() const;
     void setDepartureTime(const QDateTime &departureTime);
 
-    QDateTime arrivalTime() const;
+    QDateTime getArrivalTime() const;
     void setArrivalTime(const QDateTime &arrivalTime);
 
 signals:

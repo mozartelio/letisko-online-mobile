@@ -1,7 +1,8 @@
 #ifndef FLIGHTSCONTROLLER_H
 #define FLIGHTSCONTROLLER_H
-#include <QTimer>
+
 #include <QObject>
+#include <QTimer>
 #include <QNetworkAccessManager>
 
 #include "flights_model.h"
@@ -26,7 +27,7 @@ public:
     explicit FlightsController(QNetworkAccessManager *networkManager);
     ~FlightsController();
 
-    void deleteFligthModel();
+    void deleteFlightModel();
 
     QNetworkAccessManager *getNetworkManager() const;
     void setNetworkManager(QNetworkAccessManager *networkManager);
@@ -46,8 +47,8 @@ public:
     Q_INVOKABLE void setIsActiveScreen(bool isActive);
 
 public slots:
-    void handleFligthsLoadNetworkReply(QNetworkReply *reply);
-    void handleFligthsUpdateNetworkReply(QNetworkReply *reply);
+    void handleFlightsLoadNetworkReply(QNetworkReply *reply);
+    void handleFlightsUpdateNetworkReply(QNetworkReply *reply);
 
 signals:
     void isLoadingFlightsChanged();

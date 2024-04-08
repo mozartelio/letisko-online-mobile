@@ -1,8 +1,8 @@
-#ifndef FILTERING_ROLES_H
-#define FILTERING_ROLES_H
+#ifndef FLIGHTS_ROLES_H
+#define FLIGHTS_ROLES_H
 #include <QAbstractListModel>
 
-enum Roles
+enum FlightsRoles
 {
     CallsignRole = Qt::UserRole + 1,
     PlaneNameRole = Qt::UserRole + 2,
@@ -10,4 +10,4 @@ enum Roles
     DepartureTimeRole = Qt::UserRole + 4,
     ArrivalTimeRole = Qt::UserRole + 5
 };
-#endif // FILTERING_ROLES_H
+#endif // FLIGHTS_ROLES_H

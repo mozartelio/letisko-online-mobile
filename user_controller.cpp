@@ -13,6 +13,7 @@ UserController::UserController(QObject *parent)
     qDebug() << "UserController hello from after 00:00";
     m_networkManager = new QNetworkAccessManager();
     m_flightsController = new FlightsController(m_networkManager);
+    m_aircraftsController = new AircraftsController(m_networkManager);
 }
 
 UserController::~UserController()
@@ -21,6 +22,9 @@ UserController::~UserController()
     // m_flightsController is a pointer
     delete m_flightsController;
     m_flightsController = nullptr; // Set the pointer to nullptr to avoid dangling pointer
+
+    delete m_aircraftsController;
+    m_aircraftsController = nullptr;
 
     delete m_networkManager;
     m_networkManager = nullptr;
@@ -130,6 +134,7 @@ void UserController::handleLoginNetworkReply(QNetworkReply *reply)
 void UserController::setControllersParams()
 {
     m_flightsController->setUserJwtAuthorizationToken(m_jwtAuthorizationToken);
+    m_aircraftsController->setUserJwtAuthorizationToken(m_jwtAuthorizationToken);
 }
 
 Q_INVOKABLE FlightsController *UserController::getFlightsController() const
@@ -138,6 +143,16 @@ Q_INVOKABLE FlightsController *UserController::getFlightsController() const
 }
 
 void UserController::setFlightsController(FlightsController *controller) { m_flightsController = controller; }
+
+Q_INVOKABLE AircraftsController *UserController::getAircraftsController() const
+{
+    return m_aircraftsController;
+}
+
+void UserController::setAircraftsController(AircraftsController *controller)
+{
+    m_aircraftsController = controller;
+}
 
 bool UserController::doRegister(const QString &email, const QString &password)
 {

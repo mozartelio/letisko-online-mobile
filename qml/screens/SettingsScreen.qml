@@ -153,13 +153,13 @@ Page {
                     }
                     SettingStrip {
                         settingType: SettingStrip.SettingType.Switch
-                        settingName: qsTr("Show expanded fligths")
+                        settingName: qsTr("Show expanded flights")
                         width: parent.width
                         chevronEnabled: false
-                        swithchReference.checked: UserAppSettings.showExpandedFligths
+                        swithchReference.checked: UserAppSettings.showExpandedFlights
                         onValueChanged: {
                             console.log("value changed");
-                            UserAppSettings.showExpandedFligths = !UserAppSettings.showExpandedFligths;
+                            UserAppSettings.showExpandedFlights = !UserAppSettings.showExpandedFlights;
                         }
                     }
                     SettingStrip {

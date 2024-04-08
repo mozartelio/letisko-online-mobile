@@ -25,10 +25,8 @@ Rectangle {
 
     color: __style.transparentColor
     clip: false
-    implicitWidth: mainColumn.implicitWidth + mainColumn.anchors.leftMargin
-                   + mainColumn.anchors.rightMargin //parent.width
-    implicitHeight: mainColumn.implicitHeight + mainColumn.anchors.topMargin
-                    + mainColumn.anchors.bottomMargin //100
+    implicitWidth: mainColumn.implicitWidth + mainColumn.anchors.leftMargin + mainColumn.anchors.rightMargin //parent.width
+    implicitHeight: mainColumn.implicitHeight + mainColumn.anchors.topMargin + mainColumn.anchors.bottomMargin //100
 
     StateGroup {
         states: [
@@ -48,14 +46,13 @@ Rectangle {
         anchors.fill: root
         onPressed: {
             if (settingType === SettingStrip.SettingType.Switch) {
-                switchElement.checked = !switchElement.checked
-                // console.log("pressed, AppSettings.showExpandedFligths: "
-                //             + AppSettings.showExpandedFligths)
-                console.log("pressed, UserAppSettings.showExpandedFligths: "
-                            + UserAppSettings.showExpandedFligths)
-                valueChanged()
+                switchElement.checked = !switchElement.checked;
+                // console.log("pressed, AppSettings.showExpandedFlights: "
+                //             + AppSettings.showExpandedFlights)
+                console.log("pressed, UserAppSettings.showExpandedFlights: " + UserAppSettings.showExpandedFlights);
+                valueChanged();
             }
-            console.log("pressed")
+            console.log("pressed");
         }
     }
 

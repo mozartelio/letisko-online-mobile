@@ -6,7 +6,9 @@
 #include <QNetworkReply>
 #include <QTimer>
 #include <qqml.h>
+
 #include "flights_controller.h"
+#include "aircrafts_controller.h"
 
 class UserController : public QObject
 {
@@ -16,7 +18,7 @@ private:
     QTimer m_request_timer;
     QString m_jwtAuthorizationToken;
     FlightsController *m_flightsController;
-
+    AircraftsController *m_aircraftsController;
     void setControllersParams();
 
 public:
@@ -27,6 +29,9 @@ public:
     
     Q_INVOKABLE FlightsController *getFlightsController() const;
     void setFlightsController(FlightsController *controller);
+
+    Q_INVOKABLE AircraftsController *getAircraftsController() const;
+    void setAircraftsController(AircraftsController *controller);
 
     // TODO: logout?
 signals:

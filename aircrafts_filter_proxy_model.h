@@ -1,14 +1,16 @@
-#ifndef FILTERPROXYMODEL_H
-#define FILTERPROXYMODEL_H
+#ifndef AIRCRAFTSFILTERPROXYMODEL_H
+#define AIRCRAFTSFILTERPROXYMODEL_H
+
 #include <QObject>
 #include <QSortFilterProxyModel>
 
-class FlightsFilterProxyModel : public QSortFilterProxyModel
+
+class AircraftsFilterProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
 public:
-    explicit FlightsFilterProxyModel(QObject *parent = 0);
-    ~FlightsFilterProxyModel();
+    explicit AircraftsFilterProxyModel(QObject *parent = nullptr);
+    ~AircraftsFilterProxyModel();
 
     Q_INVOKABLE void setFilterString(QString string);
 
@@ -18,4 +20,4 @@ public:
 
 };
 
-#endif // FILTERPROXYMODEL_H
+#endif // AIRCRAFTSFILTERPROXYMODEL_H

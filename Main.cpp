@@ -19,7 +19,7 @@
 #include "login.h"
 #include "user_controller.h"
 #include "flights_controller.h"
-
+#include "aircrafts_controller.h"
 
 void InstallDefaultFont()
 {
@@ -45,6 +45,8 @@ int main(int argc, char *argv[])
     FlightsController *flightsController = userController->getFlightsController();
     qmlRegisterSingletonInstance("com.letiskoonline.FlightsController", 1, 0, "FlightsController", flightsController);
 
+    AircraftsController *aircraftsController = userController->getAircraftsController();
+    qmlRegisterSingletonInstance("com.letiskoonline.AircraftsController", 1, 0, "AircraftsController", aircraftsController);
 
     // Create and populate list model instance
     // FlightsController listModel;
@@ -106,15 +108,15 @@ int main(int argc, char *argv[])
     QQmlContext *rootContext = engine.rootContext();
     rootContext->setContextProperty("__style", style);
 
-    FlightsFilterProxyModel *filterProxyModel = userController->getFlightsController()->getFlightsModel()->getFilterProxyModel();
-    rootContext->setContextProperty("filterProxyModel", filterProxyModel);
+    FlightsFilterProxyModel *flightsFilterProxyModel = userController->getFlightsController()->getFlightsModel()->getFilterProxyModel();
+    rootContext->setContextProperty("flightsFilterProxyModel", flightsFilterProxyModel);
 
+    AircraftsFilterProxyModel *aircraftsFilterProxyModel = userController->getAircraftsController()->getAircraftsModel()->getFilterProxyModel();
+    rootContext->setContextProperty("aircraftsFilterProxyModel", aircraftsFilterProxyModel);
 
     /**for using with hotreload**/
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app, [url](QObject *obj, const QUrl &objUrl)
-                     {
-        if (!obj && url == objUrl)
-            QCoreApplication::exit(-1); }, Qt::QueuedConnection);
+                     { if (!obj && url == objUrl) QCoreApplication::exit(- 1); }, Qt::QueuedConnection);
     engine.load(url);
 
     /** for testing without hotreload**/

@@ -150,6 +150,7 @@ Page {
                 goToMainScreen()
             } else {
                 infoPopupTextContent.text = privates.loginErrorText + "\n" + result
+                loadingPopup.close()
                 infoPopup.open()
             }
         }

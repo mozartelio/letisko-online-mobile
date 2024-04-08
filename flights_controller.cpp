@@ -1,6 +1,6 @@
 #include <QNetworkReply>
-#include <QJsonDocument>
 #include <QNetworkRequest>
+#include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QString>
@@ -24,7 +24,7 @@ FlightsController::FlightsController(QNetworkAccessManager *networkManager)
 FlightsController::~FlightsController()
 {
     qDebug() << "FlightsController destructor";
-    deleteFligthModel();
+    deleteFlightModel();
 }
 
 void FlightsController::subscribeToFlightsUpdates()
@@ -37,15 +37,14 @@ void FlightsController::subscribeToFlightsUpdates()
     QNetworkReply *reply = m_networkManager->get(request);
 
     QObject::connect(reply, &QNetworkReply::readyRead, this, [this, reply]()
-                     { handleFligthsUpdateNetworkReply(reply); });
+                     { handleFlightsUpdateNetworkReply(reply); });
 }
 
-void FlightsController::deleteFligthModel()
+void FlightsController::deleteFlightModel()
 {
     delete m_flightsModel;
     m_flightsModel = nullptr;
 }
-
 
 void FlightsController::loadFlights()
 {
@@ -61,7 +60,7 @@ void FlightsController::loadFlights()
     {
         qDebug() << "No auth token set";
         setIsLoadingFlights(true);
-        QTimer::singleShot(5000, this, &FlightsController::loadFlights); // Retry after 5 seconds
+        QTimer::singleShot(RequestConstants::REQUEST_RETRY_TIMEOUT_MILLISECONDS, this, &FlightsController::loadFlights);
         return;
     }
     qDebug() << "Loading flights...";
@@ -78,10 +77,10 @@ void FlightsController::loadFlights()
 
     // Connect the reply finished signal to process the response
     connect(reply, &QNetworkReply::finished, this, [this, reply]()
-            { handleFligthsLoadNetworkReply(reply); });
+            { handleFlightsLoadNetworkReply(reply); });
 }
 
-void FlightsController::handleFligthsLoadNetworkReply(QNetworkReply *reply)
+void FlightsController::handleFlightsLoadNetworkReply(QNetworkReply *reply)
 {
     QByteArray rawResponseData = reply->readAll();
     QJsonDocument jsonResponse = QJsonDocument::fromJson(rawResponseData);
@@ -122,7 +121,7 @@ void FlightsController::handleFligthsLoadNetworkReply(QNetworkReply *reply)
     reply->deleteLater();
 }
 
-void FlightsController::handleFligthsUpdateNetworkReply(QNetworkReply *reply)
+void FlightsController::handleFlightsUpdateNetworkReply(QNetworkReply *reply)
 {
     qDebug() << "Subscribing to updates RECIEVED...processing...";
     QByteArray eventData = reply->readAll();
@@ -168,7 +167,6 @@ void FlightsController::setFlightsModel(FlightsModel *model)
 {
     m_flightsModel = model;
 }
-
 
 bool FlightsController::isLoadingFlights() const { return m_isLoadingFlights; }
 

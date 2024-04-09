@@ -12,7 +12,6 @@ Item {
 
     implicitWidth: imageWidth
     implicitHeight: imageHeight
-
     Image {
         id: sourceItem
         width: parent.width
@@ -22,6 +21,7 @@ Item {
         anchors.fill: parent
         anchors.centerIn: parent
         visible: false
+        smooth: true
     }
 
     MultiEffect {

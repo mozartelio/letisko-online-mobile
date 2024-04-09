@@ -14,12 +14,13 @@
 #include <QTranslator>
 #include <QFontDatabase>
 #include <QtQml/qqmlextensionplugin.h>
-#include "lostyle.h"
+#include "lo_style.h"
 #include "hotreload/ComponentCreatorEngine.h"
 #include "login.h"
 #include "user_controller.h"
 #include "flights_controller.h"
 #include "aircrafts_controller.h"
+#include "pixmap_provider.h"
 
 void InstallDefaultFont()
 {
@@ -38,6 +39,17 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     qmlRegisterSingletonType(QUrl("qrc:/UserAppSettings.qml"), "UserAppSettings", 1, 0, "UserAppSettings");
+
+    // PixmapProvider *pixmapProvider = &PixmapProvider::instance();
+    // qmlRegisterSingletonInstance("com.letiskoonline.PixmapProvider", 1, 0, "PixmapProvider", pixmapProvider);
+
+    qmlRegisterSingletonType<PixmapProvider>("com.letiskoonline.PixmapImageProvider", 1, 0, "PixmapImageProvider", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject *
+                                             {
+        Q_UNUSED(engine)
+        Q_UNUSED(scriptEngine)
+
+        // Return the PixmapProvider instance
+         return static_cast<QObject*>(PixmapProvider::instance()); });
 
     UserController *userController = new UserController(&app);
     qmlRegisterSingletonInstance("com.letiskoonline.UserController", 1, 0, "UserController", userController);
@@ -97,12 +109,17 @@ int main(int argc, char *argv[])
     const QUrl url(qgetenv("MAIN_QML"));
     InstallDefaultFont();
 
-    /**for using with hotreload**/
+    /** << for using with hotreload**/
     ComponentCreatorEngine engine;
     engine.rootContext()->setContextProperty("QmlEngine", &engine);
+    /** >> end of source code for hot reload*/
 
-    /** for testing without hotreload**/
+    /** << for testing without hotreload**/
     // QQmlApplicationEngine engine;
+    /** >> for testing without hotreload**/
+
+    // qDebug() << "PixmapProvider::instance()->getPixmapProviderName():  " << PixmapProvider::instance()->getPixmapProviderName();
+    engine.addImageProvider(QLatin1String(PixmapProvider::instance()->getPixmapProviderName().toLatin1()), PixmapProvider::instance());
 
     LOStyle *style = new LOStyle(&engine);
     QQmlContext *rootContext = engine.rootContext();
@@ -114,16 +131,20 @@ int main(int argc, char *argv[])
     AircraftsFilterProxyModel *aircraftsFilterProxyModel = userController->getAircraftsController()->getAircraftsModel()->getFilterProxyModel();
     rootContext->setContextProperty("aircraftsFilterProxyModel", aircraftsFilterProxyModel);
 
-    /**for using with hotreload**/
+    // rootContext->setContextProperty("pixmapImageProvider", PixmapProvider::instance());
+
+    /** << for using with hotreload**/
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app, [url](QObject *obj, const QUrl &objUrl)
                      { if (!obj && url == objUrl) QCoreApplication::exit(- 1); }, Qt::QueuedConnection);
     engine.load(url);
+    /** >> end of source code for hot reload*/
 
-    /** for testing without hotreload**/
+    /** << for testing without hotreload**/
     // QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
     //     &app, []() { QCoreApplication::exit(-1); },
     //     Qt::QueuedConnection);
     // engine.loadFromModule("OnlineLetiskoMobileApp", "Main");
+    /** >> end for testing without hotreload**/
 
     return app.exec();
 }

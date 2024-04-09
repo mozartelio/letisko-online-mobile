@@ -103,7 +103,7 @@ Page {
                 //     }
                 //     SettingStrip {
                 //         settingType: SettingStrip.SettingType.Empty
-                //         settingName: qsTr("Adress")
+                //         settingName: qsTr("Address")
                 //         width: parent.width
                 //     }
                 //     SettingStrip {

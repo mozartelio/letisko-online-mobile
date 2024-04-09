@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import com.letiskoonline.UserController
+import com.letiskoonline.PixmapImageProvider
 import "./screens"
 import "./components"
 import "./components/typography/headline/text"
@@ -34,22 +35,23 @@ Item {
                     onClicked: drawer.open()
                 }
                 Label {
-                    // Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter | Qt.AnchorCenter
                     horizontalAlignment: Qt.AlignHCenter
                     verticalAlignment: Qt.AlignVCenter
                     Layout.fillWidth: true
                     HeadlineMediumText {
                         anchors.verticalCenter: parent.verticalCenter
-                        // anchors.centerIn: parent
                         text: privates.drawerPageName
                         color: __style.onPrimaryColor
                     }
                 }
 
                 ToolButton {
-                    id: control
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+                    id: profileButton
                     display: AbstractButton.TextBesideIcon
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+                    Layout.preferredHeight: parent.height
+                    Layout.rightMargin: 20
+                    Layout.leftMargin: 20
 
                     contentItem: RowLayout {
                         id: row
@@ -57,7 +59,7 @@ Item {
 
                         RoundedImage {
                             id: userPhoto
-                            imageSource: "../../assets/icons/3d_avatar_21.png"
+                            imageSource: __style.userDefaultAvatar
                             imageWidth: __style.icon45
                             imageHeight: __style.icon45
                             width: __style.icon45
@@ -275,9 +277,24 @@ Item {
         }
     }
 
-    // UserController {
-    //     id: userId
-    // }
+    Connections {
+        target: UserController.user
+
+        function onPersonalInfoChanged() {
+            userNameSurname.text = UserController.user.personalInfo.name + " "
+                    + UserController.user.personalInfo.surname
+        }
+
+        function onAvatarPixmapProviderIdChanged() {
+
+
+            /*TODO: does not work
+            console.log("onPersonalInfoChanged: " + UserController.user.personalInfo.name)*/
+            userPhoto.imageSource = "image://" + "pixmap_images" + "/"
+                    + UserController.user.avatarPixmapProviderId
+        }
+    }
+
     QtObject {
         id: privates
 

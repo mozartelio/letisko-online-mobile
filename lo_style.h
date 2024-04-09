@@ -1,5 +1,5 @@
-#ifndef LOSTYLE_H
-#define LOSTYLE_H
+#ifndef LO_STYLE_H
+#define LO_STYLE_H
 
 #include <QObject>
 #include <QFont>
@@ -62,7 +62,7 @@ class LOStyle : public QObject
     Q_PROPERTY(QUrl editIcon READ editIcon CONSTANT)
     Q_PROPERTY(QUrl arrowDropDownMediumIcon READ arrowDropDownMediumIcon CONSTANT)
     Q_PROPERTY( QUrl arrowDropUpMediumIcon READ arrowDropUpMediumIcon CONSTANT )
-    // Q_PROPERTY( QUrl READ CONSTANT )
+    Q_PROPERTY( QUrl userDefaultAvatar READ userDefaultAvatar CONSTANT )
 
     // Q_PROPERTY( QUrl READ CONSTANT )
 
@@ -147,7 +147,8 @@ public:
     QUrl editIcon() { return QUrl("qrc:/icons/edit_square_24px.svg"); }
     QUrl arrowDropDownMediumIcon() { return QUrl("qrc:/icons/arrow_drop_down_medium.svg"); }
     QUrl arrowDropUpMediumIcon() { return QUrl("qrc:/icons/arrow_drop_up_medium.svg"); }
-    // QUrl Icon() {return QUrl( "qrc:/icons/" );}
+    QUrl userDefaultAvatar() {return QUrl( "qrc:/icons/default_user_avatar_24px.svg" );}
+    // QUrl () {return QUrl( "qrc:/icons/" );}
 
     // static QUrl Icon() {return QUrl( "qrc:/Icon.svg" );}
 
@@ -162,4 +163,4 @@ public:
     int maximumEmailInputLength() { return 255; }
 };
 
-#endif // LOSTYLE_H
+#endif // LO_STYLE_H

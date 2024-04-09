@@ -12,17 +12,6 @@ class FlightsController : public QObject
     Q_OBJECT
     Q_PROPERTY(bool isLoadingFlights READ isLoadingFlights WRITE setIsLoadingFlights NOTIFY isLoadingFlightsChanged)
     Q_PROPERTY(bool isActiveScreen READ isActiveScreen WRITE setIsActiveScreen NOTIFY isActiveScreenChanged)
-private:
-    QTimer m_request_timer;
-    QNetworkAccessManager *m_networkManager;
-    QString m_userJwtAuthorizationToken;
-    FlightsModel *m_flightsModel;
-
-    bool m_isLoadingFlights = false;
-    bool m_isActiveScreen = false;
-
-    void subscribeToFlightsUpdates();
-
 public:
     explicit FlightsController(QNetworkAccessManager *networkManager);
     ~FlightsController();
@@ -53,5 +42,16 @@ public slots:
 signals:
     void isLoadingFlightsChanged();
     void isActiveScreenChanged();
+
+private:
+    QTimer m_requestTimer;
+    QNetworkAccessManager *m_networkManager;
+    QString m_userJwtAuthorizationToken;
+    FlightsModel *m_flightsModel;
+
+    bool m_isLoadingFlights = false;
+    bool m_isActiveScreen = false;
+
+    void subscribeToFlightsUpdates();
 };
 #endif // FLIGHTSCONTROLLER_H

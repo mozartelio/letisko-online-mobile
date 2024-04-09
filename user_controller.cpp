@@ -4,6 +4,7 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QDebug>
+
 #include "request_constants.h"
 #include "user_controller.h"
 
@@ -14,6 +15,7 @@ UserController::UserController(QObject *parent)
     m_networkManager = new QNetworkAccessManager();
     m_flightsController = new FlightsController(m_networkManager);
     m_aircraftsController = new AircraftsController(m_networkManager);
+    m_user = new User(m_networkManager);
 }
 
 UserController::~UserController()
@@ -28,6 +30,9 @@ UserController::~UserController()
 
     delete m_networkManager;
     m_networkManager = nullptr;
+
+    delete m_user;
+    m_user = nullptr;
 }
 
 // std::pair<bool, QString> extractJsonKeyValueFromRaw(const QByteArray &rawResponseData, const QString &jsonKeyName)
@@ -74,8 +79,8 @@ void UserController::doLogin(const QString &email, const QString &password)
     qDebug() << "email: " << email;
     qDebug() << "password: " << password;
 
-    m_request_timer.start(RequestConstants::REQUEST_TIMEOUT_MILLISECONDS);
-    m_request_timer.setSingleShot(true);
+    m_requestTimer.start(RequestConstants::REQUEST_TIMEOUT_MILLISECONDS);
+    m_requestTimer.setSingleShot(true);
 
     request.setUrl(QUrl(RequestConstants::SERVER_BASE_URL + RequestConstants::LOGIN_ENDPOINT));
     request.setRawHeader("Content-Type", RequestConstants::CONTENT_TYPE);
@@ -103,7 +108,7 @@ void UserController::handleLoginNetworkReply(QNetworkReply *reply)
     QJsonDocument jsonResponse = QJsonDocument::fromJson(rawResponseData);
     if (jsonResponse.isNull())
     {
-        qCritical() << "Failed to parse JSON document.";
+        qCritical() << "UserController : Failed to parse JSON document.";
         emit loginResult(internalServerProblemDescription);
     }
     QJsonObject jsonObject = jsonResponse.object();
@@ -115,7 +120,7 @@ void UserController::handleLoginNetworkReply(QNetworkReply *reply)
             emit loginResult(true);
             m_jwtAuthorizationToken = jsonObject["access_token"].toString();
             qDebug() << "auth token: " << m_jwtAuthorizationToken;
-            setControllersParams();
+            performAfterAuthActions();
         }
         else
         {
@@ -131,10 +136,11 @@ void UserController::handleLoginNetworkReply(QNetworkReply *reply)
     reply->deleteLater();
 }
 
-void UserController::setControllersParams()
+void UserController::performAfterAuthActions()
 {
     m_flightsController->setUserJwtAuthorizationToken(m_jwtAuthorizationToken);
     m_aircraftsController->setUserJwtAuthorizationToken(m_jwtAuthorizationToken);
+    m_user->setJwtAuthorizationToken(m_jwtAuthorizationToken);
 }
 
 Q_INVOKABLE FlightsController *UserController::getFlightsController() const
@@ -152,6 +158,18 @@ Q_INVOKABLE AircraftsController *UserController::getAircraftsController() const
 void UserController::setAircraftsController(AircraftsController *controller)
 {
     m_aircraftsController = controller;
+}
+
+User *UserController::getUser() const
+{
+    qDebug() << "UserController::getProfileInfo()";
+    return m_user;
+}
+
+void UserController::setUser(User *user)
+{
+    m_user = user;
+    emit userChanged();
 }
 
 bool UserController::doRegister(const QString &email, const QString &password)

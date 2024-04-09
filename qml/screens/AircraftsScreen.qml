@@ -107,48 +107,7 @@ Page {
                     }
                 }
             }
-            // Column {
-            //     width: parent.width
-            //     height: parent.height
-            //     AircraftStrip {
-            //         serialNumber: "JDW35AXM"
-            //         imagePath: "../../assets/icons/default_plane_plug.png"
-            //     }
-            //     AircraftStrip {
-            //         serialNumber: "OEM84JDU"
-            //     }
-            //     AircraftStrip {
-            //         serialNumber: "OEM84JDU"
-            //     }
-            //     AircraftStrip {
-            //         serialNumber: "OEM84JDU"
-            //     }
-            //     AircraftStrip {
-            //         serialNumber: "OEM84JDU"
-            //     }
-            //     AircraftStrip {
-            //         serialNumber: "OEM84JDU"
-            //     }
-            //     AircraftStrip {
-            //         serialNumber: "OEM84JDU"
-            //     }
-            //     AircraftStrip {
-            //         serialNumber: "OEM84JDU"
-            //     }
-            //     AircraftStrip {
-            //         serialNumber: "OEM84JDU"
-            //     }
-            //     AircraftStrip {
-            //         serialNumber: "OEM84JDU"
-            //     }
-            //     AircraftStrip {
-            //         serialNumber: "OEM84JDU"
-            //     }
-            // }
-
-            // ScrollBar.vertical: ScrollBar {}
         }
-        // }
     }
 
     //TODO:

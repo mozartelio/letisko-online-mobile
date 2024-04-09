@@ -196,9 +196,6 @@ Page {
     }
 
     Component.onCompleted: {
-
-        /*TODO: why does not work?
-        var flightsController = flightsController //userController.getFlightsController()*/
         if (FlightsController !== null) {
             FlightsController.setIsActiveScreen(true);
             console.log("called:  FlightsController.setIsActiveScreen(true); ");

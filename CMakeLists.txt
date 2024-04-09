@@ -102,7 +102,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     user_controller.h user_controller.cpp
     hotreload/FileWatcher.h hotreload/FileWatcher.cpp
     hotreload/ComponentCreatorEngine.h hotreload/ComponentCreatorEngine.cpp
-    lostyle.h
+    lo_style.h
     flights_controller.h flights_controller.cpp
     flights_filter_proxy_model.h flights_filter_proxy_model.cpp
     flight_info.h flight_info.cpp
@@ -116,6 +116,10 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     aircraft_info.h aircraft_info.cpp
     aircrafts_filter_proxy_model.h aircrafts_filter_proxy_model.cpp
     aircrafts_roles.h
+    personal_info.h personal_info.cpp
+    address.h address.cpp
+    user.h user.cpp
+    pixmap_provider.h pixmap_provider.cpp
 )
 
 

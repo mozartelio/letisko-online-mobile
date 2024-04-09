@@ -66,8 +66,8 @@ void FlightsController::loadFlights()
     qDebug() << "Loading flights...";
 
     QNetworkRequest request;
-    m_request_timer.start(RequestConstants::REQUEST_TIMEOUT_MILLISECONDS);
-    m_request_timer.setSingleShot(true);
+    m_requestTimer.start(RequestConstants::REQUEST_TIMEOUT_MILLISECONDS);
+    m_requestTimer.setSingleShot(true);
     request.setUrl(QUrl(RequestConstants::SERVER_BASE_URL + RequestConstants::FLIGHTS_ENDPOINT));
     request.setRawHeader("Content-Type", RequestConstants::CONTENT_TYPE);
     request.setRawHeader("User-Agent", RequestConstants::USER_AGENT);

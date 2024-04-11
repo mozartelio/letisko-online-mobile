@@ -366,9 +366,7 @@ PopupParent {
             }
         }
     }
-} // RowLayout {//     id: controlButtons//     width: parent.width//     anchors {//         bottom: parent.bottom//         right: parent.right//         left: parent.left//     }//     MaterialButton {//         Layout.alignment: Qt.AlignRight//         contentText: qsTr("Confirm")//         // TODO://         onClicked: root.close()
-//     }
-
+} // RowLayout {//     id: controlButtons//     width: parent.width//     anchors {//         bottom: parent.bottom//         right: parent.right//         left: parent.left//     }//     MaterialButton {//         Layout.alignment: Qt.AlignRight//         contentText: qsTr("Confirm")//         // TODO://         onClicked: root.close()//     }
 //     MaterialButton {
 //         Layout.alignment: Qt.AlignRight
 //         contentText: qsTr("Cancel")

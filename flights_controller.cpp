@@ -30,8 +30,8 @@ FlightsController::~FlightsController()
 void FlightsController::subscribeToFlightsUpdates()
 {
     QNetworkRequest request;
-
-    request.setUrl(QUrl(RequestConstants::SERVER_BASE_URL + RequestConstants::UPDATE_SUBSCRIPTION_STREAM_ENDPOINT));
+    
+    request.setUrl(QUrl(RequestConstants::SERVER_REQUEST_URL_AND_PORT + RequestConstants::UPDATE_SUBSCRIPTION_STREAM_ENDPOINT));
     request.setRawHeader("Content-Type", RequestConstants::CONTENT_TYPE);
     request.setRawHeader("User-Agent", RequestConstants::USER_AGENT);
     QNetworkReply *reply = m_networkManager->get(request);
@@ -68,7 +68,7 @@ void FlightsController::loadFlights()
     QNetworkRequest request;
     m_requestTimer.start(RequestConstants::REQUEST_TIMEOUT_MILLISECONDS);
     m_requestTimer.setSingleShot(true);
-    request.setUrl(QUrl(RequestConstants::SERVER_BASE_URL + RequestConstants::FLIGHTS_ENDPOINT));
+    request.setUrl(QUrl(RequestConstants::SERVER_REQUEST_URL_AND_PORT + RequestConstants::FLIGHTS_ENDPOINT));
     request.setRawHeader("Content-Type", RequestConstants::CONTENT_TYPE);
     request.setRawHeader("User-Agent", RequestConstants::USER_AGENT);
     request.setRawHeader("Authorization", "Bearer " + m_userJwtAuthorizationToken.toUtf8()); // Add bearer token header

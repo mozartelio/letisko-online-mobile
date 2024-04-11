@@ -65,6 +65,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     qml/components/divider/HorizontalDividerSubhead.qml
     qml/components/PopupParent.qml
     qml/components/PopupBusyIndicator.qml
+    qml/components/ServerConnectionProblem.qml
 
     # text font styles
     #Headline
@@ -98,7 +99,6 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     assets/translations/slovak.ts
 
     SOURCES
-    login.h login.cpp
     user_controller.h user_controller.cpp
     hotreload/FileWatcher.h hotreload/FileWatcher.cpp
     hotreload/ComponentCreatorEngine.h hotreload/ComponentCreatorEngine.cpp
@@ -120,6 +120,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     address.h address.cpp
     user.h user.cpp
     pixmap_provider.h pixmap_provider.cpp
+    server_connection_checker.h server_connection_checker.cpp
 )
 
 

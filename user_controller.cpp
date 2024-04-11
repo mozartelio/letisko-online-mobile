@@ -81,8 +81,8 @@ void UserController::doLogin(const QString &email, const QString &password)
 
     m_requestTimer.start(RequestConstants::REQUEST_TIMEOUT_MILLISECONDS);
     m_requestTimer.setSingleShot(true);
-
-    request.setUrl(QUrl(RequestConstants::SERVER_BASE_URL + RequestConstants::LOGIN_ENDPOINT));
+    
+    request.setUrl(QUrl(RequestConstants::SERVER_REQUEST_URL_AND_PORT + RequestConstants::LOGIN_ENDPOINT));
     request.setRawHeader("Content-Type", RequestConstants::CONTENT_TYPE);
     request.setRawHeader("User-Agent", RequestConstants::USER_AGENT);
 

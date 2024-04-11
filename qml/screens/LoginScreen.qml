@@ -33,6 +33,10 @@ Page {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
         }
 
+        ServerConnectionProblem {
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+        }
+
         Text {
             id: textLabel
             text: qsTr("LOGIN")

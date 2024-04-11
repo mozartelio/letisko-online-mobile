@@ -23,9 +23,10 @@ Item {
             enabled: privates.isNavigationAvailable
             RowLayout {
                 anchors {
-                    fill: parent
                     right: parent.right
                     left: parent.left
+                    top: parent.top
+                    bottom: parent.bottom
                 }
                 spacing: 0
                 ToolButton {
@@ -34,53 +35,70 @@ Item {
                     icon.source: __style.menuIcon
                     onClicked: drawer.open()
                 }
-                Label {
-                    horizontalAlignment: Qt.AlignHCenter
-                    verticalAlignment: Qt.AlignVCenter
+                Item {
                     Layout.fillWidth: true
-                    HeadlineMediumText {
+                    Label {
+                        verticalAlignment: Qt.AlignVCenter
                         anchors.verticalCenter: parent.verticalCenter
-                        text: privates.drawerPageName
-                        color: __style.onPrimaryColor
+                        HeadlineMediumText {
+                            anchors.verticalCenter: parent.verticalCenter
+                            text: privates.drawerPageName
+                            color: __style.onPrimaryColor
+                        }
                     }
                 }
 
-                ToolButton {
-                    id: profileButton
-                    display: AbstractButton.TextBesideIcon
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                    Layout.preferredHeight: parent.height
-                    Layout.rightMargin: 20
-                    Layout.leftMargin: 20
+                Item {
+                    Layout.fillWidth: true
 
-                    contentItem: RowLayout {
-                        id: row
-                        spacing: 15
-
-                        RoundedImage {
-                            id: userPhoto
-                            imageSource: __style.userDefaultAvatar
-                            imageWidth: __style.icon45
-                            imageHeight: __style.icon45
-                            width: __style.icon45
-                            height: __style.icon45
-                            Layout.alignment: Qt.AlignVCenter
-                        }
-
-                        TitleLargeText {
-                            id: userNameSurname
-                            width: contentWidth
-                            text: "Name Surname"
-                            color: __style.onPrimaryColor
-                            horizontalAlignment: Text.AlignHCenter
-                            wrapMode: Text.WordWrap
-                            Layout.alignment: Qt.AlignVCenter
-                        }
+                    ServerConnectionProblem {
+                        anchors.centerIn: parent
+                        height: 50
                     }
-                    onClicked: {
-                        privates.drawerPageName = qsTr("Settings")
-                        stackView.replace(settingsScreen)
-                        console.log("here is a profile...")
+                }
+
+                Item {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: parent.height
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+                    ToolButton {
+                        id: profileButton
+                        display: AbstractButton.TextBesideIcon
+                        anchors {
+                            verticalCenter: parent.verticalCenter
+                            right: parent.right
+                            rightMargin: 20
+                            leftMargin: 20
+                        }
+
+                        contentItem: RowLayout {
+                            id: row
+                            spacing: 15
+
+                            RoundedImage {
+                                id: userPhoto
+                                imageSource: __style.userDefaultAvatar
+                                imageWidth: __style.icon45
+                                imageHeight: __style.icon45
+                                width: __style.icon45
+                                height: __style.icon45
+                                Layout.alignment: Qt.AlignVCenter
+                            }
+
+                            TitleLargeText {
+                                id: userNameSurname
+                                width: contentWidth
+                                text: "Name Surname"
+                                color: __style.onPrimaryColor
+                                horizontalAlignment: Text.AlignHCenter
+                                wrapMode: Text.WordWrap
+                                Layout.alignment: Qt.AlignVCenter
+                            }
+                        }
+                        onClicked: {
+                            privates.drawerPageName = qsTr("Settings")
+                            stackView.replace(settingsScreen)
+                        }
                     }
                 }
             }
@@ -88,7 +106,7 @@ Item {
 
         StackView {
             id: stackView
-            initialItem: loginScreen //flightsScreen// // // //aircraftsScreen // //settingsScreen // // // //documentationScreen
+            initialItem: loginScreen // flightsScreen// // //aircraftsScreen // //settingsScreen // // // //documentationScreen
             width: parent.width
             height: parent.height
             // anchors.fill: parent  // activate this if not using hot reload
@@ -96,9 +114,9 @@ Item {
                 console.log("Current Item:", stackView.currentItem,
                             "Stack depth:", stackView.depth)
             }
-            // do not use becouse the start is from the login or registrsation page, where topbar is disabled
-            // Component.onCompleted: privates.drawerPageName = qsTr(
-            //                            "Documentation")
+            //TODO:!!! ?do not use becouse the start is from the login or registrsation page, where topbar is disabled
+            Component.onCompleted: privates.drawerPageName = qsTr(
+                                       "Documentation")
         }
     }
 

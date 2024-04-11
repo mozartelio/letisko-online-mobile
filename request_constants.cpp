@@ -5,8 +5,13 @@ const QByteArray RequestConstants::USER_AGENT = "Mozilla/5.0 (Linux; Android 10;
 
 const unsigned int RequestConstants::REQUEST_TIMEOUT_MILLISECONDS = 30000;      // 30000 milliseconds = 30 seconds
 const unsigned int RequestConstants::REQUEST_RETRY_TIMEOUT_MILLISECONDS = 5000; // Retry after 5 seconds
+const unsigned int RequestConstants::SERVER_CONNECTION_CHECK_TIMEOUT_MILLISECONDS = 10000;
 
-const QString RequestConstants::SERVER_BASE_URL = "http://127.0.0.1:5001/"; //"http://85.237.233.151:51/";
+const QString RequestConstants::HTTP_PROTOCOL_PREFIX= "http://";
+const QString RequestConstants::SERVER_NETWORK_ADDRESS = "127.0.0.1"; // 85.237.233.151
+const unsigned int RequestConstants::SERVER_PORT = 5001;                     // 51
+const QString RequestConstants::SERVER_REQUEST_URL_AND_PORT = HTTP_PROTOCOL_PREFIX + SERVER_NETWORK_ADDRESS + ":" + QString::number(SERVER_PORT) + "/";
+
 const QString RequestConstants::UPDATE_SUBSCRIPTION_STREAM_ENDPOINT = "update_subscription_stream";
 const QString RequestConstants::LOGIN_ENDPOINT = "auth/login";
 const QString RequestConstants::FLIGHTS_ENDPOINT = "flight/flights";

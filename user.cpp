@@ -28,8 +28,8 @@ void User::requestPersonalInfoAndAddress()
     QNetworkRequest request;
     m_personalInfoRequestTimer.start(RequestConstants::REQUEST_TIMEOUT_MILLISECONDS);
     m_personalInfoRequestTimer.setSingleShot(true);
-
-    request.setUrl(QUrl(RequestConstants::SERVER_BASE_URL + RequestConstants::PROFILE_ENDPOINT));
+    
+    request.setUrl(QUrl(RequestConstants::SERVER_REQUEST_URL_AND_PORT + RequestConstants::PROFILE_ENDPOINT));
     request.setRawHeader("Content-Type", RequestConstants::CONTENT_TYPE);
     request.setRawHeader("User-Agent", RequestConstants::USER_AGENT);
     request.setRawHeader("Authorization", "Bearer " + m_jwtAuthorizationToken.toUtf8());
@@ -93,8 +93,8 @@ void User::requestAvatar()
     QNetworkRequest request;
     m_personalInfoRequestTimer.start(RequestConstants::REQUEST_TIMEOUT_MILLISECONDS);
     m_personalInfoRequestTimer.setSingleShot(true);
-
-    request.setUrl(QUrl(RequestConstants::SERVER_BASE_URL + RequestConstants::AVATAR_ENDPOINT));
+    
+    request.setUrl(QUrl(RequestConstants::SERVER_REQUEST_URL_AND_PORT + RequestConstants::AVATAR_ENDPOINT));
     request.setRawHeader("Content-Type", RequestConstants::CONTENT_TYPE);
     request.setRawHeader("User-Agent", RequestConstants::USER_AGENT);
     request.setRawHeader("Authorization", "Bearer " + m_jwtAuthorizationToken.toUtf8());

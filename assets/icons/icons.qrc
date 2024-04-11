@@ -28,5 +28,6 @@
         <file>visibility_off.svg</file>
         <file>visibility_on.svg</file>
         <file>default_user_avatar_24px.svg</file>
+        <file>warning_48px.svg</file>
     </qresource>
 </RCC>

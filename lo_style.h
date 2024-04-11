@@ -34,6 +34,7 @@ class LOStyle : public QObject
     Q_PROPERTY(QColor darkColor READ darkColor CONSTANT)
     Q_PROPERTY(QColor outlineColor READ outlineColor CONSTANT)
     Q_PROPERTY(QColor secondaryContainerColor READ secondaryContainerColor CONSTANT)
+    Q_PROPERTY( QColor errorColor READ errorColor CONSTANT )
     // Q_PROPERTY( QColor READ  CONSTANT )
 
     // Colors - secondary palette
@@ -63,8 +64,8 @@ class LOStyle : public QObject
     Q_PROPERTY(QUrl arrowDropDownMediumIcon READ arrowDropDownMediumIcon CONSTANT)
     Q_PROPERTY( QUrl arrowDropUpMediumIcon READ arrowDropUpMediumIcon CONSTANT )
     Q_PROPERTY( QUrl userDefaultAvatar READ userDefaultAvatar CONSTANT )
-
-    // Q_PROPERTY( QUrl READ CONSTANT )
+    Q_PROPERTY( QUrl warningIcon READ warningIcon CONSTANT )
+   // Q_PROPERTY( QUrl READ CONSTANT )
 
     // Filled Icons
     // Q_PROPERTY( QUrl projectsFilledIcon READ projectsFilledIcon CONSTANT )
@@ -118,6 +119,7 @@ public:
     QColor darkColor() { return QColor::fromString("#322F35"); }
     QColor outlineColor() { return QColor::fromString("#79747E"); }
     QColor secondaryContainerColor() { return QColor::fromString("#E8DEF8"); }
+    QColor errorColor() {return QColor::fromString( "#B3261E" );}
     // QColor () {return QColor::fromString( "#" );}
 
     // Colors - secondary palette
@@ -148,6 +150,7 @@ public:
     QUrl arrowDropDownMediumIcon() { return QUrl("qrc:/icons/arrow_drop_down_medium.svg"); }
     QUrl arrowDropUpMediumIcon() { return QUrl("qrc:/icons/arrow_drop_up_medium.svg"); }
     QUrl userDefaultAvatar() {return QUrl( "qrc:/icons/default_user_avatar_24px.svg" );}
+    QUrl warningIcon() {return QUrl( "qrc:/icons/warning_48px.svg" );}
     // QUrl () {return QUrl( "qrc:/icons/" );}
 
     // static QUrl Icon() {return QUrl( "qrc:/Icon.svg" );}

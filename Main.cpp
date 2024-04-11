@@ -14,13 +14,15 @@
 #include <QTranslator>
 #include <QFontDatabase>
 #include <QtQml/qqmlextensionplugin.h>
+
 #include "lo_style.h"
 #include "hotreload/ComponentCreatorEngine.h"
-#include "login.h"
 #include "user_controller.h"
 #include "flights_controller.h"
 #include "aircrafts_controller.h"
 #include "pixmap_provider.h"
+#include "server_connection_checker.h"
+#include "request_constants.h"
 
 void InstallDefaultFont()
 {
@@ -45,11 +47,16 @@ int main(int argc, char *argv[])
 
     qmlRegisterSingletonType<PixmapProvider>("com.letiskoonline.PixmapImageProvider", 1, 0, "PixmapImageProvider", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject *
                                              {
-        Q_UNUSED(engine)
-        Q_UNUSED(scriptEngine)
+                                                 Q_UNUSED(engine)
+                                                 Q_UNUSED(scriptEngine)
 
-        // Return the PixmapProvider instance
-         return static_cast<QObject*>(PixmapProvider::instance()); });
+                                                 // Return the PixmapProvider instance
+                                                 return static_cast<QObject*>(PixmapProvider::instance()); });
+
+    qmlRegisterType<ServerConnectionChecker>("com.letiskoonline.ServerConnectionChecker", 1, 0, "ServerConnectionChecker");
+
+    ServerConnectionChecker *serverConnectionChecker = new ServerConnectionChecker(RequestConstants::SERVER_NETWORK_ADDRESS, RequestConstants::SERVER_PORT);
+
 
     UserController *userController = new UserController(&app);
     qmlRegisterSingletonInstance("com.letiskoonline.UserController", 1, 0, "UserController", userController);
@@ -131,11 +138,12 @@ int main(int argc, char *argv[])
     AircraftsFilterProxyModel *aircraftsFilterProxyModel = userController->getAircraftsController()->getAircraftsModel()->getFilterProxyModel();
     rootContext->setContextProperty("aircraftsFilterProxyModel", aircraftsFilterProxyModel);
 
+    rootContext->setContextProperty("serverConnectionChecker", serverConnectionChecker);
     // rootContext->setContextProperty("pixmapImageProvider", PixmapProvider::instance());
 
     /** << for using with hotreload**/
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app, [url](QObject *obj, const QUrl &objUrl)
-                     { if (!obj && url == objUrl) QCoreApplication::exit(- 1); }, Qt::QueuedConnection);
+        { if (!obj && url == objUrl) QCoreApplication::exit(- 1); }, Qt::QueuedConnection);
     engine.load(url);
     /** >> end of source code for hot reload*/
 

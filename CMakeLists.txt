@@ -66,6 +66,8 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     qml/components/PopupParent.qml
     qml/components/PopupBusyIndicator.qml
     qml/components/ServerConnectionProblem.qml
+    qml/components/SortingSection.qml
+    qml/components/FlightsSortingBar.qml
 
     # text font styles
     #Headline
@@ -108,7 +110,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     flight_info.h flight_info.cpp
     flights_roles.h
     aircraft_categories_controller.h aircraft_categories_controller.cpp
-    request_constants.h request_constants.cpp
+    constants.h constants.cpp
     flights_model.h flights_model.cpp
     server_sent_events_parser.h server_sent_events_parser.cpp
     aircrafts_controller.h aircrafts_controller.cpp

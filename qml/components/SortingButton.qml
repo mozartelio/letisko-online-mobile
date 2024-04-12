@@ -23,12 +23,12 @@ Button {
         anchors {
             fill: parent
         }
-        color: __style.transparentColor
+        color: __style.surfaceColor
     }
     StateGroup {
         states: [
             State {
-                name: "ckecked"
+                name: "checked"
                 PropertyChanges {
                     target: contentItem
                     color: __style.primaryColor

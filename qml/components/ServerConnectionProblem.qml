@@ -1,5 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
+
+import com.letiskoonline.ServerConnectionChecker
 import "./typography/headline/text"
 
 Rectangle {
@@ -35,15 +37,9 @@ Rectangle {
     }
 
     Connections {
-        target: serverConnectionChecker
+        target: ServerConnectionChecker
 
         function onConnectionResult(isConnected) {
-            if (isConnected === true) {
-                console.log("connected to the server successfully")
-            } else {
-
-                console.log("DID NOT connected to the server successfully")
-            }
             root.visible = !isConnected
         }
     }

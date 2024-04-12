@@ -37,55 +37,85 @@ Page {
         SearchBar {
             Layout.alignment: Qt.AlignCenter | Qt.AlignTop
             onTextChanged: {
-                flightsFilterProxyModel.setFilterString(text);
+                flightsFilterProxyModel.setFilterString(text)
             }
         }
 
-        ColumnLayout {
+        Column {
+            /*Layout*/
             id: ongoingFlightHead
-            spacing: 4
+            spacing: 14
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-            Layout.preferredHeight: 77
+            Layout.preferredHeight: 100
+            // height: 28
+            // width: parent.width
             Layout.preferredWidth: parent.width
 
             Rectangle {
                 color: __style.outlineVariant
-                Layout.preferredHeight: 2
+                // Layout.preferredHeight: 2
+                height: 2
+                width: parent.width
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                 Layout.preferredWidth: parent.width
             }
+
+            //TODO: better layout
             RowLayout {
                 spacing: 25
+                width: parent.width
+                height: 20
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                Layout.preferredWidth: parent.width
 
-                TitleLargeText {
-                    text: qsTr("Ongoing flights")
-                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                    Layout.preferredHeight: contentHeight
-                    Layout.preferredWidth: contentWidth
-                }
+                Layout.fillWidth: true
 
-                SortingBar {
-                    id: mainToolBarBox
-                    leftSectionHeader: "Departure time"
-                    leftSectionLeftButtonText: "Сlosest to farthest"
-                    leftSectionRightButtonText: "Farthest to closest"
+                Item {
 
-                    rigthSectionHeader: "Arrival time"
-                    rigthSectionLeftButtonText: "Сlosest to farthest"
-                    rigthSectionRightButtonText: "Farthest to closest"
-                    onValueChanged: {
-                        //TODO:
-                        flightsFilterProxyModel.setSortOrder(checked);
+                    Layout.fillWidth: true
+
+                    // Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                    TitleLargeText {
+                        id: ongoingFligthsName
+                        text: qsTr("Ongoing flights:")
+                        anchors {
+                            verticalCenter: parent.verticalCenter
+                            left: parent.left
+                        }
+                        // Layout.preferredHeight: contentHeight
+                        // Layout.preferredWidth: contentWidth
+                        // Layout.fillWidth: true
                     }
                 }
 
-                MaterialButton {
-                    contentText: "Filters"
-                    backgroundColor: __style.surfaceContainerLowColor
-                    imagePath: __style.settinsIcon
-                    onClicked: filterPopUp.open()
+                FlightsSortingBar {
+                    id: flightsSortingBar
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    Layout.leftMargin: 40
+                    Layout.rightMargin: 250
+                    // Layout.preferredHeight: 20/
+                    // Layout.fillWidth: true
+                    // anchors {
+                    //     horizontalCenter: parent.horizontalCenter
+                    //     top: parent.top
+                    // }
+                }
+
+                Item {
+                    Layout.fillWidth: true
+
+                    // Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                    MaterialButton {
+                        id: filtersButton
+                        contentText: "Filters"
+                        backgroundColor: __style.surfaceContainerLowColor
+                        imagePath: __style.settinsIcon
+                        anchors {
+                            verticalCenter: parent.verticalCenter
+                            right: parent.right
+                            rightMargin: 30
+                        }
+                        onClicked: filterPopUp.open()
+                    }
                 }
             }
         }
@@ -94,6 +124,7 @@ Page {
             running: FlightsController.isLoadingFlights
             visible: FlightsController.isLoadingFlights
             Layout.alignment: Qt.AlignCenter
+            Layout.fillHeight: true
         }
 
         //TODO: change to flickable and ScrollBar
@@ -106,6 +137,7 @@ Page {
             Layout.preferredHeight: 356 //parent.height
             Layout.preferredWidth: parent.width
             Layout.topMargin: 8
+            Layout.fillHeight: true
 
             ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
             ScrollBar.vertical.policy: ScrollBar.AlwaysOn
@@ -135,10 +167,13 @@ Page {
                         width: parent.width
                         // height: 30
                         callsign: callsignData
-                        planeName: planeNameData
+                        departureAirport: departureAirportData
+                        arrivalAirport: arrivalAirportData
                         flightStatus: flightStatusData
                         departureTime: departureTimeData
                         arrivalTime: arrivalTimeData
+                        maxHeight: maxHeightData
+                        maxHeightMeasureUnits: maxHeightMeasureUnitsData
                         anchors {
                             horizontalCenter: parent.horizontalCenter
                             fill: parent
@@ -197,19 +232,19 @@ Page {
 
     Component.onCompleted: {
         if (FlightsController !== null) {
-            FlightsController.setIsActiveScreen(true);
-            console.log("called:  FlightsController.setIsActiveScreen(true); ");
+            FlightsController.setIsActiveScreen(true)
+            console.log("called:  FlightsController.setIsActiveScreen(true); ")
         } else {
-            console.log("FlightsController is not initialized yet.");
+            console.log("FlightsController is not initialized yet.")
         }
     }
 
     Component.onDestruction: {
         if (FlightsController !== null) {
-            FlightsController.setIsActiveScreen(false);
+            FlightsController.setIsActiveScreen(false)
         } else {
-            console.log("FlightsController is not initialized yet.");
+            console.log("FlightsController is not initialized yet.")
         }
-        console.log("FlightsScreen was closed");
+        console.log("FlightsScreen was closed")
     }
 }

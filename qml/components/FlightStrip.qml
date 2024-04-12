@@ -1,4 +1,5 @@
 import QtQuick
+import QtQml
 import QtQuick.Controls
 import QtQuick.Layouts
 import UserAppSettings
@@ -7,10 +8,13 @@ import "./typography/body/text"
 Item {
     id: root
     required property string callsign
-    required property string planeName
+    required property string departureAirport
+    required property string arrivalAirport
     required property int flightStatus
     required property date departureTime
     required property date arrivalTime
+    required property int maxHeight
+    required property string maxHeightMeasureUnits
 
     property bool isExpanded: UserAppSettings.showExpandedFlights
 
@@ -73,15 +77,15 @@ Item {
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
                     onClicked: {
-                        console.log("pressed");
-                        isExpanded = !isExpanded;
+                        console.log("pressed")
+                        isExpanded = !isExpanded
                     }
                 }
 
                 RowLayout {
                     spacing: 7
                     Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                    Layout.preferredWidth: (1 / 4) * backgroungRectangle.width
+                    Layout.preferredWidth: (1 / 5) * backgroungRectangle.width
                     // Layout.maximumWidth: 200
 
                     //TODO: create TEXT as component
@@ -102,48 +106,60 @@ Item {
 
                     FlightStatus {
                         flightStatus: root.flightStatus
-                        Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
                     }
                 }
 
                 RowLayout {
-                    spacing: 90
+                    spacing: 40
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                     Layout.fillWidth: true
-                    Row {
+                    Column {
 
                         BodyLargeText {
                             text: qsTr("Departure: ")
                             font.bold: true
                         }
                         BodyLargeText {
-                            text: Qt.formatDateTime(departureTime, "hh:mm dd.MM.yyyy")
-                            width: 50
+                            //TODO: locale CHANGING
+                            text: departureTime.toLocaleString(
+                                      Qt.locale("sk_SK"), "MMMM dd, yyyy hh:mm")
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                         }
                     }
 
-                    Row {
+                    Column {
                         BodyLargeText {
                             text: qsTr("Arrival: ")
                             font.bold: true
                         }
                         BodyLargeText {
-                            width: 50
-                            text: Qt.formatDateTime(arrivalTime, "hh:mm dd.MM.yyyy")
+                            //TODO: locale CHANGING
+                            text: arrivalTime.toLocaleString(
+                                      Qt.locale("sk_SK"), "MMMM dd, yyyy hh:mm")
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                         }
                     }
 
-                    Row {
+                    Column {
                         BodyLargeText {
-                            text: qsTr("Plane name: ")
+                            text: qsTr("Departure airport: ")
                             font.bold: true
                         }
                         BodyLargeText {
-                            text: planeName
+                            // width: 50
+                            text: departureAirport
+                        }
+                    }
+                    Column {
+                        BodyLargeText {
+                            text: qsTr("Arrival airport: ")
+                            font.bold: true
+                        }
+                        BodyLargeText {
+                            text: arrivalAirport
                         }
                     }
                 }
@@ -179,7 +195,7 @@ Item {
                 id: mouseArea
                 anchors.fill: flightDetails
                 onPressed: {
-                    console.log("pressed");
+                    console.log("pressed")
                 }
             }
             ColumnLayout {
@@ -232,61 +248,60 @@ Item {
                         ]
                     }
 
-                    Row {
-                        Layout.preferredWidth: 362
-                        BodyMediumText {
-                            text: qsTr("Aircraft type: ")
-                            font.bold: true
-                        }
-                        BodyMediumText {
-                            text: "info"
-                        }
-                    }
+                    // Row {
+                    //     Layout.preferredWidth: 362
+                    //     BodyMediumText {
+                    //         text: qsTr("Aircraft type: ")
+                    //         font.bold: true
+                    //     }
+                    //     BodyMediumText {
+                    //         text: "info"
+                    //     }
+                    // }
 
-                    Row {
-                        Layout.preferredWidth: 362
-                        BodyMediumText {
-                            text: qsTr("ICAO wake tubulence category: ")
-                            font.bold: true
-                        }
-                        BodyMediumText {
-                            text: "info"
-                        }
-                    }
+                    // Row {
+                    //     Layout.preferredWidth: 362
+                    //     BodyMediumText {
+                    //         text: qsTr("ICAO wake tubulence category: ")
+                    //         font.bold: true
+                    //     }
+                    //     BodyMediumText {
+                    //         text: "info"
+                    //     }
+                    // }
 
-                    Row {
-                        Layout.preferredWidth: 362
-                        BodyMediumText {
-                            text: qsTr("Aircraft class: ")
-                            font.bold: true
-                        }
-                        BodyMediumText {
-                            text: "info"
-                        }
-                    }
+                    // Row {
+                    //     Layout.preferredWidth: 362
+                    //     BodyMediumText {
+                    //         text: qsTr("Aircraft class: ")
+                    //         font.bold: true
+                    //     }
+                    //     BodyMediumText {
+                    //         text: "info"
+                    //     }
+                    // }
 
-                    Row {
-                        Layout.preferredWidth: 362
-                        BodyMediumText {
-                            text: qsTr("Aircraft category: ")
-                            font.bold: true
-                        }
-                        BodyMediumText {
-                            text: "info"
-                        }
-                    }
+                    // Row {
+                    //     Layout.preferredWidth: 362
+                    //     BodyMediumText {
+                    //         text: qsTr("Aircraft category: ")
+                    //         font.bold: true
+                    //     }
+                    //     BodyMediumText {
+                    //         text: "info"
+                    //     }
+                    // }
 
-                    Row {
-                        Layout.preferredWidth: 362
-                        BodyMediumText {
-                            text: qsTr("Flight rules: ")
-                            font.bold: true
-                        }
-                        BodyMediumText {
-                            text: "info"
-                        }
-                    }
-
+                    // Row {
+                    //     Layout.preferredWidth: 362
+                    //     BodyMediumText {
+                    //         text: qsTr("Flight rules: ")
+                    //         font.bold: true
+                    //     }
+                    //     BodyMediumText {
+                    //         text: "info"
+                    //     }
+                    // }
                     Row {
                         Layout.preferredWidth: 362
                         BodyMediumText {
@@ -294,25 +309,22 @@ Item {
                             font.bold: true
                         }
                         BodyMediumText {
-                            text: "100"
-                        }
-                        BodyMediumText {
-                            text: " measurement units"
+                            text: maxHeight + " " + maxHeightMeasureUnits
                         }
                     }
                 }
 
-                Row {
-                    Layout.preferredWidth: parent.width
-                    Layout.preferredHeight: 32
-                    BodyMediumText {
-                        text: qsTr("Description: ")
-                        font.bold: true
-                    }
-                    BodyMediumText {
-                        text: "info"
-                    }
-                }
+                // Row {
+                //     Layout.preferredWidth: parent.width
+                //     Layout.preferredHeight: 32
+                //     BodyMediumText {
+                //         text: qsTr("Description: ")
+                //         font.bold: true
+                //     }
+                //     BodyMediumText {
+                //         text: "info"
+                //     }
+                // }
             }
             Image {
                 width: __style.icon40

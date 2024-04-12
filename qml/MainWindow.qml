@@ -64,6 +64,8 @@ Item {
                     ToolButton {
                         id: profileButton
                         display: AbstractButton.TextBesideIcon
+                        width: implicitWidth
+                        height: parent.height
                         anchors {
                             verticalCenter: parent.verticalCenter
                             right: parent.right
@@ -77,7 +79,12 @@ Item {
 
                             RoundedImage {
                                 id: userPhoto
-                                imageSource: __style.userDefaultAvatar
+                                imageSource: if (UserController.user.isAvatarPresent(
+                                                         )) {
+                                                 "image://" + "pixmap_images" + "/" + UserController.user.avatarPixmapProviderId
+                                             } else {
+                                                 __style.userDefaultAvatar
+                                             }
                                 imageWidth: __style.icon45
                                 imageHeight: __style.icon45
                                 width: __style.icon45
@@ -88,7 +95,13 @@ Item {
                             TitleLargeText {
                                 id: userNameSurname
                                 width: contentWidth
-                                text: "Name Surname"
+                                text: if (UserController.user.personalInfo !== null) {
+                                          UserController.user.personalInfo.name
+                                                  + " " + UserController.user.personalInfo.surname
+                                      } else {
+                                          ""
+                                      }
+
                                 color: __style.onPrimaryColor
                                 horizontalAlignment: Text.AlignHCenter
                                 wrapMode: Text.WordWrap
@@ -106,7 +119,7 @@ Item {
 
         StackView {
             id: stackView
-            initialItem: loginScreen // flightsScreen// // //aircraftsScreen // //settingsScreen // // // //documentationScreen
+            initialItem: flightsScreen //   loginScreen // // flightsScreen  // //aircraftsScreen // //settingsScreen // // // //documentationScreen
             width: parent.width
             height: parent.height
             // anchors.fill: parent  // activate this if not using hot reload

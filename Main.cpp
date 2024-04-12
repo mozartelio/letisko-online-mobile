@@ -22,7 +22,7 @@
 #include "aircrafts_controller.h"
 #include "pixmap_provider.h"
 #include "server_connection_checker.h"
-#include "request_constants.h"
+#include "constants.h"
 
 void InstallDefaultFont()
 {
@@ -53,9 +53,17 @@ int main(int argc, char *argv[])
                                                  // Return the PixmapProvider instance
                                                  return static_cast<QObject*>(PixmapProvider::instance()); });
 
-    qmlRegisterType<ServerConnectionChecker>("com.letiskoonline.ServerConnectionChecker", 1, 0, "ServerConnectionChecker");
+        ServerConnectionChecker *serverConnectionChecker = new ServerConnectionChecker(RequestConstants::SERVER_NETWORK_ADDRESS, RequestConstants::SERVER_PORT);
 
-    ServerConnectionChecker *serverConnectionChecker = new ServerConnectionChecker(RequestConstants::SERVER_NETWORK_ADDRESS, RequestConstants::SERVER_PORT);
+    qmlRegisterSingletonType<ServerConnectionChecker>("com.letiskoonline.ServerConnectionChecker", 1, 0, "ServerConnectionChecker", [serverConnectionChecker](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject *
+        {
+            Q_UNUSED(engine)
+            Q_UNUSED(scriptEngine)
+
+            // Return the PixmapProvider instance
+            return serverConnectionChecker;});
+
+
 
 
     UserController *userController = new UserController(&app);
@@ -103,7 +111,7 @@ int main(int argc, char *argv[])
     // filterModel.setSortRole(Roles::CallsignRole);
 
     QTranslator translator;
-    translator.load("slovak.qm");
+    translator.load ("slovak.qm");
     app.installTranslator(&translator);
 
     // Is needed for Settings
@@ -138,7 +146,6 @@ int main(int argc, char *argv[])
     AircraftsFilterProxyModel *aircraftsFilterProxyModel = userController->getAircraftsController()->getAircraftsModel()->getFilterProxyModel();
     rootContext->setContextProperty("aircraftsFilterProxyModel", aircraftsFilterProxyModel);
 
-    rootContext->setContextProperty("serverConnectionChecker", serverConnectionChecker);
     // rootContext->setContextProperty("pixmapImageProvider", PixmapProvider::instance());
 
     /** << for using with hotreload**/

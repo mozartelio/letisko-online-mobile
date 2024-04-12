@@ -15,6 +15,7 @@ class User : public QObject
     Q_PROPERTY(PersonalInfo *personalInfo READ getPersonalInfo WRITE setPersonalInfo NOTIFY personalInfoChanged)
     Q_PROPERTY(Address *address READ getAddress WRITE setAddress NOTIFY addressChanged REQUIRED)
     Q_PROPERTY(QString avatarPixmapProviderId READ getAvatarPixmapProviderId CONSTANT REQUIRED)
+
 public:
     explicit User(QNetworkAccessManager *networkManager, QObject *parent = nullptr);
 
@@ -37,6 +38,8 @@ public:
     bool setAvatar(const QPixmap avatar);
 
     QString getAvatarPixmapProviderId() const;
+
+    Q_INVOKABLE bool isAvatarPresent() const;
 
 public slots:
     void handlePersonalInfoNetworkReply(QNetworkReply *reply);

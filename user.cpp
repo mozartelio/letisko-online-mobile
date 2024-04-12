@@ -6,11 +6,13 @@
 
 #include "user.h"
 #include "personal_info.h"
-#include "request_constants.h"
+#include "constants.h"
 #include "pixmap_provider.h"
 
-User::User(QNetworkAccessManager *networkManager, QObject *parent) : QObject{parent}
+User::User(QNetworkAccessManager *networkManager, QObject *parent) : QObject{parent}, m_avatar()
 {
+    // m_avatar = QPixmap();
+    m_address = nullptr;
     m_networkManager = networkManager;
 }
 
@@ -28,7 +30,7 @@ void User::requestPersonalInfoAndAddress()
     QNetworkRequest request;
     m_personalInfoRequestTimer.start(RequestConstants::REQUEST_TIMEOUT_MILLISECONDS);
     m_personalInfoRequestTimer.setSingleShot(true);
-    
+
     request.setUrl(QUrl(RequestConstants::SERVER_REQUEST_URL_AND_PORT + RequestConstants::PROFILE_ENDPOINT));
     request.setRawHeader("Content-Type", RequestConstants::CONTENT_TYPE);
     request.setRawHeader("User-Agent", RequestConstants::USER_AGENT);
@@ -93,7 +95,7 @@ void User::requestAvatar()
     QNetworkRequest request;
     m_personalInfoRequestTimer.start(RequestConstants::REQUEST_TIMEOUT_MILLISECONDS);
     m_personalInfoRequestTimer.setSingleShot(true);
-    
+
     request.setUrl(QUrl(RequestConstants::SERVER_REQUEST_URL_AND_PORT + RequestConstants::AVATAR_ENDPOINT));
     request.setRawHeader("Content-Type", RequestConstants::CONTENT_TYPE);
     request.setRawHeader("User-Agent", RequestConstants::USER_AGENT);
@@ -197,4 +199,9 @@ void User::setJwtAuthorizationToken(const QString &jwtAuthorizationToken)
 QString User::getAvatarPixmapProviderId() const
 {
     return m_avatarPixmapProviderId;
+}
+
+bool User::isAvatarPresent() const
+{
+    return !m_avatar.isNull();
 }

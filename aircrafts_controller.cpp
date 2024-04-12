@@ -5,7 +5,7 @@
 #include <QJsonObject>
 
 #include "aircrafts_controller.h"
-#include "request_constants.h"
+#include "constants.h"
 #include "server_sent_events_parser.h"
 
 AircraftsController::AircraftsController(QNetworkAccessManager *networkManager)
@@ -55,7 +55,7 @@ void AircraftsController::loadAircrafts()
     // Check auth token presence and implement its usage
     if (m_userJwtAuthorizationToken.isEmpty())
     {
-        qDebug() << "No auth token set";
+        // qDebug() << "No auth token set";
         setIsLoadingAircrafts(true);
         QTimer::singleShot(RequestConstants::REQUEST_RETRY_TIMEOUT_MILLISECONDS, this, &AircraftsController::loadAircrafts); // Retry after 5 seconds
         return;

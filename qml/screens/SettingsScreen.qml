@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import UserAppSettings
+import com.letiskoonline.UserController
 import "../components/typography/display/text"
 import "../components/typography/title/text"
 import "../components"
@@ -61,7 +62,7 @@ Page {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                     Layout.topMargin: 15
                     onClicked: {
-                        logout();
+                        logout()
                     }
                 }
 
@@ -74,65 +75,84 @@ Page {
                     Layout.alignment: Qt.AlignLeft | Qt.AlignTop
                 }
 
-                // Column {
-                //     Layout.preferredWidth: parent.width
-                //     Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                //     spacing: 0
-                //     Rectangle {
-                //         color: "#49454F"
-                //         width: parent.width
-                //         height: 1
-                //     }
-                //     SettingStrip {
-                //         settingType: SettingStrip.SettingType.Text
-                //         settingName: qsTr("Name Surname")
-                //         settingTextContent: "John Controxo"
-                //         width: parent.width
-                //     }
-                //     SettingStrip {
-                //         settingType: SettingStrip.SettingType.Text
-                //         settingName: qsTr("Email")
-                //         settingTextContent: "controlman@controlman.com"
-                //         width: parent.width
-                //     }
-                //     SettingStrip {
-                //         settingType: SettingStrip.SettingType.Text
-                //         settingName: qsTr("Phone number")
-                //         settingTextContent: "053434328324"
-                //         width: parent.width
-                //     }
-                //     SettingStrip {
-                //         settingType: SettingStrip.SettingType.Empty
-                //         settingName: qsTr("Address")
-                //         width: parent.width
-                //     }
-                //     SettingStrip {
-                //         settingType: SettingStrip.SettingType.Image
-                //         settingName: qsTr("Photo")
-                //         settingImageContent: "../../assets/icons/default_plane_plug.png"
-                //         width: parent.width
-                //     }
-                //     SettingStrip {
-                //         settingType: SettingStrip.SettingType.Text
-                //         settingName: qsTr("Qualification type")
-                //         settingTextContent: "Night control man"
-                //         chevronEnabled: false
-                //         width: parent.width
-                //     }
-                //     SettingStrip {
-                //         settingType: SettingStrip.SettingType.Text
-                //         settingName: qsTr("Qualification start date")
-                //         settingTextContent: "01.02.2023"
-                //         chevronEnabled: false
-                //         width: parent.width
-                //     }
-                //     SettingStrip {
-                //         settingType: SettingStrip.SettingType.Text
-                //         settingName: qsTr("Qualification end date")
-                //         settingTextContent: "01.02.2025"
-                //         width: parent.width
-                //     }
-                // }
+                Column {
+                    Layout.preferredWidth: parent.width
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                    spacing: 0
+
+                    SettingStrip {
+                        id: nameStrip
+                        settingType: SettingStrip.SettingType.Text
+                        settingName: qsTr("Name and surname")
+                        settingTextContent: if (UserController.user.personalInfo !== null) {
+                                                UserController.user.personalInfo.name + " "
+                                                        + UserController.user.personalInfo.surname
+                                            } else {
+                                                ""
+                                            }
+                        width: parent.width
+                    }
+                    SettingStrip {
+                        id: emailStrip
+                        settingType: SettingStrip.SettingType.Text
+                        settingName: qsTr("Email")
+                        settingTextContent: if (UserController.user.personalInfo !== null) {
+                                                UserController.user.personalInfo.email
+                                            } else {
+                                                ""
+                                            }
+                        width: parent.width
+                    }
+                    //     SettingStrip {
+                    //         settingType: SettingStrip.SettingType.Text
+                    //         settingName: qsTr("Phone number")
+                    //         settingTextContent: "053434328324"
+                    //         width: parent.width
+                    //     }
+                    SettingStrip {
+                        id: addressStrip
+                        settingType: SettingStrip.SettingType.Text
+                        settingName: qsTr("Address")
+                        settingTextContent: if (UserController.user.address !== null) {
+                                                UserController.user.address.street + " " + UserController.user.address.buildingNumber + ", " + UserController.user.address.city + " " + UserController.user.address.zipCode + ", " + UserController.user.address.state
+                                            } else {
+                                                ""
+                                            }
+
+                        width: parent.width
+                    }
+                    SettingStrip {
+                        settingType: SettingStrip.SettingType.Image
+                        settingName: qsTr("Photo")
+                        settingImageContent: if (UserController.user.isAvatarPresent(
+                                                         )) {
+                                                 "image://" + "pixmap_images" + "/" + UserController.user.avatarPixmapProviderId
+                                             } else {
+                                                 __style.userDefaultAvatar
+                                             }
+                        width: parent.width
+                    }
+                    //     SettingStrip {
+                    //         settingType: SettingStrip.SettingType.Text
+                    //         settingName: qsTr("Qualification type")
+                    //         settingTextContent: "Night control man"
+                    //         chevronEnabled: false
+                    //         width: parent.width
+                    //     }
+                    //     SettingStrip {
+                    //         settingType: SettingStrip.SettingType.Text
+                    //         settingName: qsTr("Qualification start date")
+                    //         settingTextContent: "01.02.2023"
+                    //         chevronEnabled: false
+                    //         width: parent.width
+                    //     }
+                    //     SettingStrip {
+                    //         settingType: SettingStrip.SettingType.Text
+                    //         settingName: qsTr("Qualification end date")
+                    //         settingTextContent: "01.02.2025"
+                    //         width: parent.width
+                    //     }
+                }
                 DisplaySmallText {
                     text: qsTr("Application")
                     Layout.topMargin: 10
@@ -158,8 +178,9 @@ Page {
                         chevronEnabled: false
                         swithchReference.checked: UserAppSettings.showExpandedFlights
                         onValueChanged: {
-                            console.log("value changed");
-                            UserAppSettings.showExpandedFlights = !UserAppSettings.showExpandedFlights;
+                            console.log("value changed")
+                            UserAppSettings.showExpandedFlights
+                                    = !UserAppSettings.showExpandedFlights
                         }
                     }
                     SettingStrip {
@@ -179,16 +200,13 @@ Page {
                             width: parent.width
                             height: parent.height
                             anchors.fill: parent
-                            background: Item {
-                            }
-                            indicator: Item {
-                            }
-                            contentItem: Item {
-                            }
+                            background: Item {}
+                            indicator: Item {}
+                            contentItem: Item {}
                             model: UserAppSettings.languageList
                             textRole: "name"
                             onActivated: {
-                                console.log("Selected language: " + model[currentIndex].value);
+                                console.log("Selected language: " + model[currentIndex].value)
                             }
                         }
                     }
@@ -196,4 +214,24 @@ Page {
             }
         }
     }
+
+    // Connections {
+    //     target: UserController.user
+
+    //     function onPersonalInfoChanged() {
+    //         console.log("DELTA")
+    //         nameStrip.settingTextContent = UserController.user.personalInfo.name
+    //                 + " " + UserController.user.personalInfo.surname
+    //         emailStrip
+    //     }
+    //     // }
+
+    //     // function onAvatarPixmapProviderIdChanged() {
+
+    //     //     /*TODO: does not work
+    //     //     console.log("onPersonalInfoChanged: " + UserController.user.personalInfo.name)*/
+    //     //     userPhoto.imageSource = "image://" + "pixmap_images" + "/"
+    //     //             + UserController.user.avatarPixmapProviderId
+    //     // }
+    // }
 }

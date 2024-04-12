@@ -19,7 +19,9 @@ private:
 public:
     explicit FlightsModel();
     ~FlightsModel();
-    void addFlight(const QString &callsign, const QString &planeName, int flightStatus, const QDateTime &departureTime, const QDateTime &arrivalTime);
+
+    void addFlight(const QString &callsign, const QString &departureAirport, const QString &arrivalAirport, int flightStatus, const QDateTime &departureTime, const QDateTime &arrivalTime, unsigned int maxHeight, const QString &maxHeightMeasureUnits);
+
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
@@ -28,7 +30,6 @@ public:
 
     void removeAllFlights();
     bool removeFlight(int row);
-
 
 protected:
     QHash<int, QByteArray> roleNames() const override;

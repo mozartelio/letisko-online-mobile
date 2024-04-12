@@ -5,7 +5,7 @@ import QtQuick.Controls
 import "./typography/label/text"
 
 Button {
-    id: button
+    id: root
     property string contentText
 
     property color backgroundColor: __style.transparentColor
@@ -18,6 +18,7 @@ Button {
         radius: 100
     }
     contentItem: Row {
+        id: content
         spacing: 8
         LabelLargeText {
             id: buttonText
@@ -56,7 +57,7 @@ Button {
                     color: __style.primaryColor
                 }
 
-                when: button.pressed
+                when: root.pressed
             }
         ]
     }

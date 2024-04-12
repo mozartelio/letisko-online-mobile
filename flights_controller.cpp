@@ -8,7 +8,7 @@
 #include <QPair>
 
 #include "flights_controller.h"
-#include "request_constants.h"
+#include "constants.h"
 #include "server_sent_events_parser.h"
 
 FlightsController::FlightsController(QNetworkAccessManager *networkManager)
@@ -30,7 +30,7 @@ FlightsController::~FlightsController()
 void FlightsController::subscribeToFlightsUpdates()
 {
     QNetworkRequest request;
-    
+
     request.setUrl(QUrl(RequestConstants::SERVER_REQUEST_URL_AND_PORT + RequestConstants::UPDATE_SUBSCRIPTION_STREAM_ENDPOINT));
     request.setRawHeader("Content-Type", RequestConstants::CONTENT_TYPE);
     request.setRawHeader("User-Agent", RequestConstants::USER_AGENT);
@@ -58,7 +58,7 @@ void FlightsController::loadFlights()
     // Check auth token presence and implement its usage
     if (m_userJwtAuthorizationToken.isEmpty())
     {
-        qDebug() << "No auth token set";
+        // qDebug() << "No auth token set";
         setIsLoadingFlights(true);
         QTimer::singleShot(RequestConstants::REQUEST_RETRY_TIMEOUT_MILLISECONDS, this, &FlightsController::loadFlights);
         return;
@@ -109,14 +109,37 @@ void FlightsController::handleFlightsLoadNetworkReply(QNetworkReply *reply)
 
         QString callsign = jsonObject.value("callsign").toString();
         // TODO: Add REAL plane name to the model
-        QString planeName = jsonObject.value("airport_id").toString();
+        QString departureAirport = jsonObject.value("airport_id").toString();
+        QString arrivalAirportData = jsonObject.value("arrive_toairport_id").toString();
         // TODO: Add REAL APROVAL STATUS to the model
-        int flightStatus = 1; // jsonObject.value("approval_status").toString();
+        QString textFlightStatus = jsonObject.value("approval_status").toString();
+
+        int flightStatus;
+        // TODO: expose constants for flight status from c++ to qml
+        if (textFlightStatus == "Approved")
+        {
+            flightStatus = 1;
+        }
+        else if (textFlightStatus == "Denied")
+        {
+            flightStatus = 0;
+        }
+        else if (textFlightStatus == "Pending")
+        {
+            flightStatus = 2;
+        }
+        else
+        {
+            flightStatus = -1;
+        }
+
         QDateTime departureTime = QDateTime::fromString(jsonObject.value("start_time").toString(), Qt::ISODate);
         QDateTime arrivalTime = QDateTime::fromString(jsonObject.value("end_time").toString(), Qt::ISODate);
+        unsigned int maxHeight = jsonObject.value("max_height").toInt();
+        QString maxHeightMeasureUnits = jsonObject.value("height_level_unit_abbr").toString();
 
         qDebug() << "Adding flights to the model...";
-        m_flightsModel->addFlight(callsign, planeName, flightStatus, departureTime, arrivalTime);
+        m_flightsModel->addFlight(callsign, departureAirport, arrivalAirportData, flightStatus, departureTime, arrivalTime, maxHeight, maxHeightMeasureUnits);
     }
     reply->deleteLater();
 }

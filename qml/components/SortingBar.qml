@@ -21,12 +21,14 @@ Rectangle {
     signal valueChanged(int value)
 
     color: __style.surfaceColor
-    Layout.preferredWidth: 467
-    Layout.preferredHeight: 77
+    implicitHeight: 77
+    implicitWidth: 467
 
+    // Layout.preferredWidth: 467
+    // Layout.preferredHeight: 77
     Rectangle {
         id: leftSection
-        width: root.Layout.preferredWidth / 2
+        width: root.implicitWidth / 2
         height: 24
         color: __style.secondary50Color
         anchors {
@@ -41,7 +43,7 @@ Rectangle {
     }
     Rectangle {
         id: rightSection
-        width: root.Layout.preferredWidth / 2
+        width: root.implicitWidth / 2
         height: 24
         color: __style.primary90Color
         anchors {
@@ -57,7 +59,7 @@ Rectangle {
 
     RowLayout {
         spacing: 0
-        height: parent.Layout.preferredHeight
+        height: parent.implicitWidth
         anchors {
             top: parent.top
             bottom: parent.bottom

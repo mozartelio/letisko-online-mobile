@@ -1,5 +1,5 @@
 #include "server_connection_checker.h"
-#include "request_constants.h"
+#include "constants.h"
 
 ServerConnectionChecker::ServerConnectionChecker(const QString &hostName, quint16 port, QObject *parent)
     : QObject{parent}, m_hostName{hostName}, m_port{port}

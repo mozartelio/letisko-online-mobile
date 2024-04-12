@@ -12,14 +12,7 @@ FlightsFilterProxyModel::FlightsFilterProxyModel(QObject *parent)
     //     setSortOrder(false);
     // }
 
-    // FlightsFilterProxyModel::FlightsFilterProxyModel()
-    //     : QSortFilterProxyModel()
-    // {
-
     qDebug() << "hello from FlightsFilterProxyModel";
-
-    // connect(sourceModel(), &QAbstractItemModel::dataChanged, this, &FlightsFilterProxyModel::dataChangedInSourceModel);
-    // setSortOrder(false);
 }
 
 FlightsFilterProxyModel::~FlightsFilterProxyModel()
@@ -36,20 +29,26 @@ bool FlightsFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex 
 
     // get the data for each role and apply your filtering logic
     QVariant callsignData = sourceModel()->data(sourceIndex, FlightsRoles::CallsignRole);
-    QVariant planeNameData = sourceModel()->data(sourceIndex, FlightsRoles::PlaneNameRole);
+    QVariant departureAirportData = sourceModel()->data(sourceIndex, FlightsRoles::DepartureAirportRole);
+    QVariant arrivalAirportData = sourceModel()->data(sourceIndex, FlightsRoles::ArrivalAirportRole);
     QVariant flightStatusData = sourceModel()->data(sourceIndex, FlightsRoles::FlightStatusRole);
     QVariant departureTimeData = sourceModel()->data(sourceIndex, FlightsRoles::DepartureTimeRole);
     QVariant arrivalTimeData = sourceModel()->data(sourceIndex, FlightsRoles::ArrivalTimeRole);
+    QVariant maxHeightData = sourceModel()->data(sourceIndex, FlightsRoles::MaxHeightRole);
+    QVariant maxHeightMeasureUnitsData = sourceModel()->data(sourceIndex, FlightsRoles::MaxHeightMeasureUnitsRole);
 
     // applies filtering conditions here
     bool callsignMatches = callsignData.toString().contains(filterRegularExpression());
-    bool planeNameMatches = planeNameData.toString().contains(filterRegularExpression());
+    bool departureAirportMatches = departureAirportData.toString().contains(filterRegularExpression());
+    bool arrivalAirportMatches = arrivalAirportData.toString().contains(filterRegularExpression());
     bool flightStatusMatches = flightStatusData.toString().contains(filterRegularExpression());
     bool departureTimeMatches = departureTimeData.toDateTime().toString().contains(filterRegularExpression());
     bool arrivalTimeMatches = arrivalTimeData.toDateTime().toString().contains(filterRegularExpression());
+    bool maxHeightMatches = maxHeightData.toString().contains(filterRegularExpression());
+    bool maxHeightMeasureUnitsMatches = maxHeightMeasureUnitsData.toString().contains(filterRegularExpression());
 
     // returns true if any of the roles match the filter
-    return callsignMatches || planeNameMatches || flightStatusMatches || departureTimeMatches || arrivalTimeMatches;
+    return callsignMatches || departureAirportMatches || arrivalAirportMatches || flightStatusMatches || departureTimeMatches || arrivalTimeMatches || maxHeightMatches || maxHeightMeasureUnitsMatches;
 }
 
 void FlightsFilterProxyModel::setFilterString(QString string)
@@ -63,10 +62,12 @@ void FlightsFilterProxyModel::setSortOrder(bool checked)
 {
     if (checked)
     {
-        this->sort(0, Qt::DescendingOrder);
+        this->sort(4, Qt::DescendingOrder); // Sort by arrival time in descending order
+        this->sort(5, Qt::DescendingOrder); // Sort by departure time in descending order
     }
     else
     {
-        this->sort(0, Qt::AscendingOrder);
+        this->sort(4, Qt::AscendingOrder); // Sort by arrival time in ascending order
+        this->sort(5, Qt::AscendingOrder); // Sort by departure time in ascending order
     }
 }

@@ -1,5 +1,5 @@
-#ifndef REQUEST_CONSTANTS_H
-#define REQUEST_CONSTANTS_H
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
 #include <QString>
 #include <QByteArray>
 #include <QObject>
@@ -35,4 +35,4 @@ private:
         RequestConstants(){};
 };
 
-#endif // REQUEST_CONSTANTS_H
+#endif // CONSTANTS_H

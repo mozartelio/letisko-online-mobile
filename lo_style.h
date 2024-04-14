@@ -22,7 +22,7 @@ class LOStyle : public QObject
     Q_PROPERTY(QColor onPrimaryColor READ onPrimaryColor CONSTANT)
     Q_PROPERTY(QColor blackColor READ blackColor CONSTANT)
     Q_PROPERTY(QColor basicStripColor READ basicStripColor CONSTANT)
-    Q_PROPERTY(QColor accentedStripColor READ accentedStripColor CONSTANT)
+    // Q_PROPERTY(QColor accentedStripColor READ accentedStripColor CONSTANT)
     Q_PROPERTY(QColor pressAccentColor READ pressAccentColor CONSTANT)
     Q_PROPERTY(QColor surfaceContainerHighColor READ surfaceContainerHighColor CONSTANT)
     Q_PROPERTY(QColor outlineVariant READ outlineVariant CONSTANT)
@@ -35,7 +35,9 @@ class LOStyle : public QObject
     Q_PROPERTY(QColor outlineColor READ outlineColor CONSTANT)
     Q_PROPERTY(QColor secondaryContainerColor READ secondaryContainerColor CONSTANT)
     Q_PROPERTY( QColor errorColor READ errorColor CONSTANT )
-    // Q_PROPERTY( QColor READ  CONSTANT )
+    Q_PROPERTY( QColor primary95Color READ primary95Color CONSTANT)
+    Q_PROPERTY( QColor inactiveColor READ inactiveColor CONSTANT )
+   // Q_PROPERTY( QColor READ  CONSTANT )
 
     // Colors - secondary palette
     Q_PROPERTY(QColor secondary50Color READ secondary50Color CONSTANT)
@@ -107,7 +109,7 @@ public:
     QColor onPrimaryColor() { return QColor::fromString("#FFFFFF"); }
     QColor blackColor() { return QColor::fromString("#000000"); }
     QColor basicStripColor() { return QColor::fromString("#F5EFF7"); }
-    QColor accentedStripColor() { return QColor::fromString("#FFD8E4"); }
+    // QColor accentedStripColor() { return QColor::fromString("#FFD8E4"); }
     QColor pressAccentColor() { return QColor::fromString("#D0BCFF"); }
     QColor surfaceContainerHighColor() { return QColor::fromString("#ECE6F0"); }
     QColor outlineVariant() { return QColor::fromString("#CAC4D0"); }
@@ -116,11 +118,13 @@ public:
     QColor onSurfaceVariantColor() { return QColor::fromString("#49454F"); }
     QColor surfaceColor() { return QColor::fromString("#FEF7FF"); }
     QColor primary90Color() { return QColor::fromString("#EADDFF"); }
+    QColor primary95Color() { return QColor::fromString("#F6EDFF"); }
     QColor darkColor() { return QColor::fromString("#322F35"); }
     QColor outlineColor() { return QColor::fromString("#79747E"); }
     QColor secondaryContainerColor() { return QColor::fromString("#E8DEF8"); }
     QColor errorColor() {return QColor::fromString( "#B3261E" );}
-    // QColor () {return QColor::fromString( "#" );}
+    QColor inactiveColor() {return QColor::fromString( "#DED8E1" );}
+   // QColor () {return QColor::fromString( "#" );}
 
     // Colors - secondary palette
     QColor secondary50Color() { return QColor::fromString("#7A7289"); }

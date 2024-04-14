@@ -40,7 +40,7 @@ Item {
 
         Rectangle {
             id: backgroungRectangle
-            color: __style.accentedStripColor
+            color: __style.primary95Color
             Layout.fillWidth: true
             Layout.preferredWidth: parent.width
             Layout.preferredHeight: 50

@@ -81,7 +81,8 @@ Item {
                                 id: userPhoto
                                 imageSource: if (UserController.user.isAvatarPresent(
                                                          )) {
-                                                 "image://" + "pixmap_images" + "/" + UserController.user.avatarPixmapProviderId
+                                                 console.log("NO IMAGE FROM SERVER!!!")
+                                                 return "image://" + "pixmap_images" + "/" + UserController.user.avatarPixmapProviderId
                                              } else {
                                                  __style.userDefaultAvatar
                                              }
@@ -119,7 +120,7 @@ Item {
 
         StackView {
             id: stackView
-            initialItem: flightsScreen //   loginScreen // // flightsScreen  // //aircraftsScreen // //settingsScreen // // // //documentationScreen
+            initialItem: flightsScreen //  loginScreen  // // flightsScreen  // //aircraftsScreen // //settingsScreen // // // //documentationScreen
             width: parent.width
             height: parent.height
             // anchors.fill: parent  // activate this if not using hot reload
@@ -177,10 +178,11 @@ Item {
                 itemName: qsTr("Airport")
                 color: stackView.currentItem.objectName
                        === "airportScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
-                onDrawerItemPressed: {
-                    privates.drawerPageName = itemName
-                    drawer.close()
-                }
+                isActive: false
+                // onDrawerItemPressed: {
+                //     privates.drawerPageName = itemName
+                //     drawer.close()
+                // }
             }
 
             DrawerItem {
@@ -189,11 +191,12 @@ Item {
                 itemName: qsTr("Documentation")
                 color: stackView.currentItem.objectName
                        === "documentationScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
-                onDrawerItemPressed: {
-                    privates.drawerPageName = itemName
-                    stackView.replace(documentationScreen)
-                    drawer.close()
-                }
+                isActive: false
+                // onDrawerItemPressed: {
+                //     privates.drawerPageName = itemName
+                //     stackView.replace(documentationScreen)
+                //     drawer.close()
+                // }
             }
 
             DrawerItem {

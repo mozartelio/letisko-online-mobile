@@ -20,7 +20,7 @@ set(CMAKE_AUTORCC ON)
 qt_add_executable(appOnlineLetiskoMobileApp
     main.cpp
     ${QM_FILES}
-        aircraft_categories_controller.h
+    aircraft_categories_controller.h
 )
 
 
@@ -69,10 +69,12 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     qml/components/SortingSection.qml
     qml/components/FlightsSortingBar.qml
 
+
     # text font styles
     #Headline
-    qml/components/typography/headline/text/HeadlineMediumText.qml
     qml/components/typography/headline/text/HeadlineSmallText.qml
+    qml/components/typography/headline/text/HeadlineMediumText.qml
+    qml/components/typography/headline/text/HeadlineLargeText.qml
     #Label
     qml/components/typography/label/text/LabelLargeProminentText.qml
     qml/components/typography/label/text/LabelLargeText.qml
@@ -81,9 +83,11 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     qml/components/typography/title/text/TitleLargeText.qml
     qml/components/typography/title/text/TitleMediumText.qml
     #Body
-    qml/components/typography/body/text/BodyLargeText.qml
-    qml/components/typography/body/text/BodyMediumText.qml
     qml/components/typography/body/text/BodySmallText.qml
+    qml/components/typography/body/text/BodyMediumText.qml
+    qml/components/typography/body/text/BodyLargeText.qml
+
+
     #Display
     qml/components/typography/display/text/DisplaySmallText.qml
 

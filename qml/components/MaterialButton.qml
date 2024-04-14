@@ -20,6 +20,9 @@ Button {
     contentItem: Row {
         id: content
         spacing: 8
+        anchors {
+            centerIn: parent
+        }
         LabelLargeText {
             id: buttonText
             Layout.alignment: Qt.AlignVCenter | Qt.AlignRight

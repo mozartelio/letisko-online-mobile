@@ -5,6 +5,8 @@ import QtQuick.Controls.Basic
 import com.letiskoonline.UserController
 import "../components"
 import "../components/typography/title/text/"
+import "../components/typography/label/text/"
+import "../components/typography/headline/text/"
 
 Page {
     signal goToRegistrationScreen
@@ -37,7 +39,7 @@ Page {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
         }
 
-        Text {
+        HeadlineLargeText {
             id: textLabel
             text: qsTr("LOGIN")
             font.bold: true
@@ -65,7 +67,7 @@ Page {
                 topPadding: 20
                 rightPadding: 20
                 bottomPadding: 20
-                Text {
+                TitleMediumText {
                     text: qsTr("Email")
                 }
                 EmailTextField {
@@ -73,7 +75,7 @@ Page {
                     width: 240
                 }
 
-                Text {
+                TitleMediumText {
                     text: qsTr("Password")
                 }
                 PasswordField {
@@ -118,7 +120,7 @@ Page {
             Layout.fillHeight: true
             Layout.preferredHeight: notRegistered.implicitHeight + registration.implicitHeight + 60
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-            Text {
+            TitleMediumText {
                 id: notRegistered
                 text: qsTr("Not yet registered?")
                 horizontalAlignment: Text.AlignHCenter
@@ -126,7 +128,7 @@ Page {
                     horizontalCenter: parent.horizontalCenter
                 }
             }
-            Text {
+            TitleMediumText {
                 id: registration
                 text: qsTr("Registration")
                 color: __style.primaryColor

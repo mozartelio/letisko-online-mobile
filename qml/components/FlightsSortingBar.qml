@@ -34,13 +34,6 @@ Item {
         spacing: 0
         width: parent.width
 
-        // height: parent.implicitWidth
-        // anchors {
-        //     top: parent.top
-        //     bottom: parent.bottom
-        //     left: parent.left
-        //     right: parent.right
-        // }
         SortingSection {
             leftButton.width: parent.width / 2
             rightButton.width: parent.width / 2
@@ -64,35 +57,5 @@ Item {
             sectionHeaderBackgroundColor: SortingSection.Light
             Layout.preferredWidth: root.width /// 2
         }
-
-        // SortingButton {
-        //     contentText: qsTr(arrivalRightButtonName)
-        //     ButtonGroup.group: sortingButtonsGroup
-        //     Layout.alignment: Qt.AlignBottom
-        //     Layout.preferredWidth: root.Layout.preferredWidth / 4
-        //     Layout.preferredHeight: root.Layout.preferredHeight - leftSection.height
-        // }
-        // SortingButton {
-        //     contentText: qsTr(arrivalLefttButtonName)
-        //     ButtonGroup.group: sortingButtonsGroup
-        //     Layout.alignment: Qt.AlignBottom
-        //     Layout.preferredWidth: root.Layout.preferredWidth / 4
-        //     Layout.preferredHeight: root.Layout.preferredHeight - leftSection.height
-        // }
-
-        // SortingButton {
-        //     contentText: qsTr(departureLeftButtonName)
-        //     ButtonGroup.group: sortingButtonsGroup
-        //     Layout.alignment: Qt.AlignBottom
-        //     Layout.preferredWidth: root.Layout.preferredWidth / 4
-        //     Layout.preferredHeight: root.Layout.preferredHeight - leftSection.height
-        // }
-        // SortingButton {
-        //     contentText: qsTr(departureRightButtonName)
-        //     ButtonGroup.group: sortingButtonsGroup
-        //     Layout.alignment: Qt.AlignBottom
-        //     Layout.preferredWidth: root.Layout.preferredWidth / 4
-        //     Layout.preferredHeight: root.Layout.preferredHeight - leftSection.height
-        // }
     }
 }

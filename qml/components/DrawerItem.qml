@@ -4,8 +4,10 @@ import "./typography/label/text"
 
 Rectangle {
     id: root
+
     required property url iconSource
     required property string itemName
+    property bool isActive: true
 
     signal drawerItemPressed
 
@@ -20,7 +22,7 @@ Rectangle {
                 name: "pressed"
                 PropertyChanges {
                     target: root
-                    color: __style.pressAccentColor
+                    color: isActive ? __style.pressAccentColor : __style.transparentColor
                 }
                 when: mouseArea.pressed
             }
@@ -62,6 +64,7 @@ Rectangle {
             id: text
             width: drawerItemRow.width - icon.width - drawerItemRow.spacing
             text: qsTr(itemName)
+            color: isActive ? __style.blackColor : __style.inactiveColor
         }
     }
 }

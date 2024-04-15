@@ -11,7 +11,7 @@ class AircraftsController : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool isLoadingAircrafts READ isLoadingAircrafts WRITE setIsLoadingAircrafts NOTIFY isLoadingAircraftsChanged)
-    Q_PROPERTY(bool isActiveScreen READ isActiveScreen WRITE setIsActiveScreen NOTIFY isActiveScreenChanged)
+    Q_PROPERTY(bool isActiveScreen READ isActiveScreen WRITE setIsActiveScreen NOTIFY activeScreenChanged)
 
 public:
     explicit AircraftsController(QNetworkAccessManager *networkManager);
@@ -42,7 +42,7 @@ public slots:
 
 signals:
     void isLoadingAircraftsChanged();
-    void isActiveScreenChanged();
+    void activeScreenChanged();
 
 private:
     QTimer m_requestTimer;

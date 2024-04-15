@@ -3,7 +3,6 @@
 
 #include <QObject>
 
-#include "address.h"
 
 class PersonalInfo : public QObject
 {

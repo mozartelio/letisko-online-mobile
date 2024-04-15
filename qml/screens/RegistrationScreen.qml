@@ -12,6 +12,7 @@ import "../components/typography/headline/text/"
 Page {
     signal goToMainScreen
     signal goToLoginScreen
+    signal goToRegistrationDetailsScreen
 
     background: Rectangle {
         color: __style.onPrimaryColor
@@ -96,24 +97,20 @@ Page {
                     id: button
                     backgroundColor: __style.primaryColor
                     contentText: qsTr("Register")
-                    enabled: passwordRequirementsGuard.areAllConditionsMet()
-                             && (emailInput.text.trim() !== ""
-                                 && emailInput.text !== undefined)
+                    enabled: passwordRequirementsGuard.areAllConditionsMet() && (emailInput.text.trim() !== "" && emailInput.text !== undefined)
                     contentTextColor: __style.onPrimaryColor
                     anchors {
                         horizontalCenter: parent.horizontalCenter
                     }
                     onClicked: {
                         if (!emailInput.validationRegex.test(emailInput.text)) {
-                            infoPopupTextContent.text = privates.loginErrorText + "\n" + qsTr(
-                                        "entered value is not a valid email!")
-                            infoPopup.open()
-                            return
+                            infoPopupTextContent.text = privates.loginErrorText + "\n" + qsTr("entered value is not a valid email!");
+                            infoPopup.open();
+                            return;
                         }
                         ;
-                        loadingPopup.open()
-                        UserController.doLogin(emailInput.text,
-                                               passswordInput.text)
+                        loadingPopup.open();
+                        UserController.doRegistration(emailInput.text, passswordInput.text);
                     }
                 }
             }
@@ -122,8 +119,7 @@ Page {
                 Layout.preferredWidth: parent.width
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: notRegistered.implicitHeight
-                                        + registration.implicitHeight + 60
+                Layout.preferredHeight: notRegistered.implicitHeight + registration.implicitHeight + 60
                 Layout.alignment: Qt.AlignCenter
                 TitleMediumText {
                     id: notRegistered
@@ -147,7 +143,7 @@ Page {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            goToLoginScreen()
+                            goToLoginScreen();
                         }
                     }
                 }
@@ -156,17 +152,15 @@ Page {
     }
     Connections {
         target: UserController
-        //todo:
-        // function onLoginResult(result) {
-        //     if (result === true) {
-        //         // console.log("logged in successfully")
-        //         goToMainScreen()
-        //     } else {
-        //         infoPopupTextContent.text = privates.loginErrorText + "\n" + result
-        //         loadingPopup.close()
-        //         infoPopup.open()
-        //     }
-        // }
+        function onRegistrationResult(result) {
+            if (result === true) {
+                goToRegistrationDetailsScreen();
+            } else {
+                infoPopupTextContent.text = privates.loginErrorText + "\n" + result;
+                loadingPopup.close();
+                infoPopup.open();
+            }
+        }
     }
 
     PopupParent {

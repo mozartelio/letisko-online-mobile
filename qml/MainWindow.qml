@@ -120,7 +120,7 @@ Item {
 
         StackView {
             id: stackView
-            initialItem: privates.mainScreenId
+            initialItem: loginScreen //registrationDetailsScreen //  // //registrationScreen // // //flightsScreen //  // //aircraftsScreen // //settingsScreen // // // //documentationScreen
             width: parent.width
             height: parent.height
             // anchors.fill: parent  // activate this if not using hot reload
@@ -278,6 +278,8 @@ Item {
         RegistrationScreen {
             objectName: "registrationScreenObject"
             onGoToLoginScreen: stackView.replace(loginScreen)
+            onGoToRegistrationDetailsScreen: stackView.replace(
+                                                 registrationDetailsScreen)
         }
     }
     Component {
@@ -323,13 +325,14 @@ Item {
     Connections {
         target: UserController.user
 
-        function onPersonalInfoChanged() {
-            userNameSurname.text = UserController.user.personalInfo.name + " "
-                    + UserController.user.personalInfo.surname
+        function onPersonalInfoChanged(personalinfo) {
+            if (personalinfo === true) {
+                userNameSurname.text = UserController.user.personalInfo.name
+                        + " " + UserController.user.personalInfo.surname
+            }
         }
 
         function onAvatarPixmapProviderIdChanged() {
-
 
             /*TODO: does not work
             console.log("onPersonalInfoChanged: " + UserController.user.personalInfo.name)*/
@@ -338,10 +341,20 @@ Item {
         }
     }
 
+    Connections {
+        target: UserController
+
+        function profileDetailsFilledInResult(personalinfo) {
+            if (personalinfo === true) {
+                userNameSurname.text = UserController.user.personalInfo.name
+                        + " " + UserController.user.personalInfo.surname
+            }
+        }
+    }
     QtObject {
         id: privates
 
-        property var mainScreenId: registrationDetailsScreen //registrationScreen //loginScreen // //flightsScreen //  // //aircraftsScreen // //settingsScreen // // // //documentationScreen
+        property var mainScreenId: flightsScreen
 
         property string drawerPageName
         property bool isNavigationAvailable: stackView.currentItem.objectName

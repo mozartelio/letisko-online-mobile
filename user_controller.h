@@ -21,7 +21,10 @@ public:
     ~UserController();
 
     Q_INVOKABLE void doLogin(const QString &email, const QString &password);
-    Q_INVOKABLE bool doRegister(const QString &email, const QString &password);
+    Q_INVOKABLE void doLogout();
+    Q_INVOKABLE void doRegistration(const QString &email, const QString &password);
+    Q_INVOKABLE void fillInProfileDetails(const QString &name, const QString &surname, const QString &street, const QString &buildingNumber, const QString &zipCode, const QString &city, const QString &state);
+    void sendChangeRoleRequest();
 
     Q_INVOKABLE FlightsController *getFlightsController() const;
     void setFlightsController(FlightsController *controller);
@@ -34,6 +37,9 @@ public:
 
 public slots:
     void handleLoginNetworkReply(QNetworkReply *reply);
+    void handleRegistrationNetworkReply(QNetworkReply *reply, QString email, QString password);
+    void handleProfileDetailsNetworkReply(QNetworkReply *reply);
+    void handleChangeRoleReply(QNetworkReply *reply);
 
 private:
     QNetworkAccessManager *m_networkManager;
@@ -47,6 +53,9 @@ private:
     // TODO: logout?
 signals:
     void loginResult(const QVariant &result);
+    void registrationResult(const QVariant &result);
+    void profileDetailsFilledInResult(const QVariant &result);
+    void changeRoleResult(const QVariant &result);
     void userChanged();
 };
 

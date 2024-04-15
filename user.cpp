@@ -9,9 +9,10 @@
 #include "constants.h"
 #include "pixmap_provider.h"
 
-User::User(QNetworkAccessManager *networkManager, QObject *parent) : QObject{parent}, m_avatar()
+User::User(QNetworkAccessManager *networkManager, QObject *parent) : QObject{parent}
 {
-    // m_avatar = QPixmap();
+    m_avatar = QPixmap();
+    m_personalInfo = nullptr;
     m_address = nullptr;
     m_networkManager = networkManager;
 }
@@ -23,6 +24,18 @@ User::~User()
 
     delete m_address;
     m_address = nullptr;
+}
+
+void User::removeUserInfo()
+{
+    delete m_personalInfo;
+    m_personalInfo = nullptr;
+
+    delete m_address;
+    m_address = nullptr;
+
+    m_avatar = QPixmap();
+    PixmapProvider::instance()->removePixmap(m_avatarPixmapProviderId);
 }
 
 void User::requestPersonalInfoAndAddress()
@@ -71,6 +84,11 @@ void User::handlePersonalInfoNetworkReply(QNetworkReply *reply)
 
             m_address = new Address(buildingNumber, city, street, state, zipCode);
 
+            if(m_personalInfo !=nullptr) {
+                delete m_personalInfo;
+                m_personalInfo = nullptr;
+
+            }
             m_personalInfo = new PersonalInfo(email, name, surname);
 
             emit personalInfoChanged(m_personalInfo);

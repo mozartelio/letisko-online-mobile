@@ -8,6 +8,7 @@
 #include <QNetworkAccessManager>
 
 #include "personal_info.h"
+#include "address.h"
 
 class User : public QObject
 {
@@ -40,6 +41,8 @@ public:
     QString getAvatarPixmapProviderId() const;
 
     Q_INVOKABLE bool isAvatarPresent() const;
+
+    void removeUserInfo();
 
 public slots:
     void handlePersonalInfoNetworkReply(QNetworkReply *reply);

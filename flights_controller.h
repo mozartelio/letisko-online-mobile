@@ -10,8 +10,8 @@
 class FlightsController : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(bool isLoadingFlights READ isLoadingFlights WRITE setIsLoadingFlights NOTIFY isLoadingFlightsChanged)
-    Q_PROPERTY(bool isActiveScreen READ isActiveScreen WRITE setIsActiveScreen NOTIFY isActiveScreenChanged)
+    Q_PROPERTY(bool isLoadingFlights READ isLoadingFlights WRITE setIsLoadingFlights NOTIFY loadingFlightsChanged)
+    Q_PROPERTY(bool isActiveScreen READ isActiveScreen WRITE setIsActiveScreen NOTIFY activeScreenChanged)
 public:
     explicit FlightsController(QNetworkAccessManager *networkManager);
     ~FlightsController();
@@ -40,8 +40,8 @@ public slots:
     void handleFlightsUpdateNetworkReply(QNetworkReply *reply);
 
 signals:
-    void isLoadingFlightsChanged();
-    void isActiveScreenChanged();
+    void loadingFlightsChanged();
+    void activeScreenChanged();
 
 private:
     QTimer m_requestTimer;

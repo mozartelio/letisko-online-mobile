@@ -29,6 +29,7 @@ ColumnLayout {
             item: qsTr("1 special character")
         }, {
             isDone: password !== email,
+            // TODO: AND DO NOT CONTAIN IT
             item: qsTr("password must be different from\n      the email address")
         }]
 

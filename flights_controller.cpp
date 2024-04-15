@@ -17,7 +17,7 @@ FlightsController::FlightsController(QNetworkAccessManager *networkManager)
     setNetworkManager(networkManager);
     m_flightsModel = new FlightsModel();
 
-    connect(this, &FlightsController::isActiveScreenChanged, this, &FlightsController::loadFlights);
+    connect(this, &FlightsController::activeScreenChanged, this, &FlightsController::loadFlights);
     subscribeToFlightsUpdates();
 }
 
@@ -37,7 +37,7 @@ void FlightsController::subscribeToFlightsUpdates()
     QNetworkReply *reply = m_networkManager->get(request);
 
     QObject::connect(reply, &QNetworkReply::readyRead, this, [this, reply]()
-                     { handleFlightsUpdateNetworkReply(reply); });
+                     { handleFlightsUpdateNetworkReply(reply);});
 }
 
 void FlightsController::deleteFlightModel()
@@ -198,7 +198,7 @@ void FlightsController::setIsLoadingFlights(bool isLoading)
     if (m_isLoadingFlights != isLoading)
     {
         m_isLoadingFlights = isLoading;
-        emit isLoadingFlightsChanged();
+        emit loadingFlightsChanged();
     }
 }
 
@@ -212,6 +212,6 @@ void FlightsController::setIsActiveScreen(bool isActive)
     if (m_isActiveScreen != isActive)
     {
         m_isActiveScreen = isActive;
-        emit isActiveScreenChanged();
+        emit activeScreenChanged();
     }
 }

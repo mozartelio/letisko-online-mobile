@@ -63,6 +63,7 @@ Page {
                     Layout.topMargin: 15
                     onClicked: {
                         logout()
+                        UserController.doLogout()
                     }
                 }
 
@@ -215,16 +216,16 @@ Page {
         }
     }
 
-    // Connections {
-    //     target: UserController.user
+    Connections {
+        target: UserController.user
 
-    //     function onPersonalInfoChanged() {
-    //         console.log("DELTA")
-    //         nameStrip.settingTextContent = UserController.user.personalInfo.name
-    //                 + " " + UserController.user.personalInfo.surname
-    //         emailStrip
-    //     }
-    //     // }
+        function onPersonalInfoChanged() {
+            console.log("DELTA")
+            nameStrip.settingTextContent = UserController.user.personalInfo.name
+                    + " " + UserController.user.personalInfo.surname
+            // emailStrip
+        }
+    }
 
     //     // function onAvatarPixmapProviderIdChanged() {
 

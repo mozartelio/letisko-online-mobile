@@ -14,7 +14,7 @@ AircraftsController::AircraftsController(QNetworkAccessManager *networkManager)
     setNetworkManager(networkManager);
     m_aircraftsModel = new AircraftsModel();
 
-    connect(this, &AircraftsController::isActiveScreenChanged, this, &AircraftsController::loadAircrafts);
+    connect(this, &AircraftsController::activeScreenChanged, this, &AircraftsController::loadAircrafts);
     subscribeToAircraftsUpdates();
 }
 
@@ -27,7 +27,7 @@ AircraftsController::~AircraftsController()
 void AircraftsController::subscribeToAircraftsUpdates()
 {
     QNetworkRequest request;
-    
+
     request.setUrl(QUrl(RequestConstants::SERVER_REQUEST_URL_AND_PORT + RequestConstants::UPDATE_SUBSCRIPTION_STREAM_ENDPOINT));
     request.setRawHeader("Content-Type", RequestConstants::CONTENT_TYPE);
     request.setRawHeader("User-Agent", RequestConstants::USER_AGENT);
@@ -187,6 +187,6 @@ void AircraftsController::setIsActiveScreen(bool isActive)
     if (m_isActiveScreen != isActive)
     {
         m_isActiveScreen = isActive;
-        emit isActiveScreenChanged();
+        emit activeScreenChanged();
     }
 }

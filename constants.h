@@ -27,6 +27,9 @@ public:
         static const QString AIRCRAFTS_ENDPOINT;
         static const QString PROFILE_ENDPOINT;
         static const QString AVATAR_ENDPOINT;
+        static const QString REGISTRATION_ENDPOINT;
+        static const QString PROFILE_DETAILS_ENDPOINT;
+        static const QString CHANGE_ROLE_ENDPOINT;
 
         static const QString UPDATE_FLIGHTS_TYPE;
         static const QString UPDATE_AIRCRAFTS_TYPE;

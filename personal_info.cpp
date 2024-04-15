@@ -33,7 +33,7 @@ void PersonalInfo::setEmail(const QString &email)
 
 QString PersonalInfo::getName() const
 {
-    qDebug() << "ProfileInfo::getName(): " << m_name;
+    // qDebug() << "ProfileInfo::getName(): " << m_name;
     return m_name;
 }
 
@@ -42,13 +42,14 @@ void PersonalInfo::setName(const QString &name)
     if (m_name != name)
     {
         m_name = name;
+        // qDebug() << "ProfileInfo::NEW Name(): " << m_name;
         emit nameChanged(name);
     }
 }
 
 QString PersonalInfo::getSurname() const
 {
-    qDebug() << "ProfileInfo::getSurname(): " << m_surname;
+    // qDebug() << "ProfileInfo::getSurname(): " << m_surname;
     return m_surname;
 }
 
@@ -57,6 +58,7 @@ void PersonalInfo::setSurname(const QString &surname)
     if (m_surname != surname)
     {
         m_surname = surname;
+        // qDebug() << "ProfileInfo::NEW SURName(): " << m_name;
         emit surnameChanged(surname);
     }
 }

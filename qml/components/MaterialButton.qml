@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import "./typography/label/text"
 
 Button {
@@ -25,14 +24,13 @@ Button {
         }
         LabelLargeText {
             id: buttonText
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+            Layout.alignment: Qt.AlignBaseline | Qt.AlignRight
             text: contentText
             color: contentTextColor
+            verticalAlignment: Text.AlignVCenter
             anchors {
                 leftMargin: 12
                 rightMargin: 12
-                topMargin: 10
-                bottomMargin: 10
             }
         }
 

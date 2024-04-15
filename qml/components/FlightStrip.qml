@@ -3,6 +3,7 @@ import QtQml
 import QtQuick.Controls
 import QtQuick.Layouts
 import UserAppSettings
+import com.letiskoonline.LanguageManager
 import "./typography/body/text"
 
 Item {
@@ -77,7 +78,6 @@ Item {
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
                     onClicked: {
-                        console.log("pressed")
                         isExpanded = !isExpanded
                     }
                 }
@@ -124,7 +124,10 @@ Item {
                         BodyLargeText {
                             //TODO: locale CHANGING
                             text: departureTime.toLocaleString(
-                                      Qt.locale("sk_SK"), "MMMM dd, yyyy hh:mm")
+                                      Qt.locale(
+                                          languageManager.languageCode(
+                                              languageManager.currentLanguage)),
+                                      "MMMM dd, yyyy hh:mm")
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                         }
@@ -139,7 +142,10 @@ Item {
                         BodyLargeText {
                             //TODO: locale CHANGING
                             text: arrivalTime.toLocaleString(
-                                      Qt.locale("sk_SK"), "MMMM dd, yyyy hh:mm")
+                                      Qt.locale(
+                                          languageManager.languageCode(
+                                              languageManager.currentLanguage)),
+                                      "MMMM dd, yyyy hh:mm")
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                         }

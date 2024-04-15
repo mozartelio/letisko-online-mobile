@@ -199,6 +199,7 @@ Page {
                         settingName: qsTr("Language")
                         settingTextContent: comboBoxLanguges.currentText
                         width: parent.width
+
                         ComboBox {
                             id: comboBoxLanguges
                             width: parent.width
@@ -207,6 +208,8 @@ Page {
                             background: Item {}
                             indicator: Item {}
                             contentItem: Item {}
+                            textRole: "text"
+
                             currentIndex: languageManager.currentLanguage
                             model: [{
                                     "value": LanguageManager.English,
@@ -215,10 +218,9 @@ Page {
                                     "value": LanguageManager.Slovak,
                                     "text": qsTr("Slovak")
                                 }]
-                            textRole: "text"
+
                             onActivated: {
-                                console.log("Selected language: " + model[currentIndex]
-                                            + ", " + model[currentIndex].value)
+                                languageSetting.settingTextContent = currentText
                                 languageManager.setCurrentLanguage(
                                             model[currentIndex].value)
                             }

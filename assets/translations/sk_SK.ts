@@ -133,22 +133,22 @@
         <translation>Odlet:</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="136"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="139"/>
         <source>Arrival: </source>
         <translation>Prílet:</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="151"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="154"/>
         <source>Departure airport: </source>
         <translation>Letisko odletu:</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="161"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="164"/>
         <source>Arrival airport: </source>
         <translation>Letisko príletu: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="312"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="315"/>
         <source>Height level: </source>
         <translation>Úroveň výšky: </translation>
     </message>

@@ -14,7 +14,8 @@ class LanguageManager : public QObject
 public:
     explicit LanguageManager(QGuiApplication *app, QQmlEngine *engine, QObject *parent = nullptr);
 
-    enum Languages {
+    enum Languages
+    {
         English,
         Slovak
     };
@@ -22,7 +23,7 @@ public:
 
     Languages getCurrentLanguage() const;
 
-    QString languageCode(Languages language) const;
+    Q_INVOKABLE QString languageCode(Languages language) const;
 
     void loadUserLanguage();
 

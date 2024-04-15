@@ -10,9 +10,8 @@ LanguageManager::LanguageManager(QGuiApplication *app, QQmlEngine *engine, QObje
     // if (m_translator.load("qrc:/translations/"+ QLocale::system().name()+ ".qm")){
     //     m_app->installTranslator(&m_translator);
     // }
-    connect(this, &LanguageManager::currentLanguageChanged, this, [this]() {
-        m_engine->retranslate();
-    });
+    connect(this, &LanguageManager::currentLanguageChanged, this, [this]()
+            { m_engine->retranslate(); });
     loadUserLanguage();
 }
 
@@ -49,7 +48,7 @@ LanguageManager::Languages LanguageManager::getCurrentLanguage() const
     return m_currentLanguage;
 }
 
-QString LanguageManager::languageCode(Languages language) const
+Q_INVOKABLE QString LanguageManager::languageCode(Languages language) const
 {
     switch (language)
     {

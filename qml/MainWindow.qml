@@ -120,7 +120,7 @@ Item {
 
         StackView {
             id: stackView
-            initialItem: loginScreen //registrationDetailsScreen //  // //registrationScreen // // //flightsScreen //  // //aircraftsScreen // //settingsScreen // // // //documentationScreen
+            initialItem: loginScreen //flightsScreen // //settingsScreen//registrationDetailsScreen //  // //registrationScreen // //aircraftsScreen // / //documentationScreen
             width: parent.width
             height: parent.height
             // anchors.fill: parent  // activate this if not using hot reload
@@ -129,8 +129,8 @@ Item {
                             "Stack depth:", stackView.depth)
             }
             //TODO:!!! ?do not use becouse the start is from the login or registrsation page, where topbar is disabled
-            Component.onCompleted: privates.drawerPageName = qsTr(
-                                       "Documentation")
+            // Component.onCompleted: privates.drawerPageName = qsTr(
+            //                            "Documentation")
         }
     }
 
@@ -334,6 +334,7 @@ Item {
 
         function onAvatarPixmapProviderIdChanged() {
 
+
             /*TODO: does not work
             console.log("onPersonalInfoChanged: " + UserController.user.personalInfo.name)*/
             userPhoto.imageSource = "image://" + "pixmap_images" + "/"
@@ -356,7 +357,7 @@ Item {
 
         property var mainScreenId: flightsScreen
 
-        property string drawerPageName
+        property string drawerPageName: qsTr("Flights") //default
         property bool isNavigationAvailable: stackView.currentItem.objectName
                                              !== "loginScreenObject"
                                              && stackView.currentItem.objectName

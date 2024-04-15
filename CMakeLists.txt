@@ -9,8 +9,9 @@ set(CMAKE_PREFIX_PATH "C:/Other_programs/Qt/6.6.0/mingw_64/lib/cmake" ${CMAKE_PR
 
 find_package(Qt6 REQUIRED COMPONENTS Quick Network LinguistTools)
 
-# qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ./assets/translations/slovak.ts)
-#do not work due to recursion
+qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ./assets/translations/sk_SK.ts)
+
+# do not work due to recursion
 # configure_file(${QM_FILES} ${CMAKE_SOURCE_DIR} COPYONLY)
 
 qt_standard_project_setup(REQUIRES 6.6)
@@ -101,9 +102,8 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     assets/images/images.qrc
     qml/configurations.qrc
     assets/fonts/fonts.qrc
+    assets/translations/translations.qrc
 
-    # slovak.qm
-    assets/translations/slovak.ts
 
     SOURCES
     user_controller.h user_controller.cpp
@@ -128,6 +128,8 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     user.h user.cpp
     pixmap_provider.h pixmap_provider.cpp
     server_connection_checker.h server_connection_checker.cpp
+    language_manager.h language_manager.cpp
+
 )
 
 
@@ -145,7 +147,6 @@ set_target_properties(appOnlineLetiskoMobileApp PROPERTIES
 
 target_link_libraries(appOnlineLetiskoMobileApp
     PRIVATE Qt6::Quick
-    # PRIVATE UserAppSettingsPlugin
 )
 
 include(GNUInstallDirs)

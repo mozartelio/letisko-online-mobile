@@ -1,8 +1,11 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+
 import UserAppSettings
 import com.letiskoonline.UserController
+import com.letiskoonline.LanguageManager
+
 import "../components/typography/display/text"
 import "../components/typography/title/text"
 import "../components"
@@ -168,7 +171,7 @@ Page {
                     Layout.bottomMargin: 40
                     spacing: 0
                     Rectangle {
-                        color: "#49454F"
+                        color: __style.settingsBoxesBorderColor
                         width: parent.width
                         height: 1
                     }
@@ -186,8 +189,8 @@ Page {
                     }
                     SettingStrip {
                         settingType: SettingStrip.SettingType.Text
-                        settingName: qsTr("Theme")
-                        settingTextContent: "Light"
+                        settingName: qsTr("Colour theme")
+                        settingTextContent: qsTr("Light")
                         width: parent.width
                     }
                     SettingStrip {
@@ -204,10 +207,20 @@ Page {
                             background: Item {}
                             indicator: Item {}
                             contentItem: Item {}
-                            model: UserAppSettings.languageList
-                            textRole: "name"
+                            currentIndex: languageManager.currentLanguage
+                            model: [{
+                                    "value": LanguageManager.English,
+                                    "text": qsTr("English")
+                                }, {
+                                    "value": LanguageManager.Slovak,
+                                    "text": qsTr("Slovak")
+                                }]
+                            textRole: "text"
                             onActivated: {
-                                console.log("Selected language: " + model[currentIndex].value)
+                                console.log("Selected language: " + model[currentIndex]
+                                            + ", " + model[currentIndex].value)
+                                languageManager.setCurrentLanguage(
+                                            model[currentIndex].value)
                             }
                         }
                     }

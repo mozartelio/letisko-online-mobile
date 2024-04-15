@@ -3,7 +3,6 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Controls.Basic
 import com.letiskoonline.UserController
-
 import "../components"
 import "../components/typography/title/text/"
 import "../components/typography/label/text/"
@@ -42,7 +41,7 @@ Page {
 
         HeadlineSmallText {
             id: textLabel
-            text: qsTr("LOGIN")
+            text: qsTr("LOG IN")
             font.bold: true
             color: __style.blackColor
             Layout.preferredWidth: parent.width
@@ -77,23 +76,19 @@ Page {
                 backgroundColor: __style.primaryColor
                 contentText: qsTr("Log in")
                 contentTextColor: __style.onPrimaryColor
-                enabled: (passswordInput.text.trim() !== ""
-                          && passswordInput.text !== undefined)
-                         && (emailInput.text.trim() !== ""
-                             && emailInput.text !== undefined)
+                enabled: (passswordInput.text.trim() !== "" && passswordInput.text !== undefined) && (emailInput.text.trim() !== "" && emailInput.text !== undefined)
                 anchors {
                     horizontalCenter: parent.horizontalCenter
                 }
                 onClicked: {
                     if (!emailInput.validationRegex.test(emailInput.text)) {
-                        infoPopupTextContent.text = privates.loginErrorText + "\n" + qsTr(
-                                    "entered value is not a valid email!")
-                        infoPopup.open()
-                        return
+                        infoPopupTextContent.text = privates.loginErrorText + "\n" + qsTr("entered value is not a valid email!");
+                        infoPopup.open();
+                        return;
                     }
                     ;
-                    loadingPopup.open()
-                    UserController.doLogin(emailInput.text, passswordInput.text)
+                    loadingPopup.open();
+                    UserController.doLogin(emailInput.text, passswordInput.text);
                 }
             }
         }
@@ -124,7 +119,7 @@ Page {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        goToRegistrationScreen()
+                        goToRegistrationScreen();
                     }
                 }
             }
@@ -137,11 +132,11 @@ Page {
         function onLoginResult(result) {
             if (result === true) {
                 // console.log("logged in successfully")
-                goToMainScreen()
+                goToMainScreen();
             } else {
-                infoPopupTextContent.text = privates.loginErrorText + "\n" + result
-                loadingPopup.close()
-                infoPopup.open()
+                infoPopupTextContent.text = privates.loginErrorText + "\n" + result;
+                loadingPopup.close();
+                infoPopup.open();
             }
         }
     }

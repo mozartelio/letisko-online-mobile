@@ -37,6 +37,7 @@ class LOStyle : public QObject
     Q_PROPERTY( QColor errorColor READ errorColor CONSTANT )
     Q_PROPERTY( QColor primary95Color READ primary95Color CONSTANT)
     Q_PROPERTY( QColor inactiveColor READ inactiveColor CONSTANT )
+   Q_PROPERTY( QColor settingsBoxesBorderColor READ settingsBoxesBorderColor CONSTANT )
    // Q_PROPERTY( QColor READ  CONSTANT )
 
     // Colors - secondary palette
@@ -125,7 +126,8 @@ public:
     QColor secondaryContainerColor() { return QColor::fromString("#E8DEF8"); }
     QColor errorColor() {return QColor::fromString( "#B3261E" );}
     QColor inactiveColor() {return QColor::fromString( "#DED8E1" );}
-   // QColor () {return QColor::fromString( "#" );}
+   QColor settingsBoxesBorderColor() {return QColor::fromString( "#49454F" );}
+  // QColor () {return QColor::fromString( "#" );}
 
     // Colors - secondary palette
     QColor secondary50Color() { return QColor::fromString("#7A7289"); }

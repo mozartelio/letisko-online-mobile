@@ -37,13 +37,11 @@ Page {
         SearchBar {
             Layout.alignment: Qt.AlignCenter | Qt.AlignTop
             onTextChanged: {
-                flightsFilterProxyModel.setFilterString(text)
+                flightsFilterProxyModel.setFilterString(text);
             }
         }
 
         Column {
-            /*Layout*/
-            id: ongoingFlightHead
             spacing: 14
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.preferredHeight: 100
@@ -75,8 +73,7 @@ Page {
 
                     // Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                     TitleLargeText {
-                        id: ongoingFligthsName
-                        text: qsTr("Ongoing flights:")
+                        text: qsTr("Flights:")
                         anchors {
                             verticalCenter: parent.verticalCenter
                             left: parent.left
@@ -106,7 +103,7 @@ Page {
                     // Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                     MaterialButton {
                         id: filtersButton
-                        contentText: "Filters"
+                        contentText: qsTr("Filters")
                         backgroundColor: __style.surfaceContainerLowColor
                         imagePath: __style.settinsIcon
                         anchors {
@@ -183,47 +180,47 @@ Page {
             }
         }
 
-        MouseArea {
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-            Layout.preferredHeight: 77
-            Layout.preferredWidth: parent.width
+        //future improvement: past fligths section
+        // MouseArea {
+        //     Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+        //     Layout.preferredHeight: 77
+        //     Layout.preferredWidth: parent.width
 
-            onPressed: arePasstFlightsRequested = !arePasstFlightsRequested
-            ColumnLayout {
-                id: pastFlightHead
-                anchors.fill: parent
+        //     onPressed: arePasstFlightsRequested = !arePasstFlightsRequested
+        //     ColumnLayout {
+        //         anchors.fill: parent
 
-                spacing: 4
+        //         spacing: 4
 
-                Rectangle {
-                    color: __style.outlineVariant
-                    Layout.preferredHeight: 2
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                    Layout.preferredWidth: parent.width
-                }
-                RowLayout {
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-                    Layout.preferredWidth: parent.width
-                    Layout.rightMargin: 7
-                    // Layout.leftMargin: 7
-                    spacing: 25
-                    TitleLargeText {
-                        Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                        Layout.preferredHeight: contentHeight
-                        Layout.preferredWidth: contentWidth
-                        text: qsTr("Past flights")
-                    }
+        //         Rectangle {
+        //             color: __style.outlineVariant
+        //             Layout.preferredHeight: 2
+        //             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+        //             Layout.preferredWidth: parent.width
+        //         }
+        //         RowLayout {
+        //             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+        //             Layout.preferredWidth: parent.width
+        //             Layout.rightMargin: 7
+        //             // Layout.leftMargin: 7
+        //             spacing: 25
+        //             TitleLargeText {
+        //                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+        //                 Layout.preferredHeight: contentHeight
+        //                 Layout.preferredWidth: contentWidth
+        //                 text: qsTr("Past flights")
+        //             }
 
-                    Image {
-                        Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                        width: __style.icon40
-                        height: __style.icon40
-                        source: arePasstFlightsRequested ? __style.arrowDropUpBigIcon : __style.arrowDropDownBigIcon
-                        verticalAlignment: Image.AlignVCenter
-                    }
-                }
-            }
-        }
+        //             Image {
+        //                 Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+        //                 width: __style.icon40
+        //                 height: __style.icon40
+        //                 source: arePasstFlightsRequested ? __style.arrowDropUpBigIcon : __style.arrowDropDownBigIcon
+        //                 verticalAlignment: Image.AlignVCenter
+        //             }
+        //         }
+        //     }
+        // }
     }
 
     FlightFilterPopUp {
@@ -232,19 +229,19 @@ Page {
 
     Component.onCompleted: {
         if (FlightsController !== null) {
-            FlightsController.setIsActiveScreen(true)
-            console.log("called:  FlightsController.setIsActiveScreen(true); ")
+            FlightsController.setIsActiveScreen(true);
+            console.log("called:  FlightsController.setIsActiveScreen(true); ");
         } else {
-            console.log("FlightsController is not initialized yet.")
+            console.log("FlightsController is not initialized yet.");
         }
     }
 
     Component.onDestruction: {
         if (FlightsController !== null) {
-            FlightsController.setIsActiveScreen(false)
+            FlightsController.setIsActiveScreen(false);
         } else {
-            console.log("FlightsController is not initialized yet.")
+            console.log("FlightsController is not initialized yet.");
         }
-        console.log("FlightsScreen was closed")
+        console.log("FlightsScreen was closed");
     }
 }

@@ -11,7 +11,6 @@
 #include <QQmlContext>
 #include <QQuickView>
 #include <QIcon>
-#include <QTranslator>
 #include <QFontDatabase>
 #include <QtQml/qqmlextensionplugin.h>
 
@@ -23,6 +22,7 @@
 #include "pixmap_provider.h"
 #include "server_connection_checker.h"
 #include "constants.h"
+#include "language_manager.h"
 
 void InstallDefaultFont()
 {
@@ -40,6 +40,9 @@ int main(int argc, char *argv[])
     // QQuickStyle::setStyle("Material");
     QGuiApplication app(argc, argv);
 
+
+    qmlRegisterType<LanguageManager>("com.letiskoonline.LanguageManager", 1, 0, "LanguageManager");
+
     qmlRegisterSingletonType(QUrl("qrc:/UserAppSettings.qml"), "UserAppSettings", 1, 0, "UserAppSettings");
 
     // PixmapProvider *pixmapProvider = &PixmapProvider::instance();
@@ -53,16 +56,13 @@ int main(int argc, char *argv[])
                                                  // Return the PixmapProvider instance
                                                  return static_cast<QObject*>(PixmapProvider::instance()); });
 
-        ServerConnectionChecker *serverConnectionChecker = new ServerConnectionChecker(RequestConstants::SERVER_NETWORK_ADDRESS, RequestConstants::SERVER_PORT);
+    ServerConnectionChecker *serverConnectionChecker = new ServerConnectionChecker(RequestConstants::SERVER_NETWORK_ADDRESS, RequestConstants::SERVER_PORT, &app);
 
     qmlRegisterSingletonType<ServerConnectionChecker>("com.letiskoonline.ServerConnectionChecker", 1, 0, "ServerConnectionChecker", [serverConnectionChecker](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject *
-        {
-            Q_UNUSED(engine)
-            Q_UNUSED(scriptEngine)
-
-            // Return the PixmapProvider instance
-            return serverConnectionChecker;});
-
+                                                      {
+                                                          Q_UNUSED(engine)
+                                                          Q_UNUSED(scriptEngine)
+                                                          return serverConnectionChecker; });
 
 
 
@@ -110,17 +110,12 @@ int main(int argc, char *argv[])
     // filterModel.setFilterRole(Roles::ArrivalTimeRole);
     // filterModel.setSortRole(Roles::CallsignRole);
 
-    QTranslator translator;
-    translator.load ("slovak.qm");
-    app.installTranslator(&translator);
 
     // Is needed for Settings
     app.setOrganizationName("Letisko online");
     app.setOrganizationDomain("letisko.online");
     app.setApplicationName("Letisko online");
 
-    // qmlRegisterType<Login>("com.login", 1, 0, "Login");
-    // qmlRegisterType<UserController>("UserController", 1, 0, "UserController");
     const QUrl url(qgetenv("MAIN_QML"));
     InstallDefaultFont();
 
@@ -147,6 +142,9 @@ int main(int argc, char *argv[])
     rootContext->setContextProperty("aircraftsFilterProxyModel", aircraftsFilterProxyModel);
 
     // rootContext->setContextProperty("pixmapImageProvider", PixmapProvider::instance());
+
+    LanguageManager *languageManager = new LanguageManager(&app, &engine,  &app);
+    rootContext->setContextProperty("languageManager", languageManager);
 
     /** << for using with hotreload**/
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app, [url](QObject *obj, const QUrl &objUrl)

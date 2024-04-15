@@ -74,3 +74,4 @@ CMakeLists.txt.user*
 
 appOnlineLetiskoMobileApp_qml_module_dir_map.qrc
 appOnlineLetiskoMobileApp.qmltypes
+.vscode/settings.json

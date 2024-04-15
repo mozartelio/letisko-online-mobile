@@ -6,7 +6,6 @@ import "./typography/body/text"
 import "./typography/label/text"
 import "./typography/title/text"
 
-
 /**
 states: pending, dennied....
 flight_rules:
@@ -38,23 +37,24 @@ PopupParent {
             id: filtersHeader
             horizontalAlignment: Text.AlignLeft
             width: parent.width
-            text: "Filters"
+            text: qsTr("Filters")
             padding: 24
         }
 
-        Item {// ListView {
-            //     id: fligtRulesFilters
-            //     width: parent.width
-            //     // height: parent.height
-            //     model: fligtRulesModel
+        // ListView {
+        //     id: fligtRulesFilters
+        //     width: parent.width
+        //     // height: parent.height
+        //     model: fligtRulesModel
 
-            //     // property string expandedSection: ""
-            //     delegate: listdelegate
-            //     // section.: "sssssss"
-            //     // section.property: "type"
-            //     // section.criteria: ViewSection.FullString
-            //     // section.delegate: sectionHeader
-            // }
+        //     // property string expandedSection: ""
+        //     delegate: listdelegate
+        //     // section.: "sssssss"
+        //     // section.property: "type"
+        //     // section.criteria: ViewSection.FullString
+        //     // section.delegate: sectionHeader
+        // }
+        Item {
         }
 
         Item {
@@ -221,21 +221,21 @@ PopupParent {
                     }
                     onCurrentExpandedSectionChanged: {
                         if (currentExpandedSection === section)
-                            isExpanded = true
+                            isExpanded = true;
                         else
-                            isExpanded = false
+                            isExpanded = false;
                     }
 
                     onIsExpandedChanged: {
                         if (isExpanded) {
-                            ListView.view.expandedSection = section
+                            ListView.view.expandedSection = section;
                         }
                         // else
                         //     color = __style.transparentColor
                         for (var i = 0; i < filtersModel.count; i++) {
-                            var item = filtersModel.get(i)
+                            var item = filtersModel.get(i);
                             if (section === item.type)
-                                item.aVisible = sectionHeaderRect.isExpanded
+                                item.aVisible = sectionHeaderRect.isExpanded;
                         }
                     }
 
@@ -290,7 +290,7 @@ PopupParent {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            sectionHeaderRect.isExpanded = !sectionHeaderRect.isExpanded
+                            sectionHeaderRect.isExpanded = !sectionHeaderRect.isExpanded;
                         }
                     }
                 }
@@ -310,9 +310,9 @@ PopupParent {
                     // clip: true
                     onVisibleChanged: {
                         if (visible)
-                            height = 45
+                            height = 45;
                         else
-                            height = 0
+                            height = 0;
                     }
 
                     Behavior on height {
@@ -358,7 +358,7 @@ PopupParent {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            menuItemCheckBox.checked = !menuItemCheckBox.checked
+                            menuItemCheckBox.checked = !menuItemCheckBox.checked;
                             // listing.currentIndex = index
                         }
                     }

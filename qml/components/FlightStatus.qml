@@ -13,7 +13,9 @@ Rectangle {
     }
     property int flightStatus
 
-    width: content.implicitWidth + content.anchors.leftMargin + content.anchors.rightMargin
+    width: Math.min(
+               content.implicitWidth + content.anchors.leftMargin + content.anchors.rightMargin,
+               privates.maxWidth)
     height: 32
     radius: 8
     border {
@@ -33,7 +35,6 @@ Rectangle {
 
     RowLayout {
         id: content
-        // width: textLabel.implicitWidth + icon.implicitWidth
         spacing: 8
         anchors {
             fill: root
@@ -45,55 +46,23 @@ Rectangle {
             bottomMargin: 6
         }
 
-        // ComboBox {
-        //     editable: false
-        //     model: ListModel {
-        //         id: model
-        //         ListElement {
-        //             text: "Banana"
-        //         }
-        //         ListElement {
-        //             text: "Apple"
-        //         }
-        //         ListElement {
-        //             text: "Coconut"
-        //         }
-        //     }
-        //     onAccepted: {
-        //         if (find(editText) === -1)
-        //             model.append({
-        //                              "text": editText
-        //                          })
-        //     }
-        //     // anchors.fill: parent
-        //     Layout.preferredWidth: 100
-        //     Layout.preferredHeight: 27
-        //     Layout.fillHeight: true
-        //     Layout.fillWidth: true
-        //     // popup: Popup {
-        //     //     background: Rectangle {
-        //     //         color: "transparent"
-        //     //         // layer.enabled: true
-        //     //         // layer.effect: GaussianBlur {
-        //     //         // radius: 10
-        //     //         // }
-        //     //     }
-        //     // }
-        // }
         LabelLargeText {
             id: textLabel
             color: __style.onPrimaryColor
-            Layout.preferredWidth: contentWidth
-            Layout.preferredHeight: 20
-            Layout.alignment: Qt.AlignBaseline | Qt.AlignRight
             text: flightStatus === FlightStatus.Status.Confirmed ? qsTr("Confirmed") : flightStatus === FlightStatus.Status.Denied ? qsTr("Denied") : qsTr("Pending")
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
+            maximumLineCount: 2
+            Layout.preferredWidth: Math.min(contentWidth, privates.maxWidth)
+            Layout.preferredHeight: 20
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
         }
 
         Image {
             id: icon
             width: __style.icon24
             height: __style.icon24
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter // Adjusted alignment
             source: {
                 if (root.flightStatus === FlightStatus.Status.Confirmed)
                     return __style.checkSmallIcon
@@ -105,5 +74,10 @@ Rectangle {
                     return ""
             }
         }
+    }
+
+    QtObject {
+        id: privates
+        property int maxWidth: 200
     }
 }

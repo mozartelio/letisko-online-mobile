@@ -77,17 +77,17 @@ Item {
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
                     onClicked: {
-                        console.log("pressed");
-                        isExpanded = !isExpanded;
+                        console.log("pressed")
+                        isExpanded = !isExpanded
                     }
                 }
 
                 RowLayout {
                     spacing: 7
                     Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                    Layout.preferredWidth: 270
-                    Layout.maximumWidth: 270
-                    Layout.minimumWidth: 270
+                    Layout.preferredWidth: 330
+                    Layout.maximumWidth: 330
+                    Layout.minimumWidth: 330
                     //TODO: create TEXT as component
                     Text {
                         font.family: "Roboto"
@@ -112,7 +112,7 @@ Item {
                 }
 
                 RowLayout {
-                    spacing: 40
+                    spacing: 30
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                     Layout.fillWidth: true
                     Column {
@@ -123,7 +123,8 @@ Item {
                         }
                         BodyLargeText {
                             //TODO: locale CHANGING
-                            text: departureTime.toLocaleString(Qt.locale("sk_SK"), "MMMM dd, yyyy hh:mm")
+                            text: departureTime.toLocaleString(
+                                      Qt.locale("sk_SK"), "MMMM dd, yyyy hh:mm")
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                         }
@@ -137,7 +138,8 @@ Item {
                         }
                         BodyLargeText {
                             //TODO: locale CHANGING
-                            text: arrivalTime.toLocaleString(Qt.locale("sk_SK"), "MMMM dd, yyyy hh:mm")
+                            text: arrivalTime.toLocaleString(
+                                      Qt.locale("sk_SK"), "MMMM dd, yyyy hh:mm")
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                         }
@@ -166,22 +168,22 @@ Item {
                     }
                 }
 
-                Button {
+                // Button {
 
-                    padding: 0
-                    //do not use icon for proper displaying
-                    indicator: Image {
-                        width: __style.icon24
-                        height: __style.icon24
-                        source: __style.editIcon
-                        anchors {
-                            verticalCenter: parent.verticalCenter
-                            horizontalCenter: parent.horizontalCenter
-                        }
-                    }
-                    Layout.margins: 0
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                }
+                //     padding: 0
+                //     //do not use icon for proper displaying
+                //     indicator: Image {
+                //         width: __style.icon24
+                //         height: __style.icon24
+                //         source: __style.editIcon
+                //         anchors {
+                //             verticalCenter: parent.verticalCenter
+                //             horizontalCenter: parent.horizontalCenter
+                //         }
+                //     }
+                //     Layout.margins: 0
+                //     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+                // }
             }
         }
 
@@ -197,7 +199,7 @@ Item {
                 id: mouseArea
                 anchors.fill: flightDetails
                 onPressed: {
-                    console.log("pressed");
+                    console.log("pressed")
                 }
             }
             ColumnLayout {
@@ -264,7 +266,7 @@ Item {
                     // Row {
                     //     Layout.preferredWidth: 362
                     //     BodyMediumText {
-                    //         text: qsTr("ICAO wake tubulence category: ")
+                    //         text: qsTr("ICAO wake turbulence category: ")
                     //         font.bold: true
                     //     }
                     //     BodyMediumText {

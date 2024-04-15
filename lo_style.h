@@ -51,6 +51,7 @@ class LOStyle : public QObject
     Q_PROPERTY(QUrl flightsIcon READ flightsIcon CONSTANT)
     Q_PROPERTY(QUrl settinsIcon READ settinsIcon CONSTANT)
     Q_PROPERTY(QUrl rightChevronIcon READ rightChevronIcon CONSTANT)
+    Q_PROPERTY(QUrl rightChevronIconWhite READ rightChevronIconWhite CONSTANT)
     Q_PROPERTY(QUrl searchIcon READ searchIcon CONSTANT)
     Q_PROPERTY(QUrl passwordShownIcon READ passwordShownIcon CONSTANT)
     Q_PROPERTY(QUrl passwordHiddenIcon READ passwordHiddenIcon CONSTANT)
@@ -139,6 +140,7 @@ public:
     QUrl flightsIcon() { return QUrl("qrc:/icons/flights.svg"); }
     QUrl settinsIcon() { return QUrl("qrc:/icons/settings.svg"); }
     QUrl rightChevronIcon() { return QUrl("qrc:/icons/chevron_24px.svg"); }
+    QUrl rightChevronIconWhite() { return QUrl("qrc:/icons/chevron_24px_white.svg"); }
     QUrl searchIcon() { return QUrl("qrc:/icons/search-24px.svg"); }
     QUrl passwordShownIcon() { return QUrl("qrc:/icons/visibility_on.svg"); }
     QUrl passwordHiddenIcon() { return QUrl("qrc:/icons/visibility_off.svg"); }

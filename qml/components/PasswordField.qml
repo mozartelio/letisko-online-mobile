@@ -1,22 +1,15 @@
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Controls.Basic
 
 TextField {
     property bool showPassword: false
 
-    color: __style.blackColor
     maximumLength: __style.maximumEmailInputLength
     verticalAlignment: TextInput.AlignVCenter
     echoMode: showPassword ? TextField.Normal : TextField.Password
-
+    placeholderText: qsTr("Password")
     // to do not let text be inputed under the icon image
     rightPadding: icon.width + icon.anchors.rightMargin + icon.anchors.leftMargin
-
-    background: Rectangle {
-        color: __style.onPrimaryColor
-        radius: 5
-    }
 
     Image {
         id: icon
@@ -26,8 +19,8 @@ TextField {
         anchors {
             right: parent.right
             verticalCenter: parent.verticalCenter
-            rightMargin: 10
-            leftMargin: 10
+            rightMargin: 15
+            leftMargin: 15
         }
 
         MouseArea {

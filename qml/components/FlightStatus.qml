@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Layouts
 import "./typography/label/text/"
 import "../components/"
@@ -32,7 +33,7 @@ Rectangle {
 
     RowLayout {
         id: content
-        width: textLabel.implicitWidth + icon.implicitWidth
+        // width: textLabel.implicitWidth + icon.implicitWidth
         spacing: 8
         anchors {
             fill: root
@@ -44,6 +45,41 @@ Rectangle {
             bottomMargin: 6
         }
 
+        // ComboBox {
+        //     editable: false
+        //     model: ListModel {
+        //         id: model
+        //         ListElement {
+        //             text: "Banana"
+        //         }
+        //         ListElement {
+        //             text: "Apple"
+        //         }
+        //         ListElement {
+        //             text: "Coconut"
+        //         }
+        //     }
+        //     onAccepted: {
+        //         if (find(editText) === -1)
+        //             model.append({
+        //                              "text": editText
+        //                          })
+        //     }
+        //     // anchors.fill: parent
+        //     Layout.preferredWidth: 100
+        //     Layout.preferredHeight: 27
+        //     Layout.fillHeight: true
+        //     Layout.fillWidth: true
+        //     // popup: Popup {
+        //     //     background: Rectangle {
+        //     //         color: "transparent"
+        //     //         // layer.enabled: true
+        //     //         // layer.effect: GaussianBlur {
+        //     //         // radius: 10
+        //     //         // }
+        //     //     }
+        //     // }
+        // }
         LabelLargeText {
             id: textLabel
             color: __style.onPrimaryColor

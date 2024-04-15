@@ -45,6 +45,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     qml/screens/FlightsScreen.qml
     qml/screens/DocumentationScreen.qml
     qml/screens/AircraftsScreen.qml
+    qml/screens/RegistrationDetailsScreen.qml
 
     #Components
     qml/components/PasswordField.qml

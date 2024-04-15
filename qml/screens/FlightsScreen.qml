@@ -130,7 +130,7 @@ Page {
         //TODO: change to flickable and ScrollBar
         ScrollView {
             id: scrollView
-            spacing: 0 // Adjust the spacing value as per your requirement
+            spacing: 0
             clip: true
             visible: !FlightsController.isLoadingFlights
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop

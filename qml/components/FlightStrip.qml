@@ -77,17 +77,17 @@ Item {
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
                     onClicked: {
-                        console.log("pressed")
-                        isExpanded = !isExpanded
+                        console.log("pressed");
+                        isExpanded = !isExpanded;
                     }
                 }
 
                 RowLayout {
                     spacing: 7
                     Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                    Layout.preferredWidth: (1 / 5) * backgroungRectangle.width
-                    // Layout.maximumWidth: 200
-
+                    Layout.preferredWidth: 270
+                    Layout.maximumWidth: 270
+                    Layout.minimumWidth: 270
                     //TODO: create TEXT as component
                     Text {
                         font.family: "Roboto"
@@ -100,6 +100,7 @@ Item {
                         verticalAlignment: Text.AlignVCenter
                         text: callsign
                         Layout.preferredWidth: contentWidth
+                        Layout.fillWidth: true
                         Layout.maximumWidth: 190
                         Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                     }
@@ -122,11 +123,11 @@ Item {
                         }
                         BodyLargeText {
                             //TODO: locale CHANGING
-                            text: departureTime.toLocaleString(
-                                      Qt.locale("sk_SK"), "MMMM dd, yyyy hh:mm")
+                            text: departureTime.toLocaleString(Qt.locale("sk_SK"), "MMMM dd, yyyy hh:mm")
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                         }
+                        Layout.fillWidth: true
                     }
 
                     Column {
@@ -136,11 +137,11 @@ Item {
                         }
                         BodyLargeText {
                             //TODO: locale CHANGING
-                            text: arrivalTime.toLocaleString(
-                                      Qt.locale("sk_SK"), "MMMM dd, yyyy hh:mm")
+                            text: arrivalTime.toLocaleString(Qt.locale("sk_SK"), "MMMM dd, yyyy hh:mm")
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                         }
+                        Layout.fillWidth: true
                     }
 
                     Column {
@@ -149,9 +150,9 @@ Item {
                             font.bold: true
                         }
                         BodyLargeText {
-                            // width: 50
                             text: departureAirport
                         }
+                        Layout.fillWidth: true
                     }
                     Column {
                         BodyLargeText {
@@ -161,6 +162,7 @@ Item {
                         BodyLargeText {
                             text: arrivalAirport
                         }
+                        Layout.fillWidth: true
                     }
                 }
 
@@ -195,7 +197,7 @@ Item {
                 id: mouseArea
                 anchors.fill: flightDetails
                 onPressed: {
-                    console.log("pressed")
+                    console.log("pressed");
                 }
             }
             ColumnLayout {

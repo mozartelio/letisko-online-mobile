@@ -120,7 +120,7 @@ Item {
 
         StackView {
             id: stackView
-            initialItem: flightsScreen //  loginScreen  // // flightsScreen  // //aircraftsScreen // //settingsScreen // // // //documentationScreen
+            initialItem: privates.mainScreenId
             width: parent.width
             height: parent.height
             // anchors.fill: parent  // activate this if not using hot reload
@@ -268,15 +268,24 @@ Item {
         id: loginScreen
         LoginScreen {
             objectName: "loginScreenObject"
-            // userController: userId
-            onGoToRegistrationScreen: stackView.replace(registrationPage)
-            onGoToMainScreen: stackView.replace(flightsScreen)
+            onGoToRegistrationScreen: stackView.replace(registrationScreen)
+            onGoToMainScreen: stackView.replace(privates.mainScreenId)
         }
     }
 
     Component {
-        id: registrationPage
-        RegistrationScreen {}
+        id: registrationScreen
+        RegistrationScreen {
+            objectName: "registrationScreenObject"
+            onGoToLoginScreen: stackView.replace(loginScreen)
+        }
+    }
+    Component {
+        id: registrationDetailsScreen
+        RegistrationDetailsScreen {
+            objectName: "registrationDetailsScreenObject"
+            onGoToMainScreen: stackView.replace(privates.mainScreenId)
+        }
     }
 
     Component {
@@ -332,8 +341,14 @@ Item {
     QtObject {
         id: privates
 
+        property var mainScreenId: registrationDetailsScreen //registrationScreen //loginScreen // //flightsScreen //  // //aircraftsScreen // //settingsScreen // // // //documentationScreen
+
         property string drawerPageName
         property bool isNavigationAvailable: stackView.currentItem.objectName
                                              !== "loginScreenObject"
+                                             && stackView.currentItem.objectName
+                                             !== "registrationScreenObject"
+                                             && stackView.currentItem.objectName
+                                             !== "registrationDetailsScreenObject"
     }
 }

@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Controls.Basic
 import com.letiskoonline.UserController
+
 import "../components"
 import "../components/typography/title/text/"
 import "../components/typography/label/text/"
@@ -18,7 +19,7 @@ Page {
 
     contentItem: ColumnLayout {
         spacing: 15
-        height: parent.height - __style.toolbarHeight
+        height: parent.height
         width: parent.width
         anchors {
             top: parent.top
@@ -32,84 +33,67 @@ Page {
             Layout.preferredWidth: 270
             Layout.preferredHeight: 150
             Layout.topMargin: 40
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+            Layout.alignment: Qt.AlignCenter
         }
 
         ServerConnectionProblem {
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+            Layout.alignment: Qt.AlignCenter
         }
 
-        HeadlineLargeText {
+        HeadlineSmallText {
             id: textLabel
             text: qsTr("LOGIN")
             font.bold: true
-            font.pixelSize: 20
             color: __style.blackColor
             Layout.preferredWidth: parent.width
             Layout.fillWidth: true
             Layout.preferredHeight: textLabel.implicitHeight
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+            Layout.alignment: Qt.AlignCenter
             horizontalAlignment: Text.AlignHCenter
         }
 
-        Rectangle {
-            color: __style.pressAccentColor
-            radius: 12
-            Layout.preferredWidth: column.implicitWidth
-            Layout.preferredHeight: column.implicitHeight
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+        Column {
+            id: column
 
-            Column {
-                id: column
+            spacing: 15
+            leftPadding: 20
 
-                spacing: 15
-                leftPadding: 20
-                topPadding: 20
-                rightPadding: 20
-                bottomPadding: 20
-                TitleMediumText {
-                    text: qsTr("Email")
-                }
-                EmailTextField {
-                    id: emailInput
-                    width: 240
-                }
+            rightPadding: 20
+            bottomPadding: 20
+            Layout.alignment: Qt.AlignCenter
 
-                TitleMediumText {
-                    text: qsTr("Password")
-                }
-                PasswordField {
-                    id: passswordInput
-                    width: 240
-                }
+            EmailTextField {
+                id: emailInput
+                width: 240
+            }
 
-                MaterialButton {
-                    id: button
-                    backgroundColor: __style.primaryColor
-                    contentText: qsTr("Send")
-                    contentTextColor: __style.onPrimaryColor
-                    anchors {
-                        horizontalCenter: parent.horizontalCenter
+            PasswordField {
+                id: passswordInput
+                width: 240
+            }
+
+            MaterialButton {
+                id: button
+                backgroundColor: __style.primaryColor
+                contentText: qsTr("Log in")
+                contentTextColor: __style.onPrimaryColor
+                enabled: (passswordInput.text.trim() !== ""
+                          && passswordInput.text !== undefined)
+                         && (emailInput.text.trim() !== ""
+                             && emailInput.text !== undefined)
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                }
+                onClicked: {
+                    if (!emailInput.validationRegex.test(emailInput.text)) {
+                        infoPopupTextContent.text = privates.loginErrorText + "\n" + qsTr(
+                                    "entered value is not a valid email!")
+                        infoPopup.open()
+                        return
                     }
-                    onClicked: {
-                        if (!emailInput.validationRegex.test(emailInput.text)) {
-                            infoPopupTextContent.text = privates.loginErrorText + "\n" + qsTr(
-                                        "entered value is not a valid email!")
-                            infoPopup.open()
-                            return
-                        }
-                        ;
-                        if (passswordInput.text.trim() === ""
-                                || passswordInput.text === undefined) {
-                            infoPopupTextContent.text = privates.loginErrorText + "\n" + qsTr(
-                                        "empty password!")
-                            infoPopup.open()
-                            return
-                        }
-                        loadingPopup.open()
-                        UserController.doLogin(emailInput.text,
-                                               passswordInput.text)
-                    }
+                    ;
+                    loadingPopup.open()
+                    UserController.doLogin(emailInput.text, passswordInput.text)
                 }
             }
         }
@@ -119,7 +103,7 @@ Page {
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.preferredHeight: notRegistered.implicitHeight + registration.implicitHeight + 60
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+            Layout.alignment: Qt.AlignCenter
             TitleMediumText {
                 id: notRegistered
                 text: qsTr("Not yet registered?")
@@ -182,6 +166,6 @@ Page {
 
     QtObject {
         id: privates
-        property string loginErrorText: qsTr("Login failed, the reason is:")
+        property string loginErrorText: qsTr("Log in procedure failed, the reason is:")
     }
 }

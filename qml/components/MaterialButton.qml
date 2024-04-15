@@ -14,7 +14,7 @@ Button {
 
     background: Rectangle {
         id: buttonBackground
-        color: backgroundColor
+        color: enabled ? backgroundColor : __style.inactiveColor
         radius: 100
     }
     contentItem: Row {

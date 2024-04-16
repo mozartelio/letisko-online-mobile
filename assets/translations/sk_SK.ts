@@ -122,7 +122,7 @@
     <message>
         <location filename="../../qml/components/FlightStatus.qml" line="52"/>
         <source>Pending</source>
-        <translation>Čaká sa na rozhodnutie</translation>
+        <translation>Čaká na rozhodnutie</translation>
     </message>
 </context>
 <context>
@@ -138,17 +138,17 @@
         <translation>Prílet:</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="154"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="157"/>
         <source>Departure airport: </source>
         <translation>Letisko odletu:</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="164"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="167"/>
         <source>Arrival airport: </source>
         <translation>Letisko príletu: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="315"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="318"/>
         <source>Height level: </source>
         <translation>Úroveň výšky: </translation>
     </message>
@@ -181,7 +181,7 @@
     <message>
         <location filename="../../qml/screens/FlightsScreen.qml" line="76"/>
         <source>Flights:</source>
-        <translation></translation>
+        <translation>Lety:</translation>
     </message>
     <message>
         <location filename="../../qml/screens/FlightsScreen.qml" line="106"/>
@@ -192,24 +192,24 @@
 <context>
     <name>FlightsSortingBar</name>
     <message>
-        <location filename="../../qml/components/FlightsSortingBar.qml" line="11"/>
+        <location filename="../../qml/components/FlightsSortingBar.qml" line="33"/>
         <source>Departure time</source>
         <translation>Čas odletu</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightsSortingBar.qml" line="12"/>
-        <location filename="../../qml/components/FlightsSortingBar.qml" line="16"/>
+        <location filename="../../qml/components/FlightsSortingBar.qml" line="34"/>
+        <location filename="../../qml/components/FlightsSortingBar.qml" line="58"/>
         <source>Сlosest to farthest</source>
         <translation>Najbližší až najvzdialenejší</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightsSortingBar.qml" line="13"/>
-        <location filename="../../qml/components/FlightsSortingBar.qml" line="17"/>
+        <location filename="../../qml/components/FlightsSortingBar.qml" line="35"/>
+        <location filename="../../qml/components/FlightsSortingBar.qml" line="59"/>
         <source>Farthest to closest</source>
-        <translation>Od najvzdialenejšieho po najbližší</translation>
+        <translation>Najvzdialenejší až najbližší</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightsSortingBar.qml" line="15"/>
+        <location filename="../../qml/components/FlightsSortingBar.qml" line="57"/>
         <source>Arrival time</source>
         <translation>Čas príletu</translation>
     </message>
@@ -555,12 +555,12 @@
         <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="213"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="216"/>
         <source>English</source>
         <translation>Angličtina</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="216"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="219"/>
         <source>Slovak</source>
         <translation>Slovenčina</translation>
     </message>

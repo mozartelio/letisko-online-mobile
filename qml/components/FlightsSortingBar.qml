@@ -1,6 +1,9 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+
+import com.letiskoonline.FlightsRoles
+
 import "./typography/label/text"
 import "./typography/title/text"
 import "./typography/body/text"
@@ -8,15 +11,6 @@ import "./typography/body/text"
 Item {
     id: root
 
-    property string departureSectionHeader: qsTr("Departure time")
-    property string departureLeftButtonName: qsTr("Сlosest to farthest")
-    property string departureRightButtonName: qsTr("Farthest to closest")
-
-    property string arrivalSectionHeader: qsTr("Arrival time")
-    property string arrivalRightButtonName: qsTr("Сlosest to farthest")
-    property string arrivalLefttButtonName: qsTr("Farthest to closest")
-
-    signal valueChanged(int value)
 
     height: 77
     width: 350
@@ -35,27 +29,53 @@ Item {
         width: parent.width
 
         SortingSection {
+            id: departureSorting
+            sectionName: qsTr("Departure time")
+            leftButtonName: qsTr("Сlosest to farthest")
+            rightButtonName: qsTr("Farthest to closest")
+            sectionHeaderBackgroundColor: SortingSection.Dark
+
             leftButton.width: parent.width / 2
             rightButton.width: parent.width / 2
             leftButton.ButtonGroup.group: sortingButtonsGroup
             rightButton.ButtonGroup.group: sortingButtonsGroup
-            sectionName: departureSectionHeader
-            leftButtonName: departureLeftButtonName
-            rightButtonName: departureRightButtonName
-            sectionHeaderBackgroundColor: SortingSection.Dark
+
+            leftButton.onClicked: {
+                flightsFilterProxyModel.setSortOrder(
+                            FlightsRoles.DepartureTimeRole, true)
+            }
+            rightButton.onClicked: {
+                flightsFilterProxyModel.setSortOrder(
+                            FlightsRoles.DepartureTimeRole, false)
+            }
+
             Layout.preferredWidth: root.width /// 2
         }
 
         SortingSection {
+            id: arrivalSorting
+            sectionName: qsTr("Arrival time")
+            leftButtonName: qsTr("Сlosest to farthest")
+            rightButtonName: qsTr("Farthest to closest")
+            sectionHeaderBackgroundColor: SortingSection.Light
+
             leftButton.width: parent.width / 2
             rightButton.width: parent.width / 2
             leftButton.ButtonGroup.group: sortingButtonsGroup
             rightButton.ButtonGroup.group: sortingButtonsGroup
-            sectionName: arrivalSectionHeader
-            leftButtonName: arrivalLefttButtonName
-            rightButtonName: arrivalRightButtonName
-            sectionHeaderBackgroundColor: SortingSection.Light
+
+            leftButton.onClicked: flightsFilterProxyModel.setSortOrder(
+                                      FlightsRoles.ArrivalTimeRole, true)
+            rightButton.onClicked: flightsFilterProxyModel.setSortOrder(
+                                       FlightsRoles.ArrivalTimeRole, false)
+
             Layout.preferredWidth: root.width /// 2
         }
+    }
+
+    Component.onCompleted: {
+        departureSorting.leftButton.checked = true
+        flightsFilterProxyModel.setSortOrder(FlightsRoles.DepartureTimeRole,
+                                             true)
     }
 }

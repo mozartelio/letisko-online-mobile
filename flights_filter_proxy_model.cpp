@@ -8,10 +8,9 @@ FlightsFilterProxyModel::FlightsFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
 {
 
-    //     qDebug() << "1 hello from after 00:00";
     //     setSortOrder(false);
     // }
-
+    this->setDynamicSortFilter(true);
     qDebug() << "hello from FlightsFilterProxyModel";
 }
 
@@ -57,17 +56,32 @@ void FlightsFilterProxyModel::setFilterString(QString string)
     this->setFilterFixedString(string);
 }
 
-// TODO: Implement sorting
-void FlightsFilterProxyModel::setSortOrder(bool checked)
+bool FlightsFilterProxyModel::lessThan(const QModelIndex &source_left, const QModelIndex &source_right) const
 {
-    if (checked)
+    QVariant leftData = sourceModel()->data(source_left, sortRole());
+    QVariant rightData = sourceModel()->data(source_right, sortRole());
+
+    // qDebug() << leftData.toString();
+    // qDebug() << rightData.toString();
+
+    if (sortRole() == FlightsRoles::DepartureTimeRole || sortRole() == FlightsRoles::ArrivalTimeRole)
     {
-        this->sort(4, Qt::DescendingOrder); // Sort by arrival time in descending order
-        this->sort(5, Qt::DescendingOrder); // Sort by departure time in descending order
+        QDateTime leftDate = QDateTime::fromString(leftData.toString(), Qt::ISODate);
+        QDateTime rightDate = QDateTime::fromString(rightData.toString(), Qt::ISODate);
+        return leftDate < rightDate;
     }
     else
     {
-        this->sort(4, Qt::AscendingOrder); // Sort by arrival time in ascending order
-        this->sort(5, Qt::AscendingOrder); // Sort by departure time in ascending order
+        return QSortFilterProxyModel::lessThan(source_left, source_right);
+    }
+}
+
+void FlightsFilterProxyModel::setSortOrder(FlightsRoles::Roles role, bool ascending)
+{
+    if (role == FlightsRoles::DepartureTimeRole || role == FlightsRoles::ArrivalTimeRole)
+    {
+        Qt::SortOrder order = ascending ? Qt::AscendingOrder : Qt::DescendingOrder;
+        this->setSortRole(role);
+        this->sort(0, order);
     }
 }

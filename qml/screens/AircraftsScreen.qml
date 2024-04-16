@@ -131,6 +131,8 @@ Page {
         } else {
             console.log("AircraftsController is not initialized yet.")
         }
+        // removes the filter and shows all items in the model
+        aircraftsFilterProxyModel.setFilterString("")
         console.log("AircraftsScreen was closed")
     }
 }

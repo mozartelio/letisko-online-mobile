@@ -23,6 +23,7 @@
 #include "server_connection_checker.h"
 #include "constants.h"
 #include "language_manager.h"
+#include "flights_roles.h"
 
 void InstallDefaultFont()
 {
@@ -42,6 +43,8 @@ int main(int argc, char *argv[])
 
 
     qmlRegisterType<LanguageManager>("com.letiskoonline.LanguageManager", 1, 0, "LanguageManager");
+    qmlRegisterType<FlightsRoles>("com.letiskoonline.FlightsRoles", 1, 0, "FlightsRoles");
+
 
     qmlRegisterSingletonType(QUrl("qrc:/UserAppSettings.qml"), "UserAppSettings", 1, 0, "UserAppSettings");
 

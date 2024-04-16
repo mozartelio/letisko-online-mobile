@@ -64,7 +64,6 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     qml/components/AircraftStrip.qml
     qml/components/SettingStrip.qml
     qml/components/RoundedImage.qml
-    qml/components/divider/HorizontalDividerSubhead.qml
     qml/components/PopupParent.qml
     qml/components/PopupBusyIndicator.qml
     qml/components/ServerConnectionProblem.qml
@@ -88,14 +87,14 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     qml/components/typography/body/text/BodySmallText.qml
     qml/components/typography/body/text/BodyMediumText.qml
     qml/components/typography/body/text/BodyLargeText.qml
-
-
     #Display
     qml/components/typography/display/text/DisplaySmallText.qml
+
 
     # text input font styles
     #Body
     qml/components/typography/body/input/BodyLargeInput.qml
+
 
     RESOURCES
     assets/icons/icons.qrc

@@ -37,7 +37,7 @@ Page {
         SearchBar {
             Layout.alignment: Qt.AlignCenter | Qt.AlignTop
             onTextChanged: {
-                flightsFilterProxyModel.setFilterString(text);
+                flightsFilterProxyModel.setFilterString(text)
             }
         }
 
@@ -229,19 +229,22 @@ Page {
 
     Component.onCompleted: {
         if (FlightsController !== null) {
-            FlightsController.setIsActiveScreen(true);
-            console.log("called:  FlightsController.setIsActiveScreen(true); ");
+            FlightsController.setIsActiveScreen(true)
+            console.log("called:  FlightsController.setIsActiveScreen(true); ")
         } else {
-            console.log("FlightsController is not initialized yet.");
+            console.log("FlightsController is not initialized yet.")
         }
     }
 
     Component.onDestruction: {
         if (FlightsController !== null) {
-            FlightsController.setIsActiveScreen(false);
+            FlightsController.setIsActiveScreen(false)
         } else {
-            console.log("FlightsController is not initialized yet.");
+            console.log("FlightsController is not initialized yet.")
         }
-        console.log("FlightsScreen was closed");
+        // removes the filter and shows all items in the model
+        flightsFilterProxyModel.setFilterString("")
+
+        console.log("FlightsScreen was closed")
     }
 }

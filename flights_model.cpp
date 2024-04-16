@@ -21,14 +21,14 @@ FlightsModel::~FlightsModel()
 void FlightsModel::init()
 {
     m_filterProxyModel->setSourceModel(this);
-    m_filterProxyModel->setFilterRole(CallsignRole);
-    m_filterProxyModel->setFilterRole(DepartureAirportRole);
-    m_filterProxyModel->setFilterRole(ArrivalAirportRole);
-    m_filterProxyModel->setFilterRole(FlightStatusRole);
-    m_filterProxyModel->setFilterRole(DepartureTimeRole);
-    m_filterProxyModel->setFilterRole(ArrivalTimeRole);
-    m_filterProxyModel->setFilterRole(MaxHeightRole);
-    m_filterProxyModel->setFilterRole(MaxHeightMeasureUnitsRole);
+    m_filterProxyModel->setFilterRole(FlightsRoles::CallsignRole);
+    m_filterProxyModel->setFilterRole(FlightsRoles::DepartureAirportRole);
+    m_filterProxyModel->setFilterRole(FlightsRoles::ArrivalAirportRole);
+    m_filterProxyModel->setFilterRole(FlightsRoles::FlightStatusRole);
+    m_filterProxyModel->setFilterRole(FlightsRoles::DepartureTimeRole);
+    m_filterProxyModel->setFilterRole(FlightsRoles::ArrivalTimeRole);
+    m_filterProxyModel->setFilterRole(FlightsRoles::MaxHeightRole);
+    m_filterProxyModel->setFilterRole(FlightsRoles::MaxHeightMeasureUnitsRole);
 }
 
 void FlightsModel::removeAllFlights()
@@ -72,21 +72,21 @@ QVariant FlightsModel::data(const QModelIndex &index, int role) const
         //        switch((Role) role) {
         switch (role)
         {
-        case CallsignRole:
+        case FlightsRoles::CallsignRole:
             return flightInfo->getCallsign();
-        case DepartureAirportRole:
+        case FlightsRoles::DepartureAirportRole:
             return flightInfo->getDepartureAirport();
-        case ArrivalAirportRole:
+        case FlightsRoles::ArrivalAirportRole:
             return flightInfo->getArrivalAirport();
-        case FlightStatusRole:
+        case FlightsRoles::FlightStatusRole:
             return flightInfo->getFlightStatus();
-        case DepartureTimeRole:
+        case FlightsRoles::DepartureTimeRole:
             return flightInfo->getDepartureTime();
-        case ArrivalTimeRole:
+        case FlightsRoles::ArrivalTimeRole:
             return flightInfo->getArrivalTime();
-        case MaxHeightRole:
+        case FlightsRoles::MaxHeightRole:
             return flightInfo->getMaxHeight();
-        case MaxHeightMeasureUnitsRole:
+        case FlightsRoles::MaxHeightMeasureUnitsRole:
             return flightInfo->getMaxHeightMeasureUnits();
         }
     }
@@ -114,14 +114,14 @@ void FlightsModel::addFlight(const QString &callsign, const QString &departureAi
 QHash<int, QByteArray> FlightsModel::roleNames() const
 {
     QHash<int, QByteArray> filterRoles;
-    filterRoles[CallsignRole] = "callsignData";
-    filterRoles[DepartureAirportRole] = "departureAirportData";
-    filterRoles[ArrivalAirportRole] = "arrivalAirportData";
-    filterRoles[FlightStatusRole] = "flightStatusData";
-    filterRoles[DepartureTimeRole] = "departureTimeData";
-    filterRoles[ArrivalTimeRole] = "arrivalTimeData";
-    filterRoles[MaxHeightRole] = "maxHeightData";
-    filterRoles[MaxHeightMeasureUnitsRole] = "maxHeightMeasureUnitsData";
+    filterRoles[FlightsRoles::CallsignRole] = "callsignData";
+    filterRoles[FlightsRoles::DepartureAirportRole] = "departureAirportData";
+    filterRoles[FlightsRoles::ArrivalAirportRole] = "arrivalAirportData";
+    filterRoles[FlightsRoles::FlightStatusRole] = "flightStatusData";
+    filterRoles[FlightsRoles::DepartureTimeRole] = "departureTimeData";
+    filterRoles[FlightsRoles::ArrivalTimeRole] = "arrivalTimeData";
+    filterRoles[FlightsRoles::MaxHeightRole] = "maxHeightData";
+    filterRoles[FlightsRoles::MaxHeightMeasureUnitsRole] = "maxHeightMeasureUnitsData";
 
     // TODO: more filters
 

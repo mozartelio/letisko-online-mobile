@@ -4,6 +4,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import UserAppSettings
 import com.letiskoonline.LanguageManager
+import com.letiskoonline.FlightRequestStatus
 import "./typography/body/text"
 
 Item {
@@ -16,6 +17,7 @@ Item {
     required property date arrivalTime
     required property int maxHeight
     required property string maxHeightMeasureUnits
+    required property int flightRequestId
 
     property bool isExpanded: UserAppSettings.showExpandedFlights
 
@@ -49,7 +51,7 @@ Item {
             RowLayout {
                 width: parent.width //- 40
                 height: parent.height
-                spacing: 30
+                spacing: 15
 
                 anchors {
                     left: parent.left
@@ -58,7 +60,7 @@ Item {
                     bottom: parent.bottom
 
                     leftMargin: 20
-                    rightMargin: 30
+                    rightMargin: 20
                 }
 
                 Button {
@@ -85,9 +87,9 @@ Item {
                 RowLayout {
                     spacing: 7
                     Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                    Layout.preferredWidth: 330
-                    Layout.maximumWidth: 330
-                    Layout.minimumWidth: 330
+                    Layout.preferredWidth: 350
+                    Layout.maximumWidth: 350
+                    Layout.minimumWidth: 350
                     //TODO: create TEXT as component
                     Text {
                         font.family: "Roboto"
@@ -105,24 +107,27 @@ Item {
                         Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                     }
 
-                    FlightStatus {
-                        flightStatus: root.flightStatus
+                    FligthStatusCombobox {
+                        currentFlightStatus: flightStatus
+                        flightRequestId: root.flightRequestId
+                        enabled: !UserAppSettings.isFlightsEditingLocked
                         Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+                        Layout.preferredHeight: 40
                     }
                 }
 
                 RowLayout {
-                    spacing: 30
+                    id: fligthDepartureArrivalParameters
+                    spacing: 15
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                    Layout.fillWidth: true
+                    Layout.leftMargin: 15
+                    // Layout.fillWidth: true
                     Column {
-
                         BodyLargeText {
                             text: qsTr("Departure: ")
                             font.bold: true
                         }
                         BodyLargeText {
-                            //TODO: locale CHANGING
                             text: departureTime.toLocaleString(
                                       Qt.locale(
                                           languageManager.languageCode(
@@ -132,6 +137,8 @@ Item {
                             horizontalAlignment: Text.AlignHCenter
                         }
                         Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                        Layout.preferredWidth: 130
                     }
 
                     Column {
@@ -140,7 +147,6 @@ Item {
                             font.bold: true
                         }
                         BodyLargeText {
-                            //TODO: locale CHANGING
                             text: arrivalTime.toLocaleString(
                                       Qt.locale(
                                           languageManager.languageCode(
@@ -150,6 +156,8 @@ Item {
                             horizontalAlignment: Text.AlignHCenter
                         }
                         Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                        Layout.preferredWidth: 130
                     }
 
                     Column {
@@ -161,6 +169,8 @@ Item {
                             text: departureAirport
                         }
                         Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                        Layout.preferredWidth: 130
                     }
                     Column {
                         BodyLargeText {
@@ -171,6 +181,8 @@ Item {
                             text: arrivalAirport
                         }
                         Layout.fillWidth: true
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                        Layout.preferredWidth: 130
                     }
                 }
 
@@ -336,18 +348,18 @@ Item {
                 //     }
                 // }
             }
-            Image {
-                width: __style.icon40
-                height: __style.icon40
-                source: __style.arrowRightIcon
-                verticalAlignment: Image.AlignVCenter
+            // Image {
+            //     width: __style.icon40
+            //     height: __style.icon40
+            //     source: __style.arrowRightIcon
+            //     verticalAlignment: Image.AlignVCenter
 
-                anchors {
-                    right: flightDetails.right
-                    verticalCenter: flightDetails.verticalCenter
-                    rightMargin: 50
-                }
-            }
+            //     anchors {
+            //         right: flightDetails.right
+            //         verticalCenter: flightDetails.verticalCenter
+            //         rightMargin: 50
+            //     }
+            // }
         }
     }
     Rectangle {

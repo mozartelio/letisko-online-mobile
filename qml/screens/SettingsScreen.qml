@@ -84,6 +84,12 @@ Page {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                     spacing: 0
 
+                    Rectangle {
+                        color: __style.settingsBoxesBorderColor
+                        width: parent.width
+                        height: 1
+                    }
+
                     SettingStrip {
                         id: nameStrip
                         settingType: SettingStrip.SettingType.Text

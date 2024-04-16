@@ -30,5 +30,7 @@
         <file>default_user_avatar_24px.svg</file>
         <file>warning_48px.svg</file>
         <file>chevron_24px_white.svg</file>
+        <file>lock_FILL0_wght600_GRAD0_opsz24.svg</file>
+        <file>lock_open_right_FILL0_wght600_GRAD0_opsz24.svg</file>
     </qresource>
 </RCC>

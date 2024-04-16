@@ -22,26 +22,25 @@ class LOStyle : public QObject
     Q_PROPERTY(QColor onPrimaryColor READ onPrimaryColor CONSTANT)
     Q_PROPERTY(QColor blackColor READ blackColor CONSTANT)
     Q_PROPERTY(QColor basicStripColor READ basicStripColor CONSTANT)
-    // Q_PROPERTY(QColor accentedStripColor READ accentedStripColor CONSTANT)
     Q_PROPERTY(QColor pressAccentColor READ pressAccentColor CONSTANT)
     Q_PROPERTY(QColor surfaceContainerHighColor READ surfaceContainerHighColor CONSTANT)
     Q_PROPERTY(QColor outlineVariant READ outlineVariant CONSTANT)
-    Q_PROPERTY(QColor secondaryColor READ secondaryColor CONSTANT)
     Q_PROPERTY(QColor errorContainerColor READ errorContainerColor CONSTANT)
     Q_PROPERTY(QColor onSurfaceVariantColor READ onSurfaceVariantColor CONSTANT)
     Q_PROPERTY(QColor surfaceColor READ surfaceColor CONSTANT)
     Q_PROPERTY(QColor primary90Color READ primary90Color CONSTANT)
     Q_PROPERTY(QColor darkColor READ darkColor CONSTANT)
     Q_PROPERTY(QColor outlineColor READ outlineColor CONSTANT)
-    Q_PROPERTY(QColor secondaryContainerColor READ secondaryContainerColor CONSTANT)
-    Q_PROPERTY( QColor errorColor READ errorColor CONSTANT )
-    Q_PROPERTY( QColor primary95Color READ primary95Color CONSTANT)
-    Q_PROPERTY( QColor inactiveColor READ inactiveColor CONSTANT )
-   Q_PROPERTY( QColor settingsBoxesBorderColor READ settingsBoxesBorderColor CONSTANT )
-   // Q_PROPERTY( QColor READ  CONSTANT )
+    Q_PROPERTY(QColor errorColor READ errorColor CONSTANT)
+    Q_PROPERTY(QColor primary95Color READ primary95Color CONSTANT)
+    Q_PROPERTY(QColor inactiveColor READ inactiveColor CONSTANT)
+    Q_PROPERTY(QColor settingsBoxesBorderColor READ settingsBoxesBorderColor CONSTANT)
+    // Q_PROPERTY( QColor READ  CONSTANT )
 
     // Colors - secondary palette
     Q_PROPERTY(QColor secondary50Color READ secondary50Color CONSTANT)
+ Q_PROPERTY(QColor secondaryColor READ secondaryColor CONSTANT)
+    Q_PROPERTY(QColor secondaryContainerColor READ secondaryContainerColor CONSTANT)
 
     // Colors - additional colors
 
@@ -66,10 +65,12 @@ class LOStyle : public QObject
     Q_PROPERTY(QUrl logoutIcon READ logoutIcon CONSTANT)
     Q_PROPERTY(QUrl editIcon READ editIcon CONSTANT)
     Q_PROPERTY(QUrl arrowDropDownMediumIcon READ arrowDropDownMediumIcon CONSTANT)
-    Q_PROPERTY( QUrl arrowDropUpMediumIcon READ arrowDropUpMediumIcon CONSTANT )
-    Q_PROPERTY( QUrl userDefaultAvatar READ userDefaultAvatar CONSTANT )
-    Q_PROPERTY( QUrl warningIcon READ warningIcon CONSTANT )
-   // Q_PROPERTY( QUrl READ CONSTANT )
+    Q_PROPERTY(QUrl arrowDropUpMediumIcon READ arrowDropUpMediumIcon CONSTANT)
+    Q_PROPERTY(QUrl userDefaultAvatar READ userDefaultAvatar CONSTANT)
+    Q_PROPERTY(QUrl warningIcon READ warningIcon CONSTANT)
+    Q_PROPERTY(QUrl lockIcon READ lockIcon CONSTANT)
+    Q_PROPERTY(QUrl unlockIcon READ unlockIcon CONSTANT)
+    // Q_PROPERTY( QUrl READ CONSTANT )
 
     // Filled Icons
     // Q_PROPERTY( QUrl projectsFilledIcon READ projectsFilledIcon CONSTANT )
@@ -88,7 +89,7 @@ class LOStyle : public QObject
 
     // Static heights/lenghts
     Q_PROPERTY(double searchbarHeight READ searchbarHeight CONSTANT)
-    Q_PROPERTY(double toolbarHeight READ toolbarHeight CONSTANT) /*NOTIFY*/
+    Q_PROPERTY(double toolbarHeight READ toolbarHeight CONSTANT)
     Q_PROPERTY(double drawerItemHeight READ drawerItemHeight CONSTANT)
     Q_PROPERTY(int maximumEmailInputLength READ maximumEmailInputLength CONSTANT)
 
@@ -111,11 +112,9 @@ public:
     QColor onPrimaryColor() { return QColor::fromString("#FFFFFF"); }
     QColor blackColor() { return QColor::fromString("#000000"); }
     QColor basicStripColor() { return QColor::fromString("#F5EFF7"); }
-    // QColor accentedStripColor() { return QColor::fromString("#FFD8E4"); }
     QColor pressAccentColor() { return QColor::fromString("#D0BCFF"); }
     QColor surfaceContainerHighColor() { return QColor::fromString("#ECE6F0"); }
     QColor outlineVariant() { return QColor::fromString("#CAC4D0"); }
-    QColor secondaryColor() { return QColor::fromString("#625B71"); }
     QColor errorContainerColor() { return QColor::fromString("#8C1D18"); }
     QColor onSurfaceVariantColor() { return QColor::fromString("#49454F"); }
     QColor surfaceColor() { return QColor::fromString("#FEF7FF"); }
@@ -123,14 +122,15 @@ public:
     QColor primary95Color() { return QColor::fromString("#F6EDFF"); }
     QColor darkColor() { return QColor::fromString("#322F35"); }
     QColor outlineColor() { return QColor::fromString("#79747E"); }
-    QColor secondaryContainerColor() { return QColor::fromString("#E8DEF8"); }
-    QColor errorColor() {return QColor::fromString( "#B3261E" );}
-    QColor inactiveColor() {return QColor::fromString( "#DED8E1" );}
-   QColor settingsBoxesBorderColor() {return QColor::fromString( "#49454F" );}
-  // QColor () {return QColor::fromString( "#" );}
+    QColor errorColor() { return QColor::fromString("#B3261E"); }
+    QColor inactiveColor() { return QColor::fromString("#DED8E1"); }
+    QColor settingsBoxesBorderColor() { return QColor::fromString("#49454F"); }
+    // QColor () {return QColor::fromString( "#" );}
 
     // Colors - secondary palette
     QColor secondary50Color() { return QColor::fromString("#7A7289"); }
+    QColor secondaryColor() { return QColor::fromString("#625B71"); }
+     QColor secondaryContainerColor() { return QColor::fromString("#E8DEF8"); }
 
     // Images
     QUrl logoImage() { return QUrl("qrc:/images/LetiskoLogo.svg"); }
@@ -157,8 +157,10 @@ public:
     QUrl editIcon() { return QUrl("qrc:/icons/edit_square_24px.svg"); }
     QUrl arrowDropDownMediumIcon() { return QUrl("qrc:/icons/arrow_drop_down_medium.svg"); }
     QUrl arrowDropUpMediumIcon() { return QUrl("qrc:/icons/arrow_drop_up_medium.svg"); }
-    QUrl userDefaultAvatar() {return QUrl( "qrc:/icons/default_user_avatar_24px.svg" );}
-    QUrl warningIcon() {return QUrl( "qrc:/icons/warning_48px.svg" );}
+    QUrl userDefaultAvatar() { return QUrl("qrc:/icons/default_user_avatar_24px.svg"); }
+    QUrl warningIcon() { return QUrl("qrc:/icons/warning_48px.svg"); }
+    QUrl lockIcon() { return QUrl("qrc:/icons/lock_FILL0_wght600_GRAD0_opsz24.svg"); }
+    QUrl unlockIcon() { return QUrl("qrc:/icons/lock_open_right_FILL0_wght600_GRAD0_opsz24.svg"); }
     // QUrl () {return QUrl( "qrc:/icons/" );}
 
     // static QUrl Icon() {return QUrl( "qrc:/Icon.svg" );}

@@ -28,6 +28,7 @@ public:
     void setFlightsModel(FlightsModel *model);
 
     Q_INVOKABLE void loadFlights();
+    Q_INVOKABLE void changeFlightRequestStatus(unsigned int flightRequestId, unsigned int status);
 
     bool isLoadingFlights() const;
     void setIsLoadingFlights(bool isLoading);
@@ -38,6 +39,7 @@ public:
 public slots:
     void handleFlightsLoadNetworkReply(QNetworkReply *reply);
     void handleFlightsUpdateNetworkReply(QNetworkReply *reply);
+    void handleChangeFlightRequestStatusNetworkReply(QNetworkReply *reply);
 
 signals:
     void loadingFlightsChanged();

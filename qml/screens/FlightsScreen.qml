@@ -1,8 +1,11 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+
+import UserAppSettings
 import com.letiskoonline.UserController
 import com.letiskoonline.FlightsController
+
 import "../components/divider/"
 import "../components/"
 import "../components/typography/label/text"
@@ -42,7 +45,7 @@ Page {
         }
 
         Column {
-            spacing: 14
+            // spacing:
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.preferredHeight: 100
             // height: 28
@@ -58,35 +61,75 @@ Page {
                 Layout.preferredWidth: parent.width
             }
 
+            // FligthStatusCombobox {
+            //     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+            //     // Layout.preferredWidth: 60
+            //     // Layout.preferredHeight: 20
+            // }
             //TODO: better layout
             RowLayout {
                 spacing: 25
                 width: parent.width
                 height: 20
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-
                 Layout.fillWidth: true
 
-                Item {
-
-                    Layout.fillWidth: true
-
+                ColumnLayout {
+                    // Layout.fillWidth: true
                     // Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                    spacing: 10
+                    Layout.preferredWidth: 130
+                    Layout.maximumWidth: 130
+                    // width: parent.width
+                    height: parent.height
+
                     TitleLargeText {
                         text: qsTr("Flights:")
-                        anchors {
-                            verticalCenter: parent.verticalCenter
-                            left: parent.left
-                        }
+                        Layout.leftMargin: 20
+                        Layout.topMargin: 10
+                        // anchors {
+                        //     verticalCenter: parent.verticalCenter
+                        //     left: parent.left
+                        //     leftMargin: 40
+                        // }
+
                         // Layout.preferredHeight: contentHeight
                         // Layout.preferredWidth: contentWidth
                         // Layout.fillWidth: true
+                    }
+                    Button {
+                        id: control
+                        text: UserAppSettings.isFlightsEditingLocked ? qsTr(
+                                                                           "Unlock editing") : qsTr(
+                                                                           "Lock editing")
+                        checkable: true
+                        checked: true
+                        display: AbstractButton.TextBesideIcon
+                        background: Rectangle {
+                            radius: 100
+                            implicitWidth: 100
+                            implicitHeight: 40
+                            opacity: enabled ? 1 : 0.3
+                            color: control.down ? "#d0d0d0" : "#e0e0e0"
+                        }
+                        icon {
+                            width: __style.icon24
+                            height: __style.icon24
+                            source: UserAppSettings.isFlightsEditingLocked ? __style.unlockIcon : __style.lockIcon
+                        }
+                        onClicked: {
+                            UserAppSettings.isFlightsEditingLocked
+                                    = !UserAppSettings.isFlightsEditingLocked
+
+                            console.log("UserAppSettings.isFlightsEditingLocked: "
+                                        + UserAppSettings.isFlightsEditingLocked)
+                        }
                     }
                 }
 
                 FlightsSortingBar {
                     id: flightsSortingBar
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                     Layout.leftMargin: 40
                     Layout.rightMargin: 250
                     // Layout.preferredHeight: 20/
@@ -97,23 +140,24 @@ Page {
                     // }
                 }
 
-                Item {
-                    Layout.fillWidth: true
+                // TODO:
+                // Item {
+                //     Layout.fillWidth: true
 
-                    // Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-                    MaterialButton {
-                        id: filtersButton
-                        contentText: qsTr("Filters")
-                        backgroundColor: __style.surfaceContainerLowColor
-                        imagePath: __style.settinsIcon
-                        anchors {
-                            verticalCenter: parent.verticalCenter
-                            right: parent.right
-                            rightMargin: 30
-                        }
-                        onClicked: filterPopUp.open()
-                    }
-                }
+                //     // Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+                //     MaterialButton {
+                //         id: filtersButton
+                //         contentText: qsTr("Filters")
+                //         backgroundColor: __style.surfaceContainerLowColor
+                //         imagePath: __style.settinsIcon
+                //         anchors {
+                //             verticalCenter: parent.verticalCenter
+                //             right: parent.right
+                //             rightMargin: 30
+                //         }
+                //         onClicked: filterPopUp.open()
+                //     }
+                // }
             }
         }
 
@@ -133,7 +177,8 @@ Page {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.preferredHeight: 356 //parent.height
             Layout.preferredWidth: parent.width
-            Layout.topMargin: 8
+            Layout.topMargin: 15
+            Layout.bottomMargin: 45
             Layout.fillHeight: true
 
             ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
@@ -171,6 +216,7 @@ Page {
                         arrivalTime: arrivalTimeData
                         maxHeight: maxHeightData
                         maxHeightMeasureUnits: maxHeightMeasureUnitsData
+                        flightRequestId: flightRequestIdData
                         anchors {
                             horizontalCenter: parent.horizontalCenter
                             fill: parent
@@ -223,10 +269,9 @@ Page {
         // }
     }
 
-    FlightFilterPopUp {
-        id: filterPopUp
-    }
-
+    // FlightFilterPopUp {
+    //     id: filterPopUp
+    // }
     Component.onCompleted: {
         if (FlightsController !== null) {
             FlightsController.setIsActiveScreen(true)
@@ -242,7 +287,7 @@ Page {
         } else {
             console.log("FlightsController is not initialized yet.")
         }
-        // removes the filter and shows all items in the model
+        // removes a filter and shows all items in the model
         flightsFilterProxyModel.setFilterString("")
 
         console.log("FlightsScreen was closed")

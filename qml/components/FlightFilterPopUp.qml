@@ -67,7 +67,7 @@ PopupParent {
             ListModel {
                 id: filtersModel
                 ListElement {
-                    name: "Confirmed"
+                    name: "Approved"
                     type: "Status"
                     checked: true
                     aVisible: false

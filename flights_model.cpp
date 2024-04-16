@@ -88,12 +88,14 @@ QVariant FlightsModel::data(const QModelIndex &index, int role) const
             return flightInfo->getMaxHeight();
         case FlightsRoles::MaxHeightMeasureUnitsRole:
             return flightInfo->getMaxHeightMeasureUnits();
+        case FlightsRoles::FlightRequestIdRole:
+            return flightInfo->getFlightRequestId();
         }
     }
     return {};
 }
 
-void FlightsModel::addFlight(const QString &callsign, const QString &departureAirport, const QString &arrivalAirport, int flightStatus, const QDateTime &departureTime, const QDateTime &arrivalTime, unsigned int maxHeight, const QString &maxHeightMeasureUnits)
+void FlightsModel::addFlight(const QString &callsign, const QString &departureAirport, const QString &arrivalAirport, FlightRequestStatus::Status flightStatus, const QDateTime &departureTime, const QDateTime &arrivalTime, unsigned int maxHeight, const QString &maxHeightMeasureUnits, const unsigned int fligthRequestId)
 {
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
 
@@ -106,6 +108,7 @@ void FlightsModel::addFlight(const QString &callsign, const QString &departureAi
     newFlightInfo->setArrivalTime(arrivalTime);
     newFlightInfo->setMaxHeight(maxHeight);
     newFlightInfo->setMaxHeightMeasureUnits(maxHeightMeasureUnits);
+    newFlightInfo->setFlightRequestId(fligthRequestId);
 
     m_flightsList.append(newFlightInfo);
     endInsertRows();
@@ -122,9 +125,7 @@ QHash<int, QByteArray> FlightsModel::roleNames() const
     filterRoles[FlightsRoles::ArrivalTimeRole] = "arrivalTimeData";
     filterRoles[FlightsRoles::MaxHeightRole] = "maxHeightData";
     filterRoles[FlightsRoles::MaxHeightMeasureUnitsRole] = "maxHeightMeasureUnitsData";
-
-    // TODO: more filters
-
+    filterRoles[FlightsRoles::FlightRequestIdRole] = "flightRequestIdData";
     return filterRoles;
 }
 

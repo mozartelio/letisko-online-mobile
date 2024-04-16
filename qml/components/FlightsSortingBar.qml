@@ -11,9 +11,8 @@ import "./typography/body/text"
 Item {
     id: root
 
-
     height: 77
-    width: 350
+    width: 450
 
     // Layout.preferredWidth: 467
     // Layout.preferredHeight: 77

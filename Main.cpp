@@ -24,6 +24,7 @@
 #include "constants.h"
 #include "language_manager.h"
 #include "flights_roles.h"
+#include "flight_request_status.h"
 
 void InstallDefaultFont()
 {
@@ -38,12 +39,12 @@ int main(int argc, char *argv[])
 {
     qputenv("MAIN_QML", "../OnlineLetiskoMobileApp/qml/Main.qml");
 
-    // QQuickStyle::setStyle("Material");
     QGuiApplication app(argc, argv);
 
 
     qmlRegisterType<LanguageManager>("com.letiskoonline.LanguageManager", 1, 0, "LanguageManager");
     qmlRegisterType<FlightsRoles>("com.letiskoonline.FlightsRoles", 1, 0, "FlightsRoles");
+    qmlRegisterType<FlightRequestStatus>("com.letiskoonline.FlightRequestStatus", 1, 0, "FlightRequestStatus");
 
 
     qmlRegisterSingletonType(QUrl("qrc:/UserAppSettings.qml"), "UserAppSettings", 1, 0, "UserAppSettings");
@@ -67,6 +68,15 @@ int main(int argc, char *argv[])
                                                           Q_UNUSED(scriptEngine)
                                                           return serverConnectionChecker; });
 
+    FlightRequestStatus * flightRequestStatus = FlightRequestStatus::instance();
+    qmlRegisterSingletonType<FlightRequestStatus>("com.example", 1, 0, "FlightRequestStatus",
+                                           [flightRequestStatus](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject* {
+                                               Q_UNUSED(engine)
+                                               Q_UNUSED(scriptEngine)
+                                               return flightRequestStatus;
+                                           }
+                                           );
+
 
 
     UserController *userController = new UserController(&app);
@@ -78,43 +88,7 @@ int main(int argc, char *argv[])
     AircraftsController *aircraftsController = userController->getAircraftsController();
     qmlRegisterSingletonInstance("com.letiskoonline.AircraftsController", 1, 0, "AircraftsController", aircraftsController);
 
-    // Create and populate list model instance
-    // FlightsController listModel;
-    // listModel.addFlight("callsign0", "planeName0", 0, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-    // listModel.addFlight("callsign1", "planeName1", 1, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-    // listModel.addFlight("callswrewign2", "planeName2", 2, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-    // listModel.addFlight("callsign3", "planeName3", 3, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-    // listModel.addFlight("LPFEW", "hornet", 4, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-    // listModel.addFlight("RTGFD4", "omega", 5, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-    // listModel.addFlight("callsign6", "planeName6", 6, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-    // listModel.addFlight("J34JKO", "alfa", 7, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-    // listModel.addFlight("callsign8", "planeName8", 8, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-    // listModel.addFlight("callsign9", "jango", 9, QDateTime::currentDateTime(), QDateTime::currentDateTime());
-
-    // Write out the least elements
-
-    // for (int i = 0; i < listModel.rowCount(); i++)
-    // {
-    //     // FlightInfo flightInfo = listModel.data(i);
-    //     qDebug() << "Flight details at index " << i << ":";
-    //     qDebug() << "Callsign: " << listModel.data(listModel.index(i, 0), Roles::CallsignRole);
-    //     qDebug() << "Plane Name: " << listModel.data(listModel.index(i, 0), Roles::PlaneNameRole);
-    //     qDebug() << "Flight Number: " << listModel.data(listModel.index(i, 0), Roles::FlightStatusRole);
-    //     qDebug() << "Departure Time: " << listModel.data(listModel.index(i, 0), Roles::DepartureTimeRole);
-    //     qDebug() << "Arrival Time: " << listModel.data(listModel.index(i, 0), Roles::ArrivalTimeRole);
-    // }
-    // Create filter model
-    // FlightFilterProxyModel filterModel;
-    // filterModel.setSourceModel(&listModel);
-    // filterModel.setFilterRole(Roles::CallsignRole);
-    // filterModel.setFilterRole(Roles::PlaneNameRole);
-    // filterModel.setFilterRole(Roles::FlightStatusRole);
-    // filterModel.setFilterRole(Roles::DepartureTimeRole);
-    // filterModel.setFilterRole(Roles::ArrivalTimeRole);
-    // filterModel.setSortRole(Roles::CallsignRole);
-
-
-    // Is needed for Settings
+    // Is needed for QML Settings
     app.setOrganizationName("Letisko online");
     app.setOrganizationDomain("letisko.online");
     app.setApplicationName("Letisko online");
@@ -148,6 +122,9 @@ int main(int argc, char *argv[])
 
     LanguageManager *languageManager = new LanguageManager(&app, &engine,  &app);
     rootContext->setContextProperty("languageManager", languageManager);
+
+    rootContext->setContextProperty("flightRequestStatus", flightRequestStatus);
+
 
     /** << for using with hotreload**/
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app, [url](QObject *obj, const QUrl &objUrl)

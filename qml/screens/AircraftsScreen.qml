@@ -35,13 +35,14 @@ Page {
                     aircraftsFilterProxyModel.setFilterString(text)
                 }
             }
-            MaterialButton {
-                contentText: "Filters"
-                backgroundColor: __style.surfaceContainerLowColor
-                imagePath: __style.settinsIcon
-                onClicked: filterPopUp.open()
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-            }
+            //TODO:
+            // MaterialButton {
+            //     contentText: "Filters"
+            //     backgroundColor: __style.surfaceContainerLowColor
+            //     imagePath: __style.settinsIcon
+            //     onClicked: filterPopUp.open()
+            //     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+            // }
         }
 
         BusyIndicator {
@@ -111,10 +112,9 @@ Page {
     }
 
     //TODO:
-    PopupParent {
-        id: filterPopUp
-    }
-
+    // PopupParent {
+    //     id: filterPopUp
+    // }
     Component.onCompleted: {
         if (AircraftsController !== null) {
             AircraftsController.setIsActiveScreen(true)

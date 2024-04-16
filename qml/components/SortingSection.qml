@@ -35,8 +35,9 @@ Item {
                 }
             }
 
-            BodySmallText {
+            BodyMediumText {
                 text: qsTr(sectionName)
+                font.bold: true
                 color: if (sectionHeaderBackgroundColor === SortingSection.Dark) {
                            __style.onPrimaryColor
                        } else if (sectionHeaderBackgroundColor === SortingSection.Light) {

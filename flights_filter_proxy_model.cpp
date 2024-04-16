@@ -7,9 +7,6 @@
 FlightsFilterProxyModel::FlightsFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
 {
-
-    //     setSortOrder(false);
-    // }
     this->setDynamicSortFilter(true);
     qDebug() << "hello from FlightsFilterProxyModel";
 }
@@ -60,9 +57,6 @@ bool FlightsFilterProxyModel::lessThan(const QModelIndex &source_left, const QMo
 {
     QVariant leftData = sourceModel()->data(source_left, sortRole());
     QVariant rightData = sourceModel()->data(source_right, sortRole());
-
-    // qDebug() << leftData.toString();
-    // qDebug() << rightData.toString();
 
     if (sortRole() == FlightsRoles::DepartureTimeRole || sortRole() == FlightsRoles::ArrivalTimeRole)
     {

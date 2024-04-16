@@ -1,17 +1,14 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import com.letiskoonline.FlightRequestStatus
 import "./typography/label/text/"
 import "../components/"
 
 Rectangle {
     id: root
-    enum Status {
-        Denied,
-        Confirmed,
-        Pending
-    }
-    property int flightStatus
+
+    required property int flightStatus
 
     width: Math.min(
                content.implicitWidth + content.anchors.leftMargin + content.anchors.rightMargin,
@@ -23,11 +20,11 @@ Rectangle {
         color: __style.outlineColor
     }
     color: {
-        if (root.flightStatus === FlightStatus.Status.Confirmed)
+        if (root.flightStatus === FlightRequestStatus.Approved)
             return __style.secondaryColor
-        else if (root.flightStatus === FlightStatus.Status.Denied)
+        else if (root.flightStatus === FlightRequestStatus.Denied)
             return __style.errorContainerColor
-        else if (root.flightStatus === FlightStatus.Status.Pending)
+        else if (root.flightStatus === FlightRequestStatus.Pending)
             return __style.primaryColor
         else
             return ""
@@ -49,10 +46,10 @@ Rectangle {
         LabelLargeText {
             id: textLabel
             color: __style.onPrimaryColor
-            text: flightStatus === FlightStatus.Status.Confirmed ? qsTr("Confirmed") : flightStatus === FlightStatus.Status.Denied ? qsTr("Denied") : qsTr("Pending")
+            text: flightStatus === FlightRequestStatus.Approved ? qsTr("Approved") : flightStatus === FlightRequestStatus.Denied ? qsTr("Denied") : qsTr("Pending")
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             maximumLineCount: 2
-            Layout.preferredWidth: Math.min(contentWidth, privates.maxWidth)
+            Layout.preferredWidth: root.width
             Layout.preferredHeight: 20
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
@@ -62,13 +59,13 @@ Rectangle {
             id: icon
             width: __style.icon24
             height: __style.icon24
-            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter // Adjusted alignment
+            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
             source: {
-                if (root.flightStatus === FlightStatus.Status.Confirmed)
+                if (root.flightStatus === FlightRequestStatus.Approved)
                     return __style.checkSmallIcon
-                else if (root.flightStatus === FlightStatus.Status.Denied)
+                else if (root.flightStatus === FlightRequestStatus.Denied)
                     return __style.closeIcon
-                else if (root.flightStatus === FlightStatus.Status.Pending)
+                else if (root.flightStatus === FlightRequestStatus.Pending)
                     return __style.moreIcon
                 else
                     return ""

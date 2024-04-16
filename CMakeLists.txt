@@ -55,11 +55,10 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     qml/components/DrawerItem.qml
     qml/components/SearchBar.qml
     qml/components/FlightStrip.qml
-    qml/components/FlightStatus.qml
+    qml/components/FlightStatusChip.qml
     qml/components/SortingButton.qml
     qml/components/FlightFilterPopUp.qml
     qml/components/MaterialButton.qml
-    qml/components/SortingBar.qml
     qml/components/DocumentationStrip.qml
     qml/components/AircraftStrip.qml
     qml/components/SettingStrip.qml
@@ -69,6 +68,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     qml/components/ServerConnectionProblem.qml
     qml/components/SortingSection.qml
     qml/components/FlightsSortingBar.qml
+    qml/components/FligthStatusCombobox.qml
 
 
     # text font styles
@@ -128,6 +128,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     pixmap_provider.h pixmap_provider.cpp
     server_connection_checker.h server_connection_checker.cpp
     language_manager.h language_manager.cpp
+    flight_request_status.h flight_request_status.cpp
 
 )
 

@@ -21,6 +21,8 @@ const QString RequestConstants::AVATAR_ENDPOINT = "edit/avatar";
 const QString RequestConstants::REGISTRATION_ENDPOINT = "auth/register";
 const QString RequestConstants::PROFILE_DETAILS_ENDPOINT = "edit/profile";
 const QString RequestConstants::CHANGE_ROLE_ENDPOINT = "role/assign";
+const QString RequestConstants::CHANGE_FLIGHT_STATUS_ENDPOINT = "flight/approval_system";
 
 const QString RequestConstants::UPDATE_FLIGHTS_TYPE = "current_flights_update";
 const QString RequestConstants::UPDATE_AIRCRAFTS_TYPE = "aircrafts_update";
+const QString RequestConstants::UPDATE_FLIGTH_STATUS_TYPE = "flight_status_update";

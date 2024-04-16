@@ -28,16 +28,7 @@ Page {
         SearchBar {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
         }
-        SortingBar {
-            leftSectionHeader: "Creation time"
-            leftSectionLeftButtonText: "Сlosest to farthest"
-            leftSectionRightButtonText: "Farthest to closest"
-
-            rigthSectionHeader: "Edited  time"
-            rigthSectionLeftButtonText: "Сlosest to farthest"
-            rigthSectionRightButtonText: "Farthest to closest"
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-        }
+        // FUTURE: add a sorting bar
 
         ScrollView {
             id: mainColumn

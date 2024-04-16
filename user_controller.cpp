@@ -315,7 +315,7 @@ void UserController::handleProfileDetailsNetworkReply(QNetworkReply *reply)
 
     if (reply->error() == QNetworkReply::NoError)
     {
-        sendChangeRoleRequest();
+        // sendChangeRoleRequest();
         emit profileDetailsFilledInResult(true);
     }
     else

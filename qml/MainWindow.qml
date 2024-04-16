@@ -120,7 +120,7 @@ Item {
 
         StackView {
             id: stackView
-            initialItem: flightsScreen//loginScreen // // //settingsScreen//registrationDetailsScreen //  // //registrationScreen // //aircraftsScreen // / //documentationScreen
+            initialItem: loginScreen //flightsScreen// // // //settingsScreen//registrationDetailsScreen //  // //registrationScreen // //aircraftsScreen // / //documentationScreen
             width: parent.width
             height: parent.height
             // anchors.fill: parent  // activate this if not using hot reload

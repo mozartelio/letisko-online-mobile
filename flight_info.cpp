@@ -47,12 +47,12 @@ void FlightInfo::setArrivalAirport(const QString &arrivalAirport)
     }
 }
 
-int FlightInfo::getFlightStatus() const
+FlightRequestStatus::Status FlightInfo::getFlightStatus() const
 {
     return m_flightStatus;
 }
 
-void FlightInfo::setFlightStatus(int flightStatus)
+void FlightInfo::setFlightStatus(FlightRequestStatus::Status flightStatus)
 {
     if (m_flightStatus != flightStatus)
     {
@@ -114,5 +114,19 @@ void FlightInfo::setMaxHeightMeasureUnits(const QString &maxHeightMeasureUnits)
     {
         m_maxHeightMeasureUnits = maxHeightMeasureUnits;
         emit maxHeightMeasureUnitsChanged();
+    }
+}
+
+unsigned int FlightInfo::getFlightRequestId() const
+{
+    return m_flightRequestId;
+}
+
+void FlightInfo::setFlightRequestId(const unsigned int flightRequestId)
+{
+    if (m_flightRequestId != flightRequestId)
+    {
+        m_flightRequestId = flightRequestId;
+        emit flightRequestIdChanged();
     }
 }

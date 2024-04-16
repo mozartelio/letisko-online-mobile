@@ -17,7 +17,8 @@ public:
         DepartureAirportRole = Qt::UserRole + 5,
         ArrivalAirportRole = Qt::UserRole + 6,
         MaxHeightRole = Qt::UserRole + 7,
-        MaxHeightMeasureUnitsRole = Qt::UserRole + 8
+        MaxHeightMeasureUnitsRole = Qt::UserRole + 8,
+        FlightRequestIdRole = Qt::UserRole + 9
     };
     Q_ENUM(Roles)
 

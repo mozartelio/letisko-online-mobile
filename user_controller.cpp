@@ -44,6 +44,11 @@ void UserController::doLogout()
     m_aircraftsController->setUserJwtAuthorizationToken(m_jwtAuthorizationToken);
 }
 
+bool UserController::isUserLoggedIn()
+{
+    return !m_jwtAuthorizationToken.isEmpty();
+}
+
 // std::pair<bool, QString> extractJsonKeyValueFromRaw(const QByteArray &rawResponseData, const QString &jsonKeyName)
 // {
 //     QJsonDocument doc = QJsonDocument::fromJson(rawResponseData);

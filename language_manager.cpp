@@ -29,8 +29,10 @@ void LanguageManager::setCurrentLanguage(Languages language)
         {
             m_app->removeTranslator(&m_translator);
         }
-        else if (m_translator.load(languageCode(language) + ".qm"))
+        // do not use as qrc:/translations/, it will not work
+        else if (m_translator.load(":/translations/" + languageCode(language) + ".qm"))
         {
+            qDebug() << "I MANAGED TO SET TRANSLATION:";
             m_app->installTranslator(&m_translator);
         }
         else

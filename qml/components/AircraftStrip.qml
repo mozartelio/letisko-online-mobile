@@ -232,7 +232,7 @@ Rectangle {
 
                 Row {
                     BodyMediumText {
-                        text: qsTr("ICAO wake tubulence category: ")
+                        text: qsTr("ICAO wake turbulence category: ")
                         font.bold: true
                     }
                     BodyMediumText {

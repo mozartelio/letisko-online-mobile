@@ -59,7 +59,7 @@ Item {
                     top: parent.top
                     bottom: parent.bottom
 
-                    leftMargin: 20
+                    leftMargin: 10
                     rightMargin: 20
                 }
 
@@ -120,44 +120,65 @@ Item {
                     id: fligthDepartureArrivalParameters
                     spacing: 15
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                    Layout.leftMargin: 15
+                    Layout.leftMargin: 10
                     // Layout.fillWidth: true
                     Column {
-                        BodyLargeText {
-                            text: qsTr("Departure: ")
-                            font.bold: true
+                        Row {
+                            spacing: 10
+                            BodyLargeText {
+                                text: qsTr("Departure: ")
+                                font.bold: true
+                            }
+                            BodyLargeText {
+                                text: departureTime.toLocaleString(
+                                          Qt.locale(
+                                              languageManager.languageCode(
+                                                  languageManager.currentLanguage)),
+                                          "hh:mm")
+                            }
                         }
                         BodyLargeText {
                             text: departureTime.toLocaleString(
                                       Qt.locale(
                                           languageManager.languageCode(
                                               languageManager.currentLanguage)),
-                                      "MMMM dd, yyyy hh:mm")
+                                      "MMMM dd, yyyy")
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                         }
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                        Layout.preferredWidth: 130
+                        Layout.preferredWidth: 110
                     }
 
                     Column {
-                        BodyLargeText {
-                            text: qsTr("Arrival: ")
-                            font.bold: true
+                        Row {
+                            spacing: 10
+                            BodyLargeText {
+                                text: qsTr("Arrival: ")
+                                font.bold: true
+                            }
+                            BodyLargeText {
+                                text: arrivalTime.toLocaleString(
+                                          Qt.locale(
+                                              languageManager.languageCode(
+                                                  languageManager.currentLanguage)),
+                                          "hh:mm")
+                            }
                         }
+
                         BodyLargeText {
                             text: arrivalTime.toLocaleString(
                                       Qt.locale(
                                           languageManager.languageCode(
                                               languageManager.currentLanguage)),
-                                      "MMMM dd, yyyy hh:mm")
+                                      "MMMM dd, yyyy")
                             verticalAlignment: Text.AlignVCenter
                             horizontalAlignment: Text.AlignHCenter
                         }
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                        Layout.preferredWidth: 130
+                        Layout.preferredWidth: 110
                     }
 
                     Column {
@@ -170,7 +191,7 @@ Item {
                         }
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                        Layout.preferredWidth: 130
+                        Layout.preferredWidth: 110
                     }
                     Column {
                         BodyLargeText {

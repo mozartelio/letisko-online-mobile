@@ -41,7 +41,6 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-
     qmlRegisterType<LanguageManager>("com.letiskoonline.LanguageManager", 1, 0, "LanguageManager");
     qmlRegisterType<FlightsRoles>("com.letiskoonline.FlightsRoles", 1, 0, "FlightsRoles");
     qmlRegisterType<FlightRequestStatus>("com.letiskoonline.FlightRequestStatus", 1, 0, "FlightRequestStatus");
@@ -97,12 +96,12 @@ int main(int argc, char *argv[])
     InstallDefaultFont();
 
     /** << for using with hotreload**/
-    ComponentCreatorEngine engine;
-    engine.rootContext()->setContextProperty("QmlEngine", &engine);
+    // ComponentCreatorEngine engine;
+    // engine.rootContext()->setContextProperty("QmlEngine", &engine);
     /** >> end of source code for hot reload*/
 
     /** << for testing without hotreload**/
-    // QQmlApplicationEngine engine;
+    QQmlApplicationEngine engine;
     /** >> for testing without hotreload**/
 
     // qDebug() << "PixmapProvider::instance()->getPixmapProviderName():  " << PixmapProvider::instance()->getPixmapProviderName();
@@ -127,16 +126,16 @@ int main(int argc, char *argv[])
 
 
     /** << for using with hotreload**/
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app, [url](QObject *obj, const QUrl &objUrl)
-        { if (!obj && url == objUrl) QCoreApplication::exit(- 1); }, Qt::QueuedConnection);
-    engine.load(url);
+    // QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app, [url](QObject *obj, const QUrl &objUrl)
+    //     { if (!obj && url == objUrl) QCoreApplication::exit(- 1); }, Qt::QueuedConnection);
+    // engine.load(url);
     /** >> end of source code for hot reload*/
 
     /** << for testing without hotreload**/
-    // QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
-    //     &app, []() { QCoreApplication::exit(-1); },
-    //     Qt::QueuedConnection);
-    // engine.loadFromModule("OnlineLetiskoMobileApp", "Main");
+    QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
+        &app, []() { QCoreApplication::exit(-1); },
+        Qt::QueuedConnection);
+    engine.loadFromModule("OnlineLetiskoMobileApp", "Main");
     /** >> end for testing without hotreload**/
 
     return app.exec();

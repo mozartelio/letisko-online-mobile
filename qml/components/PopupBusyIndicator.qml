@@ -9,10 +9,11 @@ Popup {
     height: parent.height
     closePolicy: Popup.NoAutoClose
     anchors.centerIn: Overlay.overlay
-    contentItem: Item {}
+    contentItem: Item {
+    }
     background: Rectangle {
         id: cover
-        visible: loadingPopup.opened
+        visible: root.opened
         z: 10
         color: __style.popupSemiTransparentLightColor
         anchors {
@@ -25,7 +26,8 @@ Popup {
         BusyIndicator {
             running: cover.visible
             anchors.centerIn: parent
-            background: Item {}
+            background: Item {
+            }
         }
     }
 }

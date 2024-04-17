@@ -8,7 +8,7 @@ const unsigned int RequestConstants::REQUEST_RETRY_TIMEOUT_MILLISECONDS = 5000; 
 const unsigned int RequestConstants::SERVER_CONNECTION_CHECK_TIMEOUT_MILLISECONDS = 10000;
 
 const QString RequestConstants::HTTP_PROTOCOL_PREFIX = "http://";
-const QString RequestConstants::SERVER_NETWORK_ADDRESS = "127.0.0.1"; //"192.168.1.111"; // 85.237.233.151
+const QString RequestConstants::SERVER_NETWORK_ADDRESS ="192.168.137.1"; // "127.0.0.1";//"192.168.1.111";  // // 85.237.233.151
 const unsigned int RequestConstants::SERVER_PORT = 5001;              // 51
 const QString RequestConstants::SERVER_REQUEST_URL_AND_PORT = HTTP_PROTOCOL_PREFIX + SERVER_NETWORK_ADDRESS + ":" + QString::number(SERVER_PORT) + "/";
 

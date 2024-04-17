@@ -35,6 +35,8 @@ public:
     User *getUser() const;
     void setUser(User *user);
 
+    Q_INVOKABLE bool isUserLoggedIn();
+
 public slots:
     void handleLoginNetworkReply(QNetworkReply *reply);
     void handleRegistrationNetworkReply(QNetworkReply *reply, QString email, QString password);

@@ -23,7 +23,8 @@ Page {
             leftMargin: 40
             rightMargin: 40
             topMargin: 8
-            bottomMargin: 100
+            //do not set - causes bugs
+            // bottomMargin: 38
         }
 
         RowLayout {
@@ -51,16 +52,17 @@ Page {
             Layout.alignment: Qt.AlignCenter
         }
 
-        //TODO: change to flickable and ScrollBar
         ScrollView {
+            spacing: 0
             clip: true
             visible: !AircraftsController.isLoadingAircrafts
             Layout.alignment: Qt.AlignLeft | Qt.AlignTop
             Layout.preferredWidth: parent.width
             Layout.fillWidth: true
-            Layout.preferredHeight: parent.height
+            // Layout.preferredHeight: 356 //parent.height
             Layout.fillHeight: true
 
+            Layout.bottomMargin: 100
             ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
             ScrollBar.vertical.policy: ScrollBar.AlwaysOn
 
@@ -71,8 +73,11 @@ Page {
                 id: view
                 model: aircraftsFilterProxyModel
                 width: parent.width
-                height: parent.height
-                anchors.fill: parent
+                // height: parent.height// - parent.Layout.bottomMargin
+                anchors {
+                    // bottom: parent.bottom
+                    fill: parent
+                }
                 cacheBuffer: 3
                 spacing: 0
 

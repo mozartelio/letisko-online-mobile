@@ -78,13 +78,13 @@ Page {
 
                 EmailTextField {
                     id: emailInput
-                    width: 240
+                    width: 280
                     onTextChanged: passwordRequirementsGuard.email = text
                 }
 
                 PasswordField {
                     id: passswordInput
-                    width: 240
+                    width: 280
                     onTextChanged: passwordRequirementsGuard.password = text
                 }
                 PasswordRequirements {
@@ -97,20 +97,24 @@ Page {
                     id: button
                     backgroundColor: __style.primaryColor
                     contentText: qsTr("Register")
-                    enabled: passwordRequirementsGuard.areAllConditionsMet() && (emailInput.text.trim() !== "" && emailInput.text !== undefined)
+                    enabled: passwordRequirementsGuard.areAllConditionsMet()
+                             && (emailInput.text.trim() !== ""
+                                 && emailInput.text !== undefined)
                     contentTextColor: __style.onPrimaryColor
                     anchors {
                         horizontalCenter: parent.horizontalCenter
                     }
                     onClicked: {
                         if (!emailInput.validationRegex.test(emailInput.text)) {
-                            infoPopupTextContent.text = privates.loginErrorText + "\n" + qsTr("entered value is not a valid email!");
-                            infoPopup.open();
-                            return;
+                            infoPopupTextContent.text = privates.loginErrorText + "\n" + qsTr(
+                                        "entered value is not a valid email!")
+                            infoPopup.open()
+                            return
                         }
                         ;
-                        loadingPopup.open();
-                        UserController.doRegistration(emailInput.text, passswordInput.text);
+                        loadingPopup.open()
+                        UserController.doRegistration(emailInput.text,
+                                                      passswordInput.text)
                     }
                 }
             }
@@ -119,7 +123,8 @@ Page {
                 Layout.preferredWidth: parent.width
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.preferredHeight: notRegistered.implicitHeight + registration.implicitHeight + 60
+                Layout.preferredHeight: notRegistered.implicitHeight
+                                        + registration.implicitHeight + 60
                 Layout.alignment: Qt.AlignCenter
                 TitleMediumText {
                     id: notRegistered
@@ -143,7 +148,7 @@ Page {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            goToLoginScreen();
+                            goToLoginScreen()
                         }
                     }
                 }
@@ -154,11 +159,11 @@ Page {
         target: UserController
         function onRegistrationResult(result) {
             if (result === true) {
-                goToRegistrationDetailsScreen();
+                goToRegistrationDetailsScreen()
             } else {
-                infoPopupTextContent.text = privates.loginErrorText + "\n" + result;
-                loadingPopup.close();
-                infoPopup.open();
+                infoPopupTextContent.text = privates.loginErrorText + "\n" + result
+                loadingPopup.close()
+                infoPopup.open()
             }
         }
     }

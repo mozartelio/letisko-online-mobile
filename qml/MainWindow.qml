@@ -81,7 +81,6 @@ Item {
                                 id: userPhoto
                                 imageSource: if (UserController.user.isAvatarPresent(
                                                          )) {
-                                                 console.log("NO IMAGE FROM SERVER!!!")
                                                  return "image://" + "pixmap_images" + "/" + UserController.user.avatarPixmapProviderId
                                              } else {
                                                  __style.userDefaultAvatar
@@ -120,7 +119,9 @@ Item {
 
         StackView {
             id: stackView
-            initialItem: loginScreen //flightsScreen// // // //settingsScreen//registrationDetailsScreen //  // //registrationScreen // //aircraftsScreen // / //documentationScreen
+            initialItem: UserController.isUserLoggedIn(
+                             ) ? aircraftsScreen /*flightsScreen*/
+                               : loginScreen
             width: parent.width
             height: parent.height
             // anchors.fill: parent  // activate this if not using hot reload
@@ -128,9 +129,6 @@ Item {
                 console.log("Current Item:", stackView.currentItem,
                             "Stack depth:", stackView.depth)
             }
-            //TODO:!!! ?do not use becouse the start is from the login or registrsation page, where topbar is disabled
-            // Component.onCompleted: privates.drawerPageName = qsTr(
-            //                            "Documentation")
         }
     }
 
@@ -179,6 +177,7 @@ Item {
                 color: stackView.currentItem.objectName
                        === "airportScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
                 isActive: false
+                // #RELEASE_ON_FURURE_API_IMPROVEMENT
                 // onDrawerItemPressed: {
                 //     privates.drawerPageName = itemName
                 //     drawer.close()
@@ -192,6 +191,7 @@ Item {
                 color: stackView.currentItem.objectName
                        === "documentationScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
                 isActive: false
+                // #RELEASE_ON_FURURE_API_IMPROVEMENT
                 // onDrawerItemPressed: {
                 //     privates.drawerPageName = itemName
                 //     stackView.replace(documentationScreen)
@@ -236,10 +236,7 @@ Item {
                 }
             }
 
-            // DrawerItem {
-            //     iconSource: "../../assets/icons/home.svg"
-            //     itemName: qsTr("Home")
-            // }
+            // #RELEASE_ON_FURURE_API_IMPROVEMENT
             // DrawerItem {
             //     iconSource: "../../assets/icons/users.svg"
             //     itemName: qsTr("Users")
@@ -258,9 +255,6 @@ Item {
             //     iconSource: "../../assets/icons/licences.svg"
             //     itemName: qsTr("Licences")
             // }
-
-            //TODO:
-            // ScrollIndicator.vertical: ScrollIndicator {}
         }
     }
 
@@ -310,7 +304,6 @@ Item {
             objectName: "settingsScreenObject"
             onLogout: {
                 stackView.replace(loginScreen)
-                console.log("logged out successfully")
             }
         }
     }

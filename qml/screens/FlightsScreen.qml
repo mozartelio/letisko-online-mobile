@@ -1,12 +1,9 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-
 import UserAppSettings
 import com.letiskoonline.UserController
 import com.letiskoonline.FlightsController
-
-import "../components/divider/"
 import "../components/"
 import "../components/typography/label/text"
 import "../components/typography/title/text"
@@ -34,7 +31,8 @@ Page {
             leftMargin: 40
             rightMargin: 40
             topMargin: 8
-            bottomMargin: 38
+            //do not set - causes bugs
+            // bottomMargin: 38
         }
 
         SearchBar {
@@ -120,7 +118,6 @@ Page {
                         onClicked: {
                             UserAppSettings.isFlightsEditingLocked
                                     = !UserAppSettings.isFlightsEditingLocked
-
                             console.log("UserAppSettings.isFlightsEditingLocked: "
                                         + UserAppSettings.isFlightsEditingLocked)
                         }
@@ -170,15 +167,14 @@ Page {
 
         //TODO: change to flickable and ScrollBar
         ScrollView {
-            id: scrollView
             spacing: 0
             clip: true
             visible: !FlightsController.isLoadingFlights
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-            Layout.preferredHeight: 356 //parent.height
+            // Layout.preferredHeight: 3parent.height
             Layout.preferredWidth: parent.width
             Layout.topMargin: 15
-            Layout.bottomMargin: 45
+            Layout.bottomMargin: 100
             Layout.fillHeight: true
 
             ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
@@ -193,8 +189,12 @@ Page {
                 //does not worker
                 // UserController.getFlightsController().getFlightsModel().getFilterProxyModel()
                 width: parent.width
-                height: parent.height
-                anchors.fill: parent
+                // height: parent.height
+                anchors {
+                    // bottom: parent.bottom
+                    fill: parent
+                    // bottomMargin: 50
+                }
                 cacheBuffer: 3
                 spacing: 0
 
@@ -289,7 +289,6 @@ Page {
         }
         // removes a filter and shows all items in the model
         flightsFilterProxyModel.setFilterString("")
-
         console.log("FlightsScreen was closed")
     }
 }

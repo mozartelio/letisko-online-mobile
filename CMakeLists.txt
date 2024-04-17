@@ -7,6 +7,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_PREFIX_PATH "C:/Other_programs/Qt/6.6.0/mingw_64/lib/cmake" ${CMAKE_PREFIX_PATH})
 
+# set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
+# set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android" CACHE INTERNAL "")
+
 find_package(Qt6 REQUIRED COMPONENTS Quick Network LinguistTools)
 
 qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ./assets/translations/sk_SK.ts)
@@ -17,6 +20,7 @@ qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ./assets/translations/sk_SK.t
 qt_standard_project_setup(REQUIRES 6.6)
 
 set(CMAKE_AUTORCC ON)
+
 
 qt_add_executable(appOnlineLetiskoMobileApp
     main.cpp
@@ -69,7 +73,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     qml/components/SortingSection.qml
     qml/components/FlightsSortingBar.qml
     qml/components/FligthStatusCombobox.qml
-
+    qml/components/PasswordRequirements.qml
 
     # text font styles
     #Headline
@@ -130,6 +134,7 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     language_manager.h language_manager.cpp
     flight_request_status.h flight_request_status.cpp
 
+
 )
 
 
@@ -142,6 +147,7 @@ set_target_properties(appOnlineLetiskoMobileApp PROPERTIES
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
+    QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
     # QML_IMPORT_PATH "${MY_QML_IMPORT_PATH}"
 )
 

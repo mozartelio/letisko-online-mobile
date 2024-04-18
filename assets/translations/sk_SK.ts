@@ -4,12 +4,12 @@
 <context>
     <name>AircraftStrip</name>
     <message>
-        <location filename="../../qml/components/AircraftStrip.qml" line="81"/>
+        <location filename="../../qml/components/AircraftStrip.qml" line="82"/>
         <source>Serial number: </source>
         <translation>Sériové číslo: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/AircraftStrip.qml" line="128"/>
+        <location filename="../../qml/components/AircraftStrip.qml" line="129"/>
         <source>Owner: </source>
         <translation>Majiteľ: </translation>
     </message>
@@ -24,37 +24,37 @@
         <translation>Dátum poslednej údržby: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/AircraftStrip.qml" line="181"/>
+        <location filename="../../qml/components/AircraftStrip.qml" line="182"/>
         <source>Total time flown: </source>
         <translation>Celkový nalietaný čas: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/AircraftStrip.qml" line="192"/>
+        <location filename="../../qml/components/AircraftStrip.qml" line="194"/>
         <source>Aircraft type: </source>
         <translation>Typ lietadla: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/AircraftStrip.qml" line="203"/>
+        <location filename="../../qml/components/AircraftStrip.qml" line="206"/>
         <source>Aircraft class: </source>
         <translation>Trieda lietadla: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/AircraftStrip.qml" line="214"/>
+        <location filename="../../qml/components/AircraftStrip.qml" line="218"/>
         <source>Aircraft category: </source>
         <translation>Kategória lietadla:</translation>
     </message>
     <message>
-        <location filename="../../qml/components/AircraftStrip.qml" line="224"/>
+        <location filename="../../qml/components/AircraftStrip.qml" line="228"/>
         <source>Flight rules: </source>
         <translation>Pravidlá letu: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/AircraftStrip.qml" line="235"/>
+        <location filename="../../qml/components/AircraftStrip.qml" line="239"/>
         <source>ICAO wake turbulence category: </source>
         <translation>ICAO kategória turbulencie : </translation>
     </message>
     <message>
-        <location filename="../../qml/components/AircraftStrip.qml" line="244"/>
+        <location filename="../../qml/components/AircraftStrip.qml" line="248"/>
         <source>State of registration: </source>
         <translation>Štát registrácie: </translation>
     </message>
@@ -72,17 +72,17 @@
         <translation>Vytvoril: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/DocumentationStrip.qml" line="88"/>
+        <location filename="../../qml/components/DocumentationStrip.qml" line="89"/>
         <source>Created at: </source>
         <translation>Vytvorené: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/DocumentationStrip.qml" line="98"/>
+        <location filename="../../qml/components/DocumentationStrip.qml" line="100"/>
         <source>Edited at: </source>
         <translation>Upravené: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/DocumentationStrip.qml" line="108"/>
+        <location filename="../../qml/components/DocumentationStrip.qml" line="111"/>
         <source>Version: </source>
         <translation>Verzia: </translation>
     </message>
@@ -98,7 +98,7 @@
 <context>
     <name>FlightFilterPopUp</name>
     <message>
-        <location filename="../../qml/components/FlightFilterPopUp.qml" line="40"/>
+        <location filename="../../qml/components/FlightFilterPopUp.qml" line="41"/>
         <source>Filters</source>
         <translation>Filtre</translation>
     </message>
@@ -139,27 +139,27 @@
 <context>
     <name>FlightStrip</name>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="129"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="127"/>
         <source>Departure: </source>
         <translation>Odlet:</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="158"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="156"/>
         <source>Arrival: </source>
         <translation>Prílet:</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="186"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="184"/>
         <source>Departure airport: </source>
         <translation>Letisko odletu:</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="198"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="196"/>
         <source>Arrival airport: </source>
         <translation>Letisko príletu: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStrip.qml" line="351"/>
+        <location filename="../../qml/components/FlightStrip.qml" line="350"/>
         <source>Height level: </source>
         <translation>Úroveň výšky: </translation>
     </message>
@@ -190,17 +190,17 @@
         <translation type="vanished">Minulé lety</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/FlightsScreen.qml" line="84"/>
+        <location filename="../../qml/screens/FlightsScreen.qml" line="72"/>
         <source>Flights:</source>
         <translation>Lety:</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/FlightsScreen.qml" line="99"/>
+        <location filename="../../qml/screens/FlightsScreen.qml" line="78"/>
         <source>Unlock editing</source>
         <translation>Odomknúť editovanie</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/FlightsScreen.qml" line="100"/>
+        <location filename="../../qml/screens/FlightsScreen.qml" line="79"/>
         <source>Lock editing</source>
         <translation>Uzamknúť editovanie</translation>
     </message>
@@ -212,24 +212,24 @@
 <context>
     <name>FlightsSortingBar</name>
     <message>
-        <location filename="../../qml/components/FlightsSortingBar.qml" line="32"/>
+        <location filename="../../qml/components/FlightsSortingBar.qml" line="26"/>
         <source>Departure time</source>
         <translation>Čas odletu</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightsSortingBar.qml" line="33"/>
-        <location filename="../../qml/components/FlightsSortingBar.qml" line="57"/>
+        <location filename="../../qml/components/FlightsSortingBar.qml" line="27"/>
+        <location filename="../../qml/components/FlightsSortingBar.qml" line="51"/>
         <source>Сlosest to farthest</source>
         <translation>Najbližší až najvzdialenejší</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightsSortingBar.qml" line="34"/>
-        <location filename="../../qml/components/FlightsSortingBar.qml" line="58"/>
+        <location filename="../../qml/components/FlightsSortingBar.qml" line="28"/>
+        <location filename="../../qml/components/FlightsSortingBar.qml" line="52"/>
         <source>Farthest to closest</source>
         <translation>Najvzdialenejší až najbližší</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightsSortingBar.qml" line="56"/>
+        <location filename="../../qml/components/FlightsSortingBar.qml" line="50"/>
         <source>Arrival time</source>
         <translation>Čas príletu</translation>
     </message>
@@ -246,32 +246,32 @@
         <translation>PRIHLÁSIŤ SA</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/LoginScreen.qml" line="77"/>
+        <location filename="../../qml/screens/LoginScreen.qml" line="75"/>
         <source>Log in</source>
         <translation>Prihlásiť sa</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/LoginScreen.qml" line="88"/>
+        <location filename="../../qml/screens/LoginScreen.qml" line="86"/>
         <source>entered value is not a valid email!</source>
         <translation>Zadaná hodnota nie je platný e-mail!</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/LoginScreen.qml" line="108"/>
+        <location filename="../../qml/screens/LoginScreen.qml" line="106"/>
         <source>Not yet registered?</source>
         <translation>Ešte nie ste zaregistrovaní?</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/LoginScreen.qml" line="116"/>
+        <location filename="../../qml/screens/LoginScreen.qml" line="114"/>
         <source>Registration</source>
         <translation>Registrácia</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/LoginScreen.qml" line="152"/>
+        <location filename="../../qml/screens/LoginScreen.qml" line="149"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/LoginScreen.qml" line="169"/>
+        <location filename="../../qml/screens/LoginScreen.qml" line="166"/>
         <source>Log in procedure failed, the reason is:</source>
         <translation>Postup prihlásenia zlyhal, dôvod je:</translation>
     </message>
@@ -303,7 +303,7 @@
         <translation type="vanished">App</translation>
     </message>
     <message>
-        <location filename="../../qml/MainWindow.qml" line="163"/>
+        <location filename="../../qml/MainWindow.qml" line="160"/>
         <source>Kosice airport</source>
         <translation>Letisko Košice</translation>
     </message>
@@ -312,7 +312,7 @@
         <translation type="vanished">Domov</translation>
     </message>
     <message>
-        <location filename="../../qml/MainWindow.qml" line="204"/>
+        <location filename="../../qml/MainWindow.qml" line="201"/>
         <source>Aircrafts</source>
         <translation>Lietadlá</translation>
     </message>
@@ -321,8 +321,8 @@
         <translation type="vanished">Plánovač letov</translation>
     </message>
     <message>
-        <location filename="../../qml/MainWindow.qml" line="216"/>
-        <location filename="../../qml/MainWindow.qml" line="353"/>
+        <location filename="../../qml/MainWindow.qml" line="213"/>
+        <location filename="../../qml/MainWindow.qml" line="346"/>
         <source>Flights</source>
         <translation>Lety</translation>
     </message>
@@ -331,12 +331,12 @@
         <translation type="vanished">Používatelia</translation>
     </message>
     <message>
-        <location filename="../../qml/MainWindow.qml" line="176"/>
+        <location filename="../../qml/MainWindow.qml" line="173"/>
         <source>Airport</source>
         <translation>Letisko</translation>
     </message>
     <message>
-        <location filename="../../qml/MainWindow.qml" line="190"/>
+        <location filename="../../qml/MainWindow.qml" line="187"/>
         <source>Documentation</source>
         <translation>Dokumentácia</translation>
     </message>
@@ -350,7 +350,7 @@
     </message>
     <message>
         <location filename="../../qml/MainWindow.qml" line="112"/>
-        <location filename="../../qml/MainWindow.qml" line="228"/>
+        <location filename="../../qml/MainWindow.qml" line="225"/>
         <source>Settings</source>
         <translation>Nastavenia</translation>
     </message>
@@ -386,14 +386,14 @@
         <translation>1 špeciálna postava</translation>
     </message>
     <message>
-        <location filename="../../qml/components/PasswordRequirements.qml" line="33"/>
+        <location filename="../../qml/components/PasswordRequirements.qml" line="32"/>
         <source>password must be different from
       the email address</source>
         <translation>heslo sa musí líšiť od
       e-mailovej adresy</translation>
     </message>
     <message>
-        <location filename="../../qml/components/PasswordRequirements.qml" line="38"/>
+        <location filename="../../qml/components/PasswordRequirements.qml" line="37"/>
         <source>Minimal requirements to a password:</source>
         <translation>Minimálne požiadavky na heslo:</translation>
     </message>
@@ -401,12 +401,12 @@
 <context>
     <name>PopupParent</name>
     <message>
-        <location filename="../../qml/components/PopupParent.qml" line="53"/>
+        <location filename="../../qml/components/PopupParent.qml" line="52"/>
         <source>Confirm</source>
         <translation>Potvrdiť</translation>
     </message>
     <message>
-        <location filename="../../qml/components/PopupParent.qml" line="60"/>
+        <location filename="../../qml/components/PopupParent.qml" line="59"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
@@ -454,7 +454,7 @@
         <translation>Ďalej</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="134"/>
+        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="127"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -487,12 +487,12 @@
         <translation>Prihlásiť sa</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationScreen.qml" line="174"/>
+        <location filename="../../qml/screens/RegistrationScreen.qml" line="175"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationScreen.qml" line="191"/>
+        <location filename="../../qml/screens/RegistrationScreen.qml" line="192"/>
         <source>Registration failed, the reason is:</source>
         <translation>Registrácia zlyhala, dôvod je:</translation>
     </message>
@@ -508,7 +508,7 @@
 <context>
     <name>ServerConnectionProblem</name>
     <message>
-        <location filename="../../qml/components/ServerConnectionProblem.qml" line="33"/>
+        <location filename="../../qml/components/ServerConnectionProblem.qml" line="32"/>
         <source>No connection to a server</source>
         <translation>Žiadne pripojenie na server</translation>
     </message>
@@ -516,22 +516,22 @@
 <context>
     <name>SettingsScreen</name>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="61"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="60"/>
         <source>Log out</source>
         <translation>Odhlásiť sa</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="74"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="73"/>
         <source>Personal</source>
         <translation>Osobné</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="96"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="95"/>
         <source>Name and surname</source>
         <translation>Meno a priezvisko</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="108"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="107"/>
         <source>Email</source>
         <translation>Email</translation>
     </message>
@@ -546,12 +546,12 @@
         <translation>Foto</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="167"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="168"/>
         <source>Application</source>
         <translation>Aplikácia</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="186"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="187"/>
         <source>Show expanded flights</source>
         <translation>Zobraziť rozšírené lety</translation>
     </message>

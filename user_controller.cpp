@@ -11,7 +11,6 @@
 UserController::UserController(QObject *parent)
     : QObject{parent}
 {
-    qDebug() << "UserController hello from after 00:00";
     m_networkManager = new QNetworkAccessManager();
     m_flightsController = new FlightsController(m_networkManager);
     m_aircraftsController = new AircraftsController(m_networkManager);
@@ -20,8 +19,6 @@ UserController::UserController(QObject *parent)
 
 UserController::~UserController()
 {
-    qDebug() << "UserController destructor";
-    // m_flightsController is a pointer
     delete m_flightsController;
     m_flightsController = nullptr; // Set the pointer to nullptr to avoid dangling pointer
 
@@ -49,34 +46,6 @@ bool UserController::isUserLoggedIn()
     return !m_jwtAuthorizationToken.isEmpty();
 }
 
-// std::pair<bool, QString> extractJsonKeyValueFromRaw(const QByteArray &rawResponseData, const QString &jsonKeyName)
-// {
-//     QJsonDocument doc = QJsonDocument::fromJson(rawResponseData);
-//     QString internalServerProblem = "Internal server problem";
-//     if (doc.isNull())
-//     {
-//         qCritical() << "Failed to parse JSON document.";
-//         return std::make_pair(false, internalServerProblem);
-//     }
-
-//     QJsonObject obj = doc.object();
-
-//     if (!obj.contains(jsonKeyName))
-//     {
-//         qCritical() << QString("JSON object does not contain a \"%1\" key").arg(jsonKeyName);
-//         return std::make_pair(false, internalServerProblem);
-//     }
-
-//     QJsonValue jsonKeyValue = obj[jsonKeyName];
-
-//     if (!jsonKeyValue.isString())
-//     {
-//         qCritical() << QString("\"%1\" value is not a string ").arg(jsonKeyName);
-//         return std::make_pair(false, internalServerProblem);
-//     }
-//     return std::make_pair(true, jsonKeyValue.toString());
-// }
-
 /**
  * @brief Performs a login operation using the provided email and password.
  *
@@ -90,8 +59,6 @@ bool UserController::isUserLoggedIn()
 void UserController::doLogin(const QString &email, const QString &password)
 {
     QNetworkRequest request;
-    qDebug() << "email: " << email;
-    qDebug() << "password: " << password;
 
     m_requestTimer.start(RequestConstants::REQUEST_TIMEOUT_MILLISECONDS);
     m_requestTimer.setSingleShot(true);
@@ -106,9 +73,6 @@ void UserController::doLogin(const QString &email, const QString &password)
     QByteArray jsonData = QJsonDocument(json).toJson();
 
     QNetworkReply *reply = m_networkManager->post(request, jsonData);
-
-    // qDebug() << "request is: " << request.url().toString();
-    // qDebug() << "data is: " << jsonData;
 
     connect(reply, &QNetworkReply::finished, this, [this, reply]()
             { handleLoginNetworkReply(reply); });
@@ -133,7 +97,6 @@ void UserController::handleLoginNetworkReply(QNetworkReply *reply)
         {
             emit loginResult(true);
             m_jwtAuthorizationToken = jsonObject["access_token"].toString();
-            qDebug() << "auth token: " << m_jwtAuthorizationToken;
             performAfterAuthActions();
         }
         else
@@ -176,7 +139,6 @@ void UserController::setAircraftsController(AircraftsController *controller)
 
 User *UserController::getUser() const
 {
-    qDebug() << "UserController::getProfileInfo()";
     return m_user;
 }
 
@@ -189,8 +151,6 @@ void UserController::setUser(User *user)
 void UserController::doRegistration(const QString &email, const QString &password)
 {
     QNetworkRequest request;
-    // qDebug() << "email IS: " << email;
-    // qDebug() << "password: " << password;
 
     m_requestTimer.start(RequestConstants::REQUEST_TIMEOUT_MILLISECONDS);
     m_requestTimer.setSingleShot(true);
@@ -251,14 +211,6 @@ void UserController::handleRegistrationNetworkReply(QNetworkReply *reply, QStrin
 void UserController::fillInProfileDetails(const QString &name, const QString &surname, const QString &street, const QString &buildingNumber, const QString &zipCode, const QString &city, const QString &state)
 {
     QNetworkRequest request;
-    // qDebug() << "name: " << name;
-    // qDebug() << "surname: " << surname;
-    // qDebug() << "street: " << street;
-    // qDebug() << "buildingNumber: " << buildingNumber;
-    // qDebug() << "zipCode: " << zipCode;
-    // qDebug() << "city: " << city;
-    // qDebug() << "country: " << country;
-
     m_requestTimer.start(RequestConstants::REQUEST_TIMEOUT_MILLISECONDS);
     m_requestTimer.setSingleShot(true);
 
@@ -320,7 +272,7 @@ void UserController::handleProfileDetailsNetworkReply(QNetworkReply *reply)
 
     if (reply->error() == QNetworkReply::NoError)
     {
-        // sendChangeRoleRequest();
+        //  #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT: sendChangeRoleRequest();
         emit profileDetailsFilledInResult(true);
     }
     else
@@ -344,7 +296,6 @@ void UserController::sendChangeRoleRequest()
     request.setRawHeader("Authorization", "Bearer " + m_jwtAuthorizationToken.toUtf8());
 
     QJsonObject json;
-    // TODO:LINK TO GUI
     json.insert("user_email", m_user->getPersonalInfo()->getEmail());
     json.insert("new_role", "control_man");
     json.insert("qualification_start_date", "2000-00-00T00:00:00");

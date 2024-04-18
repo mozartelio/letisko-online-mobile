@@ -109,13 +109,6 @@ Page {
 
                 enabled: isFormValid()
                 onClicked: {
-                    //     if (!emailInput.validationRegex.test(emailInput.text)) {
-                    //         infoPopupTextContent.text = privates.loginErrorText + "\n" + qsTr(
-                    //                     "entered value is not a valid email!")
-                    //         infoPopup.open()
-                    //         return
-                    //     }
-                    //     ;
                     loadingPopup.open();
                     UserController.fillInProfileDetails(nameFiled.text, surnameField.text, streetField.text, buildingNumberField.text, zipCodeField.text, cityField.text, countryComboBox.currentText);
                 }

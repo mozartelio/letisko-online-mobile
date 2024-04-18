@@ -43,28 +43,18 @@ Page {
         }
 
         Column {
-            // spacing:
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.preferredHeight: 100
-            // height: 28
-            // width: parent.width
             Layout.preferredWidth: parent.width
 
             Rectangle {
                 color: __style.outlineVariant
-                // Layout.preferredHeight: 2
                 height: 2
                 width: parent.width
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                 Layout.preferredWidth: parent.width
             }
 
-            // FligthStatusCombobox {
-            //     Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-            //     // Layout.preferredWidth: 60
-            //     // Layout.preferredHeight: 20
-            // }
-            //TODO: better layout
             RowLayout {
                 spacing: 25
                 width: parent.width
@@ -73,27 +63,15 @@ Page {
                 Layout.fillWidth: true
 
                 ColumnLayout {
-                    // Layout.fillWidth: true
-                    // Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                     spacing: 10
                     Layout.preferredWidth: 130
                     Layout.maximumWidth: 130
-                    // width: parent.width
                     height: parent.height
 
                     TitleLargeText {
                         text: qsTr("Flights:")
                         Layout.leftMargin: 20
-                        Layout.topMargin: 10
-                        // anchors {
-                        //     verticalCenter: parent.verticalCenter
-                        //     left: parent.left
-                        //     leftMargin: 40
-                        // }
-
-                        // Layout.preferredHeight: contentHeight
-                        // Layout.preferredWidth: contentWidth
-                        // Layout.fillWidth: true
+                        Layout.topMargin: 10                       
                     }
                     Button {
                         id: control
@@ -118,8 +96,6 @@ Page {
                         onClicked: {
                             UserAppSettings.isFlightsEditingLocked
                                     = !UserAppSettings.isFlightsEditingLocked
-                            console.log("UserAppSettings.isFlightsEditingLocked: "
-                                        + UserAppSettings.isFlightsEditingLocked)
                         }
                     }
                 }
@@ -129,15 +105,9 @@ Page {
                     Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                     Layout.leftMargin: 40
                     Layout.rightMargin: 250
-                    // Layout.preferredHeight: 20/
-                    // Layout.fillWidth: true
-                    // anchors {
-                    //     horizontalCenter: parent.horizontalCenter
-                    //     top: parent.top
-                    // }
                 }
 
-                // TODO:
+                // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
                 // Item {
                 //     Layout.fillWidth: true
 
@@ -165,13 +135,11 @@ Page {
             Layout.fillHeight: true
         }
 
-        //TODO: change to flickable and ScrollBar
         ScrollView {
             spacing: 0
             clip: true
             visible: !FlightsController.isLoadingFlights
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-            // Layout.preferredHeight: 3parent.height
             Layout.preferredWidth: parent.width
             Layout.topMargin: 15
             Layout.bottomMargin: 100
@@ -185,15 +153,10 @@ Page {
 
             ListView {
                 id: view
-                model: flightsFilterProxyModel
-                //does not worker
-                // UserController.getFlightsController().getFlightsModel().getFilterProxyModel()
+                model: flightsFilterProxyModel              
                 width: parent.width
-                // height: parent.height
                 anchors {
-                    // bottom: parent.bottom
                     fill: parent
-                    // bottomMargin: 50
                 }
                 cacheBuffer: 3
                 spacing: 0
@@ -207,7 +170,6 @@ Page {
                     FlightStrip {
                         id: flightStrip
                         width: parent.width
-                        // height: 30
                         callsign: callsignData
                         departureAirport: departureAirportData
                         arrivalAirport: arrivalAirportData
@@ -226,7 +188,7 @@ Page {
             }
         }
 
-        //future improvement: past fligths section
+        // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
         // MouseArea {
         //     Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
         //     Layout.preferredHeight: 77
@@ -275,20 +237,14 @@ Page {
     Component.onCompleted: {
         if (FlightsController !== null) {
             FlightsController.setIsActiveScreen(true)
-            console.log("called:  FlightsController.setIsActiveScreen(true); ")
-        } else {
-            console.log("FlightsController is not initialized yet.")
         }
     }
 
     Component.onDestruction: {
         if (FlightsController !== null) {
             FlightsController.setIsActiveScreen(false)
-        } else {
-            console.log("FlightsController is not initialized yet.")
         }
         // removes a filter and shows all items in the model
         flightsFilterProxyModel.setFilterString("")
-        console.log("FlightsScreen was closed")
     }
 }

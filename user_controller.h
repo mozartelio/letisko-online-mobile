@@ -52,7 +52,6 @@ private:
     User *m_user;
     void performAfterAuthActions();
 
-    // TODO: logout?
 signals:
     void loginResult(const QVariant &result);
     void registrationResult(const QVariant &result);

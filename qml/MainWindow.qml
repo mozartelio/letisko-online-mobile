@@ -125,10 +125,6 @@ Item {
             width: parent.width
             height: parent.height
             // anchors.fill: parent  // activate this if not using hot reload
-            onCurrentItemChanged: {
-                console.log("Current Item:", stackView.currentItem,
-                            "Stack depth:", stackView.depth)
-            }
         }
     }
 
@@ -153,6 +149,7 @@ Item {
             }
             spacing: 0
 
+            // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
             Rectangle {
                 id: airportNameBox
                 height: 56
@@ -177,7 +174,7 @@ Item {
                 color: stackView.currentItem.objectName
                        === "airportScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
                 isActive: false
-                // #RELEASE_ON_FURURE_API_IMPROVEMENT
+                // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
                 // onDrawerItemPressed: {
                 //     privates.drawerPageName = itemName
                 //     drawer.close()
@@ -191,7 +188,7 @@ Item {
                 color: stackView.currentItem.objectName
                        === "documentationScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
                 isActive: false
-                // #RELEASE_ON_FURURE_API_IMPROVEMENT
+                // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
                 // onDrawerItemPressed: {
                 //     privates.drawerPageName = itemName
                 //     stackView.replace(documentationScreen)
@@ -236,7 +233,7 @@ Item {
                 }
             }
 
-            // #RELEASE_ON_FURURE_API_IMPROVEMENT
+            // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
             // DrawerItem {
             //     iconSource: "../../assets/icons/users.svg"
             //     itemName: qsTr("Users")
@@ -326,10 +323,6 @@ Item {
         }
 
         function onAvatarPixmapProviderIdChanged() {
-
-
-            /*TODO: does not work
-            console.log("onPersonalInfoChanged: " + UserController.user.personalInfo.name)*/
             userPhoto.imageSource = "image://" + "pixmap_images" + "/"
                     + UserController.user.avatarPixmapProviderId
         }

@@ -48,9 +48,6 @@ int main(int argc, char *argv[])
 
     qmlRegisterSingletonType(QUrl("qrc:/UserAppSettings.qml"), "UserAppSettings", 1, 0, "UserAppSettings");
 
-    // PixmapProvider *pixmapProvider = &PixmapProvider::instance();
-    // qmlRegisterSingletonInstance("com.letiskoonline.PixmapProvider", 1, 0, "PixmapProvider", pixmapProvider);
-
     qmlRegisterSingletonType<PixmapProvider>("com.letiskoonline.PixmapImageProvider", 1, 0, "PixmapImageProvider", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject *
                                              {
                                                  Q_UNUSED(engine)
@@ -69,12 +66,12 @@ int main(int argc, char *argv[])
 
     FlightRequestStatus * flightRequestStatus = FlightRequestStatus::instance();
     qmlRegisterSingletonType<FlightRequestStatus>("com.example", 1, 0, "FlightRequestStatus",
-                                           [flightRequestStatus](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject* {
-                                               Q_UNUSED(engine)
-                                               Q_UNUSED(scriptEngine)
-                                               return flightRequestStatus;
-                                           }
-                                           );
+                                                  [flightRequestStatus](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject* {
+                                                      Q_UNUSED(engine)
+                                                      Q_UNUSED(scriptEngine)
+                                                      return flightRequestStatus;
+                                                  }
+                                                  );
 
 
 
@@ -104,7 +101,6 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     /** >> for testing without hotreload**/
 
-    // qDebug() << "PixmapProvider::instance()->getPixmapProviderName():  " << PixmapProvider::instance()->getPixmapProviderName();
     engine.addImageProvider(QLatin1String(PixmapProvider::instance()->getPixmapProviderName().toLatin1()), PixmapProvider::instance());
 
     LOStyle *style = new LOStyle(&engine);
@@ -116,8 +112,6 @@ int main(int argc, char *argv[])
 
     AircraftsFilterProxyModel *aircraftsFilterProxyModel = userController->getAircraftsController()->getAircraftsModel()->getFilterProxyModel();
     rootContext->setContextProperty("aircraftsFilterProxyModel", aircraftsFilterProxyModel);
-
-    // rootContext->setContextProperty("pixmapImageProvider", PixmapProvider::instance());
 
     LanguageManager *languageManager = new LanguageManager(&app, &engine,  &app);
     rootContext->setContextProperty("languageManager", languageManager);

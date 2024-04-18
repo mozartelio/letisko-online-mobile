@@ -7,10 +7,10 @@ Address::Address(QObject *parent)
 
 Address::Address(const QString &buildingNumber, const QString &city, const QString &street, const QString &state, const QString &zipCode)
     : m_buildingNumber{buildingNumber},
-      m_city{city},
-      m_street{street},
-      m_state{state},
-      m_zipCode{zipCode}
+    m_city{city},
+    m_street{street},
+    m_state{state},
+    m_zipCode{zipCode}
 {
 }
 

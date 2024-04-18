@@ -36,7 +36,8 @@ Page {
                     aircraftsFilterProxyModel.setFilterString(text)
                 }
             }
-            //TODO:
+
+            // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
             // MaterialButton {
             //     contentText: "Filters"
             //     backgroundColor: __style.surfaceContainerLowColor
@@ -59,7 +60,6 @@ Page {
             Layout.alignment: Qt.AlignLeft | Qt.AlignTop
             Layout.preferredWidth: parent.width
             Layout.fillWidth: true
-            // Layout.preferredHeight: 356 //parent.height
             Layout.fillHeight: true
 
             Layout.bottomMargin: 100
@@ -73,9 +73,7 @@ Page {
                 id: view
                 model: aircraftsFilterProxyModel
                 width: parent.width
-                // height: parent.height// - parent.Layout.bottomMargin
                 anchors {
-                    // bottom: parent.bottom
                     fill: parent
                 }
                 cacheBuffer: 3
@@ -90,7 +88,6 @@ Page {
                     AircraftStrip {
                         id: aircraftStrip
                         width: parent.width
-                        // height: 30
                         serialNumber: serialNumberData
                         totalTimeFlown: totalTimeFlownData
                         timeUnitName: timeUnitNameData
@@ -99,7 +96,6 @@ Page {
                         flightRules: flightRulesData
                         planeName: planeNameData
                         icaoWakeTurbulenceCategory: icaoWakeTurbulenceCategoryData
-
                         ownerName: ownerNameData
                         aircraftCategory: aircraftCategoryData
                         aircraftClass: aircraftClassData
@@ -116,28 +112,21 @@ Page {
         }
     }
 
-    //TODO:
+    // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
     // PopupParent {
     //     id: filterPopUp
     // }
     Component.onCompleted: {
         if (AircraftsController !== null) {
             AircraftsController.setIsActiveScreen(true)
-            console.log("called:  AircraftsController.setIsActiveScreen(true); ")
-        } else {
-            console.log("AircraftsController is not initialized yet.")
         }
-        console.log("AircraftsScreen was opened")
     }
 
     Component.onDestruction: {
         if (AircraftsController !== null) {
             AircraftsController.setIsActiveScreen(false)
-        } else {
-            console.log("AircraftsController is not initialized yet.")
         }
         // removes the filter and shows all items in the model
         aircraftsFilterProxyModel.setFilterString("")
-        console.log("AircraftsScreen was closed")
     }
 }

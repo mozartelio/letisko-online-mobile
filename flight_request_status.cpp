@@ -13,7 +13,6 @@ FlightRequestStatus *FlightRequestStatus::instance()
     if (m_instance == nullptr)
     {
         m_instance = new FlightRequestStatus();
-        qDebug() << "FlightRequestStatus::instance():";
     }
 
     return m_instance;

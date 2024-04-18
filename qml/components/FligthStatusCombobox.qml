@@ -9,9 +9,8 @@ ComboBox {
     required property int currentFlightStatus
     required property int flightRequestId
 
-    //-1
-    width: 200 //FlightStatusChip.width
-    height: 50 //FlightStatusChip.eight
+    width: 200
+    height: 50
     editable: false
     background: Item {
     }
@@ -49,7 +48,6 @@ ComboBox {
                     enabled: flightStatusComboBox.enabled;
                     currentFlightStatus = fligthChipComponent.flightStatus;
                     setCurrentIndexAccordingCurrentState();
-                    console.log("aaaa ");
                     FlightsController.changeFlightRequestStatus(flightRequestId, currentFlightStatus);
                     flightStatusComboBox.popup.close();
                 }

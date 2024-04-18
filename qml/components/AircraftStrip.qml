@@ -23,7 +23,8 @@ Rectangle {
 
     color: __style.basicStripColor
     implicitWidth: parent.width
-    implicitHeight: topRowWrapper.implicitHeight + topRowWrapper.anchors.topMargin + topRowWrapper.anchors.bottomMargin //100
+    implicitHeight: topRowWrapper.implicitHeight + topRowWrapper.anchors.topMargin
+                    + topRowWrapper.anchors.bottomMargin //100
 
     StateGroup {
         states: [
@@ -42,7 +43,7 @@ Rectangle {
         id: mouseArea
         anchors.fill: root
         onPressed: {
-            console.log("pressed");
+            // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
         }
     }
 
@@ -133,10 +134,9 @@ Rectangle {
                         font.bold: true
                         color: __style.primaryColor
                         MouseArea {
-                            // TODO:
+                            // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
                             anchors.fill: parent
                             onPressed: {
-                                console.log("aircraft owner pressed");
                             }
                         }
                     }
@@ -155,22 +155,23 @@ Rectangle {
                 Row {
                     visible: {
                         // Check if lastMaintainance is a valid date
-                        var date = new Date(root.lastMaintainance);
-                        return !isNaN(date.getTime());
+                        var date = new Date(root.lastMaintainance)
+                        return !isNaN(date.getTime())
                     }
                     BodyMediumText {
                         text: qsTr("Date of last maintainance: ")
                         font.bold: true
                     }
                     BodyMediumText {
-                        text: Qt.formatDateTime(root.lastMaintainance, "hh:mm dd.MM.yyyy")
+                        text: Qt.formatDateTime(root.lastMaintainance,
+                                                "hh:mm dd.MM.yyyy")
                         font.bold: true
-                        // TODO: show all the dates
+                        // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT: show all the dates
                         // color: __style.primaryColor
                         MouseArea {
                             anchors.fill: parent
                             onPressed: {
-                                console.log("Date of last maintainance pressed");
+
                             }
                         }
                     }
@@ -182,8 +183,9 @@ Rectangle {
                         font.bold: true
                     }
                     BodyMediumText {
-                        //TODO: translations
-                        text: Number(root.totalTimeFlown).toFixed(2) + " " + qsTr(root.timeUnitName)
+                        // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT:  timeUnitName translation
+                        text: Number(root.totalTimeFlown).toFixed(
+                                  2) + " " + qsTr(root.timeUnitName)
                     }
                 }
 
@@ -198,7 +200,8 @@ Rectangle {
                 }
 
                 Row {
-                    visible: root.aircraftClass !== null && root.aircraftClass !== ""
+                    visible: root.aircraftClass !== null
+                             && root.aircraftClass !== ""
                     BodyMediumText {
                         text: qsTr("Aircraft class: ")
                         font.bold: true
@@ -209,7 +212,8 @@ Rectangle {
                 }
 
                 Row {
-                    visible: root.aircraftCategory !== null && root.aircraftCategory !== ""
+                    visible: root.aircraftCategory !== null
+                             && root.aircraftCategory !== ""
                     BodyMediumText {
                         text: qsTr("Aircraft category: ")
                         font.bold: true
@@ -225,7 +229,7 @@ Rectangle {
                         font.bold: true
                     }
                     BodyMediumText {
-                        //TODO: translations
+                        // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT:  flightRules translation
                         text: qsTr(flightRules)
                     }
                 }
@@ -245,7 +249,7 @@ Rectangle {
                         font.bold: true
                     }
                     BodyMediumText {
-                        //TODO: translations
+                        // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT:  registrationState translation
                         text: root.registrationState
                     }
                 }

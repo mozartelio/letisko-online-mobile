@@ -25,7 +25,6 @@ Rectangle {
             width: __style.icon48
             height: __style.icon48r
             source: __style.warningIcon
-
             Layout.alignment: Qt.AlignLeft
         }
 

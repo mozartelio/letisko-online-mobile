@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import "./typography/body/text"
 
+// #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
 Rectangle {
     id: root
 
@@ -15,8 +16,6 @@ Rectangle {
                     + mainColumn.anchors.bottomMargin //100
 
     width: parent.width
-
-   // Material.theme: Material.Light
 
     StateGroup {
         states: [
@@ -35,7 +34,8 @@ Rectangle {
         id: mouseArea
         anchors.fill: root
         onPressed: {
-            console.log("pressed")
+
+            // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
         }
     }
 
@@ -77,7 +77,8 @@ Rectangle {
                     MouseArea {
                         anchors.fill: parent
                         onPressed: {
-                            console.log("doc author pressed")
+
+                            // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
                         }
                     }
                 }
@@ -88,6 +89,7 @@ Rectangle {
                     text: qsTr("Created at: ")
                     font.bold: true
                 }
+                // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
                 BodyMediumText {
                     text: "info"
                 }
@@ -98,6 +100,7 @@ Rectangle {
                     text: qsTr("Edited at: ")
                     font.bold: true
                 }
+                // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
                 BodyMediumText {
                     text: "info"
                 }
@@ -108,6 +111,7 @@ Rectangle {
                     text: qsTr("Version: ")
                     font.bold: true
                 }
+                // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
                 BodyMediumText {
                     text: "info"
                 }

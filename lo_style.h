@@ -10,9 +10,6 @@ class LOStyle : public QObject
 {
     Q_OBJECT
 
-    // Fonts
-    // Q_PROPERTY( QFont h1 READ h1 CONSTANT )
-
     // Colors - primary palette
     Q_PROPERTY(QColor popupSemiTransparentDarkColor READ popupSemiTransparentDarkColor CONSTANT)
     Q_PROPERTY(QColor popupSemiTransparentLightColor READ popupSemiTransparentLightColor CONSTANT)
@@ -35,14 +32,12 @@ class LOStyle : public QObject
     Q_PROPERTY(QColor primary95Color READ primary95Color CONSTANT)
     Q_PROPERTY(QColor inactiveColor READ inactiveColor CONSTANT)
     Q_PROPERTY(QColor settingsBoxesBorderColor READ settingsBoxesBorderColor CONSTANT)
-    // Q_PROPERTY( QColor READ  CONSTANT )
 
     // Colors - secondary palette
     Q_PROPERTY(QColor secondary50Color READ secondary50Color CONSTANT)
- Q_PROPERTY(QColor secondaryColor READ secondaryColor CONSTANT)
+    Q_PROPERTY(QColor secondaryColor READ secondaryColor CONSTANT)
     Q_PROPERTY(QColor secondaryContainerColor READ secondaryContainerColor CONSTANT)
 
-    // Colors - additional colors
 
     // Icons
     Q_PROPERTY(QUrl airportIcon READ airportIcon CONSTANT)
@@ -70,10 +65,6 @@ class LOStyle : public QObject
     Q_PROPERTY(QUrl warningIcon READ warningIcon CONSTANT)
     Q_PROPERTY(QUrl lockIcon READ lockIcon CONSTANT)
     Q_PROPERTY(QUrl unlockIcon READ unlockIcon CONSTANT)
-    // Q_PROPERTY( QUrl READ CONSTANT )
-
-    // Filled Icons
-    // Q_PROPERTY( QUrl projectsFilledIcon READ projectsFilledIcon CONSTANT )
 
     // Images
     Q_PROPERTY(QUrl logoImage READ logoImage CONSTANT)
@@ -92,9 +83,6 @@ class LOStyle : public QObject
     Q_PROPERTY(double toolbarHeight READ toolbarHeight CONSTANT)
     Q_PROPERTY(double drawerItemHeight READ drawerItemHeight CONSTANT)
     Q_PROPERTY(int maximumEmailInputLength READ maximumEmailInputLength CONSTANT)
-
-    // Breakpoint to differentiate mobile landscape
-    // Q_PROPERTY( double heightBreakpointXS READ number400 CONSTANT )
 
 public:
     explicit LOStyle(QObject *parent)
@@ -125,12 +113,11 @@ public:
     QColor errorColor() { return QColor::fromString("#B3261E"); }
     QColor inactiveColor() { return QColor::fromString("#DED8E1"); }
     QColor settingsBoxesBorderColor() { return QColor::fromString("#49454F"); }
-    // QColor () {return QColor::fromString( "#" );}
 
     // Colors - secondary palette
     QColor secondary50Color() { return QColor::fromString("#7A7289"); }
     QColor secondaryColor() { return QColor::fromString("#625B71"); }
-     QColor secondaryContainerColor() { return QColor::fromString("#E8DEF8"); }
+    QColor secondaryContainerColor() { return QColor::fromString("#E8DEF8"); }
 
     // Images
     QUrl logoImage() { return QUrl("qrc:/images/LetiskoLogo.svg"); }
@@ -161,9 +148,6 @@ public:
     QUrl warningIcon() { return QUrl("qrc:/icons/warning_48px.svg"); }
     QUrl lockIcon() { return QUrl("qrc:/icons/lock_FILL0_wght600_GRAD0_opsz24.svg"); }
     QUrl unlockIcon() { return QUrl("qrc:/icons/lock_open_right_FILL0_wght600_GRAD0_opsz24.svg"); }
-    // QUrl () {return QUrl( "qrc:/icons/" );}
-
-    // static QUrl Icon() {return QUrl( "qrc:/Icon.svg" );}
 
     int number12() { return 12; }
     int number24() { return 24; }

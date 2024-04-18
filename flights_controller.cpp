@@ -14,7 +14,6 @@
 
 FlightsController::FlightsController(QNetworkAccessManager *networkManager)
 {
-    qDebug() << "hello from FlightsController";
     setNetworkManager(networkManager);
     m_flightsModel = new FlightsModel();
 
@@ -24,7 +23,6 @@ FlightsController::FlightsController(QNetworkAccessManager *networkManager)
 
 FlightsController::~FlightsController()
 {
-    qDebug() << "FlightsController destructor";
     deleteFlightModel();
 }
 
@@ -52,19 +50,17 @@ void FlightsController::loadFlights()
     // avoid loading flights if the screen is not active
     if (!m_isActiveScreen)
     {
-        qDebug() << "Not an active screen";
         return;
     }
 
     // Check auth token presence and implement its usage
     if (m_userJwtAuthorizationToken.isEmpty())
     {
-        // qDebug() << "No auth token set";
+        qWarning() << "Flights controller: no auth token set for loading flights";
         setIsLoadingFlights(true);
         QTimer::singleShot(RequestConstants::REQUEST_RETRY_TIMEOUT_MILLISECONDS, this, &FlightsController::loadFlights);
         return;
     }
-    qDebug() << "Loading flights...";
 
     QNetworkRequest request;
     m_requestTimer.start(RequestConstants::REQUEST_TIMEOUT_MILLISECONDS);
@@ -88,8 +84,7 @@ void FlightsController::handleFlightsLoadNetworkReply(QNetworkReply *reply)
     if (!jsonResponse.isArray())
     {
         // Handle invalid JSON format or server absence (error also heppens when server is switched off)
-        qCritical() << "Flights: Failed to parse retrieved data into JSON document:";
-        qDebug() << "rawResponseData: " << rawResponseData;
+        qCritical() << "Flights controller: Failed to parse retrieved data into JSON document:";
         return;
     }
 
@@ -122,16 +117,13 @@ void FlightsController::handleFlightsLoadNetworkReply(QNetworkReply *reply)
 
 void FlightsController::handleFlightsUpdateNetworkReply(QNetworkReply *reply)
 {
-    qDebug() << "Subscribing to updates RECIEVED...processing...";
     QByteArray eventData = reply->readAll();
     QPair<QString, QString> parsedData = ServerSentEventsParser::parseSseResponse(eventData);
 
     QString eventType = parsedData.first;
 
-    // try to parse the event data as JSON?!
-    qDebug() << "Received event - Type:" << eventType;
-
-    if (eventType == RequestConstants::UPDATE_FLIGHTS_TYPE || eventType == RequestConstants::UPDATE_FLIGTH_STATUS_TYPE )
+    // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT: try to parse the event data as JSON?!
+    if (eventType == RequestConstants::UPDATE_FLIGHTS_TYPE || eventType == RequestConstants::UPDATE_FLIGTH_STATUS_TYPE)
     {
         loadFlights();
     }
@@ -141,7 +133,7 @@ void FlightsController::changeFlightRequestStatus(unsigned int flightRequestId, 
 {
     if (m_userJwtAuthorizationToken.isEmpty())
     {
-        qDebug() << "No auth token set";
+        qWarning() << "Flights controller: no auth token set for changing flight status";
         QTimer::singleShot(RequestConstants::REQUEST_RETRY_TIMEOUT_MILLISECONDS, this, [this, flightRequestId, status]()
                            { changeFlightRequestStatus(flightRequestId, status); });
         return;
@@ -177,13 +169,10 @@ void FlightsController::handleChangeFlightRequestStatusNetworkReply(QNetworkRepl
     {
         // Handle invalid JSON format or server absence (error also heppens when server is switched off)
         qCritical() << "Flights: Failed to parse retrieved data into JSON document:";
-        qDebug() << "rawResponseData: " << rawResponseData;
         return;
     }
-
+    loadFlights();
     QJsonObject jsonObject = jsonResponse.object();
-    qDebug() << "Flight request status changed successfully!";
-    qDebug() << "jsonObject: " << jsonObject;
     reply->deleteLater();
 }
 

@@ -11,7 +11,6 @@ PixmapProvider *PixmapProvider::instance()
     if (m_instance == nullptr)
     {
         m_instance = new PixmapProvider();
-            qDebug() << "PixmapProvider::instance():";
     }
 
     return m_instance;

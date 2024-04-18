@@ -3,13 +3,6 @@
 LanguageManager::LanguageManager(QGuiApplication *app, QQmlEngine *engine, QObject *parent)
     : QObject{parent}, m_app{app}, m_engine{engine}, m_currentLanguage{English}, m_settings{"OnlineLetisko", "OnlineLetiskoMobileApp"}
 {
-    // Load the default .qm file for the current language otherwise a default language will be English
-
-    // qDebug() << "I WILL TRY TO SET TRANSLATION: " + QLocale::system().name()+ ".qm";
-
-    // if (m_translator.load("qrc:/translations/"+ QLocale::system().name()+ ".qm")){
-    //     m_app->installTranslator(&m_translator);
-    // }
     connect(this, &LanguageManager::currentLanguageChanged, this, [this]()
             { m_engine->retranslate(); });
     loadUserLanguage();
@@ -32,11 +25,11 @@ void LanguageManager::setCurrentLanguage(Languages language)
         // do not use as qrc:/translations/, it will not work
         else if (m_translator.load(":/translations/" + languageCode(language) + ".qm"))
         {
-            qDebug() << "I MANAGED TO SET TRANSLATION:";
             m_app->installTranslator(&m_translator);
         }
         else
         {
+            qCritical() << "Failed to load translation for language: " << language;
             return;
         }
         m_currentLanguage = language;

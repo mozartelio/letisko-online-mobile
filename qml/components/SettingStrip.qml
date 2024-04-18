@@ -25,8 +25,8 @@ Rectangle {
 
     color: __style.transparentColor
     clip: false
-    implicitWidth: mainColumn.implicitWidth + mainColumn.anchors.leftMargin + mainColumn.anchors.rightMargin //parent.width
-    implicitHeight: mainColumn.implicitHeight + mainColumn.anchors.topMargin + mainColumn.anchors.bottomMargin //100
+    implicitWidth: mainColumn.implicitWidth + mainColumn.anchors.leftMargin + mainColumn.anchors.rightMargin
+    implicitHeight: mainColumn.implicitHeight + mainColumn.anchors.topMargin + mainColumn.anchors.bottomMargin
 
     StateGroup {
         states: [
@@ -35,6 +35,7 @@ Rectangle {
                 PropertyChanges {
                     target: root
                     color: __style.pressAccentColor
+                    // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
                 }
                 when: mouseArea.pressed
             }
@@ -47,12 +48,8 @@ Rectangle {
         onPressed: {
             if (settingType === SettingStrip.SettingType.Switch) {
                 switchElement.checked = !switchElement.checked;
-                // console.log("pressed, AppSettings.showExpandedFlights: "
-                //             + AppSettings.showExpandedFlights)
-                console.log("pressed, UserAppSettings.showExpandedFlights: " + UserAppSettings.showExpandedFlights);
                 valueChanged();
             }
-            console.log("pressed");
         }
     }
 
@@ -68,10 +65,7 @@ Rectangle {
             bottom: parent.bottom
         }
 
-        RowLayout {
-            // Layout.preferredHeight: image.Layout.preferredHeight
-            //                         + image.Layout.topMargin + image.Layout.bottomMargin
-            // Layout.preferredWidth: parent.width
+        RowLayout { 
             width: root.width
             height: parent.height
             Layout.fillWidth: true
@@ -91,9 +85,6 @@ Rectangle {
                 Layout.bottomMargin: 10
             }
 
-            // RowLayout {
-            //     Layout.preferredWidth: parent.width
-            //     Layout.fillHeight: true
             TitleMediumText {
                 text: settingTextContent
                 visible: settingType === SettingStrip.SettingType.Text
@@ -128,7 +119,7 @@ Rectangle {
                 Layout.fillWidth: true
                 onToggled: valueChanged()
             }
-            // }
+
             Image {
                 width: __style.icon40
                 height: __style.icon40

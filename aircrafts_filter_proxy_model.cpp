@@ -7,13 +7,10 @@
 AircraftsFilterProxyModel::AircraftsFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel{parent}
 {
-
-    qDebug() << "hello from AircraftsFilterProxyModel";
 }
 
 AircraftsFilterProxyModel::~AircraftsFilterProxyModel()
 {
-    qDebug() << "AircraftsFilterProxyModel destructor";
 }
 
 bool AircraftsFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
@@ -33,7 +30,7 @@ bool AircraftsFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelInde
     QVariant planeNameData = sourceModel()->data(sourceIndex, AircraftsRoles::PlaneNameRole);
     QVariant icaoWakeTurbulenceCategoryData = sourceModel()->data(sourceIndex, AircraftsRoles::IcaoWakeTurbulenceCategoryRole);
 
-    // write for other roles when there is API implementation
+    // write for other roles #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
 
     // applies filtering conditions here
     bool serialNumberMatches = serialNumberData.toString().contains(filterRegularExpression());
@@ -56,7 +53,7 @@ void AircraftsFilterProxyModel::setFilterString(QString string)
     this->setFilterFixedString(string);
 }
 
-// TODO: Implement sorting
+// #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
 void AircraftsFilterProxyModel::setSortOrder(bool checked)
 {
     if (checked)

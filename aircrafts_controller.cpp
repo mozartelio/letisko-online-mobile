@@ -10,7 +10,6 @@
 
 AircraftsController::AircraftsController(QNetworkAccessManager *networkManager)
 {
-    qDebug() << "hello from AircraftsController";
     setNetworkManager(networkManager);
     m_aircraftsModel = new AircraftsModel();
 
@@ -20,7 +19,6 @@ AircraftsController::AircraftsController(QNetworkAccessManager *networkManager)
 
 AircraftsController::~AircraftsController()
 {
-    qDebug() << "AircraftsController destructor";
     deleteFlightModel();
 }
 
@@ -48,19 +46,17 @@ void AircraftsController::loadAircrafts()
     // avoid loading aircrafts if the screen is not active
     if (!m_isActiveScreen)
     {
-        qDebug() << "Not an active screen";
         return;
     }
 
     // Check auth token presence and implement its usage
     if (m_userJwtAuthorizationToken.isEmpty())
     {
-        // qDebug() << "No auth token set";
+        qWarning() <<"Aircrafts controller: no auth token set for loading aircrafts";
         setIsLoadingAircrafts(true);
         QTimer::singleShot(RequestConstants::REQUEST_RETRY_TIMEOUT_MILLISECONDS, this, &AircraftsController::loadAircrafts); // Retry after 5 seconds
         return;
     }
-    qDebug() << "Loading aircrafts...";
 
     QNetworkRequest request;
     m_requestTimer.start(RequestConstants::REQUEST_TIMEOUT_MILLISECONDS);
@@ -85,7 +81,6 @@ void AircraftsController::handleAircraftsLoadNetworkReply(QNetworkReply *reply)
     {
         // Handle invalid JSON format or server absence (error also heppens when server is switched off)
         qCritical() << "Aircrafts: Failed to parse retrieved data into JSON document:";
-        qDebug() << "rawResponseData: " << rawResponseData;
         return;
     }
 
@@ -97,7 +92,6 @@ void AircraftsController::handleAircraftsLoadNetworkReply(QNetworkReply *reply)
         if (!value.isObject())
         {
             // Handle invalid JSON format
-            qDebug() << "value: " << value;
             qCritical() << "Aircrafts: Failed to parse JSON document.";
             continue;
         }
@@ -112,7 +106,6 @@ void AircraftsController::handleAircraftsLoadNetworkReply(QNetworkReply *reply)
         QString planeName = jsonObject.value("name").toString();
         QString icaoWakeTurbulenceCategory = jsonObject.value("iwtc").toString();
 
-        qDebug() << "Adding aircrafts to the model...";
         // stubs for remaining fields for futer API updates
         m_aircraftsModel->addAircraft(serialNumber, totalTimeFlown, timeUnitName, registrationState, aircraftType, flightRules, planeName, icaoWakeTurbulenceCategory, QString(), QString(), QString(), QDate(), QUrl());
     }
@@ -121,15 +114,12 @@ void AircraftsController::handleAircraftsLoadNetworkReply(QNetworkReply *reply)
 
 void AircraftsController::handleAircraftsUpdateNetworkReply(QNetworkReply *reply)
 {
-    qDebug() << "Subscribing to updates RECIEVED...processing...";
     QByteArray eventData = reply->readAll();
     QPair<QString, QString> parsedData = ServerSentEventsParser::parseSseResponse(eventData);
 
     QString eventType = parsedData.first;
 
-    // try to parse the event data as JSON?!
-    qDebug() << "Received event - Type:" << eventType;
-
+    // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT :try to parse the event data as JSON
     if (eventType == RequestConstants::UPDATE_AIRCRAFTS_TYPE)
     {
         loadAircrafts();

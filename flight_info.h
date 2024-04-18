@@ -10,7 +10,6 @@
 class FlightInfo : public QObject
 {
     Q_OBJECT
-    // QML_ELEMENT
 
     Q_PROPERTY(QString callsign READ getCallsign WRITE setCallsign NOTIFY callsignChanged REQUIRED)
     Q_PROPERTY(QString departureAirport READ getDepartureAirport WRITE setDepartureAirport NOTIFY departureAirportChanged REQUIRED)
@@ -24,7 +23,6 @@ class FlightInfo : public QObject
 
 public:
     explicit FlightInfo(QObject *parent = nullptr);
-    // ~FlightInfo();
 
     QString getCallsign() const;
     void setCallsign(const QString &callsign);

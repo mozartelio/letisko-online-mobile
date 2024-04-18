@@ -20,7 +20,6 @@ Page {
 
     Rectangle {
         id: settingsBox
-        //TODO: responsivity
         width: parent.width / 3
         height: parent.height - anchors.topMargin - anchors.bottomMargin
         color: __style.surfaceContainerLowColor
@@ -113,6 +112,7 @@ Page {
                                             }
                         width: parent.width
                     }
+                    // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
                     //     SettingStrip {
                     //         settingType: SettingStrip.SettingType.Text
                     //         settingName: qsTr("Phone number")
@@ -142,6 +142,7 @@ Page {
                                              }
                         width: parent.width
                     }
+                    // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
                     //     SettingStrip {
                     //         settingType: SettingStrip.SettingType.Text
                     //         settingName: qsTr("Qualification type")
@@ -188,7 +189,6 @@ Page {
                         chevronEnabled: false
                         swithchReference.checked: UserAppSettings.showExpandedFlights
                         onValueChanged: {
-                            console.log("value changed")
                             UserAppSettings.showExpandedFlights
                                     = !UserAppSettings.showExpandedFlights
                         }
@@ -241,19 +241,8 @@ Page {
         target: UserController.user
 
         function onPersonalInfoChanged() {
-            console.log("DELTA")
             nameStrip.settingTextContent = UserController.user.personalInfo.name
                     + " " + UserController.user.personalInfo.surname
-            // emailStrip
         }
     }
-
-    //     // function onAvatarPixmapProviderIdChanged() {
-
-    //     //     /*TODO: does not work
-    //     //     console.log("onPersonalInfoChanged: " + UserController.user.personalInfo.name)*/
-    //     //     userPhoto.imageSource = "image://" + "pixmap_images" + "/"
-    //     //             + UserController.user.avatarPixmapProviderId
-    //     // }
-    // }
 }

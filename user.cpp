@@ -63,7 +63,7 @@ void User::handlePersonalInfoNetworkReply(QNetworkReply *reply)
     QJsonDocument jsonResponse = QJsonDocument::fromJson(rawResponseData);
     if (jsonResponse.isNull())
     {
-        qCritical() << "User : Failed to parse JSON document.";
+        qCritical() << "User : Failed to parse personal info reply JSON document.";
         return;
     }
     QJsonObject jsonObject = jsonResponse.object();
@@ -101,7 +101,6 @@ void User::handlePersonalInfoNetworkReply(QNetworkReply *reply)
     }
     else
     {
-        qDebug() << "error occured in handlePersonalInfoNetworkReply";
         QString errorMessage = jsonObject.contains("message") ? jsonObject["message"].toString() : reply->errorString();
         qCritical() << errorMessage;
     }
@@ -128,8 +127,6 @@ void User::requestAvatar()
 void User::handleAvatarNetworkReply(QNetworkReply *reply)
 {
     QByteArray imageData = reply->readAll();
-    // qDebug() << "imageData: " << imageData;
-
     QPixmap avatar;
     avatar.loadFromData(imageData);
 
@@ -203,7 +200,7 @@ void User::setJwtAuthorizationToken(const QString &jwtAuthorizationToken)
 {
     if (jwtAuthorizationToken.isEmpty())
     {
-        qDebug() << "Empty auth token set";
+        qWarning() << "Empty auth token set";
         return;
     }
 

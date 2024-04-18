@@ -40,7 +40,6 @@ Popup {
     RowLayout {
         id: controlButtons
         width: parent.width
-        // z: 2
         anchors {
             bottom: parent.bottom
             right: parent.right

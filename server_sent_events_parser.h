@@ -6,7 +6,7 @@
 
 namespace ServerSentEventsParser
 {
-    QPair<QString, QString> parseSseResponse(const QByteArray &eventData);
+QPair<QString, QString> parseSseResponse(const QByteArray &eventData);
 }
 
 #endif // SERVERSENTEVENTSPARSER_H

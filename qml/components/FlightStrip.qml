@@ -49,7 +49,7 @@ Item {
             Layout.preferredHeight: 50
 
             RowLayout {
-                width: parent.width //- 40
+                width: parent.width
                 height: parent.height
                 spacing: 15
 
@@ -90,7 +90,6 @@ Item {
                     Layout.preferredWidth: 350
                     Layout.maximumWidth: 350
                     Layout.minimumWidth: 350
-                    //TODO: create TEXT as component
                     Text {
                         font.family: "Roboto"
                         font.weight: 700
@@ -121,7 +120,6 @@ Item {
                     spacing: 15
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                     Layout.leftMargin: 10
-                    // Layout.fillWidth: true
                     Column {
                         Row {
                             spacing: 10
@@ -207,8 +205,8 @@ Item {
                     }
                 }
 
+                // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
                 // Button {
-
                 //     padding: 0
                 //     //do not use icon for proper displaying
                 //     indicator: Image {
@@ -238,7 +236,7 @@ Item {
                 id: mouseArea
                 anchors.fill: flightDetails
                 onPressed: {
-                    console.log("pressed")
+                 // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
                 }
             }
             ColumnLayout {
@@ -291,6 +289,7 @@ Item {
                         ]
                     }
 
+                    // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
                     // Row {
                     //     Layout.preferredWidth: 362
                     //     BodyMediumText {
@@ -357,6 +356,7 @@ Item {
                     }
                 }
 
+                // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
                 // Row {
                 //     Layout.preferredWidth: parent.width
                 //     Layout.preferredHeight: 32

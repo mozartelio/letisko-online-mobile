@@ -8,12 +8,10 @@ FlightsFilterProxyModel::FlightsFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
 {
     this->setDynamicSortFilter(true);
-    qDebug() << "hello from FlightsFilterProxyModel";
 }
 
 FlightsFilterProxyModel::~FlightsFilterProxyModel()
 {
-    qDebug() << "FlightsFilterProxyModel destructor";
 }
 
 bool FlightsFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const

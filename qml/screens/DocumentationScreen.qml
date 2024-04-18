@@ -28,7 +28,7 @@ Page {
         SearchBar {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
         }
-        // FUTURE: add a sorting bar
+        // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
 
         ScrollView {
             id: mainColumn
@@ -127,29 +127,8 @@ Page {
                 }
             }
         }
+        // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
         // ListView {
-        //     id: listView
-        //     clip: true
-        //     // spacing: 0
-        //     Layout.alignment: Qt.AlignLeft | Qt.AlignTop
-        //     Layout.preferredWidth: parent.width
-        //     Layout.fillWidth: true
-        //     Layout.preferredHeight: parent.height
-        //     Layout.fillHeight: true
-
-        //     delegate: DocumentationStrip {
-        //         width: listView.width
-
-        //         documentName: dName
-        //         createdByUser: createdBy
-        //     }
-
-        //     model: Filling {} ///documentModel
-        //     // highlight: Rectangle {
-        //     //     color: "red" //"lightsteelblue"
-        //     //     radius: 5
-        //     // }
-        //     focus: true
         // }
     }
 }

@@ -34,10 +34,6 @@ Rectangle {
         anchors.fill: parent
         onPressed: {
             drawerItemPressed()
-            console.log("pressed")
-        }
-        onReleased: {
-            console.log("released")
         }
     }
 

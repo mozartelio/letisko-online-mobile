@@ -159,6 +159,7 @@ Page {
         target: UserController
         function onRegistrationResult(result) {
             if (result === true) {
+                loadingPopup.close()
                 goToRegistrationDetailsScreen()
             } else {
                 infoPopupTextContent.text = privates.loginErrorText + "\n" + result

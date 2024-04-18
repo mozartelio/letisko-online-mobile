@@ -14,14 +14,8 @@ Item {
     height: 77
     width: 450
 
-    // Layout.preferredWidth: 467
-    // Layout.preferredHeight: 77
     ButtonGroup {
         id: sortingButtonsGroup
-        onClicked: // valueChanged(index)
-        {
-
-        }
     }
     RowLayout {
         spacing: 0
@@ -48,7 +42,7 @@ Item {
                             FlightsRoles.DepartureTimeRole, false)
             }
 
-            Layout.preferredWidth: root.width /// 2
+            Layout.preferredWidth: root.width
         }
 
         SortingSection {
@@ -68,7 +62,7 @@ Item {
             rightButton.onClicked: flightsFilterProxyModel.setSortOrder(
                                        FlightsRoles.ArrivalTimeRole, false)
 
-            Layout.preferredWidth: root.width /// 2
+            Layout.preferredWidth: root.width
         }
     }
 

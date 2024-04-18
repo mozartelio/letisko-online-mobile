@@ -5,14 +5,12 @@
 
 FlightsModel::FlightsModel()
 {
-    qDebug() << "FlightsModel hello from";
     m_filterProxyModel = new FlightsFilterProxyModel();
     init();
 }
 
 FlightsModel::~FlightsModel()
 {
-    qDebug() << "FlightsModel destructor";
     removeAllFlights();
     delete m_filterProxyModel;
     m_filterProxyModel = nullptr;
@@ -69,7 +67,6 @@ QVariant FlightsModel::data(const QModelIndex &index, int role) const
 
         FlightInfo *flightInfo = m_flightsList[index.row()];
 
-        //        switch((Role) role) {
         switch (role)
         {
         case FlightsRoles::CallsignRole:

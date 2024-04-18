@@ -12,7 +12,6 @@ class FlightRequestStatus : public QObject
 public:
     static FlightRequestStatus *instance();
 
-
     enum Status
     {
         Denied,

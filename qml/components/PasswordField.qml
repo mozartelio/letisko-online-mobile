@@ -8,14 +8,13 @@ TextField {
     verticalAlignment: TextInput.AlignVCenter
     echoMode: showPassword ? TextField.Normal : TextField.Password
     placeholderText: qsTr("Password")
-    // to do not let text be inputed under the icon image
     rightPadding: icon.width + icon.anchors.rightMargin + icon.anchors.leftMargin
 
     Image {
         id: icon
         width: __style.icon24
         height: __style.icon24
-        source: showPassword ? __style.passwordShownIcon : __style.passwordHiddenIcon
+        source: showPassword ? __style.passwordHiddenIcon : __style.passwordShownIcon
         anchors {
             right: parent.right
             verticalCenter: parent.verticalCenter

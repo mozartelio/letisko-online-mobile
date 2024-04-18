@@ -7,14 +7,12 @@
 
 AircraftsModel::AircraftsModel()
 {
-    qDebug() << "AircraftsModel hello from";
     m_filterProxyModel = new AircraftsFilterProxyModel();
     init();
 }
 
 AircraftsModel::~AircraftsModel()
 {
-    qDebug() << "AircraftsModel destructor";
     removeAllFlights();
     delete m_filterProxyModel;
     m_filterProxyModel = nullptr;

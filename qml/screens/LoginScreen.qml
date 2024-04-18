@@ -53,10 +53,8 @@ Page {
 
         Column {
             id: column
-
             spacing: 15
             leftPadding: 20
-
             rightPadding: 20
             bottomPadding: 20
             Layout.alignment: Qt.AlignCenter
@@ -135,7 +133,6 @@ Page {
 
         function onLoginResult(result) {
             if (result === true) {
-                // console.log("logged in successfully")
                 loadingPopup.close()
                 goToMainScreen()
             } else {

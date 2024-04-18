@@ -45,7 +45,6 @@ int main(int argc, char *argv[])
     qmlRegisterType<FlightsRoles>("com.letiskoonline.FlightsRoles", 1, 0, "FlightsRoles");
     qmlRegisterType<FlightRequestStatus>("com.letiskoonline.FlightRequestStatus", 1, 0, "FlightRequestStatus");
 
-
     qmlRegisterSingletonType(QUrl("qrc:/UserAppSettings.qml"), "UserAppSettings", 1, 0, "UserAppSettings");
 
     qmlRegisterSingletonType<PixmapProvider>("com.letiskoonline.PixmapImageProvider", 1, 0, "PixmapImageProvider", [](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject *
@@ -64,16 +63,14 @@ int main(int argc, char *argv[])
                                                           Q_UNUSED(scriptEngine)
                                                           return serverConnectionChecker; });
 
-    FlightRequestStatus * flightRequestStatus = FlightRequestStatus::instance();
+    FlightRequestStatus *flightRequestStatus = FlightRequestStatus::instance();
     qmlRegisterSingletonType<FlightRequestStatus>("com.example", 1, 0, "FlightRequestStatus",
-                                                  [flightRequestStatus](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject* {
+                                                  [flightRequestStatus](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject *
+                                                  {
                                                       Q_UNUSED(engine)
                                                       Q_UNUSED(scriptEngine)
                                                       return flightRequestStatus;
-                                                  }
-                                                  );
-
-
+                                                  });
 
     UserController *userController = new UserController(&app);
     qmlRegisterSingletonInstance("com.letiskoonline.UserController", 1, 0, "UserController", userController);
@@ -92,7 +89,10 @@ int main(int argc, char *argv[])
     const QUrl url(qgetenv("MAIN_QML"));
     InstallDefaultFont();
 
-    /** << for using with hotreload**/
+    /** << for using with hotreload
+     * from here and until the corresponding ending comment code for hot reload was taken from
+     * https://github.com/MarkoStanojevic12/ComponentLibrary/tree/Lesson_01_LiveLoader/component_library/Buttons
+     **/
     // ComponentCreatorEngine engine;
     // engine.rootContext()->setContextProperty("QmlEngine", &engine);
     /** >> end of source code for hot reload*/
@@ -113,22 +113,23 @@ int main(int argc, char *argv[])
     AircraftsFilterProxyModel *aircraftsFilterProxyModel = userController->getAircraftsController()->getAircraftsModel()->getFilterProxyModel();
     rootContext->setContextProperty("aircraftsFilterProxyModel", aircraftsFilterProxyModel);
 
-    LanguageManager *languageManager = new LanguageManager(&app, &engine,  &app);
+    LanguageManager *languageManager = new LanguageManager(&app, &engine, &app);
     rootContext->setContextProperty("languageManager", languageManager);
 
     rootContext->setContextProperty("flightRequestStatus", flightRequestStatus);
 
-
-    /** << for using with hotreload**/
+    /** << for using with hotreload,
+     * from here and until the corresponding ending comment code for hot reload was taken from
+      https://github.com/MarkoStanojevic12/ComponentLibrary/tree/Lesson_01_LiveLoader/component_library/Buttons
+    **/
     // QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app, [url](QObject *obj, const QUrl &objUrl)
     //     { if (!obj && url == objUrl) QCoreApplication::exit(- 1); }, Qt::QueuedConnection);
     // engine.load(url);
     /** >> end of source code for hot reload*/
 
     /** << for testing without hotreload**/
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
-        &app, []() { QCoreApplication::exit(-1); },
-        Qt::QueuedConnection);
+    QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed, &app, []()
+                     { QCoreApplication::exit(-1); }, Qt::QueuedConnection);
     engine.loadFromModule("OnlineLetiskoMobileApp", "Main");
     /** >> end for testing without hotreload**/
 

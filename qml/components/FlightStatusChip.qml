@@ -8,7 +8,7 @@ import "../components/"
 Rectangle {
     id: root
 
-    required property int flightStatus
+    property int flightStatus
 
     width: Math.min(
                content.implicitWidth + content.anchors.leftMargin + content.anchors.rightMargin,
@@ -27,7 +27,7 @@ Rectangle {
         else if (root.flightStatus === FlightRequestStatus.Pending)
             return __style.primaryColor
         else
-            return ""
+            return __style.errorColor
     }
 
     RowLayout {
@@ -46,7 +46,15 @@ Rectangle {
         LabelLargeText {
             id: textLabel
             color: __style.onPrimaryColor
-            text: flightStatus === FlightRequestStatus.Approved ? qsTr("Approved") : flightStatus === FlightRequestStatus.Denied ? qsTr("Denied") : qsTr("Pending")
+            text: if (flightStatus === FlightRequestStatus.Approved) {
+                      qsTr("Approved")
+                  } else if (flightStatus === FlightRequestStatus.Denied) {
+                      qsTr("Denied")
+                  } else if (flightStatus === FlightRequestStatus.Pending) {
+                      qsTr("Pending")
+                  } else {
+                      qsTr("Error")
+                  }
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
             maximumLineCount: 2
             Layout.preferredWidth: root.width

@@ -120,8 +120,7 @@ Item {
         StackView {
             id: stackView
             initialItem: UserController.isUserLoggedIn(
-                             ) ? aircraftsScreen /*flightsScreen*/
-                               : loginScreen
+                             ) ? flightsScreen : loginScreen
             width: parent.width
             height: parent.height
             // anchors.fill: parent  // activate this if not using hot reload

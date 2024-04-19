@@ -121,19 +121,24 @@
 <context>
     <name>FlightStatusChip</name>
     <message>
-        <location filename="../../qml/components/FlightStatusChip.qml" line="49"/>
+        <location filename="../../qml/components/FlightStatusChip.qml" line="50"/>
         <source>Approved</source>
         <translation>Potvrdené</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStatusChip.qml" line="49"/>
+        <location filename="../../qml/components/FlightStatusChip.qml" line="52"/>
         <source>Denied</source>
         <translation>Odmietnuté</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FlightStatusChip.qml" line="49"/>
+        <location filename="../../qml/components/FlightStatusChip.qml" line="54"/>
         <source>Pending</source>
         <translation>Čaká na rozhodnutie</translation>
+    </message>
+    <message>
+        <location filename="../../qml/components/FlightStatusChip.qml" line="56"/>
+        <source>Error</source>
+        <translation>Сhyba</translation>
     </message>
 </context>
 <context>
@@ -235,6 +240,33 @@
     </message>
 </context>
 <context>
+    <name>FligthStatusCombobox</name>
+    <message>
+        <location filename="../../qml/components/FligthStatusCombobox.qml" line="22"/>
+        <source>Approved</source>
+        <translation>Potvrdené</translation>
+    </message>
+    <message>
+        <location filename="../../qml/components/FligthStatusCombobox.qml" line="26"/>
+        <source>Denied</source>
+        <translation>Odmietnuté</translation>
+    </message>
+    <message>
+        <location filename="../../qml/components/FligthStatusCombobox.qml" line="30"/>
+        <source>Pending</source>
+        <translation>Čaká na rozhodnutie</translation>
+    </message>
+    <message>
+        <location filename="../../qml/components/FligthStatusCombobox.qml" line="69"/>
+        <source>It is not possible to change flight status back to pending!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It is not possible to change flight status back to Pending!</source>
+        <translation type="vanished">Nie je možné zmeniť stav letu späť na čakajúci!</translation>
+    </message>
+</context>
+<context>
     <name>LoginScreen</name>
     <message>
         <source>LOGIN</source>
@@ -266,12 +298,12 @@
         <translation>Registrácia</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/LoginScreen.qml" line="149"/>
+        <location filename="../../qml/screens/LoginScreen.qml" line="148"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/LoginScreen.qml" line="166"/>
+        <location filename="../../qml/screens/LoginScreen.qml" line="165"/>
         <source>Log in procedure failed, the reason is:</source>
         <translation>Postup prihlásenia zlyhal, dôvod je:</translation>
     </message>
@@ -303,7 +335,7 @@
         <translation type="vanished">App</translation>
     </message>
     <message>
-        <location filename="../../qml/MainWindow.qml" line="160"/>
+        <location filename="../../qml/MainWindow.qml" line="159"/>
         <source>Kosice airport</source>
         <translation>Letisko Košice</translation>
     </message>
@@ -312,7 +344,7 @@
         <translation type="vanished">Domov</translation>
     </message>
     <message>
-        <location filename="../../qml/MainWindow.qml" line="201"/>
+        <location filename="../../qml/MainWindow.qml" line="200"/>
         <source>Aircrafts</source>
         <translation>Lietadlá</translation>
     </message>
@@ -321,8 +353,8 @@
         <translation type="vanished">Plánovač letov</translation>
     </message>
     <message>
-        <location filename="../../qml/MainWindow.qml" line="213"/>
-        <location filename="../../qml/MainWindow.qml" line="346"/>
+        <location filename="../../qml/MainWindow.qml" line="212"/>
+        <location filename="../../qml/MainWindow.qml" line="345"/>
         <source>Flights</source>
         <translation>Lety</translation>
     </message>
@@ -331,12 +363,12 @@
         <translation type="vanished">Používatelia</translation>
     </message>
     <message>
-        <location filename="../../qml/MainWindow.qml" line="173"/>
+        <location filename="../../qml/MainWindow.qml" line="172"/>
         <source>Airport</source>
         <translation>Letisko</translation>
     </message>
     <message>
-        <location filename="../../qml/MainWindow.qml" line="187"/>
+        <location filename="../../qml/MainWindow.qml" line="186"/>
         <source>Documentation</source>
         <translation>Dokumentácia</translation>
     </message>
@@ -350,7 +382,7 @@
     </message>
     <message>
         <location filename="../../qml/MainWindow.qml" line="112"/>
-        <location filename="../../qml/MainWindow.qml" line="225"/>
+        <location filename="../../qml/MainWindow.qml" line="224"/>
         <source>Settings</source>
         <translation>Nastavenia</translation>
     </message>
@@ -429,32 +461,32 @@
         <translation>Priezvisko</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="69"/>
+        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="70"/>
         <source>Street</source>
         <translation>Ulica</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="76"/>
+        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="78"/>
         <source>Building number</source>
         <translation>Číslo budovy</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="87"/>
+        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="90"/>
         <source>Zip Code</source>
         <translation>PSČ</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="91"/>
+        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="94"/>
         <source>City</source>
         <translation>Mesto</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="106"/>
+        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="109"/>
         <source>Next</source>
         <translation>Ďalej</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="127"/>
+        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="134"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -487,12 +519,12 @@
         <translation>Prihlásiť sa</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationScreen.qml" line="175"/>
+        <location filename="../../qml/screens/RegistrationScreen.qml" line="174"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationScreen.qml" line="192"/>
+        <location filename="../../qml/screens/RegistrationScreen.qml" line="191"/>
         <source>Registration failed, the reason is:</source>
         <translation>Registrácia zlyhala, dôvod je:</translation>
     </message>

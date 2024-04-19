@@ -158,12 +158,11 @@ Page {
     Connections {
         target: UserController
         function onRegistrationResult(result) {
+            loadingPopup.close()
             if (result === true) {
-                loadingPopup.close()
                 goToRegistrationDetailsScreen()
             } else {
                 infoPopupTextContent.text = privates.loginErrorText + "\n" + result
-                loadingPopup.close()
                 infoPopup.open()
             }
         }

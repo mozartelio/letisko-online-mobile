@@ -57,7 +57,8 @@ Page {
             TextField {
                 id: surnameField
                 placeholderText: qsTr("Surname")
-                Layout.minimumWidth: surnameField.placeholderText.length * surnameField.font.pixelSize
+                Layout.minimumWidth: surnameField.placeholderText.length
+                                     * surnameField.font.pixelSize
                 Layout.preferredWidth: streetBuildingBumberRow.width
                 Layout.alignment: Qt.AlignLeft
             }
@@ -67,14 +68,16 @@ Page {
                 TextField {
                     id: streetField
                     placeholderText: qsTr("Street")
-                    Layout.minimumWidth: streetField.placeholderText.length * streetField.font.pixelSize
+                    Layout.minimumWidth: streetField.placeholderText.length
+                                         * streetField.font.pixelSize
                     Layout.preferredWidth: 250
                     Layout.alignment: Qt.AlignLeft
                 }
                 TextField {
                     id: buildingNumberField
                     placeholderText: qsTr("Building number")
-                    Layout.minimumWidth: buildingNumberField.placeholderText.length * buildingNumberField.font.pointSize
+                    Layout.minimumWidth: buildingNumberField.placeholderText.length
+                                         * buildingNumberField.font.pointSize
                     Layout.alignment: Qt.AlignLeft
                 }
             }
@@ -109,8 +112,12 @@ Page {
 
                 enabled: isFormValid()
                 onClicked: {
-                    loadingPopup.open();
-                    UserController.fillInProfileDetails(nameFiled.text, surnameField.text, streetField.text, buildingNumberField.text, zipCodeField.text, cityField.text, countryComboBox.currentText);
+                    loadingPopup.open()
+                    UserController.fillInProfileDetails(
+                                nameFiled.text, surnameField.text,
+                                streetField.text, buildingNumberField.text,
+                                zipCodeField.text, cityField.text,
+                                countryComboBox.currentText)
                 }
                 Layout.alignment: Qt.AlignCenter
             }
@@ -138,18 +145,21 @@ Page {
     Connections {
         target: UserController
         function onProfileDetailsFilledInResult(result) {
+            loadingPopup.close()
             if (result === true) {
-                loadingPopup.close();
-                goToMainScreen();
+                goToMainScreen()
             } else {
-                infoPopupTextContent.text = privates.loginErrorText + "\n" + result;
-                loadingPopup.close();
-                infoPopup.open();
+                infoPopupTextContent.text = privates.loginErrorText + "\n" + result
+                infoPopup.open()
             }
         }
     }
 
     function isFormValid() {
-        return (nameFiled.text.trim() !== "" && nameFiled.text !== undefined) && (surnameField.text.trim() !== "" && surnameField.text !== undefined) && (streetField.text.trim() !== "" && streetField.text !== undefined) && (buildingNumberField.text.trim() !== "" && buildingNumberField.text !== undefined) && (zipCodeField.text.trim() !== "" && zipCodeField.text !== undefined) && (cityField.text.trim() !== "" && cityField.text !== undefined);
+        return (nameFiled.text.trim() !== "" && nameFiled.text !== undefined)
+                && (surnameField.text.trim() !== "" && surnameField.text
+                    !== undefined) && (streetField.text.trim() !== ""
+                                       && streetField.text !== undefined) && (buildingNumberField.text.trim() !== "" && buildingNumberField.text !== undefined) && (zipCodeField.text.trim() !== "" && zipCodeField.text !== undefined)
+                && (cityField.text.trim() !== "" && cityField.text !== undefined)
     }
 }

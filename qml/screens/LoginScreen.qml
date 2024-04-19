@@ -132,12 +132,11 @@ Page {
         target: UserController
 
         function onLoginResult(result) {
+            loadingPopup.close()
             if (result === true) {
-                loadingPopup.close()
                 goToMainScreen()
             } else {
                 infoPopupTextContent.text = privates.loginErrorText + "\n" + result
-                loadingPopup.close()
                 infoPopup.open()
             }
         }

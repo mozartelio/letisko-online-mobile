@@ -71,7 +71,7 @@ Page {
                     TitleLargeText {
                         text: qsTr("Flights:")
                         Layout.leftMargin: 20
-                        Layout.topMargin: 10                       
+                        Layout.topMargin: 10
                     }
                     Button {
                         id: control
@@ -153,7 +153,7 @@ Page {
 
             ListView {
                 id: view
-                model: flightsFilterProxyModel              
+                model: flightsFilterProxyModel
                 width: parent.width
                 anchors {
                     fill: parent

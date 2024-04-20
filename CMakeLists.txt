@@ -7,8 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_PREFIX_PATH "C:/Other_programs/Qt/6.6.0/mingw_64/lib/cmake" ${CMAKE_PREFIX_PATH})
 
-# set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-# set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android" CACHE INTERNAL "")
 
 find_package(Qt6 REQUIRED COMPONENTS Quick Network LinguistTools)
 
@@ -133,10 +131,8 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
     server_connection_checker.h server_connection_checker.cpp
     language_manager.h language_manager.cpp
     flight_request_status.h flight_request_status.cpp
-
-
 )
-
+ 
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
@@ -161,7 +157,3 @@ install(TARGETS appOnlineLetiskoMobileApp
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
-
-#does it WORK?
-# qt_add_lupdate(appOnlineLetiskoMobileApp TS_FILES ./assets/translations/slovak.ts)
-# add_dependencies(appOnlineLetiskoMobileApp update_translations) # equivalent of all {target}_lupdate

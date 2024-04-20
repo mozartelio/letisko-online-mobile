@@ -259,7 +259,7 @@
     <message>
         <location filename="../../qml/components/FligthStatusCombobox.qml" line="69"/>
         <source>It is not possible to change flight status back to pending!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie je možné zmeniť stav letu späť na čakajúci!</translation>
     </message>
     <message>
         <source>It is not possible to change flight status back to Pending!</source>
@@ -415,7 +415,7 @@
     <message>
         <location filename="../../qml/components/PasswordRequirements.qml" line="29"/>
         <source>1 special character</source>
-        <translation>1 špeciálna postava</translation>
+        <translation>1 špeciálny znak</translation>
     </message>
     <message>
         <location filename="../../qml/components/PasswordRequirements.qml" line="32"/>

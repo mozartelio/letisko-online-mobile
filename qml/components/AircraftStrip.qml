@@ -24,7 +24,7 @@ Rectangle {
     color: __style.basicStripColor
     implicitWidth: parent.width
     implicitHeight: topRowWrapper.implicitHeight + topRowWrapper.anchors.topMargin
-                    + topRowWrapper.anchors.bottomMargin //100
+                    + topRowWrapper.anchors.bottomMargin
 
     StateGroup {
         states: [
@@ -143,6 +143,7 @@ Rectangle {
                 }
 
                 Row {
+                    Layout.preferredWidth: 220
                     BodyMediumText {
                         text: qsTr("Name: ")
                         font.bold: true
@@ -178,6 +179,7 @@ Rectangle {
                 }
 
                 Row {
+                    Layout.preferredWidth: 220
                     BodyMediumText {
                         text: qsTr("Total time flown: ")
                         font.bold: true
@@ -190,6 +192,7 @@ Rectangle {
                 }
 
                 Row {
+                    Layout.preferredWidth: 220
                     BodyMediumText {
                         text: qsTr("Aircraft type: ")
                         font.bold: true
@@ -224,6 +227,7 @@ Rectangle {
                 }
 
                 Row {
+                    Layout.preferredWidth: 220
                     BodyMediumText {
                         text: qsTr("Flight rules: ")
                         font.bold: true
@@ -235,6 +239,7 @@ Rectangle {
                 }
 
                 Row {
+                    Layout.preferredWidth: 220
                     BodyMediumText {
                         text: qsTr("ICAO wake turbulence category: ")
                         font.bold: true
@@ -244,6 +249,7 @@ Rectangle {
                     }
                 }
                 Row {
+                    Layout.preferredWidth: 220
                     BodyMediumText {
                         text: qsTr("State of registration: ")
                         font.bold: true

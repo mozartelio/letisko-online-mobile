@@ -21,20 +21,28 @@ ComboBox {
         ListElement {
             name: qsTr("Approved")
             value: FlightRequestStatus.Approved
+            isVisible: 1
+            isEnabled: 1
         }
         ListElement {
             name: qsTr("Denied")
             value: FlightRequestStatus.Denied
+            isVisible: 1
+            isEnabled: 1
         }
         ListElement {
             name: qsTr("Pending")
             value: FlightRequestStatus.Pending
+            isVisible: 0
+            isEnabled: 0
         }
     }
 
     delegate: Loader {
         width: root.width
-        height: 50
+        height: model.isVisible ? 50 : 0
+        visible: model.isVisible
+        enabled: model.isEnabled
         sourceComponent: FlightStatusChip {
             id: fligthChipComponent
             flightStatus: model.value
@@ -43,12 +51,6 @@ ComboBox {
                 enabled: root.enabled
                 onClicked: {
                     root.popup.close()
-                    if ((currentFlightStatus === FlightRequestStatus.Denied
-                         || currentFlightStatus === FlightRequestStatus.Approved)
-                            && fligthChipComponent.flightStatus === FlightRequestStatus.Pending) {
-                        warningDialog.open()
-                        return
-                    }
                     currentFlightStatus = fligthChipComponent.flightStatus
                     setCurrentIndexAccordingCurrentStatus()
                     FlightsController.changeFlightRequestStatus(
@@ -62,17 +64,6 @@ ComboBox {
         id: item
         width: root.width
         height: 50
-    }
-
-    Dialog {
-        id: warningDialog
-        title: qsTr("It is not possible to change flight status back to pending!")
-        standardButtons: Dialog.Ok
-        modal: Qt.ApplicationModal
-        anchors.centerIn: Overlay.overlay
-        Overlay.modal: Rectangle {
-            color: __style.popupSemiTransparentDarkColor
-        }
     }
 
     onCurrentFlightStatusChanged: {

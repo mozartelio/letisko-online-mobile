@@ -1,11 +1,9 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 import UserAppSettings
 import com.letiskoonline.UserController
 import com.letiskoonline.LanguageManager
-
 import "../components/typography/display/text"
 import "../components/typography/title/text"
 import "../components"
@@ -64,8 +62,8 @@ Page {
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                     Layout.topMargin: 15
                     onClicked: {
-                        logout()
-                        UserController.doLogout()
+                        logout();
+                        UserController.doLogout();
                     }
                 }
 
@@ -94,11 +92,11 @@ Page {
                         settingType: SettingStrip.SettingType.Text
                         settingName: qsTr("Name and surname")
                         settingTextContent: if (UserController.user.personalInfo !== null) {
-                                                UserController.user.personalInfo.name + " "
-                                                        + UserController.user.personalInfo.surname
-                                            } else {
-                                                ""
-                                            }
+                            UserController.user.personalInfo.name + " " + UserController.user.personalInfo.surname;
+                        } else {
+                            "";
+                        }
+                        chevronEnabled: false
                         width: parent.width
                     }
                     SettingStrip {
@@ -106,10 +104,11 @@ Page {
                         settingType: SettingStrip.SettingType.Text
                         settingName: qsTr("Email")
                         settingTextContent: if (UserController.user.personalInfo !== null) {
-                                                UserController.user.personalInfo.email
-                                            } else {
-                                                ""
-                                            }
+                            UserController.user.personalInfo.email;
+                        } else {
+                            "";
+                        }
+                        chevronEnabled: false
                         width: parent.width
                     }
                     // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
@@ -124,22 +123,22 @@ Page {
                         settingType: SettingStrip.SettingType.Text
                         settingName: qsTr("Address")
                         settingTextContent: if (UserController.user.address !== null) {
-                                                UserController.user.address.street + " " + UserController.user.address.buildingNumber + ", " + UserController.user.address.city + " " + UserController.user.address.zipCode + ", " + UserController.user.address.state
-                                            } else {
-                                                ""
-                                            }
-
+                            UserController.user.address.street + " " + UserController.user.address.buildingNumber + ", " + UserController.user.address.city + " " + UserController.user.address.zipCode + ", " + UserController.user.address.state;
+                        } else {
+                            "";
+                        }
+                        chevronEnabled: false
                         width: parent.width
                     }
                     SettingStrip {
                         settingType: SettingStrip.SettingType.Image
                         settingName: qsTr("Photo")
-                        settingImageContent: if (UserController.user.isAvatarPresent(
-                                                         )) {
-                                                 "image://" + "pixmap_images" + "/" + UserController.user.avatarPixmapProviderId
-                                             } else {
-                                                 __style.userDefaultAvatar
-                                             }
+                        settingImageContent: if (UserController.user.isAvatarPresent()) {
+                            "image://" + "pixmap_images" + "/" + UserController.user.avatarPixmapProviderId;
+                        } else {
+                            __style.userDefaultAvatar;
+                        }
+                        chevronEnabled: false
                         width: parent.width
                     }
                     // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
@@ -189,14 +188,14 @@ Page {
                         chevronEnabled: false
                         swithchReference.checked: UserAppSettings.showExpandedFlights
                         onValueChanged: {
-                            UserAppSettings.showExpandedFlights
-                                    = !UserAppSettings.showExpandedFlights
+                            UserAppSettings.showExpandedFlights = !UserAppSettings.showExpandedFlights;
                         }
                     }
                     SettingStrip {
                         settingType: SettingStrip.SettingType.Text
                         settingName: qsTr("Colour theme")
                         settingTextContent: qsTr("Light")
+                        chevronEnabled: false
                         width: parent.width
                     }
                     SettingStrip {
@@ -211,9 +210,12 @@ Page {
                             width: parent.width
                             height: parent.height
                             anchors.fill: parent
-                            background: Item {}
-                            indicator: Item {}
-                            contentItem: Item {}
+                            background: Item {
+                            }
+                            indicator: Item {
+                            }
+                            contentItem: Item {
+                            }
                             textRole: "text"
 
                             currentIndex: languageManager.currentLanguage
@@ -226,9 +228,8 @@ Page {
                                 }]
 
                             onActivated: {
-                                languageSetting.settingTextContent = currentText
-                                languageManager.setCurrentLanguage(
-                                            model[currentIndex].value)
+                                languageSetting.settingTextContent = currentText;
+                                languageManager.setCurrentLanguage(model[currentIndex].value);
                             }
                         }
                     }
@@ -241,8 +242,7 @@ Page {
         target: UserController.user
 
         function onPersonalInfoChanged() {
-            nameStrip.settingTextContent = UserController.user.personalInfo.name
-                    + " " + UserController.user.personalInfo.surname
+            nameStrip.settingTextContent = UserController.user.personalInfo.name + " " + UserController.user.personalInfo.surname;
         }
     }
 }

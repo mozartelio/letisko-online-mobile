@@ -141,7 +141,7 @@ Page {
             visible: !FlightsController.isLoadingFlights
             Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
             Layout.preferredWidth: parent.width
-            Layout.topMargin: 15
+            Layout.topMargin: 5
             Layout.bottomMargin: 100
             Layout.fillHeight: true
 

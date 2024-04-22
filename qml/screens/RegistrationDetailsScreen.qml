@@ -49,6 +49,7 @@ Page {
             }
             TextField {
                 id: nameFiled
+                maximumLength: 254
                 placeholderText: qsTr("Name")
                 Layout.minimumWidth: nameFiled.placeholderText.length * nameFiled.font.pixelSize
                 Layout.preferredWidth: streetBuildingBumberRow.width
@@ -56,6 +57,7 @@ Page {
             }
             TextField {
                 id: surnameField
+                maximumLength: 254
                 placeholderText: qsTr("Surname")
                 Layout.minimumWidth: surnameField.placeholderText.length
                                      * surnameField.font.pixelSize
@@ -67,6 +69,7 @@ Page {
                 Layout.alignment: Qt.AlignLeft
                 TextField {
                     id: streetField
+                    maximumLength: 254
                     placeholderText: qsTr("Street")
                     Layout.minimumWidth: streetField.placeholderText.length
                                          * streetField.font.pixelSize
@@ -75,6 +78,7 @@ Page {
                 }
                 TextField {
                     id: buildingNumberField
+                    maximumLength: 254
                     placeholderText: qsTr("Building number")
                     Layout.minimumWidth: buildingNumberField.placeholderText.length
                                          * buildingNumberField.font.pointSize
@@ -87,10 +91,12 @@ Page {
 
                 TextField {
                     id: zipCodeField
+                    maximumLength: 254
                     placeholderText: qsTr("Zip Code")
                 }
                 TextField {
                     id: cityField
+                    maximumLength: 254
                     placeholderText: qsTr("City")
                     Layout.preferredWidth: streetBuildingBumberRow.width - zipCodeField.width
                 }

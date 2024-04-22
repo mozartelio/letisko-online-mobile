@@ -10,6 +10,7 @@ BodyLargeInput {
     leftPadding: 16 + icon.width
     rightPadding: 16
     placeholderText: qsTr("Type something....")
+    maximumLength: 100
 
     background: Rectangle {
         id: background

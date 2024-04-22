@@ -156,7 +156,7 @@ Item {
                 color: drawer.background.color
                 HeadlineMediumText {
                     id: airportName
-                    text: qsTr("Kosice airport")
+                    text: qsTr("Košice airport")
                     anchors {
                         topMargin: 8
                         bottomMargin: airportName.topMargin

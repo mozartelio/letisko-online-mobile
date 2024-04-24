@@ -23,7 +23,6 @@ set(CMAKE_AUTORCC ON)
 qt_add_executable(appOnlineLetiskoMobileApp
     main.cpp
     ${QM_FILES}
-    aircraft_categories_controller.h
 )
 
 
@@ -107,30 +106,36 @@ qt_add_qml_module(appOnlineLetiskoMobileApp
 
 
     SOURCES
-    user_controller.h user_controller.cpp
     hotreload/FileWatcher.h hotreload/FileWatcher.cpp
     hotreload/ComponentCreatorEngine.h hotreload/ComponentCreatorEngine.cpp
-    lo_style.h
-    flights_controller.h flights_controller.cpp
-    flights_filter_proxy_model.h flights_filter_proxy_model.cpp
-    flight_info.h flight_info.cpp
-    flights_roles.h
-    aircraft_categories_controller.h aircraft_categories_controller.cpp
-    constants.h constants.cpp
-    flights_model.h flights_model.cpp
-    server_sent_events_parser.h server_sent_events_parser.cpp
-    aircrafts_controller.h aircrafts_controller.cpp
-    aircrafts_model.h aircrafts_model.cpp
-    aircraft_info.h aircraft_info.cpp
-    aircrafts_filter_proxy_model.h aircrafts_filter_proxy_model.cpp
-    aircrafts_roles.h
-    personal_info.h personal_info.cpp
-    address.h address.cpp
-    user.h user.cpp
-    pixmap_provider.h pixmap_provider.cpp
-    server_connection_checker.h server_connection_checker.cpp
-    language_manager.h language_manager.cpp
-    flight_request_status.h flight_request_status.cpp
+    
+    cpp/user_controller.h cpp/user_controller.cpp
+
+    cpp/lo_style.h
+    cpp/constants.h cpp/constants.cpp
+    
+    cpp/flight/flights_controller.h cpp/flight/flights_controller.cpp
+    cpp/flight/flights_filter_proxy_model.h cpp/flight/flights_filter_proxy_model.cpp
+    cpp/flight/flight_info.h cpp/flight/flight_info.cpp
+    cpp/flight/flights_roles.h
+    cpp/flight/flights_model.h cpp/flight/flights_model.cpp
+    cpp/flight/flight_request_status.h cpp/flight/flight_request_status.cpp
+    
+    
+    cpp/aircraft/aircrafts_controller.h cpp/aircraft/aircrafts_controller.cpp
+    cpp/aircraft/aircrafts_model.h cpp/aircraft/aircrafts_model.cpp
+    cpp/aircraft/aircraft_info.h cpp/aircraft/aircraft_info.cpp
+    cpp/aircraft/aircrafts_filter_proxy_model.h cpp/aircraft/aircrafts_filter_proxy_model.cpp
+    cpp/aircraft/aircrafts_roles.h
+    
+    cpp/user/personal_info.h cpp/user/personal_info.cpp
+    cpp/user/address.h cpp/user/address.cpp
+    cpp/user/user.h cpp/user/user.cpp
+    
+    cpp/server_sent_events_parser.h cpp/server_sent_events_parser.cpp
+    cpp/pixmap_provider.h cpp/pixmap_provider.cpp
+    cpp/server_connection_checker.h cpp/server_connection_checker.cpp
+    cpp/language_manager.h cpp/language_manager.cpp
 )
  
 

@@ -14,47 +14,47 @@
         <translation>Majiteľ: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/AircraftStrip.qml" line="147"/>
+        <location filename="../../qml/components/AircraftStrip.qml" line="148"/>
         <source>Name: </source>
         <translation>Názov: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/AircraftStrip.qml" line="162"/>
+        <location filename="../../qml/components/AircraftStrip.qml" line="163"/>
         <source>Date of last maintainance: </source>
         <translation>Dátum poslednej údržby: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/AircraftStrip.qml" line="182"/>
+        <location filename="../../qml/components/AircraftStrip.qml" line="184"/>
         <source>Total time flown: </source>
         <translation>Celkový nalietaný čas: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/AircraftStrip.qml" line="194"/>
+        <location filename="../../qml/components/AircraftStrip.qml" line="197"/>
         <source>Aircraft type: </source>
         <translation>Typ lietadla: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/AircraftStrip.qml" line="206"/>
+        <location filename="../../qml/components/AircraftStrip.qml" line="209"/>
         <source>Aircraft class: </source>
         <translation>Trieda lietadla: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/AircraftStrip.qml" line="218"/>
+        <location filename="../../qml/components/AircraftStrip.qml" line="221"/>
         <source>Aircraft category: </source>
         <translation>Kategória lietadla:</translation>
     </message>
     <message>
-        <location filename="../../qml/components/AircraftStrip.qml" line="228"/>
+        <location filename="../../qml/components/AircraftStrip.qml" line="232"/>
         <source>Flight rules: </source>
         <translation>Pravidlá letu: </translation>
     </message>
     <message>
-        <location filename="../../qml/components/AircraftStrip.qml" line="239"/>
+        <location filename="../../qml/components/AircraftStrip.qml" line="244"/>
         <source>ICAO wake turbulence category: </source>
         <translation>ICAO kategória turbulencie : </translation>
     </message>
     <message>
-        <location filename="../../qml/components/AircraftStrip.qml" line="248"/>
+        <location filename="../../qml/components/AircraftStrip.qml" line="254"/>
         <source>State of registration: </source>
         <translation>Štát registrácie: </translation>
     </message>
@@ -247,19 +247,18 @@
         <translation>Potvrdené</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FligthStatusCombobox.qml" line="26"/>
+        <location filename="../../qml/components/FligthStatusCombobox.qml" line="28"/>
         <source>Denied</source>
         <translation>Odmietnuté</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FligthStatusCombobox.qml" line="30"/>
+        <location filename="../../qml/components/FligthStatusCombobox.qml" line="34"/>
         <source>Pending</source>
         <translation>Čaká na rozhodnutie</translation>
     </message>
     <message>
-        <location filename="../../qml/components/FligthStatusCombobox.qml" line="69"/>
         <source>It is not possible to change flight status back to pending!</source>
-        <translation>Nie je možné zmeniť stav letu späť na čakajúci!</translation>
+        <translation type="vanished">Nie je možné zmeniť stav letu späť na čakajúci!</translation>
     </message>
     <message>
         <source>It is not possible to change flight status back to Pending!</source>
@@ -335,9 +334,8 @@
         <translation type="vanished">App</translation>
     </message>
     <message>
-        <location filename="../../qml/MainWindow.qml" line="159"/>
         <source>Kosice airport</source>
-        <translation>Letisko Košice</translation>
+        <translation type="vanished">Letisko Košice</translation>
     </message>
     <message>
         <source>Home</source>
@@ -361,6 +359,11 @@
     <message>
         <source>Users</source>
         <translation type="vanished">Používatelia</translation>
+    </message>
+    <message>
+        <location filename="../../qml/MainWindow.qml" line="159"/>
+        <source>Košice airport</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../qml/MainWindow.qml" line="172"/>
@@ -451,42 +454,42 @@
         <translation>Vyplňte profilové informácie</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="52"/>
+        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="53"/>
         <source>Name</source>
         <translation>Meno</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="59"/>
+        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="61"/>
         <source>Surname</source>
         <translation>Priezvisko</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="70"/>
+        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="73"/>
         <source>Street</source>
         <translation>Ulica</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="78"/>
+        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="82"/>
         <source>Building number</source>
         <translation>Číslo budovy</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="90"/>
+        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="95"/>
         <source>Zip Code</source>
         <translation>PSČ</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="94"/>
+        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="100"/>
         <source>City</source>
         <translation>Mesto</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="109"/>
+        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="115"/>
         <source>Next</source>
         <translation>Ďalej</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="134"/>
+        <location filename="../../qml/screens/RegistrationDetailsScreen.qml" line="140"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -548,47 +551,47 @@
 <context>
     <name>SettingsScreen</name>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="60"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="58"/>
         <source>Log out</source>
         <translation>Odhlásiť sa</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="73"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="71"/>
         <source>Personal</source>
         <translation>Osobné</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="95"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="93"/>
         <source>Name and surname</source>
         <translation>Meno a priezvisko</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="107"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="105"/>
         <source>Email</source>
         <translation>Email</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="125"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="124"/>
         <source>Address</source>
         <translation>Adresa</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="136"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="135"/>
         <source>Photo</source>
         <translation>Foto</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="168"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="167"/>
         <source>Application</source>
         <translation>Aplikácia</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="187"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="186"/>
         <source>Show expanded flights</source>
         <translation>Zobraziť rozšírené lety</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="198"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="196"/>
         <source>Colour theme</source>
         <translation>Farebný motív</translation>
     </message>
@@ -597,22 +600,22 @@
         <translation type="obsolete">Farebný motív</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="199"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="197"/>
         <source>Light</source>
         <translation>Svetlý</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="205"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="204"/>
         <source>Language</source>
         <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="222"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="224"/>
         <source>English</source>
         <translation>Angličtina</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="225"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="227"/>
         <source>Slovak</source>
         <translation>Slovenčina</translation>
     </message>

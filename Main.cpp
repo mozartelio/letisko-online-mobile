@@ -14,17 +14,17 @@
 #include <QFontDatabase>
 #include <QtQml/qqmlextensionplugin.h>
 
-#include "lo_style.h"
+#include "cpp/lo_style.h"
 #include "hotreload/ComponentCreatorEngine.h"
-#include "user_controller.h"
-#include "flights_controller.h"
-#include "aircrafts_controller.h"
-#include "pixmap_provider.h"
-#include "server_connection_checker.h"
-#include "constants.h"
-#include "language_manager.h"
-#include "flights_roles.h"
-#include "flight_request_status.h"
+#include "cpp/user_controller.h"
+#include "cpp/flight/flights_controller.h"
+#include "cpp/aircraft/aircrafts_controller.h"
+#include "cpp/pixmap_provider.h"
+#include "cpp/server_connection_checker.h"
+#include "cpp/constants.h"
+#include "cpp/language_manager.h"
+#include "cpp/flight/flights_roles.h"
+#include "cpp/flight/flight_request_status.h"
 
 void InstallDefaultFont()
 {

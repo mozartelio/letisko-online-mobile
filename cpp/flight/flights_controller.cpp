@@ -8,8 +8,8 @@
 #include <QPair>
 
 #include "flights_controller.h"
-#include "constants.h"
-#include "server_sent_events_parser.h"
+#include "cpp/constants.h"
+#include "cpp/server_sent_events_parser.h"
 #include "flight_request_status.h"
 
 FlightsController::FlightsController(QNetworkAccessManager *networkManager)

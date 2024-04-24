@@ -7,9 +7,9 @@
 #include <QTimer>
 #include <qqml.h>
 
-#include "flights_controller.h"
-#include "aircrafts_controller.h"
-#include "user.h"
+#include "cpp/flight/flights_controller.h"
+#include "cpp/aircraft/aircrafts_controller.h"
+#include "cpp/user/user.h"
 
 class UserController : public QObject
 {

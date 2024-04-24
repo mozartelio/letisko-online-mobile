@@ -6,8 +6,8 @@
 
 #include "user.h"
 #include "personal_info.h"
-#include "constants.h"
-#include "pixmap_provider.h"
+#include "cpp/constants.h"
+#include "cpp/pixmap_provider.h"
 
 User::User(QNetworkAccessManager *networkManager, QObject *parent) : QObject{parent}
 {

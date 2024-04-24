@@ -5,8 +5,8 @@
 #include <QJsonObject>
 
 #include "aircrafts_controller.h"
-#include "constants.h"
-#include "server_sent_events_parser.h"
+#include "cpp/constants.h"
+#include "cpp/server_sent_events_parser.h"
 
 AircraftsController::AircraftsController(QNetworkAccessManager *networkManager)
 {

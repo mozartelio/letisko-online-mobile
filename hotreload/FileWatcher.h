@@ -1,6 +1,6 @@
 /**
  * from here and until the corresponding ending comment code for hot reload was taken from
- * https://github.com/MarkoStanojevic12/ComponentLibrary/tree/Lesson_01_LiveLoader/component_library/Buttons
+ * https://github.com/MarkoStanojevic12/ComponentLibrary/tree/Lesson_01_LiveLoader/ComponentCreator
 */
 #ifndef FILEWATCHER_H
 #define FILEWATCHER_H

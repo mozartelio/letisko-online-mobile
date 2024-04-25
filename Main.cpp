@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
 
     /** << for using with hotreload
      * from here and until the corresponding ending comment code for hot reload was taken from
-     * https://github.com/MarkoStanojevic12/ComponentLibrary/tree/Lesson_01_LiveLoader/component_library/Buttons
+     * https://github.com/MarkoStanojevic12/ComponentLibrary/tree/Lesson_01_LiveLoader/ComponentCreator
      **/
     // ComponentCreatorEngine engine;
     // engine.rootContext()->setContextProperty("QmlEngine", &engine);
@@ -120,7 +120,7 @@ int main(int argc, char *argv[])
 
     /** << for using with hotreload,
      * from here and until the corresponding ending comment code for hot reload was taken from
-      https://github.com/MarkoStanojevic12/ComponentLibrary/tree/Lesson_01_LiveLoader/component_library/Buttons
+      https://github.com/MarkoStanojevic12/ComponentLibrary/tree/Lesson_01_LiveLoader/ComponentCreator
     **/
     // QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app, [url](QObject *obj, const QUrl &objUrl)
     //     { if (!obj && url == objUrl) QCoreApplication::exit(- 1); }, Qt::QueuedConnection);

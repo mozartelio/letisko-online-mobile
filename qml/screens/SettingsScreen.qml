@@ -202,7 +202,7 @@ Page {
                         id: languageSetting
                         settingType: SettingStrip.SettingType.Text
                         settingName: qsTr("Language")
-                        settingTextContent: comboBoxLanguges.currentText
+                        settingTextContent: qsTr(comboBoxLanguges.currentText)
                         width: parent.width
 
                         ComboBox {
@@ -217,19 +217,26 @@ Page {
                             contentItem: Item {
                             }
                             textRole: "text"
+                            valueRole: "value"
 
-                            currentIndex: languageManager.currentLanguage
                             model: [{
                                     "value": LanguageManager.English,
-                                    "text": qsTr("English")
+                                    "text": "English"
                                 }, {
                                     "value": LanguageManager.Slovak,
-                                    "text": qsTr("Slovak")
+                                    "text": "Slovenčina"
                                 }]
 
-                            onActivated: {
-                                languageSetting.settingTextContent = currentText;
-                                languageManager.setCurrentLanguage(model[currentIndex].value);
+                            onActivated: index => {
+                                             currentIndex = index
+                                             languageManager.setCurrentLanguage(
+                                                 model[index].value)
+                                             languageSetting.settingTextContent = qsTr(
+                                                 model[index].text)
+                                         }
+
+                            Component.onCompleted: {
+                                currentIndex = languageManager.currentLanguage
                             }
                         }
                     }

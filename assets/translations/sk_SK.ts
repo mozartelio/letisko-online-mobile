@@ -272,37 +272,37 @@
         <translation type="vanished">PRIHLÁSENIE</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/LoginScreen.qml" line="44"/>
+        <location filename="../../qml/screens/LoginScreen.qml" line="45"/>
         <source>LOG IN</source>
         <translation>PRIHLÁSIŤ SA</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/LoginScreen.qml" line="75"/>
+        <location filename="../../qml/screens/LoginScreen.qml" line="76"/>
         <source>Log in</source>
         <translation>Prihlásiť sa</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/LoginScreen.qml" line="86"/>
+        <location filename="../../qml/screens/LoginScreen.qml" line="87"/>
         <source>entered value is not a valid email!</source>
         <translation>Zadaná hodnota nie je platný e-mail!</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/LoginScreen.qml" line="106"/>
+        <location filename="../../qml/screens/LoginScreen.qml" line="107"/>
         <source>Not yet registered?</source>
         <translation>Ešte nie ste zaregistrovaní?</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/LoginScreen.qml" line="114"/>
+        <location filename="../../qml/screens/LoginScreen.qml" line="115"/>
         <source>Registration</source>
         <translation>Registrácia</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/LoginScreen.qml" line="148"/>
+        <location filename="../../qml/screens/LoginScreen.qml" line="154"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/LoginScreen.qml" line="165"/>
+        <location filename="../../qml/screens/LoginScreen.qml" line="171"/>
         <source>Log in procedure failed, the reason is:</source>
         <translation>Postup prihlásenia zlyhal, dôvod je:</translation>
     </message>
@@ -342,38 +342,28 @@
         <translation type="vanished">Domov</translation>
     </message>
     <message>
-        <location filename="../../qml/MainWindow.qml" line="200"/>
         <source>Aircrafts</source>
-        <translation>Lietadlá</translation>
+        <translation type="vanished">Lietadlá</translation>
     </message>
     <message>
         <source>Flight scheduler</source>
         <translation type="vanished">Plánovač letov</translation>
     </message>
     <message>
-        <location filename="../../qml/MainWindow.qml" line="212"/>
-        <location filename="../../qml/MainWindow.qml" line="345"/>
         <source>Flights</source>
-        <translation>Lety</translation>
+        <translation type="vanished">Lety</translation>
     </message>
     <message>
         <source>Users</source>
         <translation type="vanished">Používatelia</translation>
     </message>
     <message>
-        <location filename="../../qml/MainWindow.qml" line="159"/>
-        <source>Košice airport</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../qml/MainWindow.qml" line="172"/>
         <source>Airport</source>
-        <translation>Letisko</translation>
+        <translation type="vanished">Letisko</translation>
     </message>
     <message>
-        <location filename="../../qml/MainWindow.qml" line="186"/>
         <source>Documentation</source>
-        <translation>Dokumentácia</translation>
+        <translation type="vanished">Dokumentácia</translation>
     </message>
     <message>
         <source>Duties</source>
@@ -384,10 +374,13 @@
         <translation type="vanished">Licencie</translation>
     </message>
     <message>
-        <location filename="../../qml/MainWindow.qml" line="112"/>
-        <location filename="../../qml/MainWindow.qml" line="224"/>
         <source>Settings</source>
-        <translation>Nastavenia</translation>
+        <translation type="vanished">Nastavenia</translation>
+    </message>
+    <message>
+        <location filename="../../qml/MainWindow.qml" line="159"/>
+        <source>Your airport</source>
+        <translation>Vaše letisko</translation>
     </message>
 </context>
 <context>
@@ -566,32 +559,32 @@
         <translation>Meno a priezvisko</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="105"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="106"/>
         <source>Email</source>
         <translation>Email</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="124"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="125"/>
         <source>Address</source>
         <translation>Adresa</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="135"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="136"/>
         <source>Photo</source>
         <translation>Foto</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="167"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="169"/>
         <source>Application</source>
         <translation>Aplikácia</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="186"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="188"/>
         <source>Show expanded flights</source>
         <translation>Zobraziť rozšírené lety</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="196"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="199"/>
         <source>Colour theme</source>
         <translation>Farebný motív</translation>
     </message>
@@ -600,24 +593,22 @@
         <translation type="obsolete">Farebný motív</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="197"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="200"/>
         <source>Light</source>
         <translation>Svetlý</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="204"/>
+        <location filename="../../qml/screens/SettingsScreen.qml" line="207"/>
         <source>Language</source>
         <translation>Jazyk</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="224"/>
         <source>English</source>
-        <translation>Angličtina</translation>
+        <translation type="vanished">Angličtina</translation>
     </message>
     <message>
-        <location filename="../../qml/screens/SettingsScreen.qml" line="227"/>
         <source>Slovak</source>
-        <translation>Slovenčina</translation>
+        <translation type="vanished">Slovenčina</translation>
     </message>
 </context>
 </TS>

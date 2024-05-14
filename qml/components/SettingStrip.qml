@@ -78,7 +78,6 @@ Rectangle {
                 text: settingName
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                 Layout.fillWidth: true
-                Layout.horizontalStretchFactor: 4
                 Layout.leftMargin: 10
                 Layout.rightMargin: 10
                 Layout.topMargin: 10
@@ -89,8 +88,6 @@ Rectangle {
                 text: settingTextContent
                 visible: settingType === SettingStrip.SettingType.Text
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-                Layout.horizontalStretchFactor: 1
-                Layout.fillWidth: true
                 Layout.fillHeight: true
             }
 
@@ -107,7 +104,6 @@ Rectangle {
                 Layout.topMargin: 6
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 Layout.fillHeight: true
-                Layout.fillWidth: true
             }
 
             Switch {
@@ -115,8 +111,8 @@ Rectangle {
                 visible: settingType === SettingStrip.SettingType.Switch
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 Layout.fillHeight: true
-                Layout.horizontalStretchFactor: 1
-                Layout.fillWidth: true
+                padding: 0
+                Layout.rightMargin: 0
                 onToggled: valueChanged()
             }
 

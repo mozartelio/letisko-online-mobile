@@ -42,7 +42,7 @@ Item {
                         anchors.verticalCenter: parent.verticalCenter
                         HeadlineMediumText {
                             anchors.verticalCenter: parent.verticalCenter
-                            text: privates.drawerPageName
+                            text: qsTr(privates.drawerPageName)
                             color: __style.onPrimaryColor
                         }
                     }
@@ -109,7 +109,7 @@ Item {
                             }
                         }
                         onClicked: {
-                            privates.drawerPageName = qsTr("Settings")
+                            privates.drawerPageName = "Settings"
                             stackView.replace(settingsScreen)
                         }
                     }
@@ -156,7 +156,7 @@ Item {
                 color: drawer.background.color
                 HeadlineMediumText {
                     id: airportName
-                    text: qsTr("Košice airport")
+                    text: qsTr("Your airport")
                     anchors {
                         topMargin: 8
                         bottomMargin: airportName.topMargin
@@ -169,7 +169,7 @@ Item {
 
             DrawerItem {
                 iconSource: __style.airportIcon
-                itemName: qsTr("Airport")
+                itemName: "Airport"
                 color: stackView.currentItem.objectName
                        === "airportScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
                 isActive: false
@@ -183,7 +183,7 @@ Item {
             DrawerItem {
                 id: item
                 iconSource: __style.documentationIcon
-                itemName: qsTr("Documentation")
+                itemName: "Documentation"
                 color: stackView.currentItem.objectName
                        === "documentationScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
                 isActive: false
@@ -197,7 +197,7 @@ Item {
 
             DrawerItem {
                 iconSource: __style.planeIcon
-                itemName: qsTr("Aircrafts")
+                itemName: "Aircrafts"
                 color: stackView.currentItem.objectName
                        === "aircraftsScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
                 onDrawerItemPressed: {
@@ -209,7 +209,7 @@ Item {
 
             DrawerItem {
                 iconSource: __style.flightsIcon
-                itemName: qsTr("Flights")
+                itemName: "Flights"
                 color: stackView.currentItem.objectName
                        === "flightsScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
                 onDrawerItemPressed: {
@@ -221,7 +221,7 @@ Item {
 
             DrawerItem {
                 iconSource: __style.settinsIcon
-                itemName: qsTr("Settings")
+                itemName: "Settings"
                 color: stackView.currentItem.objectName
                        === "settingsScreenObject" ? __style.secondaryContainerColor : __style.transparentColor
 
@@ -235,21 +235,21 @@ Item {
             // #TODO: RELEASE_ON_FURURE_API_IMPROVEMENT
             // DrawerItem {
             //     iconSource: "../../assets/icons/users.svg"
-            //     itemName: qsTr("Users")
+            //     itemName:"Users")
             // }
             // DrawerItem {
             //     iconSource: "../../assets/icons/flight_scheduler.svg"
-            //     itemName: qsTr("Flight scheduler")
+            //     itemName:"Flight scheduler")
             // }
 
             // DrawerItem {
             //     iconSource: "../../assets/icons/duties.svg"
-            //     itemName: qsTr("Duties")
+            //     itemName:"Duties")
             // }
 
             // DrawerItem {
             //     iconSource: "../../assets/icons/licences.svg"
-            //     itemName: qsTr("Licences")
+            //     itemName:"Licences")
             // }
         }
     }
@@ -342,7 +342,7 @@ Item {
 
         property var mainScreenId: flightsScreen
 
-        property string drawerPageName: qsTr("Flights") //default
+        property string drawerPageName: "Flights" //default
         property bool isNavigationAvailable: stackView.currentItem.objectName
                                              !== "loginScreenObject"
                                              && stackView.currentItem.objectName
